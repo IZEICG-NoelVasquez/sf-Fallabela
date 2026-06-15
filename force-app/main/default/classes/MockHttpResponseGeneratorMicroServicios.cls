@@ -67,7 +67,7 @@ global class MockHttpResponseGeneratorMicroServicios implements HttpCalloutMock 
 
         // Optionally, only send a mock response for a specific endpoint
         // and method.
-       // System.assertEquals(url, req.getEndpoint());
+        System.assertEquals(url, req.getEndpoint());
         System.assertEquals('POST', req.getMethod());
         
         // Create a fake response

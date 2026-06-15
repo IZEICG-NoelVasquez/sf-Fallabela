@@ -1,0 +1,101 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId"  controller="SendEmailTemplateController" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="simpleRecord" type="Object" />
+    <aura:attribute name="error" type="String" />
+    <aura:attribute name="tarjetaNum" type="String" />
+
+    <aura:attribute name="mailEnviado" type="Boolean" default="true" />
+
+
+    <aura:attribute name="perfilesVisualizacionPDF" type="List" default="['System Administrator','Administrador del sistema','Analista Operaciones','Experiencia al Cliente','Fraudes','Fraudes Analista BackOffice CC','Gerente de Operaciones']" />
+    <aura:attribute name="infoPerfilLoaded" type="Boolean" default="false" />
+    <aura:attribute name="perfilVisualizacionAutorizado" type="Boolean" default="false" />
+    <aura:attribute name="openModalPDF" type="Boolean" default="false" />
+    <aura:attribute name="urlPdf" type="String" />
+
+    <!-- Seleccion de Movimientos -->
+    <aura:attribute name="movimientosLoaded" type="Boolean" default="true" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <aura:attribute name="headerTitle" type="Aura.Component[]">
+        <h2>
+            <b>Formato Aclaraciones</b>
+        </h2>
+    </aura:attribute>
+    
+    
+    <force:recordData aura:id="forceRecord"
+                      recordId="{!v.recordId}"
+                      fields="['Contact.Id', 'Status', 'RecordType.Name', 'Correo_Formato_Aclaraciones_Enviado__c']"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.error}"
+                      mode="VIEW" />
+    
+    <aura:if isTrue="{! and(if((v.simpleRecord.RecordType.Name == 'Cargo no reconocido' || v.simpleRecord.RecordType.Name == 'Retiro de efectivo en ATM' || v.simpleRecord.RecordType.Name == 'Desconoce transacción en ATM'),true,false), 
+                     		(v.simpleRecord.Status == 'Documentación requerida' || v.simpleRecord.Status == 'Análisis de Prosa' || v.simpleRecord.Status == 'Cerrado' || v.simpleRecord.Status == 'Cancelado' )) }">
+        <lightning:card class="slds-text-heading_small" 
+                        title="{!v.headerTitle}" iconName="custom:custom18">
+            <fieldset class="slds-p-around_medium slds-theme--default slds-container--small">
+                <form class="slds-form--stacked">
+                    <lightning:input type="text" aura:id="tarjetaform" label="16 dígitos de la tarjeta" 
+                                     name="tarjeta" 
+                                     placeholder="0000000000000000" 
+                                     pattern="[0-9]{16}"
+                                     messageWhenPatternMismatch="Favor de introducir los 16 dígitos de su tarjeta"
+                                     max-length="16"	
+                                     required="true" 
+                                     onchange="{!c.CheckLength}" />
+                    <aura:if isTrue="{! v.movimientosLoaded }" >
+
+                        <aura:if isTrue="{! v.mailEnviado }" >
+                            <lightning:button label="Enviar Correo" 
+                                    class="slds-m-top--medium"
+                                    iconName='utility:email'
+                                    variant="brand"
+                                    onclick="{!c.sendMail}"/>
+                            <aura:set attribute="else">
+                                <div class="slds-p-around_xx-large">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>  
+                            </aura:set>
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.infoPerfilLoaded }" >
+                            <lightning:button label="Ver Formato" 
+                                            class="slds-m-top--medium" 
+                                            iconName="utility:preview"
+                                            variant="brand-outline" 
+                                            disabled="{! or( (!v.perfilVisualizacionAutorizado), (!v.recordId) ) }" 
+                                            onclick="{! c.openModalPDF }"/>
+                            <aura:set attribute="else">
+                                <div class="slds-p-around_xx-large">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>  
+                            </aura:set>
+                        </aura:if>
+
+                        <aura:set attribute="else">
+                            <div class="slds-p-around_xx-large">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>  
+                        </aura:set>
+                    </aura:if>
+                </form>
+            </fieldset>
+            
+        </lightning:card> 
+
+        <aura:if isTrue="{! v.openModalPDF }" >
+            <c:PDFAclaracionesViewer openModalPDF="{! v.openModalPDF }" urlPdf="{! v.urlPdf }" />
+        </aura:if>
+        
+        
+        
+        
+    </aura:if> 
+    
+    
+</aura:component>

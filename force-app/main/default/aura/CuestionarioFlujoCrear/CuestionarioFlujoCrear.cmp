@@ -1,0 +1,302 @@
+<aura:component controller="CuestionarioFlujoController" implements="lightning:actionOverride,force:hasRecordId,force:hasSObjectName">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="DesdeFlujo" type="Boolean" default="false"/>
+    <aura:attribute name="codigoEnviado" type="Boolean" default="false"/>
+    <aura:attribute name="otpValidado" type="Boolean" default="false"/>
+    <aura:attribute name="simpleNewCuestionario" type="Object"/>
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="codigoOTP" type="String" />
+    <aura:attribute name="codigoOTPIngresado" type="String" />
+    <aura:attribute name="telefono" type="Integer" />
+    <aura:attribute name="recordError" type="String" />
+        <aura:attribute name="Status" type="String" />
+    <aura:attribute name="paso" type="Integer" default="1" />
+    <aura:attribute name="pasos" type="Integer" default="3" />
+    <aura:attribute name="pasoDocument" type="Map" default="{}"/>
+    
+    <aura:handler name="UploadImageEvent" event="c:UploadImageEvent" action="{! c.handleUploadImageEvent }" />  
+    <force:recordData aura:id="recordEditor"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.simpleNewCuestionario}"
+                      mode="EDIT" />
+    <!--<aura:attribute name="recordId" type="String" />-->
+    
+    <lightning:messages />  
+    <lightning:progressBar value="{!(100/v.pasos)*(v.paso)}" size="large" />
+    <aura:if isTrue="{!v.paso == 1}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Sistematización de Equipo">
+                <div class="slds-p-horizontal--small">
+                    <aura:if isTrue="{!!v.DesdeFlujo}">
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Pendiente',v.simpleNewCuestionario.Status__c == 'Cancelado')}">
+                            <lightning:select aura:id="cuestionarioField"  label="Status" value="{!v.simpleNewCuestionario.Status__c}">
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </lightning:select>
+                        </aura:if>
+                    </aura:if>
+                    <lightning:select aura:id="cuestionarioField" required="true" label="¿El personal está ubicado de manera distribuida en la tienda?" value="{!v.simpleNewCuestionario.El_personal_est_ubicado_de_manera_dist__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" required="true" label="¿Promotores y Ejecutivos saben sus metas del día?" value="{!v.simpleNewCuestionario.Promotores_y_Ejecutivos_saben_sus_metas__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" required="true" label="¿Se ha comunicado diariamente los resultados de referidos al Gerente de Tienda y Jefe de Cajas? Entrevistar a Gerente de Tienda, Jefe de Cajas." value="{!v.simpleNewCuestionario.Se_ha_comunicado_diariamente_los_resulta__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios de entrevista" required="true" value="{!v.simpleNewCuestionario.Se_ha_comunicado_diariamente_comentario__c}"/>
+                    <lightning:select aura:id="cuestionarioField" required="true" label="¿Están los registros del resguardo de las llaves en la bitácora de la barra de seguridad, de manera diaria por el Supervisor/Senior?" value="{!v.simpleNewCuestionario.Est_n_los_registros_del_resguardo_de_la__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <footer class="slds-modal__footer">
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.Est_n_los_registros_del_resguardo_de_la__c != null,v.simpleNewCuestionario.Promotores_y_Ejecutivos_saben_sus_metas__c != null,v.simpleNewCuestionario.Ejecutivos_y_Promotores_tienen_sus_acta__c != null,v.simpleNewCuestionario.Se_ha_comunicado_diariamente_comentario__c != null,v.simpleNewCuestionario.El_personal_est_ubicado_de_manera_dist__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                            <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 2}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:new_contact" title="Sistematización de Tienda">
+                <div class="slds-p-horizontal--small">
+                    <lightning:select aura:id="cuestionarioField" required="true" label="Comisiones Falabella Soriana" value="{!v.simpleNewCuestionario.Comisiones_Falabella_Soriana__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="{!v.paso}" documentId="{!v.pasoDocument.paso2}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Comisiones Falabella Soriana Mastercard" value="{!v.simpleNewCuestionario.Comisiones_Falabella_Soriana_Mastercard__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="3" documentId="{!v.pasoDocument.paso3}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Aviso de Privacidad" value="{!v.simpleNewCuestionario.Aviso_de_privacidad__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="4" documentId="{!v.pasoDocument.paso4}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Anexo de Disposiciones legales" value="{!v.simpleNewCuestionario.Anexo_de_Disposiciones_legales__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="5" documentId="{!v.pasoDocument.paso5}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Directorio de Despachos de Cobranza" value="{!v.simpleNewCuestionario.Directorio_de_Despachos_de_Cobranza__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="6" documentId="{!v.pasoDocument.paso6}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Contrato de Adhesión registro Condusef" value="{!v.simpleNewCuestionario.Contrato_de_Adhesi_n_registro_Condusef__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="7" documentId="{!v.pasoDocument.paso7}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Cartel UNE" value="{!v.simpleNewCuestionario.Cartel_UNE__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="8" documentId="{!v.pasoDocument.paso8}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="Cartel Buró" value="{!v.simpleNewCuestionario.Cartel_Bur__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="9" documentId="{!v.pasoDocument.paso9}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="¿Están los folletos disponibles y visibles en módulo?" value="{!v.simpleNewCuestionario.Est_n_los_folletos_disponibles_y_visibl__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="10" documentId="{!v.pasoDocument.paso10}"/>             
+                    <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!v.simpleNewCuestionario.Est_n_los_folletos_disponibles_y_visibl__c != null}">
+                            <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                        </aura:if>
+                        <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                            <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 3}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Sistematización de Oficina/Sucursal">
+                <B>Seguridad de la Información</B><br/>
+                ¿Todos los Ejecutivos y el Supervisor/Coordinador cuentan con sus usuarios y contraseñas activas?
+                <div class="slds-p-horizontal--small">
+                    <lightning:select aura:id="cuestionarioField" label="Plataforma web" value="{!v.simpleNewCuestionario.Plataforma_web__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios Plataforma web" value="{!v.simpleNewCuestionario.Plataforma_comentarios__c}"/>
+                    <lightning:select aura:id="cuestionarioField" label="Admisiones" value="{!v.simpleNewCuestionario.Admisiones__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios Admisiones" value="{!v.simpleNewCuestionario.Adminisiones_comentarios__c}"/>
+                    <lightning:select aura:id="cuestionarioField" label="Iron Mountain" value="{!v.simpleNewCuestionario.Iron_mountain__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios Iron Mountain" value="{!v.simpleNewCuestionario.Iron_mountain_comentarios__c}"/>
+                    <lightning:select aura:id="cuestionarioField" label="¿Están los usuarios y contraseñas guardados (no visibles)?" value="{!v.simpleNewCuestionario.Est_n_los_usuarios_y_contrase_as_guarda__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" label="¿Están los documentos guardados en cajones bajo llave?" value="{!v.simpleNewCuestionario.Est_n_los_documentos_guardados_en_cajon__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>                    
+                    <lightning:select aura:id="cuestionarioField" label="¿Equipo candadeado y guardado?" value="{!v.simpleNewCuestionario.Equipo_candadeado_y_guardado__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" label="¿Las imágenes están en las carpetas correspondientes? Revisar historial de navegación" value="{!v.simpleNewCuestionario.Las_im_genes_est_n_en_las_carpetas_corr__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios imágenes en las carpetas correspondientes" value="{!v.simpleNewCuestionario.Las_im_genes_est_n_en_las_comentarios__c}"/>
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="¿Se envió la valija en la última fecha correspondiente? Tomar foto de comprobante último envío." value="{!v.simpleNewCuestionario.Se_envi_la_valija_en_la_ltima_fecha_c__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="12" documentId="{!v.pasoDocument.paso12}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="¿Están los expedientes de días anteriores (después del envío de la valija) cerrados y con el formato correspondiente?" value="{!v.simpleNewCuestionario.Est_n_los_expedientes_de_d_as_anteriore__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select> <br/>
+                    <B>Productividad y apego a Procesos</B><br/>
+                    <lightning:select aura:id="cuestionarioField" label="¿Se han estado gestionando reclamos desde la plataforma web?" value="{!v.simpleNewCuestionario.Se_han_estado_gestionando_reclamos_desd__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:input label="Comentarios reclamos desde la plataforma web" value="{!v.simpleNewCuestionario.Se_han_estado_gestionando_comentarios__c}"/>
+                    <lightning:select aura:id="cuestionarioField" label="Todo el personal cumple con el uniforme al 100%, limpio y tienen buena presentación?" value="{!v.simpleNewCuestionario.Todo_el_personal_cumple_con_el_uniforme__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="15" documentId="{!v.pasoDocument.paso15}"/>             
+                    <br/>
+                    <lightning:select aura:id="cuestionarioField" label="¿La cantidad de tarjetas físicas cuadran con el número registrado en el sistema?" value="{!v.simpleNewCuestionario.La_cantidad_de_tarjetas_f_sicas_cuadran__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" label="¿El 100% de las tarjetas con error o prueba están destruídas y cuentan con su carta de destrucción?" value="{!v.simpleNewCuestionario.El_100_de_las_tarjetas_con_error_o_pru__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <lightning:select aura:id="cuestionarioField" label="¿En las cartas de destrucción se encuentras resguardadas en la carpeta electrónica correspondiente?" value="{!v.simpleNewCuestionario.Elas_cartas_de_destrucci_n_se_encuentra__c}">
+                        <option value="">-</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </lightning:select>
+                    <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!v.simpleNewCuestionario.Elas_cartas_de_destrucci_n_se_encuentra__c != null}">
+                            <aura:if isTrue="{!v.pasos == 4}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                        </aura:if>
+                        <aura:if isTrue="{!and(!v.DesdeFlujo,or(v.pasos == 3,v.simpleNewCuestionario.Status__c != 'Pendiente'))}">
+                            <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.simpleNewCuestionario.Elas_cartas_de_destrucci_n_se_encuentra__c != null}">
+                            <aura:if isTrue="{!and(v.pasos == 3,v.DesdeFlujo)}">
+                                <lightning:button label="Finalizar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 4}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:new_contact" title="Validación OTP">
+                <div class="slds-p-horizontal--small">
+                    <lightning:input label="Codigo a Validar" value="{!v.codigoOTPIngresado}"/>
+                    <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!!v.codigoEnviado}">
+                            <lightning:button variant="brand" label="Enviar Código" onclick="{! c.handleEnviar }"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.codigoEnviado}">
+                            <lightning:button variant="brand" label="Validar Código y Finalizar" onclick="{! c.handleValidar }"/>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 100}">
+        <lightning:input label="Map" value="{!v.simpleNewCuestionario.MapUploadImage__c}"/>
+        <lightning:input label="OTP" value="{!v.simpleNewCuestionario.OTP_Validado__c}"/>
+        <lightning:input label="OTP" value="{!v.simpleNewCuestionario.Sucursal__c}"/>
+         <lightning:input label="RTid" value="{!v.simpleNewCuestionario.RecordTypeId}"/>
+
+    </aura:if>
+</aura:component>

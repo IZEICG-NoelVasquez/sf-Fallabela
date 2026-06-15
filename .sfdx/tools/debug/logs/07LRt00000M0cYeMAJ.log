@@ -1,0 +1,840 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+11:22:02.0 (163759)|USER_INFO|[EXTERNAL]|0050v0000034lag|albeltransa@falabella.com.mx.admin.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+11:22:02.0 (199826)|EXECUTION_STARTED
+11:22:02.0 (210878)|CODE_UNIT_STARTED|[EXTERNAL]|apex://AuthenticateCustomerController/ACTION$getInfoAltoRiesgo
+11:22:02.0 (2174119)|CODE_UNIT_STARTED|[EXTERNAL]|01p1N00000DazLB|AuthenticateCustomerController.getInfoAltoRiesgo()
+11:22:02.0 (2342487)|VARIABLE_SCOPE_BEGIN|[19]|AuthenticateCustomerController.BE|String|false|true
+11:22:02.0 (2627194)|HEAP_ALLOCATE|[95]|Bytes:3
+11:22:02.0 (2697566)|HEAP_ALLOCATE|[100]|Bytes:152
+11:22:02.0 (2714549)|HEAP_ALLOCATE|[417]|Bytes:408
+11:22:02.0 (2727254)|HEAP_ALLOCATE|[430]|Bytes:408
+11:22:02.0 (2751502)|HEAP_ALLOCATE|[317]|Bytes:6
+11:22:02.0 (2769365)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:13
+11:22:02.0 (2773911)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:70
+11:22:02.0 (2776842)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:88
+11:22:02.0 (2781024)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:2
+11:22:02.0 (2857335)|VARIABLE_ASSIGNMENT|[EXTERNAL]|AuthenticateCustomerController.BE|"BE"
+11:22:02.0 (2876704)|METHOD_ENTRY|[17]|01p1N00000DazLB|AuthenticateCustomerController.AuthenticateCustomerController()
+11:22:02.0 (2883752)|STATEMENT_EXECUTE|[17]
+11:22:02.0 (2889488)|STATEMENT_EXECUTE|[17]
+11:22:02.0 (2911607)|HEAP_ALLOCATE|[68]|Bytes:5
+11:22:02.0 (2937107)|HEAP_ALLOCATE|[74]|Bytes:5
+11:22:02.0 (2944260)|HEAP_ALLOCATE|[82]|Bytes:7
+11:22:02.0 (2970687)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+11:22:02.0 (2974925)|STATEMENT_EXECUTE|[21]
+11:22:02.0 (2982852)|METHOD_EXIT|[17]|AuthenticateCustomerController
+11:22:02.0 (2994504)|HEAP_ALLOCATE|[261]|Bytes:5
+11:22:02.0 (2998057)|STATEMENT_EXECUTE|[259]
+11:22:02.0 (2999723)|STATEMENT_EXECUTE|[261]
+11:22:02.0 (6282373)|VARIABLE_SCOPE_BEGIN|[18]|AuthenticateHelper.BE|String|false|true
+11:22:02.0 (6318219)|HEAP_ALLOCATE|[261]|Bytes:13
+11:22:02.0 (6326879)|HEAP_ALLOCATE|[261]|Bytes:10
+11:22:02.0 (6330244)|HEAP_ALLOCATE|[261]|Bytes:11
+11:22:02.0 (6333289)|HEAP_ALLOCATE|[261]|Bytes:2
+11:22:02.0 (6349974)|VARIABLE_ASSIGNMENT|[261]|AuthenticateHelper.BE|"BE"
+11:22:02.0 (6376569)|METHOD_ENTRY|[16]|01p0v000003GrJC|AuthenticateHelper.AuthenticateHelper()
+11:22:02.0 (6382727)|STATEMENT_EXECUTE|[16]
+11:22:02.0 (6387853)|STATEMENT_EXECUTE|[16]
+11:22:02.0 (6389297)|STATEMENT_EXECUTE|[20]
+11:22:02.0 (6394362)|METHOD_EXIT|[16]|AuthenticateHelper
+11:22:02.0 (6415179)|METHOD_ENTRY|[261]|01p0v000003GrJC|AuthenticateHelper.getInfoAltoRiesgo()
+11:22:02.0 (6452678)|STATEMENT_EXECUTE|[199]
+11:22:02.0 (6453933)|STATEMENT_EXECUTE|[201]
+11:22:02.0 (6471627)|HEAP_ALLOCATE|[201]|Bytes:4
+11:22:02.0 (6485485)|VARIABLE_SCOPE_BEGIN|[201]|resultMap|Map<String,List<ANY>>|true|false
+11:22:02.0 (6653682)|VARIABLE_ASSIGNMENT|[201]|resultMap|{}|0x3158aff7
+11:22:02.0 (6658871)|STATEMENT_EXECUTE|[203]
+11:22:02.0 (6709611)|HEAP_ALLOCATE|[203]|Bytes:4
+11:22:02.0 (6766857)|VARIABLE_SCOPE_BEGIN|[203]|altoRiesgo|List<String>|true|false
+11:22:02.0 (6805778)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (6818852)|VARIABLE_ASSIGNMENT|[203]|altoRiesgo|[]|0x6a8180fc
+11:22:02.0 (6825898)|HEAP_ALLOCATE|[205]|Bytes:109
+11:22:02.0 (6836925)|HEAP_ALLOCATE|[205]|Bytes:4
+11:22:02.0 (8520765)|SOQL_EXECUTE_BEGIN|[205]|Aggregations:0|SELECT Value__c, Riesgo__c FROM Sub_Categoria__mdt WHERE IsActive__c = TRUE ORDER BY Value__c ASC NULLS FIRST
+11:22:02.0 (16505935)|SOQL_EXECUTE_END|[205]|Rows:88
+11:22:02.0 (16561007)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:356
+11:22:02.0 (16788582)|HEAP_ALLOCATE|[205]|Bytes:54
+11:22:02.0 (16799476)|HEAP_ALLOCATE|[205]|Bytes:8
+11:22:02.0 (16812774)|SYSTEM_METHOD_ENTRY|[7]|QueryLocatorIterator.QueryLocatorIterator()
+11:22:02.0 (16818625)|STATEMENT_EXECUTE|[7]
+11:22:02.0 (16827092)|SYSTEM_METHOD_EXIT|[7]|QueryLocatorIterator
+11:22:02.0 (16833159)|HEAP_ALLOCATE|[205]|Bytes:28
+11:22:02.0 (16910846)|HEAP_ALLOCATE|[205]|Bytes:356
+11:22:02.0 (16921790)|HEAP_ALLOCATE|[205]|Bytes:8
+11:22:02.0 (16923506)|HEAP_ALLOCATE|[205]|Bytes:8
+11:22:02.0 (16928039)|VARIABLE_SCOPE_BEGIN|[15]|this|Database.QueryLocatorIterator|true|false
+11:22:02.0 (16965936)|VARIABLE_ASSIGNMENT|[15]|this|{}|0x7b9134ca
+11:22:02.0 (16969467)|VARIABLE_SCOPE_BEGIN|[15]|values|List<SObject>|true|false
+11:22:02.0 (16985381)|VARIABLE_ASSIGNMENT|[15]|values|"List of size 88 too large to display"|0x4e7da22e
+11:22:02.0 (16988382)|VARIABLE_SCOPE_BEGIN|[15]|ql|Database.QueryLocator|true|false
+11:22:02.0 (17007559)|VARIABLE_ASSIGNMENT|[15]|ql|{"query":"SELECT Value__c, Rie (89 more) ..."}|0x26e4379b
+11:22:02.0 (17011779)|VARIABLE_SCOPE_BEGIN|[15]|totalNumRecords|Integer|false|false
+11:22:02.0 (17018617)|VARIABLE_ASSIGNMENT|[15]|totalNumRecords|88
+11:22:02.0 (17021080)|VARIABLE_SCOPE_BEGIN|[15]|queryMoreSize|Integer|false|false
+11:22:02.0 (17024842)|VARIABLE_ASSIGNMENT|[15]|queryMoreSize|49912
+11:22:02.0 (18583173)|HEAP_ALLOCATE|[205]|Bytes:28
+11:22:02.0 (18618324)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (18713078)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (18718573)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (18802600)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (18809079)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (18894206)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Abono de Puntos","Riesgo__c":"Bajo","Id":"m061N000000XZKuQAO"}|0x151b39d1
+11:22:02.0 (18900388)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (18924725)|HEAP_ALLOCATE|[207]|Bytes:4
+11:22:02.0 (18951473)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (18955170)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (18965583)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (18967910)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (18990976)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (18993638)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19019843)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Abono de Puntos (Mód (4 more) ...","Riesgo__c":"Bajo","Id":"m061N000000CcDbQAK"}|0x4dd8c7f5
+11:22:02.0 (19025116)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19031404)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19033402)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19041850)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19044127)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19063913)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19066178)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19080255)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Activación de NIP","Riesgo__c":"Bajo","Id":"m060v0000001QvSAAU"}|0x7bcd9957
+11:22:02.0 (19083813)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19087426)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19089001)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19096800)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19098838)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19117320)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19119440)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19135919)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Activación de Tarjet (1 more) ...","Riesgo__c":"Alto","Id":"m061N000000XZKcQAO"}|0x3754e24e
+11:22:02.0 (19139353)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19142865)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19143713)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19186309)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19192825)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19201358)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19203576)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19227503)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19231167)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19248074)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización Buró","Riesgo__c":"Bajo","Id":"m060v0000005aTdAAI"}|0x44d3ddbb
+11:22:02.0 (19252023)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19256553)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19258382)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19266580)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19268972)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19287967)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19290131)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19306910)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización Correo (9 more) ...","Riesgo__c":"Alto","Id":"m061N000000QdPBQA0"}|0x4fbf4dbb
+11:22:02.0 (19311823)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19316306)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19317389)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19322898)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19328142)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19340065)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19342408)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19361386)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19363679)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19378635)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización de Cel (4 more) ...","Riesgo__c":"Medio Alto","Id":"m061N000000CbbCQAS"}|0x582f623a
+11:22:02.0 (19381955)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19385904)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19387538)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19395262)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19397212)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19415448)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19417700)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19430205)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización de Cor (3 more) ...","Riesgo__c":"Alto","Id":"m061N000000XZL3QAO"}|0x4879ade3
+11:22:02.0 (19433262)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19436100)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19436849)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19439670)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19443105)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19450538)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19452469)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19470865)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19472978)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19485148)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización de CUR (1 more) ...","Riesgo__c":"Alto","Id":"m061N000000CcDJQA0"}|0x121d8f52
+11:22:02.0 (19488233)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19491280)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19492329)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19496162)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19501548)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19513873)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19516209)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19534930)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19537061)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19550021)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización de Dom (6 more) ...","Riesgo__c":"Alto","Id":"m061N000000XZKyQAO"}|0x277ada3f
+11:22:02.0 (19553162)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19556251)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19557016)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19559776)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19563083)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19570395)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19572346)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19590434)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19592569)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19604987)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización de Tel (10 more) ...","Riesgo__c":"Alto","Id":"m061N000000QdP9QAK"}|0x4e75258
+11:22:02.0 (19608216)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19610851)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19611600)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19614243)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19617732)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19624928)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19626939)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19645098)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19647074)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19658821)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización Domici (12 more) ...","Riesgo__c":"Alto","Id":"m061N000000QdPCQA0"}|0x1f4e192
+11:22:02.0 (19661951)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19664619)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19665354)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (19667996)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (19671429)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19678759)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19680764)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19698574)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19701282)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19716714)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización Nom, R (6 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZL5QAO"}|0x7fed89e1
+11:22:02.0 (19719925)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19723519)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19725114)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19732617)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19734616)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19753054)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19755089)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19766719)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Actualización SORIBA (1 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdV1QAK"}|0xeb71f01
+11:22:02.0 (19769904)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19773160)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19774709)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19781956)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19783924)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19802079)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19804139)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19815956)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"APP","Riesgo__c":"Bajo","Id":"m061N000000QdP6QAK"}|0x307cf91d
+11:22:02.0 (19818850)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19822154)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19823599)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19831199)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19833284)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19851231)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19853338)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19864943)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Audiencia CONDUSEF","Riesgo__c":"Bajo","Id":"m060v0000000yh0AAA"}|0x16a266f1
+11:22:02.0 (19867768)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19871141)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19872534)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19879904)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19881874)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19899955)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19901949)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19914017)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Aumento de Línea de  (7 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZL7QAO"}|0x5935745
+11:22:02.0 (19917259)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19920501)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19921948)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19929383)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19931323)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19949442)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19951432)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (19963586)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Bloqueo Seguridad","Riesgo__c":"Bajo","Id":"m061N000000QdP8QAK"}|0x336a0fe1
+11:22:02.0 (19966297)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (19969453)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (19970851)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19978219)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (19980381)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (19998315)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20000284)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20013026)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cambio de Medio Enví (1 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKhQAO"}|0x6489bc80
+11:22:02.0 (20016322)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20019449)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20020878)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20028336)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20030320)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20048446)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20050396)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20061981)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Campañas Outbound","Riesgo__c":"Bajo","Id":"m061N000000CcE7QAK"}|0x6199db0e
+11:22:02.0 (20065369)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20068516)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20069902)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20077189)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20079166)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20097266)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20099249)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20110841)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Campos Regulatorios","Riesgo__c":"Alto","Id":"m060v0000009MeIAAU"}|0x7e2f8107
+11:22:02.0 (20113563)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20116159)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20116904)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (20119638)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (20123057)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20130242)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20132194)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20150414)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20152391)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20163925)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cancelación Adiciona (1 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKdQAO"}|0x1dd98c24
+11:22:02.0 (20167079)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20170286)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20171745)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20179044)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20181199)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20199454)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20201444)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20218174)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cancelación de Adici (13 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPDQA0"}|0x341d5ea3
+11:22:02.0 (20222978)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20228097)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20230483)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20242884)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20246180)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20273684)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20276664)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20299112)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cancelación de Tarje (20 more) ...","Riesgo__c":"Bajo","Id":"m060v00000095QnAAI"}|0x1bf3a285
+11:22:02.0 (20303883)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20310094)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20313260)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20327176)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20329708)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20349064)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20351296)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20365422)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cancelación de Titul (2 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZL8QAO"}|0x19563f45
+11:22:02.0 (20368639)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20372119)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20373678)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20381334)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20383436)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20401946)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20404066)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20416251)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cancelación por fall (30 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPEQA0"}|0x483f38e7
+11:22:02.0 (20419606)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20423022)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20424562)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20432009)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20433934)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20451804)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20453932)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20470195)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cargo no reconocido","Riesgo__c":"Bajo","Id":"m061N000000XZKfQAO"}|0x16899f05
+11:22:02.0 (20473144)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20476483)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20478084)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20487204)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20490349)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20517222)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20520959)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20563548)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Carta Finiquito","Riesgo__c":"Bajo","Id":"m060v0000005aTiAAI"}|0x10e8f0db
+11:22:02.0 (20567384)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20572603)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20574571)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20583231)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20585316)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20605310)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20607501)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20622326)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cliente en Mora Grav (1 more) ...","Riesgo__c":"Bajo","Id":"m061N0000001OMWQA2"}|0x386c5994
+11:22:02.0 (20625313)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20628706)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20630179)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20637739)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20639811)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20658201)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20660288)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20672559)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Cobro a Persona Equi (6 more) ...","Riesgo__c":"Bajo","Id":"m060v0000005aTTAAY"}|0x925b67e
+11:22:02.0 (20675387)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20678561)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20680046)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20687556)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20690787)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20718461)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20722339)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20742395)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Compra no diferida","Riesgo__c":"Bajo","Id":"m061N000000XZKtQAO"}|0x530e71e8
+11:22:02.0 (20745628)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20749822)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20751611)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20759495)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20761605)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20780331)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20782389)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20795016)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Compra no diferida ( (7 more) ...","Riesgo__c":"Bajo","Id":"m060v00000099CGAAY"}|0x4b73d7a
+11:22:02.0 (20797833)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20800969)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20802457)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20810034)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20812011)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20830290)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20832366)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20844372)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Condonación","Riesgo__c":"Bajo","Id":"m061N000000CcDaQAK"}|0x5ecd7481
+11:22:02.0 (20847673)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20850893)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20852384)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20859837)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20861929)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20879934)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20881953)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20894070)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Consulta de PAN","Riesgo__c":"Bajo","Id":"m061N000000CcF5QAK"}|0x7a7faf60
+11:22:02.0 (20896816)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20899959)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20901679)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20909219)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20911435)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20929649)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20931645)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20943515)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Consulta de Saldos y (12 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKgQAO"}|0x5ade10f6
+11:22:02.0 (20946324)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20949341)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20950751)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20958345)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (20960346)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20978519)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (20980576)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (20991958)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Consulta de Seguros","Riesgo__c":"Bajo","Id":"m061N0000001OMbQAM"}|0x67bfaa3a
+11:22:02.0 (20994590)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (20997568)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (20999004)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21006407)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21009219)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21027314)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21029374)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21042626)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Contrato manual","Riesgo__c":"Bajo","Id":"m06Rt000007eIyHIAU"}|0x52e3b330
+11:22:02.0 (21046899)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21051941)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21054694)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21066229)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21069477)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21107125)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21110102)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21129920)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"CVV Dinámico","Riesgo__c":"Bajo","Id":"m060v0000001PW2AAM"}|0x556012a3
+11:22:02.0 (21133610)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21138557)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21140351)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21148461)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21150548)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21177705)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21180373)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21193568)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Desbloqueo de PIN","Riesgo__c":"Alto","Id":"m061N000000XZKnQAO"}|0x7f93f159
+11:22:02.0 (21196390)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21200785)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21201577)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (21208221)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (21213278)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21221357)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21223449)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21242371)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21244501)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21257309)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Desconoce transacció (8 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKmQAO"}|0x65e76aeb
+11:22:02.0 (21260862)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21264432)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21266110)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21273553)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21275515)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21293648)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21295990)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21308000)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Desconoce transacció (17 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPGQA0"}|0x2ad23f54
+11:22:02.0 (21311322)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21314653)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21316140)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21323647)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21325624)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21344020)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21346126)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21358259)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Estado de Cuenta No  (5 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKjQAO"}|0x7ff2d5a7
+11:22:02.0 (21361072)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21364290)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21365750)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21373085)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21375089)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21393172)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21395175)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21406755)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Estado de Cuenta No  (14 more) ...","Riesgo__c":"Alto","Id":"m061N000000CcDiQAK"}|0x1f0bfa39
+11:22:02.0 (21409470)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21412365)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21413181)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (21416179)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (21419851)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21427255)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21429240)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21447415)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21449496)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21461080)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Figital","Riesgo__c":"Bajo","Id":"m060v0000001Si1AAE"}|0x41656b01
+11:22:02.0 (21463850)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21467108)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21468620)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21476015)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21478056)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21495989)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21497960)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21514274)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Información de Promo (6 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKrQAO"}|0x7a76d4e6
+11:22:02.0 (21519300)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21524524)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21527223)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21539770)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21542995)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21566463)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21568767)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21583940)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Invitación Canales D (8 more) ...","Riesgo__c":"Bajo","Id":"m060v0000005ZZ1AAM"}|0x13c069e2
+11:22:02.0 (21587777)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21591489)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21593055)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21600722)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21602793)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21621081)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21623143)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21635245)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Liberación de Compra (9 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKqQAO"}|0x53da9391
+11:22:02.0 (21638388)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21641771)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21643165)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21650505)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21652775)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21671112)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21673095)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21684930)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Liberar saldo reteni (2 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKlQAO"}|0x398dc788
+11:22:02.0 (21687818)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21691078)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21692435)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21704072)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21707336)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21732499)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21734793)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21748226)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Liberar Saldo Reteni (11 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPHQA0"}|0x7590f5bb
+11:22:02.0 (21751235)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21754932)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21756366)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21763836)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21765874)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21785220)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21788465)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21802058)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Mal proceso de cobro","Riesgo__c":"Bajo","Id":"m060v0000005aTYAAY"}|0x658f1d92
+11:22:02.0 (21804818)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21808342)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21810041)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21817802)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21819836)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21847952)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21851520)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21874338)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Notificación Publici (3 more) ...","Riesgo__c":"Bajo","Id":"m060v0000005ZZBAA2"}|0x624e4ca9
+11:22:02.0 (21879424)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21885055)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21887002)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21895070)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21897077)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21919269)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21921454)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (21934372)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Pago No Aplicado","Riesgo__c":"Bajo","Id":"m061N000000XZKpQAO"}|0x35a866ef
+11:22:02.0 (21938862)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (21943645)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (21946062)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21957039)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (21960055)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21985997)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (21988240)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22002396)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Pago No Aplicado (Mó (5 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPJQA0"}|0x47e760cc
+11:22:02.0 (22006297)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22010725)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22013285)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22025187)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22028835)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22056900)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22059292)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22073819)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Plan de Pagos","Riesgo__c":"Bajo","Id":"m060v0000001OQMAA2"}|0x5a99962f
+11:22:02.0 (22076562)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22080495)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22082068)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22089877)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22091892)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22110695)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22112791)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22130649)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Promoción no Aplicad (1 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKsQAO"}|0x4a22a2d1
+11:22:02.0 (22135602)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22140536)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22143065)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22154788)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22157912)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22188765)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22192044)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22213480)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Promoción no Aplicad (10 more) ...","Riesgo__c":"Bajo","Id":"m060v00000096etAAA"}|0x3c4b2a64
+11:22:02.0 (22219090)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22224600)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22227161)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22238460)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22241835)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22271135)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22274580)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22294564)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Préstamo Personal","Riesgo__c":"Bajo","Id":"m06Rt00000D15foIAB"}|0x4056dc21
+11:22:02.0 (22298906)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22303691)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22306275)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22316299)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22318420)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22336839)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22338980)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22351217)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"QR","Riesgo__c":"Bajo","Id":"m060v0000001Si6AAE"}|0x566812ea
+11:22:02.0 (22354105)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22357580)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22359053)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22366682)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22368660)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22386762)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22388770)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22401029)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Quejas y Sugerencias","Riesgo__c":"Bajo","Id":"m061N000000XZKvQAO"}|0x90306dc
+11:22:02.0 (22404810)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22409325)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22411959)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22424255)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22426508)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22445004)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22447110)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22465179)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Quejas y/o Sugerenci (11 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPKQA0"}|0x6cfe1592
+11:22:02.0 (22469821)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22474982)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22477741)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22490092)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22493694)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22517178)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22519416)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22534175)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Quita","Riesgo__c":"Bajo","Id":"m061N000000CcDYQA0"}|0x1abf6bf8
+11:22:02.0 (22538721)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22544596)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22546948)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22559580)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22562832)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22583793)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22585943)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22599511)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"REDECO","Riesgo__c":"Bajo","Id":"m060v00000010WoAAI"}|0xc56d507
+11:22:02.0 (22602521)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22606213)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22607658)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22615307)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22617268)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22636244)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22638308)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22654805)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reenvío de Estado de (7 more) ...","Riesgo__c":"Alto","Id":"m061N000000XZKiQAO"}|0x1d7207b7
+11:22:02.0 (22659827)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22664341)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22665363)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (22672492)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (22677683)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22685397)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22687534)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22706121)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22708287)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22723819)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reestructura","Riesgo__c":"Bajo","Id":"m061N000000CcDZQA0"}|0x13cd30e
+11:22:02.0 (22728501)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22733618)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22736062)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22747476)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22750391)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22777308)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22780691)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22803618)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Remisión","Riesgo__c":"Bajo","Id":"m06DK000000EpImYAK"}|0x603d987a
+11:22:02.0 (22808637)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22815256)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22818205)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22829974)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22833367)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22859464)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22861729)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22876786)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Renegociación","Riesgo__c":"Bajo","Id":"m06Rt00000NKHFbIAP"}|0x5a799797
+11:22:02.0 (22879982)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22884701)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22886994)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22899103)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22902319)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22925886)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22928096)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (22941876)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reporte por Deterior (1 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKzQAO"}|0x57bb6cd0
+11:22:02.0 (22946466)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (22951811)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (22954392)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22965234)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (22967339)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22986158)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (22988208)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23001545)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reporte por Retenció (8 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKwQAO"}|0x30f8718a
+11:22:02.0 (23005786)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23009274)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23010828)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23018454)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23020373)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23038500)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23040545)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23052700)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reporte por Robo o E (7 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKxQAO"}|0x3c0ac1a7
+11:22:02.0 (23055469)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23058683)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23060100)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23067384)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23069337)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23087616)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23089618)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23101348)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reposición","Riesgo__c":"Bajo","Id":"m06DK000000EpIhYAK"}|0x2a592c9e
+11:22:02.0 (23104789)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23108106)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23110443)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23122035)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23125233)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23147574)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23149767)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23162629)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Retiro de efectivo e (5 more) ...","Riesgo__c":"Bajo","Id":"m061N000000XZKoQAO"}|0x268808e9
+11:22:02.0 (23165330)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23168940)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23170424)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23177976)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23179998)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23198329)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23200323)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23212545)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Retiro de Efectivo e (14 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPLQA0"}|0x550f4993
+11:22:02.0 (23215291)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23218730)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23220194)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23227505)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23229495)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23247562)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23249713)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23261484)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Retorno de Tarjeta","Riesgo__c":"Bajo","Id":"m060v0000005aU7AAI"}|0x3f62bd6c
+11:22:02.0 (23264334)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23267634)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23269061)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23276532)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23405676)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23427921)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23430210)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23448675)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reversa de Anualidad","Riesgo__c":"Bajo","Id":"m061N000000XZL0QAO"}|0x5c3c5bc2
+11:22:02.0 (23451866)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23456791)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23458418)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23466193)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23468275)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23486953)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23488891)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23501556)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reversa de Anualidad (9 more) ...","Riesgo__c":"Bajo","Id":"m061N000000CcDjQAK"}|0x3a15dfec
+11:22:02.0 (23504458)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23507769)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23509191)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23520234)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23524438)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23551235)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23554820)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23576893)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reversa de Comisión","Riesgo__c":"Bajo","Id":"m061N000000XZL1QAO"}|0x15795aec
+11:22:02.0 (23582575)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23588717)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23591381)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23603731)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23606641)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23635646)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23639225)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23660123)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Reversa de Comisión  (8 more) ...","Riesgo__c":"Bajo","Id":"m061N000000CcDkQAK"}|0x3fda1cf2
+11:22:02.0 (23664738)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23670419)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23672659)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23684823)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23686998)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23706078)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23708132)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23726898)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Saldo a Favor","Riesgo__c":"Bajo","Id":"m060v0000009MemAAE"}|0x186a280
+11:22:02.0 (23731601)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23737201)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23740017)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23750666)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23753993)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23781396)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23784811)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23807656)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Seguimiento a Folios","Riesgo__c":"Bajo","Id":"m061N000000QdV0QAK"}|0x1578f7e3
+11:22:02.0 (23812701)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23819811)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23822881)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23835242)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23838825)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23867018)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23870552)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23895221)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Solicitud de Contrat (1 more) ...","Riesgo__c":"Bajo","Id":"m06Rt00000I7W5gIAF"}|0x4a89619a
+11:22:02.0 (23899699)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (23906775)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (23909608)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23923024)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (23926752)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23959100)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (23962906)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (23989026)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Soporte a Módulo","Riesgo__c":"Bajo","Id":"m06Rt000002hNwHIAU"}|0x25dbd9b5
+11:22:02.0 (23994265)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24000764)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24004662)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24017291)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24020618)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24053381)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24057077)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24080514)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Sospecha de Fraude","Riesgo__c":"Alto","Id":"m061N000000QdPAQA0"}|0x117ded2c
+11:22:02.0 (24084540)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24090612)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24091793)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (24102211)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (24111179)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24123998)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24127362)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24156712)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24160561)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24182088)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Sospecha de fraudes  (8 more) ...","Riesgo__c":"Bajo","Id":"m061N000000QdPMQA0"}|0x4368c70f
+11:22:02.0 (24186587)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24192108)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24194439)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24206014)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24209267)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24237552)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24240880)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24261492)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Tarjeta de Crédito","Riesgo__c":"Bajo","Id":"m061N000000XZKkQAO"}|0x42eceb49
+11:22:02.0 (24266274)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24271736)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24274455)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24285361)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24288487)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24316773)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24319991)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24336807)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Tarjeta no pasa","Riesgo__c":"Bajo","Id":"m061N000000XZL2QAO"}|0x390194d0
+11:22:02.0 (24339740)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24343922)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24345533)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24353697)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24355757)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24380481)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24383729)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24401412)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Tarjeta no pasa (Mód (5 more) ...","Riesgo__c":"Alto","Id":"m061N000000QdPIQA0"}|0x47eb0a51
+11:22:02.0 (24405244)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24408709)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24409488)|STATEMENT_EXECUTE|[209]
+11:22:02.0 (24414564)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:22:02.0 (24418935)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24426732)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24428926)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24447504)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24449547)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24462537)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"Up Grade","Riesgo__c":"Bajo","Id":"m061N000000Cc1QQAS"}|0x423efd1c
+11:22:02.0 (24465483)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24469008)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24470527)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24478026)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24480059)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24498461)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.next()
+11:22:02.0 (24500414)|VARIABLE_SCOPE_BEGIN|[205]|subCategoria|Sub_Categoria__mdt|true|false
+11:22:02.0 (24517137)|VARIABLE_ASSIGNMENT|[205]|subCategoria|{"Value__c":"WEB","Riesgo__c":"Bajo","Id":"m061N000000QdP7QAK"}|0x672de0b1
+11:22:02.0 (24520068)|STATEMENT_EXECUTE|[205]
+11:22:02.0 (24523899)|STATEMENT_EXECUTE|[207]
+11:22:02.0 (24525580)|METHOD_ENTRY|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24532722)|METHOD_EXIT|[205]||Database.QueryLocatorIterator.hasNext()
+11:22:02.0 (24555878)|VARIABLE_ASSIGNMENT|[205]|subCategoria|null|
+11:22:02.0 (24578098)|STATEMENT_EXECUTE|[213]
+11:22:02.0 (24580874)|HEAP_ALLOCATE|[213]|Bytes:18
+11:22:02.0 (24649959)|HEAP_ALLOCATE|[213]|Bytes:2
+11:22:02.0 (24662717)|HEAP_ALLOCATE|[213]|Bytes:20
+11:22:02.0 (24677412)|USER_DEBUG|[213]|DEBUG|altoRiesgo.size:  13
+11:22:02.0 (24681916)|STATEMENT_EXECUTE|[215]
+11:22:02.0 (24683662)|HEAP_ALLOCATE|[215]|Bytes:10
+11:22:02.0 (24744807)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+11:22:02.0 (24749062)|STATEMENT_EXECUTE|[217]
+11:22:02.0 (24752302)|METHOD_EXIT|[261]|01p0v000003GrJC|AuthenticateHelper.getInfoAltoRiesgo()
+11:22:02.24 (24806477)|CUMULATIVE_LIMIT_USAGE
+11:22:02.24 (24806477)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 88 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+11:22:02.24 (24806477)|CUMULATIVE_LIMIT_USAGE_END
+
+11:22:02.0 (24833204)|CODE_UNIT_FINISHED|AuthenticateCustomerController.getInfoAltoRiesgo()
+11:22:02.0 (25054212)|CODE_UNIT_FINISHED|apex://AuthenticateCustomerController/ACTION$getInfoAltoRiesgo
+11:22:02.0 (25060227)|EXECUTION_FINISHED

@@ -1,0 +1,310 @@
+<aura:component controller="MicroServicioGuiaDHL">
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="GuiaDHL" type="String" />
+    <aura:attribute name="GuiasDHL" type="List" default="[]"/>
+    <aura:attribute name="FirmadoPor" type="String" />
+    <aura:attribute name="Fecha" type="String" />
+    <aura:attribute name="Origen" type="String" />
+    <aura:attribute name="Destino" type="String" />
+    <aura:attribute name="Piezas" type="String" />
+    <aura:attribute name="CURP" type="String" />
+    <aura:attribute name="esUsuarioAppWeb" type="Boolean" />
+    <aura:attribute name="HayRespuesta" type="Boolean" default="false" />
+    <aura:attribute name="HayGuia" type="Boolean" default="false" />
+    <aura:attribute name="HayGuias" type="Boolean" default="false" />
+    <aura:attribute name="loadedGetUser" type="Boolean" default="true" />
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="true" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="casoCompletado" type="Boolean" default="false" />
+    <aura:attribute name="newCaseGuia" type="String" />
+    <aura:attribute name="guiaCaso" type="String" />
+    <aura:attribute name="ultimoEstado" type="String" />
+    <aura:attribute name="guiaNoEncontrada" type="Boolean" default="false" />
+
+    <aura:attribute name="dhlDetailLoaded" type="Boolean" default="false" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    <!-- Componente Modal Motivo de Reposicion -->
+    <aura:attribute name="blnOpenModalReasonReplacement" type="Boolean" default="false"/>
+    <aura:attribute name="reasonReplacementValue" type="String" />
+    <aura:registerEvent name="ReasonReplacementSelected" type="c:ReasonReplacementSelected" />
+    <aura:handler name="ReasonReplacementSelected" event="c:ReasonReplacementSelected" action="{! c.handleCloseModalReasonReplacement }" />
+
+    <!-- Componente RecordCaseMSGuiaDHL -->
+    <aura:attribute name="blnRecordCase" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="currentEstatus" type="String" />
+
+    <aura:attribute name="infoGuiasLoaded" type="Boolean" />
+
+    <!-- Web Service Estafeta -->
+    <aura:attribute name="blnWayBillEstafeta" type="Boolean" default="false" />
+    <aura:attribute name="statusSPA" type="String" default="" />
+    <aura:attribute name="shortWaybillId" type="String" default="" />
+
+    <aura:method name="openDetailDHL" action="{! c.openDetailDHL }" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <aura:if isTrue="{! or(v.HayGuia, and( and(!v.HayGuia, !v.HayGuias), v.blnRecordCase) )}">
+
+        <lightning:card variant="Narrow" title="Guía" iconName="standard:shipment" >
+            <p class="slds-p-horizontal_small" >
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a data-id="{!v.GuiaDHL }" onclick="{!c.openDetailDHL}" style="position:absolute !important" >
+                    {!v.GuiaDHL }
+                </a>
+
+            </p>
+        </lightning:card>
+
+    </aura:if>
+
+    <aura:if isTrue="{!v.HayGuias}">
+
+        <lightning:card variant="Narrow" title="Guías" iconName="standard:shipment" >
+            <p class="slds-p-horizontal_small slds-scrollable_y" style="{! if( greaterthan(v.GuiasDHL.length,3), 'height: 3.9rem;', '') }">
+
+            <aura:iteration items="{!v.GuiasDHL}" var="guia" indexVar="index">  
+
+                <p class="slds-p-horizontal_medium">
+                    <a data-id="{!guia }" data-guia="{!guia}" onclick="{!c.openDetailDHLGuias}" >              
+                        {!guia } 
+                    </a>
+                </p>
+                                  
+            </aura:iteration>
+
+            </p>
+        </lightning:card>
+
+    </aura:if>
+
+    
+    <aura:if isTrue="{!v.isOpen}">   
+        <!--###### MODAL BOX Start######--> 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"
+                                          disabled="{! (!v.dhlDetailLoaded) }" />
+                </header>
+                <!--###### MODAL BOX BODY Part Start######-->                
+                <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+
+                    <lightning:layout multipleRows="true" class="slds-text-align_left slds-p-horizontal_medium slds-p-bottom_large" >  
+
+                        <lightning:layoutItem padding="horizontal-medium" size="12" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="12">
+                            <div class="slds-form-element slds-m-right_x-small">
+                                <span class="slds-form-element__label">Guía</span>
+                                <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                    <div style="font-size: inherit;" class="slds-form-element__static">{! v.GuiaDHL }</div>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+
+                        <aura:if isTrue="{! (!v.guiaNoEncontrada) }" >
+
+                            <aura:if isTrue="{! v.blnWayBillEstafeta }" >
+
+                                <lightning:layoutItem padding="horizontal-medium" size="6" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="6">
+                                    <div class="slds-form-element slds-m-right_x-small">
+                                        <span class="slds-form-element__label">Origen - Destino</span>
+                                        <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                            <div style="font-size: inherit;" class="slds-form-element__static">{!v.Origen} - {!v.Destino}</div>               
+                                        </div>
+                                    </div>                            
+                                </lightning:layoutItem>
+
+                                <lightning:layoutItem padding="horizontal-medium" size="6" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="6">
+                                    <div class="slds-form-element slds-m-right_x-small">
+                                        <span class="slds-form-element__label">Estatus</span>
+                                        <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                            <div style="font-size: inherit;" class="slds-form-element__static">{!v.statusSPA}</div>
+                                        </div>
+                                    </div>                            
+                                </lightning:layoutItem>
+
+                                <aura:set attribute="else" >
+                                    <lightning:layoutItem padding="horizontal-medium" size="12" largeDeviceSize="8" mediumDeviceSize="8" smallDeviceSize="12">
+                                        <div class="slds-form-element slds-m-right_x-small">
+                                            <span class="slds-form-element__label">Origen - Destino</span>
+                                            <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                                <div style="font-size: inherit;" class="slds-form-element__static">{!v.Origen} - {!v.Destino}</div>               
+                                            </div>
+                                        </div>                            
+                                    </lightning:layoutItem>
+                                </aura:set>
+                            </aura:if>                            
+
+                            <lightning:layoutItem class="slds-p-top_small" padding="horizontal-medium" size="12" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="12">
+                                <div class="slds-form-element slds-m-right_x-small">
+                                    <span class="slds-form-element__label">Piezas</span>
+                                    <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                        <div style="font-size: inherit;" class="slds-form-element__static">{! v.Piezas }</div>               
+                                    </div>
+                                </div>
+                            </lightning:layoutItem>
+
+                            <aura:if isTrue="{! v.blnWayBillEstafeta }" >
+
+                                <lightning:layoutItem class="slds-p-top_small" padding="horizontal-medium" size="6" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="6">
+                                    <div class="slds-form-element slds-m-right_x-small">
+                                        <span class="slds-form-element__label">Firmado por</span>
+                                        <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                            <div style="font-size: inherit;" class="slds-form-element__static">{! v.FirmadoPor }</div>               
+                                        </div>
+                                    </div>                            
+                                </lightning:layoutItem>
+
+                                <lightning:layoutItem class="slds-p-top_small" padding="horizontal-medium" size="6" largeDeviceSize="4" mediumDeviceSize="4" smallDeviceSize="6">
+                                    <div class="slds-form-element slds-m-right_x-small">
+                                        <span class="slds-form-element__label">Clave rastreo</span>
+                                        <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                            <div style="font-size: inherit;" class="slds-form-element__static">{! v.shortWaybillId }</div>
+                                        </div>
+                                    </div>                            
+                                </lightning:layoutItem>
+
+                                <aura:set attribute="else" >
+                                    <lightning:layoutItem class="slds-p-top_small" padding="horizontal-medium" size="12" largeDeviceSize="8" mediumDeviceSize="8" smallDeviceSize="12">
+                                        <div class="slds-form-element slds-m-right_x-small">
+                                            <span class="slds-form-element__label">Firmado por</span>
+                                            <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                                <div style="font-size: inherit;" class="slds-form-element__static">{! v.FirmadoPor }</div>               
+                                            </div>
+                                        </div>                            
+                                    </lightning:layoutItem>
+                                </aura:set>
+                            </aura:if>
+
+                            <aura:set attribute="else" >
+                                <lightning:layoutItem padding="horizontal-medium" size="12" largeDeviceSize="8" mediumDeviceSize="8" smallDeviceSize="12">
+                                    <div class="slds-form-element slds-m-right_x-small">
+                                        <span class="slds-form-element__label"> </span>
+                                        <div class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                                            <div style="font-size: inherit;" class="slds-form-element__static">{! v.ultimoEstado }</div>               
+                                        </div>
+                                    </div>                            
+                                </lightning:layoutItem>
+                            </aura:set>
+
+                        </aura:if>
+
+                    </lightning:layout>
+
+                    <div style="height: 300px">
+                        <aura:if isTrue="{! v.dhlDetailLoaded }" >
+                            <lightning:datatable
+                                            keyField="id"
+                                            data="{! v.data }"
+                                            columns="{! v.columns }"
+                                            hideCheckboxColumn="true"/>
+
+                            <aura:set attribute="else">
+                                <div class="slds-p-around_medium">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>  
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>                    
+                <!--###### MODAL BOX FOOTER Part Start ######-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" 
+                                      label="Cerrar"
+                                      title="Cerrar"
+                                      onclick="{! c.closeModel }"
+                                      disabled="{! (!v.dhlDetailLoaded) }" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <!--###### MODAL BOX Part END Here ######-->  
+    </aura:if>
+    <aura:if isTrue="{! (!v.creatingCase) }" >
+        
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">    
+                <div class="slds-modal__container">             
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalGuiaDHL}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"
+                                              disabled="{! (!v.successfulCase) }" />                       
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Caso Consulta Guia" iconName="standard:shipment" />                              
+                    <aura:if isTrue="{! v.successfulCase }" > 
+                        <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                <br/>
+                                <aura:if isTrue="{! v.casoCompletado }" > 
+                                    <span class="slds-text-heading_medium" >
+                                        Folio:                                    
+                                        <span style="font-weight: bold;"> 
+                                            {! v.newCaseGuia }
+                                        </span>
+                                    </span>
+                                    <aura:set attribute="else" >
+                                        Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                        
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </div>
+                        <aura:set attribute="else" >
+                            <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                    <br/>
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>  
+                                </div>
+                                
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                          label="Cerrar"
+                                          title="Cerrar"
+                                          onclick="{! c.closeModalGuiaDHL }"
+                                          disabled="{! (!v.successfulCase) }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        
+    </aura:if>
+    
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+    <!-- Componente Modal Motivo de Reposicion -->
+    <aura:if isTrue="{! v.blnOpenModalReasonReplacement }" >
+        <c:ModalReasonReplacement blnOpenModalReasonReplacement="{!v.blnOpenModalReasonReplacement}" reasonReplacementValue="{! v.reasonReplacementValue }" />
+    </aura:if>
+    
+</aura:component>

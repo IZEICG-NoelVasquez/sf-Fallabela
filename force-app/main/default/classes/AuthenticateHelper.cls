@@ -44,6 +44,7 @@ public class AuthenticateHelper {
     **/
     public static Map<String,List<Object>> getCategoriesSubCategories(String category, Boolean isCommunity, Boolean esClienteAnonimo, Boolean esSoriban, Boolean authSinCel, String parentezco, Boolean isMovimiento, Boolean casoSinSeleccionarMovimientos) {
         
+        
         Map<String,List<Object>> resultmap = new Map<String,List<Object>>();
         
         Boolean isContactCenter = true;
@@ -160,7 +161,6 @@ public class AuthenticateHelper {
                                                     AND ContactCenter__c =: isContactCenter
                                                     AND Modulo__c =: isCommunity
                                                     ORDER BY Value__c]) {
-                System.debug('Fer entre al else'+ cat.Value__c);
                                                
                 if (Schema.SObjectType.Case.getRecordTypeInfosByName().containsKey(cat.Value__c) ) {
                 

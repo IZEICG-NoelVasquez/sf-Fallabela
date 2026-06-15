@@ -5,7 +5,7 @@ public with sharing class GetCampainsController {
     system.debug('accountId+'+accountId);
 
     string accessToken = getAccessToken();
-    Account account = [  SELECT Id, RFC__c, Name  FROM Account  WHERE Id = :accountId LIMIT 1   ];
+    Account account = [  SELECT Id, CURP__c, Name  FROM Account  WHERE Id = :accountId LIMIT 1   ];
     system.debug('accountId+'+account);
 
     
@@ -13,7 +13,7 @@ public with sharing class GetCampainsController {
     //   res.getBody()
     // );
     HttpRequest reqGetCustomer = new HttpRequest();
-    Blob textoBlob = Blob.valueOf(account.RFC__c + accessToken);
+    Blob textoBlob = Blob.valueOf(account.CURP__c + accessToken);
     // Blob textoBlob = Blob.valueOf('EEAC820617HVZSNR06' + accessToken);
 
     Blob hash = Crypto.generateDigest('SHA-256', textoBlob);
@@ -26,13 +26,14 @@ public with sharing class GetCampainsController {
         '/offers'
     );
 
-    reqGetCustomer.setHeader('X-Customer-Id', account.RFC__c);
+    reqGetCustomer.setHeader('X-Customer-Id', account.CURP__c);
     reqGetCustomer.setHeader('Authorization', 'Bearer ' + accessToken);
     reqGetCustomer.setHeader('X-Date-Time', '2025-10-30T10:42:05Z');
 
     reqGetCustomer.setMethod('GET');
     HttpResponse responseGetCustomer = new Http().send(reqGetCustomer);
     System.debug(reqGetCustomer);
+    System.debug(reqGetCustomer.getBody());
     system.debug(responseGetCustomer);
     if(responseGetCustomer.getStatusCode() != 200){
        Error_Log__c errorLog = new Error_Log__c();

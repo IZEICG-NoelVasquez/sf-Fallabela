@@ -134,10 +134,9 @@ public class MicroServicioAumentoDeLinea {
         System.debug('identificador: ' + identificador);
         System.debug('numeroDocumento: ' + numeroDocumento);
         
-        ///MicroServicioAumentoDeLinea msConsultaCupo = new MicroServicioAumentoDeLinea();
-        ///msConsultaCupo.ConsultaDeLinea();
-        ///String resultConsultaDeCupo = msConsultaCupo.consultaCupo(params);
-        String resultConsultaDeCupo = '{"code":"ok","message":{"estadoOperacion":{"codigoOperacion":"00","glosaOperacion":"OK AUMENTO CONSULTADO"},"cupo":{"cupoTotal":22000},"cupoPreAprobado":27000}}';
+        MicroServicioAumentoDeLinea msConsultaCupo = new MicroServicioAumentoDeLinea();
+        msConsultaCupo.ConsultaDeLinea();
+        String resultConsultaDeCupo = msConsultaCupo.consultaCupo(params);
 
         System.debug('resultConsultaDeCupo:  ' + resultConsultaDeCupo);
         
@@ -204,10 +203,9 @@ public class MicroServicioAumentoDeLinea {
         System.debug('cupoTotal: ' + cupoTotal);
         System.debug('nuevoCupo: ' + nuevoCupo);
 
-        ///MicroServicioAumentoDeLinea msAumentoCupo = new MicroServicioAumentoDeLinea();
-        ///msAumentoCupo.AumentoDeLinea();
-        ///String resultAumentoDeCupo = msAumentoCupo.aumentoCupo(params);
-        String resultAumentoDeCupo = '{"code":"ok","message":{"estadoOperacion":{"codigoOperacion":"00","glosaOperacion":"OK"}}}';
+        MicroServicioAumentoDeLinea msAumentoCupo = new MicroServicioAumentoDeLinea();
+        msAumentoCupo.AumentoDeLinea();
+        String resultAumentoDeCupo = msAumentoCupo.aumentoCupo(params);
 
         System.debug('resultAumentoDeCupo:  ' + resultAumentoDeCupo);
 

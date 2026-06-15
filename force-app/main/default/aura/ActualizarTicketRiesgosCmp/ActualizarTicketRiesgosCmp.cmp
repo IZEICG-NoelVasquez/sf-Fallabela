@@ -1,0 +1,92 @@
+<aura:component  controller="ActualizarTicketRiesgosGestor" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,lightning:actionOverride,lightning:isUrlAddressable">
+
+<aura:attribute name="openModalActualizacion" type="Boolean" default="false" />
+<aura:attribute name="recordId" type="String" />	
+
+<aura:attribute name="caso" type="Object"/>
+
+<aura:attribute name="mensaje" type="String" default="El proceso puede demorar un momento."/>
+
+<!--  *****************  -->
+<aura:attribute name="casoActualizadoEnMicroS" type="Boolean" default="false" />
+<aura:attribute name="actualizando" type="Boolean" default="false" />
+<aura:attribute name="cargandoRecordData" type="Boolean" default="true" />
+<aura:attribute name="registroActualizado" type="Boolean" default="false" /> 
+
+<!-- Mensajes -->
+<aura:attribute name="msjActualizado" type="String" default="El Ticket ya fue actualizado" />
+<aura:attribute name="msjEnAprobacion" type="String" default="El registro se encuentra en aprobación" />
+<aura:attribute name="msjDicCredito" type="String" default="Se debe contar con un valor en Dictaminación" />
+<aura:attribute name="msjSinPropietario" type="String" default="Se debe seleccionar un propietario" />
+<aura:attribute name="msjActExitosa" type="String" default="Se Actualizó el Ticket con Éxito" />
+<aura:attribute name="msjNoEsPropietario" type="String" default="Solo el propietario puede actualizar el Ticket" />
+<aura:attribute name="msjErrorCargaInfo" type="String" default="Ocurrió un error al consultar la Solicitud. Por favor inténtelo nuevamente" />
+<aura:attribute name="msjErrorActualizacion" type="String" default="Ocurrió un error en la actualización. Por favor inténtelo mas tarde" />
+
+<aura:attribute name="listPerfilesCredito" type="List" default="['Coordinador Backoffice','Gerente Backoffice','System Administrator','Administrador del sistema']" />
+
+<aura:attribute name="perfilUsuario" type="String" />
+<aura:attribute name="idUsuario" type="String" />
+
+<aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+<lightning:workspaceAPI aura:id="workspace"/>
+
+    <!--###### MODAL BOX Start######--> 
+    <div class="slds-m-around_xx-large">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                            
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalActualizacion }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"/>                       
+                </header>
+                <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualizar Ticket" iconName="standard:case" />
+                <!--###### MODAL BOX BODY Part1 Start######-->
+                <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                    <aura:if isTrue="{! v.cargandoRecordData }" >
+                        <div class="slds-p-around_xx-large">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div> 
+                        <aura:set attribute="else" >
+                            <aura:if isTrue="{! !(v.actualizando) }" >
+
+                                <div class="slds-p-around_x-large">
+                                    {!v.mensaje}            
+                                </div>
+
+                                <div class="slds-text-align_right slds-p-top_medium" >
+
+                                    <lightning:button variant="neutral" 
+                                                                label="Regresar"
+                                                                title="Regresar"
+                                                                onclick="{! c.closeModalActualizacion }"/>
+                                    
+                                    <lightning:button variant="brand" 
+                                                            label="Actualizar"
+                                                            title="Actualizar"
+                                                            disabled="{! v.casoActualizadoEnMicroS }"
+                                                            onclick="{! c.actualizar }"/>
+
+                                </div>  
+
+                                <aura:set attribute="else">
+                                    <div class="slds-p-around_xx-large">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>  
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                </div>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+
+</aura:component>

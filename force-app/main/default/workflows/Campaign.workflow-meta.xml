@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Actualiza_Prioridad_txt</fullName>
+        <description>Sincroniza Prioridad txt con prioridad</description>
+        <field>Prioridad_txt__c</field>
+        <formula>TEXT(Prioridad__c)</formula>
+        <name>Actualiza Prioridad txt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Vacia_Prioridad_txt</fullName>
+        <description>Deja vacío Prioridad txt</description>
+        <field>Prioridad_txt__c</field>
+        <name>Vacía Prioridad txt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Campaña se desactiva</fullName>
+        <actions>
+            <name>Vacia_Prioridad_txt</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Deja vacío el campo Prioridad txt para que pueda volver a igresarse una campaña con esa prioridad</description>
+        <formula>AND(NOT(ISBLANK(TEXT(Prioridad__c))),NOT(IsActive),ISCHANGED(IsActive))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sincroniza Prioridad Txt</fullName>
+        <actions>
+            <name>Actualiza_Prioridad_txt</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Sincroniza Prioridad txt para evitar duplicidad</description>
+        <formula>AND(NOT(ISBLANK(TEXT(Prioridad__c))),IsActive,OR(ISNEW(),ISCHANGED(Prioridad__c),ISCHANGED(IsActive)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

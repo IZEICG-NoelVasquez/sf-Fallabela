@@ -1,0 +1,186 @@
+<aura:component controller="MicroServicioActualizaicionCorreo">
+   
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="loadedProductos" type="Boolean" />
+
+    <!-- Email Update -->
+    <aura:attribute name="openEmailUpdate" type="Boolean" default="false" />
+    <aura:attribute name="noPasoEmailUpdate" type="Integer" default="0" />
+    <aura:attribute name="strEmailUpdate" type="String" />
+    <aura:attribute name="loadingEmailUpdate" type="Boolean" />
+    <aura:attribute name="emailUpdated" type="Boolean" /> 
+    <!-- Creacion de Caso Actualizacion de Correo -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseEmail" type="String" />
+
+    <aura:attribute name="mapCamposMicroS" type="Map" default="{}" />
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+    
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+                           
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+        <div class="slds-form-element slds-m-right_x-small">
+            <span style="font-size: 11px !important;" class="slds-form-element__label">Email</span>
+            <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                <div class="slds-grid" >
+                    <div class="slds-size_11-of-12">
+                        <div style="font-size: 11px !important;" class="slds-form-element__static">{! v.selectedAccount.PersonEmail }</div>
+                    </div>
+                    <div class="slds-size_1-of-12">
+                        <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.handleModalEmailUpdate }" alternativeText="Editar email" 
+                                            disabled="{! v.loadedProductos || (!v.validacionesOTPCargadas) }" />
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Email Update -->
+    <aura:if isTrue="{!v.openEmailUpdate}">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalEmailUpdate }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! v.loadingEmailUpdate || v.creatingCase }" />                       
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de Email" iconName="standard:email" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Editar Email -->
+                        <aura:if isTrue="{! v.noPasoEmailUpdate == 1 }" >
+                                <div class="slds-box">
+                                    <div class="row" >
+                                        <lightning:input name="input1" aura:id="emailUpdateId_1" label="Email" placeholder="Email" value="{! v.strEmailUpdate }" />
+                                    </div>
+                                </div>
+                            <div class="slds-text-align_right  slds-p-around_large">
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.confirmarEmailUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 2: Confirmar Email -->
+                        <aura:if isTrue="{! v.noPasoEmailUpdate == 2 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea actualizar el Email ?
+                                </div>                                    
+                            </div>
+                            <div class="slds-form-element slds-p-around_large">
+                                <label class="slds-form-element__label" for="text-input-id-1">Email</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="emailUpdateId_1" placeholder="Email" value="{! v.strEmailUpdate }" class="slds-input" disabled="true" />
+                                </div>
+                            </div>
+                            <div class="slds-text-align_right  slds-p-right_large">
+                                <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalEmailUpdate }" title="Regresar" />
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.guardarEmailUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoEmailUpdate == 3 }" >
+                            <aura:if isTrue="{! !(v.loadingEmailUpdate) }" >
+                                <aura:if isTrue="{! v.emailUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizo Información con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseEmail }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.emailUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingEmailUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                                    label="Cerrar"
+                                                    title="Cerrar"
+                                                    onclick="{! c.closeModalEmailUpdate }"
+                                                    disabled="{! v.loadingEmailUpdate || v.creatingCase }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- OTP Crear Caso Actualizacion de Correo -->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalEmailUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

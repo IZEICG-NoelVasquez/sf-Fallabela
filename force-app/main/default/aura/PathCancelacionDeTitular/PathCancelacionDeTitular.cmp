@@ -1,0 +1,166 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" controller="PathCancelacionDeTitularController" >
+
+    <aura:attribute name="caseInfoLoaded" type="Boolean" default="false" />
+    <aura:attribute name="caseStatus" type="String" default="" />
+
+    <!-- Motivo de cancelación de tarjeta -->
+    <aura:attribute name="motivoCancelacionValue" type="String" />
+    <aura:attribute name="motivoCancelacionOptions" type="List" />
+    <!-- ¿Desea continuar con la cancelación? -->
+    <aura:attribute name="continuarCancelacionValue" type="String" />
+    <aura:attribute name="continuarCancelacionOptions" type="List" />
+    <!-- Subgrupo -->
+    <aura:attribute name="subgrupoValue" type="String" />
+    <aura:attribute name="subgrupoOptions" type="List" />
+    <!-- Motivo de la Retención -->
+    <aura:attribute name="motivoRetencionValue" type="String" />
+    <aura:attribute name="motivoRetencionOptions" type="List" />
+    <aura:attribute name="mapMotivoRetencionDependencias" type="Map" default="{}" />
+
+    <aura:attribute name="savingRecord" type="Boolean" default="false" />
+
+    <!-- Visializar Casos Cerrados -->
+    <aura:attribute name="caseClosed" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    
+
+    <aura:attribute name="caseRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+
+    <force:recordData aura:id="recordLoader"
+                    recordId="{!v.recordId}"
+                    fields="Status"
+                    targetFields="{!v.caseRecord}"
+                    targetError="{!v.recordLoadError}"
+                    />
+
+    <aura:handler name="change" value="{!v.caseRecord.Status}" action="{!c.changeStatus}"/>
+
+
+    <div class="slds-is-relative">
+        <aura:if isTrue="{! v.caseInfoLoaded }">
+            
+            <aura:if isTrue="{! v.savingRecord }" >
+                <div class="slds-m-vertical_large slds-p-around_medium">
+                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                </div>  
+            </aura:if>
+
+            <div class="slds-p-top_xx-small" >
+                <lightning:path aura:id="path" recordId="{!v.recordId}"
+                    variant="linear"
+                    hideUpdateButton="false"
+                    onselect="{!c.handleSelect}"
+                />
+            </div>
+            
+            <aura:if isTrue="{! v.caseStatus == 'Motivo de Cancelación' }" >
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_large">
+                        
+                        <div>
+                            <b>Campos clave</b>
+                        </div>                        
+
+                        <lightning:layout class="slds-p-top_small">
+                            <lightning:layoutItem size="12">
+                                <lightning:select aura:id="motivoCancelacion" name="motivoCancelacion" value="{! v.motivoCancelacionValue }" label="Motivo de cancelación de tarjeta" disabled="{! v.caseClosed }" >
+                                    <aura:iteration items="{!v.motivoCancelacionOptions}" var="item">
+                                        <option text="{!item.label}" value="{!item.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+
+                        <lightning:layout class="slds-p-top_x-small">
+                            <lightning:layoutItem size="12">
+                                <lightning:select aura:id="continuarCancelacion" name="continuarCancelacion" value="{! v.continuarCancelacionValue }" label="¿Desea continuar con la cancelación?" disabled="{! v.caseClosed }" >
+                                    <aura:iteration items="{!v.continuarCancelacionOptions}" var="item">
+                                        <option text="{!item.label}" value="{!item.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+
+                        <lightning:layout class="slds-p-top_x-small">
+                            <lightning:layoutItem size="12">
+                                <lightning:select aura:id="subgrupo" name="subgrupo" value="{! v.subgrupoValue }" label="Subgrupo" onchange="{! c.changeSubGrupo }" disabled="true" >
+                                    <aura:iteration items="{!v.subgrupoOptions}" var="item">
+                                        <option text="{!item.label}" value="{!item.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+
+                        <lightning:layout class="slds-p-top_x-small">
+                            <lightning:layoutItem size="12">
+                                <lightning:select aura:id="motivoRetencion" name="motivoRetencion" value="{! v.motivoRetencionValue }"  label="Motivo de la Retención" disabled="{! v.caseClosed }" >
+                                    <aura:iteration items="{!v.motivoRetencionOptions}" var="item">
+                                        <option text="{!item.label}" value="{!item.value}" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+
+                        <lightning:layout class="slds-p-vertical_x-large slds-p-right_x-large slds-text-align_right">
+                            <lightning:layoutItem size="12">
+                                <lightning:button variant="brand" 
+                                            label="Guardar"
+                                            title="Guardar"
+                                            onclick="{! c.saveRecord }"
+                                            disabled="{! v.caseClosed }" />
+                            </lightning:layoutItem>
+                        </lightning:layout>
+
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-right_large">
+
+                        <div>
+                            <b>Orientación hacia el éxito</b>
+                        </div>
+                        
+                        <div class="slds-p-vertical_medium">
+                            Permitame recordarle algunos de los BENEFICIOS y AHORROS que usted tiene exclusivos al 
+                            utilizar su Tarjeta Falabella: 
+                           
+                            <br/>
+                            Los beneficios son:
+                            <br/>
+                            <br/>
+                            3% de DE en todas sus compras en Soriana y City Club+ 3% cashback en DE en compras en restaurantes, gasolina y viajes.
+                            <br/>
+                            <br/>
+                            Ademas, le comento que usted puede utilizar su tarjeta Mastercard practicamente en todo el mundo.
+                            <br/>
+                           
+                            <br/>
+                            Permitame ofrecerle un BONO ESPECIAL de PUNTOS con el cual usted
+                             podra adquirir productos GRATIS en Soriana o bien, canjearlos por 
+                             algun producto de las colecciones espciales de venta en soriana 
+                             (Ej: vajillas, sartenes, tuppers, toallas de calidad premium etc).
+                          
+                            <br/>
+                            <br/>
+                            Permitame ofercerle un BONO ESPECIAL de DINERO ELECTRONICO con el cual
+                             usted podria comprar en Soriana lo que usted prefiera… un peso de dinero 
+                             electronico es cual que un peso real, asi que podria incluso pagar su 
+                             despensa con este bono especial 
+                        </div>
+
+                    </div>
+
+                </div>
+            </aura:if>
+
+            <aura:set attribute="else">
+                <div class="slds-m-vertical_large slds-p-around_medium">
+                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                </div>                                            
+            </aura:set>                
+        </aura:if>
+    </div>
+
+</aura:component>

@@ -1,0 +1,61 @@
+<aura:component >
+	
+    <aura:attribute name="blnOpenModalReasonReplacement" type="Boolean" default="false"/>
+    <aura:attribute name="reasonReplacementOptions" type="List" />
+    <aura:attribute name="reasonReplacementValue" type="String" />
+
+    <aura:attribute name="reasonReplacementList" type="List" default="['Vencimiento','Robo / extravío','Deterioro','Sospecha de fraude']" />
+
+    <aura:registerEvent name="ReasonReplacementSelected" type="c:ReasonReplacementSelected" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+
+    <aura:if isTrue="{!v.blnOpenModalReasonReplacement}">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_xx-small">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalReasonReplacement }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close" />
+                        
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Caso Consulta Guia" iconName="standard:shipment" />            
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+
+                        <lightning:select value="{! v.reasonReplacementValue }" name="reasonReplacement" label="Motivo de la reposición" aura:id="reasonReplacement">
+                            <aura:iteration items="{!v.reasonReplacementOptions}" var="item">
+                                <option text="{!item.label}" value="{!item.value}" />
+                            </aura:iteration>
+                        </lightning:select>
+
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                        label="Cerrar"
+                                        title="Cerrar"
+                                        onclick="{! c.closeModalReasonReplacement }" />
+
+                        <lightning:button variant="brand" 
+                                        label="Continuar"
+                                        title="Continuar"
+                                        onclick="{! c.handleReasonReplacement }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+</aura:component>

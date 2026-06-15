@@ -1,0 +1,279 @@
+<aura:component controller="CuestionarioFlujoController" implements="lightning:actionOverride,force:hasRecordId,force:hasSObjectName">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="DesdeFlujo" type="Boolean" default="false"/>
+    <aura:attribute name="codigoEnviado" type="Boolean" default="false"/>
+    <aura:attribute name="otpValidado" type="Boolean" default="false"/>
+    <aura:attribute name="simpleNewCuestionario" type="Object"/>
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="codigoOTP" type="String" />
+    <aura:attribute name="codigoOTPIngresado" type="String" />
+    <aura:attribute name="telefono" type="Integer" />
+    <aura:attribute name="recordError" type="String" />
+    <aura:attribute name="Status" type="String" />
+    <aura:attribute name="paso" type="Integer" default="1" />
+    <aura:attribute name="steps" type="Integer" default="1" />
+    <aura:attribute name="pasoDocument" type="Map" default="{}"/>
+    <aura:attribute name="pasoDocumentReady" type="Boolean" default="false"/>
+    <aura:attribute name="PrivadaComentarios" type="List"/>
+    <aura:attribute name="comentariosMC" type="List"/>
+    <aura:attribute name="comentariosErrorPrivada" type="List"/>
+    <aura:attribute name="comentariosErrorMC" type="List"/>
+    <aura:attribute name="comentariosMCCL" type="List"/>
+    <aura:attribute name="comentariosErrorMCCL" type="List"/>
+
+
+    <aura:attribute name="options" type="List" default="[
+        { label: 'Error de sistema', value: 'Error de sistema' },
+        { label: 'REABASTO', value: 'REABASTO' },
+        { label: 'Acta de destruccion', value: 'Acta de destruccion' },
+        { label: 'Falta tarjeta, sin justificar', value: 'Falta tarjeta sin justificar' }]"/>  
+    <aura:handler name="UploadImageEvent" event="c:UploadImageEvent" action="{! c.handleUploadImageEvent }" />  
+    <force:recordData aura:id="recordEditor"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.simpleNewCuestionario}"
+                      mode="EDIT" />
+    <!--<aura:attribute name="recordId" type="String" />-->
+    
+    <lightning:messages />  
+    <lightning:progressBar value="{!(100/v.steps)*(v.paso)}" size="large" />
+    <aura:if isTrue="{!v.paso == 1}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Privada">
+                <div class="slds-p-horizontal--small">
+                    <aura:if isTrue="{!!v.DesdeFlujo}">
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Pendiente',v.simpleNewCuestionario.Status__c == 'Cancelado')}">
+                            <lightning:select aura:id="cuestionarioField"  label="Status" value="{!v.simpleNewCuestionario.Status__c}">
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </lightning:select>
+                        </aura:if>
+                    </aura:if>
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.Privada_Dexis__c}"/>
+                   <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Privada_Fisico__c}"/>
+                    <p>Diferencia</p>
+                    {!v.simpleNewCuestionario.Privada_Fisico__c-v.simpleNewCuestionario.Privada_Dexis__c}<br/>
+                    <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.PrivadaComentarios}"/><br/>
+                    <aura:if isTrue="{!v.pasoDocumentReady}">
+                        <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="2" documentId="{!v.pasoDocument.paso2}"/>             
+                        <br/>
+                    </aura:if>
+                    <footer class="slds-modal__footer">
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.Privada_Dexis__c != null,v.simpleNewCuestionario.Privada_Fisico__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 3}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="MasterCard">
+                <div class="slds-p-horizontal--small">
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.MC_Dexis__c}"/>
+                   <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.MC_Fisico__c}"/>
+                    <p>Diferencia</p>
+                    {!v.simpleNewCuestionario.MC_Fisico__c-v.simpleNewCuestionario.MC_Dexis__c}<br/>
+                    <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.comentariosMC}"/><br/>
+                        <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="4" documentId="{!v.pasoDocument.paso4}"/>             
+                        <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.MC_Dexis__c != null,v.simpleNewCuestionario.MC_Fisico__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 2}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Error Privada">
+                <div class="slds-p-horizontal--small">
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.Error_Privada_Dexis__c}"/>
+                   <!--<lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_Privada_Fisico__c}"/>
+                    --><p>Diferencia</p>
+                    {!v.simpleNewCuestionario.Error_Privada_Dexis__c}<br/>
+                       <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.comentariosErrorPrivada}"/><br/> 
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="3" documentId="{!v.pasoDocument.paso3}"/>             
+                        <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.Error_Privada_Dexis__c != null,v.simpleNewCuestionario.Error_Privada_Dexis__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+     <aura:if isTrue="{!v.paso == 4}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Error Mastercard">
+                <div class="slds-p-horizontal--small">
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.Error_MC_Dexis__c}"/>
+                  <!-- <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_MC_Fisico__c}"/>
+                   --> <p>Diferencia</p>
+                    {!v.simpleNewCuestionario.Error_MC_Dexis__c}<br/>
+                    <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.comentariosErrorMC}"/><br/>
+                        <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="5" documentId="{!v.pasoDocument.paso5}"/>             
+                        <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.Error_MC_Dexis__c != null,v.simpleNewCuestionario.Error_MC_Dexis__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 5}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="MasterCard (CONTACLESS)">
+                <div class="slds-p-horizontal--small">
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.MC_CONTACLESS_Dexis__c}"/>
+                   <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.MC_CONTACLESS_Fisico__c}"/>
+                    <p>Diferencia</p>
+                    {!v.simpleNewCuestionario.MC_CONTACLESS_Fisico__c-v.simpleNewCuestionario.MC_CONTACLESS_Dexis__c}<br/>
+                     <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.comentariosMCCL}"/><br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="6" documentId="{!v.pasoDocument.paso6}"/>             
+                        <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.MC_CONTACLESS_Dexis__c != null,v.simpleNewCuestionario.MC_CONTACLESS_Fisico__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 6}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:edit" title="Error MasterCard (CONTACLESS)">
+                <div class="slds-p-horizontal--small">
+                   <lightning:input label="Dexis" required="true" value="{!v.simpleNewCuestionario.Error_MC_CONTACLESS_Dexis__c}"/>
+                 <!--  <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_MC_CONTACLESS_Fisico__c}"/>
+                   --> <p>Diferencia</p>
+                    {!v.simpleNewCuestionario.Error_MC_CONTACLESS_Dexis__c}<br/>
+                    <lightning:dualListbox name="Comentarios"
+                           label= "Comentarios"
+                           sourceLabel="Disponibles"
+                           selectedLabel="Seleccionados"
+                           fieldLevelHelp="Selecciona las opciones de Comentarios"
+                           options="{!v.options}"
+                           value="{!v.comentariosErrorMCCL}"/><br/>
+                    <c:UploadImage recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="7" documentId="{!v.pasoDocument.paso7}"/>             
+                        <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!or(v.simpleNewCuestionario.Status__c == 'Cancelado',and(v.simpleNewCuestionario.Error_MC_CONTACLESS_Dexis__c != null,v.simpleNewCuestionario.Error_MC_CONTACLESS_Dexis__c != null))}">
+                            <aura:if isTrue="{!v.simpleNewCuestionario.Status__c != 'Cancelado'}">
+                                <aura:if isTrue="{!v.steps == 7}">
+                                <lightning:button label="Siguiente" variant="brand" onclick="{! c.handleNext }"/>
+                                </aura:if>
+                            </aura:if>
+                            <aura:if isTrue="{!and(!v.DesdeFlujo,v.simpleNewCuestionario.Status__c != 'Pendiente')}">
+                                <lightning:button label="Guardar" variant="brand" onclick="{! c.handleFinish }"/>
+                            </aura:if>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div> 
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 7}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:new_contact" title="Validación OTP">
+                <div class="slds-p-horizontal--small">
+                    <lightning:input label="Codigo a Validar" value="{!v.codigoOTPIngresado}"/>
+                    <br/>
+                    <footer class="slds-modal__footer">
+                        <lightning:button label="Atrás" onclick="{! c.handleAtras }"/>
+                        <aura:if isTrue="{!!v.codigoEnviado}">
+                            <lightning:button variant="brand" label="Enviar Código" onclick="{! c.handleEnviar }"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.codigoEnviado}">
+                            <lightning:button variant="brand" label="Validar Código y Finalizar" onclick="{! c.handleValidar }"/>
+                        </aura:if>
+                    </footer>
+                </div>
+            </lightning:card>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.paso == 100}">
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.Privada_Comentarios__c}"/>
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.MC_Comentarios__c}"/>
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.Error_Privada_Comentarios__c}"/>
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.Error_MC_Comentarios__c}"/>
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.MC_CONTACLESS_Comentarios__c}"/>
+        <lightning:input label="Comments" value="{!v.simpleNewCuestionario.Error_MC_CONTACLESS_Comentarios__c}"/>
+        <lightning:input label="Map" value="{!v.simpleNewCuestionario.MapUploadImage__c}"/>
+        <lightning:input label="OTP" value="{!v.simpleNewCuestionario.OTP_Validado__c}"/>
+        <lightning:input label="Suc" value="{!v.simpleNewCuestionario.Sucursal__c}"/>
+        <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_Privada_Fisico__c}"/>
+        <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_MC_Fisico__c}"/>
+        <lightning:input label="Físico" required="true" value="{!v.simpleNewCuestionario.Error_MC_CONTACLESS_Fisico__c}"/>
+                                     
+    </aura:if>
+</aura:component>

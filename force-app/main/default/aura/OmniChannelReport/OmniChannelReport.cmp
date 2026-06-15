@@ -1,0 +1,66 @@
+<aura:component controller="OmniChannelReport" implements="force:appHostable" >
+
+    <aura:attribute name="loadedData" type="Boolean" />
+
+    <aura:attribute name="startDate" type="Date" />
+    <aura:attribute name="endDate" type="Date" />
+	
+    <!-- Usuarios BackOffice -->
+    <aura:attribute name="lstProfiles" type="List" default="['Analista Backoffice','Coordinador Backoffice','Gerente Backoffice']" />
+    <aura:attribute name="userOptions" type="List" />
+    <aura:attribute name="userValue" type="String" />
+
+    <aura:attribute name="mapUsers" type="Map" default="{}" />
+
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }" />
+
+
+    <div>
+        
+        <div class="slds-grid slds-gutters slds-p-around_large">
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:input type="date" aura:id="idFechaInicio" name="idFechaInicio" label="Fecha de Inicio" value="{!v.startDate}" />
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:input type="date" aura:id="idFechaFin" name="idFechaFin" label="Fecha Fin" value="{!v.endDate}" />
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:select value="{! v.userValue }" name="usuario" label="Usuario" aura:id="usuario">
+                    <aura:iteration items="{!v.userOptions}" var="item">
+                        <option text="{!item.label}" value="{!item.value}" />
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+
+            <div class="slds-col slds-size_3-of-12 slds-text-align_left slds-p-top_large">
+                <lightning:button label="Actualizar" variant="brand" onclick="{! c.updateReport }" />
+            </div>
+
+            <div class="slds-col slds-size_3-of-12 slds-text-align_center slds-p-top_large">
+                <lightning:button label="Descargar" variant="neutral" onclick="{! c.downloadCSV }" />
+            </div>
+        </div>
+
+        <div class="slds-var-m-around_small" style="height: 500px;" >
+            <aura:if isTrue="{! v.loadedData }" >
+                <lightning:datatable
+                        keyField="idUsuario"
+                        data="{! v.data }"
+                        columns="{! v.columns }"
+                        hideCheckboxColumn="true" />
+
+                <aura:set attribute="else">
+                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                    </div>                                            
+                </aura:set>
+            </aura:if>        
+        </div>
+
+    </div>
+
+</aura:component>

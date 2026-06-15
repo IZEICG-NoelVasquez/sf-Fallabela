@@ -1,0 +1,181 @@
+<aura:component controller="MicroServicioEnvioEstadoDeCuenta" >
+    
+    <aura:attribute name="productos" type="Object[]"  />
+
+    <!-- Fechas Corte -->
+    <aura:attribute name="fechaCorteValue" type="String" />
+    <aura:attribute name="movimientoIdx" type="Integer" />
+
+    <!-- Medio de Envio -->
+    <aura:attribute name="email_Text" type="String" />
+
+    <aura:attribute name="openEnvioEdoCta" type="Boolean" default="false" />
+    <aura:attribute name="noPasoEnvioEdoCta" type="Integer" default="1" />
+    <aura:attribute name="loadingEnvioEdoCta" type="Boolean" default="false" />
+    <aura:attribute name="edoCtaEnviado" type="Boolean" default="false" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="casoEdoCtaCreado" type="Boolean" default="false" />    
+    <!-- Creacion de Caso Reenvío de Estado de Cuenta -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="newCaseEnvioEdoCta" type="String" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    
+    <lightning:card class="slds-text-heading_medium slds-text-title_bold slds-text-align_center" title="Reenvio de Estado de Cuenta" />
+
+    <div class="slds-m-around_x-large slds-text-align_center">
+        <lightning:button variant="brand" label="Enviar" title="Enviar" onclick="{! c.openModalConfirmacion }"/>
+    </div>
+
+    <!-- MODAL Micro Servicio Envio Estado de Cuenta -->
+    <aura:if isTrue="{!v.openEnvioEdoCta}">
+        <div class="slds-m-around_medium">
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalEnvioEdoCta }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! v.loadingEnvioEdoCta || v.creatingCase }" />
+
+                        <lightning:card class="slds-text-heading_medium slds-text-title_bold slds-text-align_left" title="Reenvio de Estado de Cuenta" iconName="standard:read_receipts" />
+                    </header>
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Mensaje de Confirmacion -->
+                        <aura:if isTrue="{! v.noPasoEnvioEdoCta == 1 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea Reenviar el estado de cuenta al cliente ?
+                                </div>                                    
+                            </div>
+
+                            <div class="slds-p-top_x-large slds-p-right_large slds-p-bottom_large slds-p-left_large" >
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="slds-size_5-of-12" scope="col">
+                                                <div class="slds-text-title slds-text-color_default slds-text-align_center">
+                                                    Email seleccionado
+                                                </div>
+                                            </th>
+                                            <th class="slds-size_1-of-12" scope="col">
+                                            </th>
+                                            <th class="slds-size_5-of-12" scope="col">
+                                            </th>
+                                            <th class="slds-size_1-of-12" scope="col">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="slds-hint-parent">
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default slds-text-align_center">
+                                                    Email
+                                                </div>
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default">
+                                                    {! v.email_Text }
+                                                </div>
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                            </td>
+                                        </tr>
+                                    </tbody>                                    
+                                </table>
+                            </div>
+
+                            <div class="slds-text-align_right  slds-p-right_large">
+                                <lightning:button variant="brand" label="Reenviar" onclick="{! c.confirmarReenvio }" title="Reenviar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 2: Mensaje de Exito -->
+                        <aura:if isTrue="{! v.noPasoEnvioEdoCta == 2 }" >
+                            <aura:if isTrue="{! (!v.loadingEnvioEdoCta) }" >
+
+                                <aura:if isTrue="{! v.edoCtaEnviado }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se realizó el Reenvío de Estado de Cuenta con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.casoEdoCtaCreado }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseEnvioEdoCta }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.edoCtaEnviado) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, favor de reportarlo con su Administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingEnvioEdoCta }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                                    label="Cerrar"
+                                                    title="Cerrar"
+                                                    onclick="{! c.closeModalEnvioEdoCta }"
+                                                    disabled="{! v.loadingEnvioEdoCta || v.creatingCase }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

@@ -1,0 +1,653 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:48:05.0 (169662)|USER_INFO|[EXTERNAL]|0051N000008bAK9|contingenciafalabella@falabella.com.mx|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+17:48:05.0 (243805)|EXECUTION_STARTED
+17:48:05.0 (252867)|CODE_UNIT_STARTED|[EXTERNAL]|apex://ExpedientesFalabella/ACTION$getPdfCreditReport
+17:48:05.0 (2277183)|CODE_UNIT_STARTED|[EXTERNAL]|01p3l000005r3c4|ExpedientesFalabella.getPdfCreditReport(Map<String,String>)
+17:48:05.0 (2586104)|HEAP_ALLOCATE|[95]|Bytes:3
+17:48:05.0 (2686260)|HEAP_ALLOCATE|[100]|Bytes:152
+17:48:05.0 (2700765)|HEAP_ALLOCATE|[417]|Bytes:408
+17:48:05.0 (2712209)|HEAP_ALLOCATE|[430]|Bytes:408
+17:48:05.0 (2731811)|HEAP_ALLOCATE|[317]|Bytes:6
+17:48:05.0 (2742148)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:20
+17:48:05.0 (2744946)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:11
+17:48:05.0 (2755896)|METHOD_ENTRY|[12]|01p3l000005r3c4|ExpedientesFalabella.ExpedientesFalabella()
+17:48:05.0 (2762984)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (2766985)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (2770784)|METHOD_EXIT|[12]|ExpedientesFalabella
+17:48:05.0 (2784909)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:12
+17:48:05.0 (2793086)|VARIABLE_SCOPE_BEGIN|[130]|params|Map<String,String>|true|false
+17:48:05.0 (2835128)|VARIABLE_ASSIGNMENT|[130]|params|{"idSolicitud":"309495430","tipoReporte":"B"}|0x9add818
+17:48:05.0 (2842976)|STATEMENT_EXECUTE|[130]
+17:48:05.0 (2844102)|STATEMENT_EXECUTE|[132]
+17:48:05.0 (19902843)|VARIABLE_SCOPE_BEGIN|[4]|MicroServicioBuroCreditoBO.BURO|String|false|true
+17:48:05.0 (19916465)|VARIABLE_SCOPE_BEGIN|[3]|MicroServicioBuroCreditoBO.POST|String|false|true
+17:48:05.0 (19928120)|HEAP_ALLOCATE|[132]|Bytes:130
+17:48:05.0 (19936154)|HEAP_ALLOCATE|[132]|Bytes:124
+17:48:05.0 (19938181)|HEAP_ALLOCATE|[132]|Bytes:91
+17:48:05.0 (19945378)|HEAP_ALLOCATE|[132]|Bytes:20
+17:48:05.0 (19947650)|HEAP_ALLOCATE|[132]|Bytes:27
+17:48:05.0 (19989612)|VARIABLE_ASSIGNMENT|[132]|MicroServicioBuroCreditoBO.BURO|"client/get/xml/buro/ (7 more) ..."
+17:48:05.0 (19993327)|HEAP_ALLOCATE|[132]|Bytes:4
+17:48:05.0 (19998315)|VARIABLE_ASSIGNMENT|[132]|MicroServicioBuroCreditoBO.POST|"POST"
+17:48:05.0 (20031574)|METHOD_ENTRY|[1]|01p3l000005qkti|MicroServicioBuroCreditoBO.MicroServicioBuroCreditoBO()
+17:48:05.0 (20038004)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (20043254)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (20044532)|STATEMENT_EXECUTE|[1185]
+17:48:05.0 (20045425)|STATEMENT_EXECUTE|[1220]
+17:48:05.0 (20046389)|STATEMENT_EXECUTE|[1246]
+17:48:05.0 (20047325)|STATEMENT_EXECUTE|[1288]
+17:48:05.0 (20048140)|STATEMENT_EXECUTE|[1301]
+17:48:05.0 (20048995)|STATEMENT_EXECUTE|[1321]
+17:48:05.0 (20049910)|STATEMENT_EXECUTE|[1362]
+17:48:05.0 (20050746)|STATEMENT_EXECUTE|[1376]
+17:48:05.0 (20051823)|STATEMENT_EXECUTE|[1423]
+17:48:05.0 (20052870)|STATEMENT_EXECUTE|[1461]
+17:48:05.0 (20053879)|STATEMENT_EXECUTE|[1471]
+17:48:05.0 (20059209)|METHOD_EXIT|[1]|MicroServicioBuroCreditoBO
+17:48:05.0 (20359465)|HEAP_ALLOCATE|[132]|Bytes:16
+17:48:05.0 (20374538)|CONSTRUCTOR_ENTRY|[132]|01p3l000005qkti|<init>()|MicroServicioBuroCreditoBO
+17:48:05.0 (20402094)|VARIABLE_SCOPE_BEGIN|[9]|this|MicroServicioBuroCreditoBO|true|false
+17:48:05.0 (20439076)|VARIABLE_ASSIGNMENT|[9]|this|{}|0x304911c6
+17:48:05.0 (20444054)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (20445150)|STATEMENT_EXECUTE|[2]
+17:48:05.0 (20446249)|STATEMENT_EXECUTE|[6]
+17:48:05.0 (20447214)|STATEMENT_EXECUTE|[7]
+17:48:05.0 (20451849)|HEAP_ALLOCATE|[11]|Bytes:6
+17:48:05.0 (22507223)|STATEMENT_EXECUTE|[9]
+17:48:05.0 (22509480)|STATEMENT_EXECUTE|[11]
+17:48:05.0 (22654264)|HEAP_ALLOCATE|[11]|Bytes:122
+17:48:05.0 (22674735)|HEAP_ALLOCATE|[11]|Bytes:122
+17:48:05.0 (22679598)|HEAP_ALLOCATE|[11]|Bytes:1
+17:48:05.0 (22696948)|HEAP_ALLOCATE|[11]|Bytes:26
+17:48:05.0 (22702324)|VARIABLE_SCOPE_BEGIN|[11]|currentClassName|String|false|false
+17:48:05.0 (22713659)|VARIABLE_ASSIGNMENT|[11]|currentClassName|"MicroServicioBuroCre (6 more) ..."
+17:48:05.0 (22716500)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (22721142)|HEAP_ALLOCATE|[12]|Bytes:61
+17:48:05.0 (22726734)|HEAP_ALLOCATE|[12]|Bytes:27
+17:48:05.0 (22735852)|METHOD_ENTRY|[12]|01p1N00000EREqf|ClienteMicroServicios.ClienteMicroServicios()
+17:48:05.0 (22739759)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (22741994)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (22744720)|METHOD_EXIT|[12]|ClienteMicroServicios
+17:48:05.0 (22749657)|HEAP_ALLOCATE|[12]|Bytes:124
+17:48:05.0 (22756858)|CONSTRUCTOR_ENTRY|[12]|01p1N00000EREqf|<init>()|ClienteMicroServicios
+17:48:05.0 (22767241)|VARIABLE_SCOPE_BEGIN|[54]|this|ClienteMicroServicios|true|false
+17:48:05.0 (22796288)|VARIABLE_ASSIGNMENT|[54]|this|{}|0x21e54ddc
+17:48:05.0 (22800008)|STATEMENT_EXECUTE|[12]
+17:48:05.0 (22800937)|STATEMENT_EXECUTE|[14]
+17:48:05.0 (22802529)|HEAP_ALLOCATE|[14]|Bytes:23
+17:48:05.0 (22810436)|VARIABLE_ASSIGNMENT|[14]|this.BASE_URL|"https://cmr-mx-busin (3 more) ..."|0x21e54ddc
+17:48:05.0 (22813381)|STATEMENT_EXECUTE|[15]
+17:48:05.0 (22814480)|HEAP_ALLOCATE|[15]|Bytes:23
+17:48:05.0 (22819224)|VARIABLE_ASSIGNMENT|[15]|this.URI|".fif.tech/api/busine (3 more) ..."|0x21e54ddc
+17:48:05.0 (22821664)|STATEMENT_EXECUTE|[17]
+17:48:05.0 (22822784)|HEAP_ALLOCATE|[17]|Bytes:7
+17:48:05.0 (22826053)|VARIABLE_ASSIGNMENT|[17]|this.BACKEND|"backend"|0x21e54ddc
+17:48:05.0 (22828581)|STATEMENT_EXECUTE|[19]
+17:48:05.0 (22829898)|HEAP_ALLOCATE|[19]|Bytes:16
+17:48:05.0 (22833158)|VARIABLE_ASSIGNMENT|[19]|this.APP_JSON|"application/json"|0x21e54ddc
+17:48:05.0 (22835676)|STATEMENT_EXECUTE|[20]
+17:48:05.0 (22836654)|HEAP_ALLOCATE|[20]|Bytes:12
+17:48:05.0 (22839944)|VARIABLE_ASSIGNMENT|[20]|this.CONT_TYPE|"Content-Type"|0x21e54ddc
+17:48:05.0 (22842246)|STATEMENT_EXECUTE|[21]
+17:48:05.0 (22844351)|HEAP_ALLOCATE|[21]|Bytes:4
+17:48:05.0 (22850069)|VARIABLE_ASSIGNMENT|[21]|this.TIME_OUT|120000|0x21e54ddc
+17:48:05.0 (22852466)|STATEMENT_EXECUTE|[22]
+17:48:05.0 (22853609)|HEAP_ALLOCATE|[22]|Bytes:8
+17:48:05.0 (22856747)|VARIABLE_ASSIGNMENT|[22]|this.endpoint|"products"|0x21e54ddc
+17:48:05.0 (22859142)|STATEMENT_EXECUTE|[23]
+17:48:05.0 (22860178)|HEAP_ALLOCATE|[23]|Bytes:4
+17:48:05.0 (22863675)|VARIABLE_ASSIGNMENT|[23]|this.method|"POST"|0x21e54ddc
+17:48:05.0 (22866367)|STATEMENT_EXECUTE|[24]
+17:48:05.0 (22867551)|HEAP_ALLOCATE|[24]|Bytes:2
+17:48:05.0 (22870744)|VARIABLE_ASSIGNMENT|[24]|this.version|"v1"|0x21e54ddc
+17:48:05.0 (22873166)|STATEMENT_EXECUTE|[25]
+17:48:05.0 (22874183)|HEAP_ALLOCATE|[25]|Bytes:14
+17:48:05.0 (22877638)|VARIABLE_ASSIGNMENT|[25]|this.MDW_CS_CHANNEL|"mdw-cs-channel"|0x21e54ddc
+17:48:05.0 (22880068)|STATEMENT_EXECUTE|[26]
+17:48:05.0 (22881143)|HEAP_ALLOCATE|[26]|Bytes:15
+17:48:05.0 (22884342)|VARIABLE_ASSIGNMENT|[26]|this.MDW_CS_COMMERCE|"mdw-cs-commerce"|0x21e54ddc
+17:48:05.0 (22886688)|STATEMENT_EXECUTE|[27]
+17:48:05.0 (22888051)|HEAP_ALLOCATE|[27]|Bytes:14
+17:48:05.0 (22891384)|VARIABLE_ASSIGNMENT|[27]|this.MDW_CS_COUNTRY|"mdw-cs-country"|0x21e54ddc
+17:48:05.0 (22893698)|STATEMENT_EXECUTE|[28]
+17:48:05.0 (22894663)|HEAP_ALLOCATE|[28]|Bytes:11
+17:48:05.0 (22897931)|VARIABLE_ASSIGNMENT|[28]|this.MDW_CS_DATE|"mdw-cs-date"|0x21e54ddc
+17:48:05.0 (22900397)|STATEMENT_EXECUTE|[29]
+17:48:05.0 (22901460)|HEAP_ALLOCATE|[29]|Bytes:11
+17:48:05.0 (22904583)|VARIABLE_ASSIGNMENT|[29]|this.MDW_CS_HOUR|"mdw-cs-hour"|0x21e54ddc
+17:48:05.0 (22906872)|STATEMENT_EXECUTE|[30]
+17:48:05.0 (22907726)|STATEMENT_EXECUTE|[31]
+17:48:05.0 (22908856)|HEAP_ALLOCATE|[31]|Bytes:7
+17:48:05.0 (22912146)|VARIABLE_ASSIGNMENT|[31]|this.microServicio|"default"|0x21e54ddc
+17:48:05.0 (22914811)|STATEMENT_EXECUTE|[34]
+17:48:05.0 (22915971)|HEAP_ALLOCATE|[34]|Bytes:10
+17:48:05.0 (22919443)|VARIABLE_ASSIGNMENT|[34]|this.GRANT_TYPE|"grant_type"|0x21e54ddc
+17:48:05.0 (22921822)|STATEMENT_EXECUTE|[35]
+17:48:05.0 (22922989)|HEAP_ALLOCATE|[35]|Bytes:8
+17:48:05.0 (22926338)|VARIABLE_ASSIGNMENT|[35]|this.PASSWORD|"password"|0x21e54ddc
+17:48:05.0 (22928771)|STATEMENT_EXECUTE|[36]
+17:48:05.0 (22929909)|HEAP_ALLOCATE|[36]|Bytes:9
+17:48:05.0 (22932978)|VARIABLE_ASSIGNMENT|[36]|this.CLIENT_ID|"client_id"|0x21e54ddc
+17:48:05.0 (22935376)|STATEMENT_EXECUTE|[37]
+17:48:05.0 (22936351)|HEAP_ALLOCATE|[37]|Bytes:13
+17:48:05.0 (22940612)|VARIABLE_ASSIGNMENT|[37]|this.CLIENT_SECRET|"client_secret"|0x21e54ddc
+17:48:05.0 (22942908)|STATEMENT_EXECUTE|[38]
+17:48:05.0 (22944049)|HEAP_ALLOCATE|[38]|Bytes:13
+17:48:05.0 (22947363)|VARIABLE_ASSIGNMENT|[38]|this.PROVISION_KEY|"provision_key"|0x21e54ddc
+17:48:05.0 (22949885)|STATEMENT_EXECUTE|[39]
+17:48:05.0 (22950862)|HEAP_ALLOCATE|[39]|Bytes:20
+17:48:05.0 (22954071)|VARIABLE_ASSIGNMENT|[39]|this.AUTHENTICATED_USERID|"authenticated_userid"|0x21e54ddc
+17:48:05.0 (22956380)|STATEMENT_EXECUTE|[40]
+17:48:05.0 (22957245)|HEAP_ALLOCATE|[40]|Bytes:12
+17:48:05.0 (22960260)|VARIABLE_ASSIGNMENT|[40]|this.AT|"access_token"|0x21e54ddc
+17:48:05.0 (22962623)|STATEMENT_EXECUTE|[42]
+17:48:05.0 (22963641)|HEAP_ALLOCATE|[42]|Bytes:13
+17:48:05.0 (22966803)|VARIABLE_ASSIGNMENT|[42]|this.AUTH|"Authorization"|0x21e54ddc
+17:48:05.0 (22969041)|STATEMENT_EXECUTE|[43]
+17:48:05.0 (22970197)|HEAP_ALLOCATE|[43]|Bytes:6
+17:48:05.0 (22973341)|VARIABLE_ASSIGNMENT|[43]|this.BEARER|"Bearer"|0x21e54ddc
+17:48:05.0 (22975763)|STATEMENT_EXECUTE|[44]
+17:48:05.0 (22976757)|HEAP_ALLOCATE|[44]|Bytes:12
+17:48:05.0 (22980096)|VARIABLE_ASSIGNMENT|[44]|this.OAUTH|"oauth2/token"|0x21e54ddc
+17:48:05.0 (22982400)|STATEMENT_EXECUTE|[47]
+17:48:05.0 (22983661)|HEAP_ALLOCATE|[47]|Bytes:8
+17:48:05.0 (22986973)|VARIABLE_ASSIGNMENT|[47]|this.SECCTION|"secction"|0x21e54ddc
+17:48:05.0 (22989226)|STATEMENT_EXECUTE|[48]
+17:48:05.0 (22990516)|HEAP_ALLOCATE|[48]|Bytes:10
+17:48:05.0 (22993566)|VARIABLE_ASSIGNMENT|[48]|this.APIVERSION|"apiversion"|0x21e54ddc
+17:48:05.0 (22995983)|STATEMENT_EXECUTE|[49]
+17:48:05.0 (22997103)|HEAP_ALLOCATE|[49]|Bytes:5
+17:48:05.0 (23000446)|VARIABLE_ASSIGNMENT|[49]|this.SCORETOKEN|"token"|0x21e54ddc
+17:48:05.0 (23003258)|STATEMENT_EXECUTE|[52]
+17:48:05.0 (23005836)|VARIABLE_ASSIGNMENT|[52]|this.access_token|""|0x21e54ddc
+17:48:05.0 (23016199)|STATEMENT_EXECUTE|[54]
+17:48:05.0 (23017298)|STATEMENT_EXECUTE|[55]
+17:48:05.0 (23030791)|METHOD_ENTRY|[55]|01p1N00000EREqf|ClienteMicroServicios.setMicroServicio(String)
+17:48:05.0 (23039502)|VARIABLE_SCOPE_BEGIN|[74]|this|ClienteMicroServicios|true|false
+17:48:05.0 (23067806)|VARIABLE_ASSIGNMENT|[74]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (23075741)|VARIABLE_SCOPE_BEGIN|[74]|microServicio|String|false|false
+17:48:05.0 (23079447)|VARIABLE_ASSIGNMENT|[74]|microServicio|"default"
+17:48:05.0 (23083158)|STATEMENT_EXECUTE|[74]
+17:48:05.0 (23084378)|STATEMENT_EXECUTE|[76]
+17:48:05.0 (23087706)|VARIABLE_ASSIGNMENT|[76]|this.microServicio|"default"|0x21e54ddc
+17:48:05.0 (23090323)|STATEMENT_EXECUTE|[77]
+17:48:05.0 (23091641)|HEAP_ALLOCATE|[77]|Bytes:226
+17:48:05.0 (23103995)|HEAP_ALLOCATE|[77]|Bytes:4
+17:48:05.0 (23118866)|HEAP_ALLOCATE|[77]|Bytes:7
+17:48:05.0 (23140213)|HEAP_ALLOCATE|[68]|Bytes:5
+17:48:05.0 (23177543)|HEAP_ALLOCATE|[74]|Bytes:5
+17:48:05.0 (23182314)|HEAP_ALLOCATE|[82]|Bytes:7
+17:48:05.0 (23538022)|SOQL_EXECUTE_BEGIN|[77]|Aggregations:0|SELECT Ambiente__c, Channel__c, Commerce__c, Country__c, Client_ID__c, Client_Secret__c, Provision_Key__c, Authenticated_UserID__c, Section__c, Apiversion__c FROM Configuracion_Microservicio__mdt WHERE Label = :tmpVar1 LIMIT 1
+17:48:05.0 (25823823)|SOQL_EXECUTE_END|[77]|Rows:1
+17:48:05.0 (25871145)|HEAP_ALLOCATE|[77]|Bytes:8
+17:48:05.0 (25903703)|HEAP_ALLOCATE|[77]|Bytes:260
+17:48:05.0 (26010705)|HEAP_ALLOCATE|[77]|Bytes:8
+17:48:05.0 (26023852)|HEAP_ALLOCATE|[77]|Bytes:58
+17:48:05.0 (26076336)|HEAP_ALLOCATE|[77]|Bytes:36
+17:48:05.0 (26193767)|VARIABLE_ASSIGNMENT|[77]|this.cm|{"Country__c":"MX","Client_Secret__c":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","Authenticated_UserID__c":"0","Client_ID__c":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","Id":"m071N000000CbDpQAK","Channel__c":"Web","Provision_Key__c":"MjU2NjIwMTFjYmJkZjJk (12 more) ...","Commerce__c":"CMR"}|0x21e54ddc
+17:48:05.0 (26213484)|METHOD_EXIT|[55]|01p1N00000EREqf|ClienteMicroServicios.setMicroServicio(String)
+17:48:05.0 (26223768)|CONSTRUCTOR_EXIT|[12]|01p1N00000EREqf|<init>()|ClienteMicroServicios
+17:48:05.0 (26237469)|VARIABLE_ASSIGNMENT|[12]|this.cliente|0x21e54ddc|0x304911c6
+17:48:05.0 (26242377)|STATEMENT_EXECUTE|[13]
+17:48:05.0 (26264558)|METHOD_ENTRY|[13]|01p1N00000EREqf|ClienteMicroServicios.setMethod(String)
+17:48:05.0 (26283842)|VARIABLE_SCOPE_BEGIN|[64]|this|ClienteMicroServicios|true|false
+17:48:05.0 (26395764)|VARIABLE_ASSIGNMENT|[64]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x524b1db6","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (26403401)|VARIABLE_SCOPE_BEGIN|[64]|method|String|false|false
+17:48:05.0 (26407815)|VARIABLE_ASSIGNMENT|[64]|method|"POST"
+17:48:05.0 (26412669)|STATEMENT_EXECUTE|[64]
+17:48:05.0 (26414032)|STATEMENT_EXECUTE|[66]
+17:48:05.0 (26421947)|VARIABLE_ASSIGNMENT|[66]|this.method|"POST"|0x21e54ddc
+17:48:05.0 (26435728)|METHOD_EXIT|[13]|01p1N00000EREqf|ClienteMicroServicios.setMethod(String)
+17:48:05.0 (26447442)|STATEMENT_EXECUTE|[14]
+17:48:05.0 (26454409)|METHOD_ENTRY|[14]|01p1N00000EREqf|ClienteMicroServicios.setEndpoint(String)
+17:48:05.0 (26460764)|VARIABLE_SCOPE_BEGIN|[59]|this|ClienteMicroServicios|true|false
+17:48:05.0 (26501687)|VARIABLE_ASSIGNMENT|[59]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x524b1db6","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (26509223)|VARIABLE_SCOPE_BEGIN|[59]|endpoint|String|false|false
+17:48:05.0 (26522499)|VARIABLE_ASSIGNMENT|[59]|endpoint|"client/get/xml/buro/ (7 more) ..."
+17:48:05.0 (26525701)|STATEMENT_EXECUTE|[59]
+17:48:05.0 (26526895)|STATEMENT_EXECUTE|[61]
+17:48:05.0 (26544488)|VARIABLE_ASSIGNMENT|[61]|this.endpoint|"client/get/xml/buro/ (7 more) ..."|0x21e54ddc
+17:48:05.0 (26548377)|METHOD_EXIT|[14]|01p1N00000EREqf|ClienteMicroServicios.setEndpoint(String)
+17:48:05.0 (26555464)|STATEMENT_EXECUTE|[15]
+17:48:05.0 (26559050)|METHOD_ENTRY|[15]|01p1N00000EREqf|ClienteMicroServicios.setMicroServicio(String)
+17:48:05.0 (26578690)|VARIABLE_SCOPE_BEGIN|[74]|this|ClienteMicroServicios|true|false
+17:48:05.0 (26610087)|VARIABLE_ASSIGNMENT|[74]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x524b1db6","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (26616692)|VARIABLE_SCOPE_BEGIN|[74]|microServicio|String|false|false
+17:48:05.0 (26643580)|VARIABLE_ASSIGNMENT|[74]|microServicio|"MicroServicioBuroCre (6 more) ..."
+17:48:05.0 (26646815)|STATEMENT_EXECUTE|[74]
+17:48:05.0 (26647689)|STATEMENT_EXECUTE|[76]
+17:48:05.0 (26651198)|VARIABLE_ASSIGNMENT|[76]|this.microServicio|"MicroServicioBuroCre (6 more) ..."|0x21e54ddc
+17:48:05.0 (26653923)|STATEMENT_EXECUTE|[77]
+17:48:05.0 (26663227)|HEAP_ALLOCATE|[77]|Bytes:4
+17:48:05.0 (27005539)|SOQL_EXECUTE_BEGIN|[77]|Aggregations:0|SELECT Ambiente__c, Channel__c, Commerce__c, Country__c, Client_ID__c, Client_Secret__c, Provision_Key__c, Authenticated_UserID__c, Section__c, Apiversion__c FROM Configuracion_Microservicio__mdt WHERE Label = :tmpVar1 LIMIT 1
+17:48:05.0 (29345739)|SOQL_EXECUTE_END|[77]|Rows:1
+17:48:05.0 (29367687)|HEAP_ALLOCATE|[77]|Bytes:8
+17:48:05.0 (29401151)|HEAP_ALLOCATE|[77]|Bytes:260
+17:48:05.0 (29431453)|HEAP_ALLOCATE|[77]|Bytes:8
+17:48:05.0 (29458934)|HEAP_ALLOCATE|[77]|Bytes:36
+17:48:05.0 (29569771)|VARIABLE_ASSIGNMENT|[77]|this.cm|{"Country__c":"MX","Client_Secret__c":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","Authenticated_UserID__c":"0","Client_ID__c":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","Id":"m073l000000Xb0eAAC","Channel__c":"Web","Provision_Key__c":"OThhNzM1NjM0ZTc3MmNj (12 more) ...","Commerce__c":"CMR"}|0x21e54ddc
+17:48:05.0 (29580746)|METHOD_EXIT|[15]|01p1N00000EREqf|ClienteMicroServicios.setMicroServicio(String)
+17:48:05.0 (29587436)|STATEMENT_EXECUTE|[16]
+17:48:05.0 (29602509)|METHOD_ENTRY|[16]|01p1N00000EREqf|ClienteMicroServicios.generarToken()
+17:48:05.0 (29643362)|VARIABLE_SCOPE_BEGIN|[83]|this|ClienteMicroServicios|true|false
+17:48:05.0 (29710911)|VARIABLE_ASSIGNMENT|[83]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (29720541)|STATEMENT_EXECUTE|[83]
+17:48:05.0 (29721779)|STATEMENT_EXECUTE|[86]
+17:48:05.0 (29730638)|HEAP_ALLOCATE|[86]|Bytes:4
+17:48:05.0 (29839944)|VARIABLE_SCOPE_BEGIN|[86]|params|Map<String,String>|true|false
+17:48:05.0 (29857809)|VARIABLE_ASSIGNMENT|[86]|params|{"grant_type":"password","client_id":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","client_secret":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","provision_key":"OThhNzM1NjM0ZTc3MmNj (12 more) ...","authenticated_userid":"0"}|0x5d9129de
+17:48:05.0 (29861763)|STATEMENT_EXECUTE|[92]
+17:48:05.0 (29867524)|METHOD_ENTRY|[92]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (29874997)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+17:48:05.0 (29903960)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (29911500)|STATEMENT_EXECUTE|[115]
+17:48:05.0 (29912688)|STATEMENT_EXECUTE|[117]
+17:48:05.0 (29914951)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+17:48:05.0 (29919459)|VARIABLE_ASSIGNMENT|[117]|url|""
+17:48:05.0 (29921602)|STATEMENT_EXECUTE|[118]
+17:48:05.0 (29923448)|HEAP_ALLOCATE|[118]|Bytes:1
+17:48:05.0 (29940453)|HEAP_ALLOCATE|[118]|Bytes:5
+17:48:05.0 (29943600)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+17:48:05.0 (29948154)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-null"
+17:48:05.0 (29951685)|STATEMENT_EXECUTE|[124]
+17:48:05.0 (29952553)|STATEMENT_EXECUTE|[126]
+17:48:05.0 (29954232)|HEAP_ALLOCATE|[126]|Bytes:1
+17:48:05.0 (29961013)|HEAP_ALLOCATE|[126]|Bytes:57
+17:48:05.0 (29963844)|HEAP_ALLOCATE|[126]|Bytes:84
+17:48:05.0 (29967440)|VARIABLE_ASSIGNMENT|[126]|url|"https://cmr-mx-busin (64 more) ..."
+17:48:05.0 (29969693)|STATEMENT_EXECUTE|[129]
+17:48:05.0 (29972208)|METHOD_EXIT|[92]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (29978276)|HEAP_ALLOCATE|[92]|Bytes:97
+17:48:05.0 (29980461)|VARIABLE_SCOPE_BEGIN|[92]|url|String|false|false
+17:48:05.0 (29984800)|VARIABLE_ASSIGNMENT|[92]|url|"https://cmr-mx-busin (77 more) ..."
+17:48:05.0 (29987075)|STATEMENT_EXECUTE|[94]
+17:48:05.0 (29991537)|METHOD_ENTRY|[94]|01p1N00000EREqf|ClienteMicroServicios.crearRequest(Map<String,String>)
+17:48:05.0 (29997516)|VARIABLE_SCOPE_BEGIN|[132]|this|ClienteMicroServicios|true|false
+17:48:05.0 (30020368)|VARIABLE_ASSIGNMENT|[132]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (30027448)|VARIABLE_SCOPE_BEGIN|[132]|params|Map<String,String>|true|false
+17:48:05.0 (30035781)|VARIABLE_ASSIGNMENT|[132]|params|{"grant_type":"password","client_id":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","client_secret":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","provision_key":"OThhNzM1NjM0ZTc3MmNj (12 more) ...","authenticated_userid":"0"}|0x5d9129de
+17:48:05.0 (30040121)|STATEMENT_EXECUTE|[132]
+17:48:05.0 (30040990)|STATEMENT_EXECUTE|[134]
+17:48:05.0 (30059903)|VARIABLE_SCOPE_BEGIN|[134]|http|System.Http|true|false
+17:48:05.0 (30212058)|VARIABLE_ASSIGNMENT|[134]|http|"System.Http[]"|0x59cf8b46
+17:48:05.0 (30217550)|STATEMENT_EXECUTE|[135]
+17:48:05.0 (30226595)|VARIABLE_SCOPE_BEGIN|[135]|req|System.HttpRequest|true|false
+17:48:05.0 (30259498)|VARIABLE_ASSIGNMENT|[135]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0xb35a07d
+17:48:05.0 (30263088)|STATEMENT_EXECUTE|[136]
+17:48:05.0 (30300992)|HEAP_ALLOCATE|[136]|Bytes:24
+17:48:05.0 (30319728)|SYSTEM_METHOD_ENTRY|[1]|JSON.JSON()
+17:48:05.0 (30322500)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (30328707)|SYSTEM_METHOD_EXIT|[1]|JSON
+17:48:05.0 (30334436)|METHOD_ENTRY|[136]||System.JSON.serialize(Object)
+17:48:05.0 (30720868)|METHOD_EXIT|[136]||System.JSON.serialize(Object)
+17:48:05.0 (30776257)|STATEMENT_EXECUTE|[138]
+17:48:05.0 (30783886)|METHOD_ENTRY|[138]|01p1N00000EREqf|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+17:48:05.0 (30792622)|VARIABLE_SCOPE_BEGIN|[181]|this|ClienteMicroServicios|true|false
+17:48:05.0 (30840427)|VARIABLE_ASSIGNMENT|[181]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (30847887)|VARIABLE_SCOPE_BEGIN|[181]|req|System.HttpRequest|true|false
+17:48:05.0 (30897234)|VARIABLE_ASSIGNMENT|[181]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0xb35a07d
+17:48:05.0 (30902244)|STATEMENT_EXECUTE|[181]
+17:48:05.0 (30903397)|STATEMENT_EXECUTE|[183]
+17:48:05.0 (30908533)|METHOD_ENTRY|[183]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (30915304)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+17:48:05.0 (30940208)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (30947932)|STATEMENT_EXECUTE|[115]
+17:48:05.0 (30948787)|STATEMENT_EXECUTE|[117]
+17:48:05.0 (30951307)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+17:48:05.0 (30956742)|VARIABLE_ASSIGNMENT|[117]|url|""
+17:48:05.0 (30958778)|STATEMENT_EXECUTE|[118]
+17:48:05.0 (30967978)|HEAP_ALLOCATE|[118]|Bytes:5
+17:48:05.0 (30971184)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+17:48:05.0 (30975305)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-null"
+17:48:05.0 (30978546)|STATEMENT_EXECUTE|[124]
+17:48:05.0 (30979429)|STATEMENT_EXECUTE|[126]
+17:48:05.0 (30983207)|HEAP_ALLOCATE|[126]|Bytes:57
+17:48:05.0 (30985773)|HEAP_ALLOCATE|[126]|Bytes:84
+17:48:05.0 (31031145)|VARIABLE_ASSIGNMENT|[126]|url|"https://cmr-mx-busin (64 more) ..."
+17:48:05.0 (31035245)|STATEMENT_EXECUTE|[129]
+17:48:05.0 (31037693)|METHOD_EXIT|[183]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (31040527)|VARIABLE_SCOPE_BEGIN|[183]|url|String|false|false
+17:48:05.0 (31044842)|VARIABLE_ASSIGNMENT|[183]|url|"https://cmr-mx-busin (64 more) ..."
+17:48:05.0 (31047005)|STATEMENT_EXECUTE|[185]
+17:48:05.0 (31079204)|VARIABLE_SCOPE_BEGIN|[185]|strChannel|String|false|false
+17:48:05.0 (31083637)|VARIABLE_ASSIGNMENT|[185]|strChannel|"Web"
+17:48:05.0 (31085929)|STATEMENT_EXECUTE|[186]
+17:48:05.0 (31091304)|VARIABLE_SCOPE_BEGIN|[186]|strCommerce|String|false|false
+17:48:05.0 (31095142)|VARIABLE_ASSIGNMENT|[186]|strCommerce|"CMR"
+17:48:05.0 (31097107)|STATEMENT_EXECUTE|[187]
+17:48:05.0 (31101799)|VARIABLE_SCOPE_BEGIN|[187]|strCountry|String|false|false
+17:48:05.0 (31106066)|VARIABLE_ASSIGNMENT|[187]|strCountry|"MX"
+17:48:05.0 (31108101)|STATEMENT_EXECUTE|[189]
+17:48:05.0 (31142702)|STATEMENT_EXECUTE|[190]
+17:48:05.0 (31150906)|STATEMENT_EXECUTE|[191]
+17:48:05.0 (31162474)|STATEMENT_EXECUTE|[192]
+17:48:05.0 (31175210)|STATEMENT_EXECUTE|[193]
+17:48:05.0 (31182234)|STATEMENT_EXECUTE|[194]
+17:48:05.0 (31188490)|STATEMENT_EXECUTE|[195]
+17:48:05.0 (31220774)|STATEMENT_EXECUTE|[197]
+17:48:05.0 (31221843)|STATEMENT_EXECUTE|[202]
+17:48:05.0 (31226977)|METHOD_ENTRY|[202]|01p1N00000EREqf|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+17:48:05.0 (31234617)|VARIABLE_SCOPE_BEGIN|[215]|this|ClienteMicroServicios|true|false
+17:48:05.0 (31268190)|VARIABLE_ASSIGNMENT|[215]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (31297432)|VARIABLE_SCOPE_BEGIN|[215]|req|System.HttpRequest|true|false
+17:48:05.0 (31340948)|VARIABLE_ASSIGNMENT|[215]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]"|0xb35a07d
+17:48:05.0 (31346022)|STATEMENT_EXECUTE|[215]
+17:48:05.0 (31346957)|STATEMENT_EXECUTE|[217]
+17:48:05.0 (31349127)|HEAP_ALLOCATE|[217]|Bytes:5
+17:48:05.0 (31366432)|HEAP_ALLOCATE|[217]|Bytes:126
+17:48:05.0 (31372547)|HEAP_ALLOCATE|[217]|Bytes:131
+17:48:05.0 (31395697)|USER_DEBUG|[217]|DEBUG|REQ: System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]
+17:48:05.0 (31402448)|STATEMENT_EXECUTE|[218]
+17:48:05.0 (31403637)|HEAP_ALLOCATE|[218]|Bytes:30
+17:48:05.0 (31415871)|HEAP_ALLOCATE|[218]|Bytes:16
+17:48:05.0 (31419618)|HEAP_ALLOCATE|[218]|Bytes:46
+17:48:05.0 (31424376)|USER_DEBUG|[218]|DEBUG|req.getHeader(Content-Type):  application/json
+17:48:05.0 (31428096)|STATEMENT_EXECUTE|[219]
+17:48:05.0 (31429142)|HEAP_ALLOCATE|[219]|Bytes:32
+17:48:05.0 (31434849)|HEAP_ALLOCATE|[219]|Bytes:3
+17:48:05.0 (31438007)|HEAP_ALLOCATE|[219]|Bytes:35
+17:48:05.0 (31441776)|USER_DEBUG|[219]|DEBUG|req.getHeader(mdw-cs-channel):  Web
+17:48:05.0 (31444988)|STATEMENT_EXECUTE|[220]
+17:48:05.0 (31446057)|HEAP_ALLOCATE|[220]|Bytes:33
+17:48:05.0 (31451647)|HEAP_ALLOCATE|[220]|Bytes:3
+17:48:05.0 (31454818)|HEAP_ALLOCATE|[220]|Bytes:36
+17:48:05.0 (31458524)|USER_DEBUG|[220]|DEBUG|req.getHeader(mdw-cs-commerce):  CMR
+17:48:05.0 (31461820)|STATEMENT_EXECUTE|[221]
+17:48:05.0 (31463006)|HEAP_ALLOCATE|[221]|Bytes:32
+17:48:05.0 (31469935)|HEAP_ALLOCATE|[221]|Bytes:2
+17:48:05.0 (31473027)|HEAP_ALLOCATE|[221]|Bytes:34
+17:48:05.0 (31476710)|USER_DEBUG|[221]|DEBUG|req.getHeader(mdw-cs-country):  MX
+17:48:05.0 (31480006)|STATEMENT_EXECUTE|[222]
+17:48:05.0 (31481004)|HEAP_ALLOCATE|[222]|Bytes:16
+17:48:05.0 (31499510)|HEAP_ALLOCATE|[222]|Bytes:201
+17:48:05.0 (31502799)|HEAP_ALLOCATE|[222]|Bytes:217
+17:48:05.0 (31506544)|USER_DEBUG|[222]|DEBUG|req.getBody():  {"authenticated_userid":"0","provision_key":"OThhNzM1NjM0ZTc3MmNjMzk2NDE1MWQy","client_secret":"OTM5ZTgxMzIwNzI2ZGNlYmFhNzU0ZmY2","client_id":"MTI3ZjBjNmE3NTg1ZTVmOTY2NzYwYzQy","grant_type":"password"}
+17:48:05.0 (31512175)|METHOD_EXIT|[202]|01p1N00000EREqf|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+17:48:05.0 (31514522)|STATEMENT_EXECUTE|[204]
+17:48:05.0 (31516433)|METHOD_EXIT|[138]|01p1N00000EREqf|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+17:48:05.0 (31519682)|METHOD_EXIT|[94]|01p1N00000EREqf|ClienteMicroServicios.crearRequest(Map<String,String>)
+17:48:05.0 (31522818)|VARIABLE_SCOPE_BEGIN|[94]|req|System.HttpRequest|true|false
+17:48:05.0 (31548994)|VARIABLE_ASSIGNMENT|[94]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]"|0xb35a07d
+17:48:05.0 (31552485)|STATEMENT_EXECUTE|[95]
+17:48:05.0 (31555569)|VARIABLE_SCOPE_BEGIN|[95]|res|System.HttpResponse|true|false
+17:48:05.0 (31560470)|VARIABLE_ASSIGNMENT|[95]|res|null|
+17:48:05.0 (31562544)|STATEMENT_EXECUTE|[97]
+17:48:05.0 (31602166)|HEAP_ALLOCATE|[98]|Bytes:118
+17:48:05.0 (31610976)|SYSTEM_METHOD_ENTRY|[1]|Test.Test()
+17:48:05.0 (31613091)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (31618055)|SYSTEM_METHOD_EXIT|[1]|Test
+17:48:05.0 (31621923)|METHOD_ENTRY|[98]||System.Test.isRunningTest()
+17:48:05.0 (31637417)|METHOD_EXIT|[98]||System.Test.isRunningTest()
+17:48:05.0 (31641756)|STATEMENT_EXECUTE|[98]
+17:48:05.0 (31642947)|STATEMENT_EXECUTE|[99]
+17:48:05.0 (31647700)|METHOD_ENTRY|[99]|01p1N00000EREqf|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+17:48:05.0 (31652535)|VARIABLE_SCOPE_BEGIN|[225]|this|ClienteMicroServicios|true|false
+17:48:05.0 (31681911)|VARIABLE_ASSIGNMENT|[225]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (31689118)|VARIABLE_SCOPE_BEGIN|[225]|req|System.HttpRequest|true|false
+17:48:05.0 (31713368)|VARIABLE_ASSIGNMENT|[225]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo/oauth2/token, Method=POST]"|0xb35a07d
+17:48:05.0 (31718001)|STATEMENT_EXECUTE|[225]
+17:48:05.0 (31718888)|STATEMENT_EXECUTE|[227]
+17:48:05.0 (31728230)|VARIABLE_SCOPE_BEGIN|[227]|http|System.Http|true|false
+17:48:05.0 (31752138)|VARIABLE_ASSIGNMENT|[227]|http|"System.Http[]"|0x6bfde681
+17:48:05.0 (31755163)|STATEMENT_EXECUTE|[228]
+17:48:05.0 (31811715)|CALLOUT_REQUEST|[228]|System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo/oauth2/token, Method=POST]
+17:48:05.0 (206457602)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:990
+17:48:05.0 (207545615)|CALLOUT_RESPONSE|[228]|System.HttpResponse[Status=OK, StatusCode=200]
+17:48:05.0 (207567486)|HEAP_ALLOCATE|[228]|Bytes:146
+17:48:05.0 (207593135)|METHOD_EXIT|[99]|01p1N00000EREqf|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+17:48:05.0 (207658886)|VARIABLE_ASSIGNMENT|[99]|res|"System.HttpResponse[Status=OK, StatusCode=200]"|0x415fc2b4
+17:48:05.0 (207668156)|STATEMENT_EXECUTE|[108]
+17:48:05.0 (207736233)|HEAP_ALLOCATE|[108]|Bytes:140
+17:48:05.0 (207820739)|HEAP_ALLOCATE|[108]|Bytes:5
+17:48:05.0 (207827183)|HEAP_ALLOCATE|[108]|Bytes:2
+17:48:05.0 (207847287)|METHOD_ENTRY|[5]|01p1N00000DyZdR|oAuthJSON.oAuthJSON()
+17:48:05.0 (207853731)|STATEMENT_EXECUTE|[5]
+17:48:05.0 (207858525)|STATEMENT_EXECUTE|[5]
+17:48:05.0 (207859761)|STATEMENT_EXECUTE|[7]
+17:48:05.0 (207866489)|METHOD_EXIT|[5]|oAuthJSON
+17:48:05.0 (207875432)|METHOD_ENTRY|[108]|01p1N00000DyZdR|oAuthJSON.parse(String)
+17:48:05.0 (207883480)|VARIABLE_SCOPE_BEGIN|[15]|json|String|false|false
+17:48:05.0 (207898044)|VARIABLE_ASSIGNMENT|[15]|json|"{\"token_type\":\"beare (120 more) ..."
+17:48:05.0 (207903961)|STATEMENT_EXECUTE|[15]
+17:48:05.0 (207905305)|STATEMENT_EXECUTE|[16]
+17:48:05.0 (207908587)|HEAP_ALLOCATE|[16]|Bytes:15
+17:48:05.0 (208031633)|HEAP_ALLOCATE|[16]|Bytes:33
+17:48:05.0 (208039885)|SYSTEM_METHOD_ENTRY|[1]|Type.Type()
+17:48:05.0 (208042250)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (208047960)|SYSTEM_METHOD_EXIT|[1]|Type
+17:48:05.0 (208052995)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (208067973)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (208071466)|VARIABLE_SCOPE_BEGIN|[4]|this|System.Type|true|false
+17:48:05.0 (208097858)|VARIABLE_ASSIGNMENT|[4]|this|{}|0x67c876b9
+17:48:05.0 (208101084)|VARIABLE_SCOPE_BEGIN|[4]|apextype|java:common.apex.runtime.ApexObjectType|true|false
+17:48:05.0 (208159346)|VARIABLE_ASSIGNMENT|[4]|apextype|"oAuthJSON.oAuth"|0x2e80d73
+17:48:05.0 (208187347)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (208196919)|METHOD_ENTRY|[16]||System.JSON.deserialize(String, System.Type)
+17:48:05.0 (208366427)|METHOD_EXIT|[16]||System.JSON.deserialize(String, System.Type)
+17:48:05.0 (208372294)|METHOD_EXIT|[108]|01p1N00000DyZdR|oAuthJSON.parse(String)
+17:48:05.0 (208376533)|VARIABLE_SCOPE_BEGIN|[108]|result|oAuthJSON.oAuth|true|false
+17:48:05.0 (208400294)|VARIABLE_ASSIGNMENT|[108]|result|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","expires_in":60,"refresh_token":"JuWdB2QT5o9RJEIUs5Uv (12 more) ...","token_type":"bearer"}|0x2c240bc1
+17:48:05.0 (208405654)|STATEMENT_EXECUTE|[110]
+17:48:05.0 (208407602)|HEAP_ALLOCATE|[110]|Bytes:10
+17:48:05.0 (208437858)|HEAP_ALLOCATE|[110]|Bytes:140
+17:48:05.0 (208449126)|HEAP_ALLOCATE|[110]|Bytes:150
+17:48:05.0 (208470666)|USER_DEBUG|[110]|DEBUG|res token {"token_type":"bearer","access_token":"xMsq9FpCsFF787uIR2xmWxAUAzEKAyuB","refresh_token":"JuWdB2QT5o9RJEIUs5UvkxmJr4wSOlJ2","expires_in":60}
+17:48:05.0 (208477402)|STATEMENT_EXECUTE|[112]
+17:48:05.0 (208483779)|VARIABLE_ASSIGNMENT|[112]|this.access_token|"xMsq9FpCsFF787uIR2xm (12 more) ..."|0x21e54ddc
+17:48:05.0 (208488463)|METHOD_EXIT|[16]|01p1N00000EREqf|ClienteMicroServicios.generarToken()
+17:48:05.0 (208495488)|CONSTRUCTOR_EXIT|[132]|01p3l000005qkti|<init>()|MicroServicioBuroCreditoBO
+17:48:05.0 (208499487)|VARIABLE_SCOPE_BEGIN|[132]|msXMLBuro|MicroServicioBuroCreditoBO|true|false
+17:48:05.0 (208513722)|VARIABLE_ASSIGNMENT|[132]|msXMLBuro|{"cliente":"0x21e54ddc"}|0x304911c6
+17:48:05.0 (208517115)|STATEMENT_EXECUTE|[134]
+17:48:05.0 (208540041)|METHOD_ENTRY|[134]|01p3l000005qkti|MicroServicioBuroCreditoBO.xmlBuroCredito(Map<String,String>)
+17:48:05.0 (208549407)|VARIABLE_SCOPE_BEGIN|[19]|this|MicroServicioBuroCreditoBO|true|false
+17:48:05.0 (208556687)|VARIABLE_ASSIGNMENT|[19]|this|{"cliente":"0x21e54ddc"}|0x304911c6
+17:48:05.0 (208560052)|VARIABLE_SCOPE_BEGIN|[19]|params|Map<String,String>|true|false
+17:48:05.0 (208572655)|VARIABLE_ASSIGNMENT|[19]|params|{"idSolicitud":"309495430","tipoReporte":"B"}|0x9add818
+17:48:05.0 (208576874)|STATEMENT_EXECUTE|[19]
+17:48:05.0 (208577917)|STATEMENT_EXECUTE|[21]
+17:48:05.0 (208800408)|HEAP_ALLOCATE|[21]|Bytes:1166
+17:48:05.0 (208870187)|HEAP_ALLOCATE|[21]|Bytes:1166
+17:48:05.0 (208888920)|HEAP_ALLOCATE|[21]|Bytes:26
+17:48:05.0 (208893593)|VARIABLE_SCOPE_BEGIN|[21]|currentClassName|String|false|false
+17:48:05.0 (208900812)|VARIABLE_ASSIGNMENT|[21]|currentClassName|"MicroServicioBuroCre (6 more) ..."
+17:48:05.0 (208903667)|STATEMENT_EXECUTE|[22]
+17:48:05.0 (208906587)|VARIABLE_SCOPE_BEGIN|[22]|res|System.HttpResponse|true|false
+17:48:05.0 (208912089)|VARIABLE_ASSIGNMENT|[22]|res|null|
+17:48:05.0 (208914016)|STATEMENT_EXECUTE|[23]
+17:48:05.0 (208924232)|METHOD_ENTRY|[23]|01p1N00000EREqf|ClienteMicroServicios.crearRequest(Map<String,String>)
+17:48:05.0 (208931583)|VARIABLE_SCOPE_BEGIN|[132]|this|ClienteMicroServicios|true|false
+17:48:05.0 (208968989)|VARIABLE_ASSIGNMENT|[132]|this|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (208976513)|VARIABLE_SCOPE_BEGIN|[132]|params|Map<String,String>|true|false
+17:48:05.0 (208984121)|VARIABLE_ASSIGNMENT|[132]|params|{"idSolicitud":"309495430","tipoReporte":"B"}|0x9add818
+17:48:05.0 (208993309)|STATEMENT_EXECUTE|[132]
+17:48:05.0 (208994291)|STATEMENT_EXECUTE|[134]
+17:48:05.0 (209006484)|VARIABLE_SCOPE_BEGIN|[134]|http|System.Http|true|false
+17:48:05.0 (209071286)|VARIABLE_ASSIGNMENT|[134]|http|"System.Http[]"|0x718ee02b
+17:48:05.0 (209074921)|STATEMENT_EXECUTE|[135]
+17:48:05.0 (209080251)|VARIABLE_SCOPE_BEGIN|[135]|req|System.HttpRequest|true|false
+17:48:05.0 (209102856)|VARIABLE_ASSIGNMENT|[135]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x7d7897d8
+17:48:05.0 (209106029)|STATEMENT_EXECUTE|[136]
+17:48:05.0 (209110609)|METHOD_ENTRY|[136]||System.JSON.serialize(Object)
+17:48:05.0 (209431964)|METHOD_EXIT|[136]||System.JSON.serialize(Object)
+17:48:05.0 (209479793)|STATEMENT_EXECUTE|[138]
+17:48:05.0 (209485534)|METHOD_ENTRY|[138]|01p1N00000EREqf|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+17:48:05.0 (209491876)|VARIABLE_SCOPE_BEGIN|[181]|this|ClienteMicroServicios|true|false
+17:48:05.0 (209563981)|VARIABLE_ASSIGNMENT|[181]|this|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (209575858)|VARIABLE_SCOPE_BEGIN|[181]|req|System.HttpRequest|true|false
+17:48:05.0 (209650063)|VARIABLE_ASSIGNMENT|[181]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x7d7897d8
+17:48:05.0 (209656231)|STATEMENT_EXECUTE|[181]
+17:48:05.0 (209657476)|STATEMENT_EXECUTE|[183]
+17:48:05.0 (209662159)|METHOD_ENTRY|[183]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (209666476)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+17:48:05.0 (209697113)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (209705026)|STATEMENT_EXECUTE|[115]
+17:48:05.0 (209705940)|STATEMENT_EXECUTE|[117]
+17:48:05.0 (209709871)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+17:48:05.0 (209715701)|VARIABLE_ASSIGNMENT|[117]|url|""
+17:48:05.0 (209718041)|STATEMENT_EXECUTE|[118]
+17:48:05.0 (209730607)|HEAP_ALLOCATE|[118]|Bytes:5
+17:48:05.0 (209734291)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+17:48:05.0 (209738546)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-null"
+17:48:05.0 (209742502)|STATEMENT_EXECUTE|[124]
+17:48:05.0 (209743378)|STATEMENT_EXECUTE|[126]
+17:48:05.0 (209747960)|HEAP_ALLOCATE|[126]|Bytes:57
+17:48:05.0 (209750578)|HEAP_ALLOCATE|[126]|Bytes:84
+17:48:05.0 (209754095)|VARIABLE_ASSIGNMENT|[126]|url|"https://cmr-mx-busin (64 more) ..."
+17:48:05.0 (209756610)|STATEMENT_EXECUTE|[129]
+17:48:05.0 (209759117)|METHOD_EXIT|[183]|01p1N00000EREqf|ClienteMicroServicios.obtenerURLENDPOINT()
+17:48:05.0 (209761796)|VARIABLE_SCOPE_BEGIN|[183]|url|String|false|false
+17:48:05.0 (209766151)|VARIABLE_ASSIGNMENT|[183]|url|"https://cmr-mx-busin (64 more) ..."
+17:48:05.0 (209768279)|STATEMENT_EXECUTE|[185]
+17:48:05.0 (209774567)|VARIABLE_SCOPE_BEGIN|[185]|strChannel|String|false|false
+17:48:05.0 (209778896)|VARIABLE_ASSIGNMENT|[185]|strChannel|"Web"
+17:48:05.0 (209781021)|STATEMENT_EXECUTE|[186]
+17:48:05.0 (209783601)|VARIABLE_SCOPE_BEGIN|[186]|strCommerce|String|false|false
+17:48:05.0 (209787463)|VARIABLE_ASSIGNMENT|[186]|strCommerce|"CMR"
+17:48:05.0 (209789486)|STATEMENT_EXECUTE|[187]
+17:48:05.0 (209792610)|VARIABLE_SCOPE_BEGIN|[187]|strCountry|String|false|false
+17:48:05.0 (209796881)|VARIABLE_ASSIGNMENT|[187]|strCountry|"MX"
+17:48:05.0 (209798781)|STATEMENT_EXECUTE|[189]
+17:48:05.0 (209807176)|STATEMENT_EXECUTE|[190]
+17:48:05.0 (209812693)|STATEMENT_EXECUTE|[191]
+17:48:05.0 (209819307)|STATEMENT_EXECUTE|[192]
+17:48:05.0 (209829465)|STATEMENT_EXECUTE|[193]
+17:48:05.0 (209833986)|STATEMENT_EXECUTE|[194]
+17:48:05.0 (209838195)|STATEMENT_EXECUTE|[195]
+17:48:05.0 (209856446)|STATEMENT_EXECUTE|[197]
+17:48:05.0 (209857351)|STATEMENT_EXECUTE|[199]
+17:48:05.0 (209859823)|HEAP_ALLOCATE|[199]|Bytes:1
+17:48:05.0 (209866798)|HEAP_ALLOCATE|[199]|Bytes:39
+17:48:05.0 (209896109)|STATEMENT_EXECUTE|[202]
+17:48:05.0 (209899721)|METHOD_ENTRY|[202]|01p1N00000EREqf|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+17:48:05.0 (209902901)|VARIABLE_SCOPE_BEGIN|[215]|this|ClienteMicroServicios|true|false
+17:48:05.0 (209926618)|VARIABLE_ASSIGNMENT|[215]|this|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (209933986)|VARIABLE_SCOPE_BEGIN|[215]|req|System.HttpRequest|true|false
+17:48:05.0 (209964878)|VARIABLE_ASSIGNMENT|[215]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]"|0x7d7897d8
+17:48:05.0 (209969860)|STATEMENT_EXECUTE|[215]
+17:48:05.0 (209970742)|STATEMENT_EXECUTE|[217]
+17:48:05.0 (209978928)|HEAP_ALLOCATE|[217]|Bytes:126
+17:48:05.0 (209984430)|HEAP_ALLOCATE|[217]|Bytes:131
+17:48:05.0 (210000677)|USER_DEBUG|[217]|DEBUG|REQ: System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]
+17:48:05.0 (210009240)|STATEMENT_EXECUTE|[218]
+17:48:05.0 (210017999)|HEAP_ALLOCATE|[218]|Bytes:16
+17:48:05.0 (210023285)|HEAP_ALLOCATE|[218]|Bytes:46
+17:48:05.0 (210029472)|USER_DEBUG|[218]|DEBUG|req.getHeader(Content-Type):  application/json
+17:48:05.0 (210034760)|STATEMENT_EXECUTE|[219]
+17:48:05.0 (210039505)|HEAP_ALLOCATE|[219]|Bytes:3
+17:48:05.0 (210043797)|HEAP_ALLOCATE|[219]|Bytes:35
+17:48:05.0 (210048838)|USER_DEBUG|[219]|DEBUG|req.getHeader(mdw-cs-channel):  Web
+17:48:05.0 (210053610)|STATEMENT_EXECUTE|[220]
+17:48:05.0 (210058686)|HEAP_ALLOCATE|[220]|Bytes:3
+17:48:05.0 (210062942)|HEAP_ALLOCATE|[220]|Bytes:36
+17:48:05.0 (210068540)|USER_DEBUG|[220]|DEBUG|req.getHeader(mdw-cs-commerce):  CMR
+17:48:05.0 (210073472)|STATEMENT_EXECUTE|[221]
+17:48:05.0 (210078542)|HEAP_ALLOCATE|[221]|Bytes:2
+17:48:05.0 (210083338)|HEAP_ALLOCATE|[221]|Bytes:34
+17:48:05.0 (210088958)|USER_DEBUG|[221]|DEBUG|req.getHeader(mdw-cs-country):  MX
+17:48:05.0 (210093919)|STATEMENT_EXECUTE|[222]
+17:48:05.0 (210107725)|HEAP_ALLOCATE|[222]|Bytes:45
+17:48:05.0 (210113447)|HEAP_ALLOCATE|[222]|Bytes:61
+17:48:05.0 (210118647)|USER_DEBUG|[222]|DEBUG|req.getBody():  {"tipoReporte":"B","idSolicitud":"309495430"}
+17:48:05.0 (210125668)|METHOD_EXIT|[202]|01p1N00000EREqf|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+17:48:05.0 (210129005)|STATEMENT_EXECUTE|[204]
+17:48:05.0 (210131856)|METHOD_EXIT|[138]|01p1N00000EREqf|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+17:48:05.0 (210137236)|METHOD_EXIT|[23]|01p1N00000EREqf|ClienteMicroServicios.crearRequest(Map<String,String>)
+17:48:05.0 (210141797)|VARIABLE_SCOPE_BEGIN|[23]|req|System.HttpRequest|true|false
+17:48:05.0 (210187260)|VARIABLE_ASSIGNMENT|[23]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]"|0x7d7897d8
+17:48:05.0 (210192970)|STATEMENT_EXECUTE|[24]
+17:48:05.0 (210196174)|VARIABLE_SCOPE_BEGIN|[24]|isSuccess|Boolean|false|false
+17:48:05.0 (210205732)|HEAP_ALLOCATE|[24]|Bytes:5
+17:48:05.0 (210210380)|VARIABLE_ASSIGNMENT|[24]|isSuccess|false
+17:48:05.0 (210212758)|STATEMENT_EXECUTE|[25]
+17:48:05.0 (210215045)|VARIABLE_SCOPE_BEGIN|[25]|result|BuroDeCreditoXMLJSON|true|false
+17:48:05.0 (210218974)|VARIABLE_ASSIGNMENT|[25]|result|null|
+17:48:05.0 (210221092)|STATEMENT_EXECUTE|[27]
+17:48:05.0 (210222895)|HEAP_ALLOCATE|[27]|Bytes:4
+17:48:05.0 (210251340)|HEAP_ALLOCATE|[27]|Bytes:126
+17:48:05.0 (210257170)|HEAP_ALLOCATE|[27]|Bytes:130
+17:48:05.0 (210333660)|USER_DEBUG|[27]|DEBUG|req System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]
+17:48:05.0 (210338034)|STATEMENT_EXECUTE|[29]
+17:48:05.0 (210338985)|STATEMENT_EXECUTE|[29]
+17:48:05.0 (210341078)|STATEMENT_EXECUTE|[31]
+17:48:05.0 (210342920)|VARIABLE_SCOPE_BEGIN|[31]|i|Integer|false|false
+17:48:05.0 (210346961)|HEAP_ALLOCATE|[31]|Bytes:4
+17:48:05.0 (210350055)|VARIABLE_ASSIGNMENT|[31]|i|0
+17:48:05.0 (210356559)|STATEMENT_EXECUTE|[31]
+17:48:05.0 (210357610)|STATEMENT_EXECUTE|[33]
+17:48:05.0 (210371329)|METHOD_ENTRY|[33]|01p1N00000EREqf|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+17:48:05.0 (210379137)|VARIABLE_SCOPE_BEGIN|[225]|this|ClienteMicroServicios|true|false
+17:48:05.0 (210418270)|VARIABLE_ASSIGNMENT|[225]|this|{"access_token":"xMsq9FpCsFF787uIR2xm (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x7d7931d2","CONT_TYPE":"Content-Type","endpoint":"client/get/xml/buro/ (7 more) ...","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioBuroCre (6 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x21e54ddc
+17:48:05.0 (210425370)|VARIABLE_SCOPE_BEGIN|[225]|req|System.HttpRequest|true|false
+17:48:05.0 (210453546)|VARIABLE_ASSIGNMENT|[225]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]"|0x7d7897d8
+17:48:05.0 (210458394)|STATEMENT_EXECUTE|[225]
+17:48:05.0 (210459373)|STATEMENT_EXECUTE|[227]
+17:48:05.0 (210467278)|VARIABLE_SCOPE_BEGIN|[227]|http|System.Http|true|false
+17:48:05.0 (210491075)|VARIABLE_ASSIGNMENT|[227]|http|"System.Http[]"|0x6b37f4b8
+17:48:05.0 (210494342)|STATEMENT_EXECUTE|[228]
+17:48:05.0 (210521265)|CALLOUT_REQUEST|[228]|System.HttpRequest[Endpoint=https://cmr-mx-business.fif.tech/api/business/v1/backend/client/get/xml/buro/circulo, Method=POST]
+17:48:05.0 (797190362)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:21492
+17:48:05.0 (798076198)|CALLOUT_RESPONSE|[228]|System.HttpResponse[Status=OK, StatusCode=200]
+17:48:05.0 (798101945)|HEAP_ALLOCATE|[228]|Bytes:20617
+17:48:05.0 (798133716)|METHOD_EXIT|[33]|01p1N00000EREqf|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+17:48:05.0 (798205902)|VARIABLE_ASSIGNMENT|[33]|res|"System.HttpResponse[Status=OK, StatusCode=200]"|0x461579ee
+17:48:05.0 (798274457)|STATEMENT_EXECUTE|[35]
+17:48:05.0 (798275729)|STATEMENT_EXECUTE|[37]
+17:48:05.0 (798286374)|HEAP_ALLOCATE|[37]|Bytes:5
+17:48:05.0 (798294538)|VARIABLE_ASSIGNMENT|[37]|isSuccess|true
+17:48:05.0 (798297062)|STATEMENT_EXECUTE|[38]
+17:48:05.0 (798301216)|STATEMENT_EXECUTE|[42]
+17:48:05.0 (798305442)|HEAP_ALLOCATE|[42]|Bytes:4
+17:48:05.0 (799206040)|HEAP_ALLOCATE|[42]|Bytes:20611
+17:48:05.0 (799227081)|HEAP_ALLOCATE|[42]|Bytes:20615
+17:48:05.0 (799257629)|USER_DEBUG|[42]|DEBUG|res {"code":"ok","message":{"idConsulta":"309495430","tipoReporte":"B","reporteCredito":"<Response><return xmlns=\"http://bean.consulta.ws.bc.com/\"><Personas xmlns=\"http://bean.consulta.ws.bc.com/\"><Persona xmlns=\"http://bean.consulta.ws.bc.com/\"><Encabezado xmlns=\"http://bean.consulta.ws.bc.com/\"><NumeroReferenciaOperador>1234567890123456789012345</NumeroReferenciaOperador><ClavePais>MX</ClavePais><IdentificadorBuro>1010</IdentificadorBuro><ClaveOtorgante>FF76241002</ClaveOtorgante><ClaveRetornoConsumidorPrincipal>1</ClaveRetornoConsumidorPrincipal><ClaveRetornoConsumidorSecundario>0</ClaveRetornoConsumidorSecundario><NumeroControlConsulta>4147449120</NumeroControlConsulta></Encabezado><Nombre xmlns=\"http://bean.consulta.ws.bc.com/\"><ApellidoPaterno>VALDEZ</ApellidoPaterno><ApellidoMaterno>VILLA</ApellidoMaterno><PrimerNombre>GUADALUPE</PrimerNombre><FechaNacimiento>18121972</FechaNacimiento><RFC>VAVG721218986</RFC><Nacionalidad>MX</Nacionalidad><Residencia>1</Residencia><EstadoCivil>F</EstadoCivil><Sexo>F</Sexo><ClaveImpuestosOtroPais>VAVG721218MDGLLD01</ClaveImpuestosOtroPais></Nombre><Domicilios xmlns=\"http://bean.consulta.ws.bc.com/\"><Domicilio xmlns=\"http://bean.consulta.ws.bc.com/\"><Direccion1>AV JOSE A RAMIREZ NO EXTN 323</Direccion1><ColoniaPoblacion>JARDINES SAN ANTONIO</ColoniaPoblacion><DelegacionMunicipio>DGO</DelegacionMunicipio><Ciudad>DGO</Ciudad><Estado>DGO</Estado><CP>34227</CP><NumeroTelefono>6183090731</NumeroTelefono><TipoDomicilio>H</TipoDomicilio><CodPais>MX</CodPais><FechaReporteDireccion>28022023</FechaReporteDireccion></Domicilio><Domicilio xmlns=\"http://bean.consulta.ws.bc.com/\"><Direccion1>REPUB DE URUGUAY 606</Direccion1><ColoniaPoblacion>FRANCISCO ZARCO</ColoniaPoblacion><Ciudad>DGO</Ciudad><Estado>DGO</Estado><CP>34210</CP><CodPais>MX</CodPais><FechaReporteDireccion>31052022</FechaReporteDireccion></Domicilio><Domicilio xmlns=\"http://bean.consulta.ws.bc.com/\"><Direccion1>AV JOSE A RAMIREZ MARTINEZ 323</Direccion1><DelegacionMunicipio>DGO</DelegacionMunicipio><Ciudad>DGO</Ciudad><Estado>DGO</Estado><CP>34000</CP><FechaReporteDireccion>31072019</FechaReporteDireccion></Domicilio><Domicilio xmlns=\"http://bean.consulta.ws.bc.com/\"><Direccion1>STA FE 202</Direccion1><DelegacionMunicipio>SN FELIPE</DelegacionMunicipio><Estado>GTO</Estado><CP>37600</CP><CodPais>MX</CodPais><FechaReporteDireccion>30092015</FechaReporteDireccion></Domicilio></Domicilios><Empleos xmlns=\"http://bean.consulta.ws.bc.com/\"><Empleo xmlns=\"http://bean.consulta.ws.bc.com/\"><NombreEmpresa>VENTA DE ROPA</NombreEmpresa><NumeroTelefono>6183090731</NumeroTelefono><CodPais>MX</CodPais></Empleo><Empleo xmlns=\"http://bean.consulta.ws.bc.com/\"><NombreEmpresa>AMA DE CASA</NombreEmpresa><CodPais>MX</CodPais></Empleo></Empleos><Cuentas xmlns=\"http://bean.consulta.ws.bc.com/\"><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>04032026</FechaActualizacion><NombreOtorgante>FINANCIERA</NombreOtorgante><NumeroTelefonoOtorgante>0</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>0</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>R</TipoCuenta><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><FrecuenciaPagos>Z</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>02092025</FechaAperturaCuenta><FechaUltimoPago>08122025</FechaUltimoPago><FechaUltimaCompra>08122025</FechaUltimaCompra><FechaReporte>28022026</FechaReporte><ModoReportar>A</ModoReportar><CreditoMaximo>841</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>1000</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>11111</HistoricoPagos><FechaMasRecienteHistoricoPagos>31012026</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>30092025</FechaMasAntiguaHistoricoPagos><MontoUltimoPago>0</MontoUltimoPago></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>25022026</FechaActualizacion><NombreOtorgante>MICROFINANCIERA</NombreOtorgante><NumeroTelefonoOtorgante>0</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>0</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>I</TipoCuenta><TipoContrato>PL</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>36</NumeroPagos><FrecuenciaPagos>M</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>15022023</FechaAperturaCuenta><FechaUltimoPago>21022026</FechaUltimoPago><FechaUltimaCompra>15022023</FechaUltimaCompra><FechaCierreCuenta>21022026</FechaCierreCuenta><FechaReporte>23022026</FechaReporte><ModoReportar>A</ModoReportar><CreditoMaximo>30000</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>0</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>111121111111111111111111</HistoricoPagos><FechaMasRecienteHistoricoPagos>31012026</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>28022023</FechaMasAntiguaHistoricoPagos><ClaveObservacion>CL</ClaveObservacion><ImporteSaldoMorosidadHistMasGrave>894</ImporteSaldoMorosidadHistMasGrave><FechaHistoricaMorosidadMasGrave>30092025</FechaHistoricaMorosidadMasGrave><MopHistoricoMorosidadMasGrave>02</MopHistoricoMorosidadMasGrave><MontoUltimoPago>850</MontoUltimoPago></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>31012026</FechaActualizacion><NombreOtorgante>SERVICIOS</NombreOtorgante><NumeroTelefonoOtorgante>1</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>1</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>O</TipoCuenta><TipoContrato>CL</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>0</NumeroPagos><FrecuenciaPagos>B</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>09012011</FechaAperturaCuenta><FechaUltimoPago>09012011</FechaUltimoPago><FechaUltimaCompra>31012026</FechaUltimaCompra><FechaReporte>31012026</FechaReporte><CreditoMaximo>0</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>0</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>U1U1U1U1U1U1U1U1U1U1U1U</HistoricoPagos><FechaMasRecienteHistoricoPagos>31122025</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>29022024</FechaMasAntiguaHistoricoPagos></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>21092022</FechaActualizacion><NombreOtorgante>FINANCIERA</NombreOtorgante><NumeroTelefonoOtorgante>0</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>0</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>I</TipoCuenta><TipoContrato>PL</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>16</NumeroPagos><FrecuenciaPagos>S</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>11112021</FechaAperturaCuenta><FechaUltimoPago>16072022</FechaUltimoPago><FechaUltimaCompra>11112021</FechaUltimaCompra><FechaCierreCuenta>31072022</FechaCierreCuenta><FechaReporte>31072022</FechaReporte><ModoReportar>A</ModoReportar><CreditoMaximo>13421</CreditoMaximo><SaldoActual>0+</SaldoActual><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>11111111</HistoricoPagos><FechaMasRecienteHistoricoPagos>30062022</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>30112021</FechaMasAntiguaHistoricoPagos><MontoUltimoPago>1678</MontoUltimoPago></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>30092019</FechaActualizacion><NombreOtorgante>HIPOTECARIA</NombreOtorgante><NumeroTelefonoOtorgante>1</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>1</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>M</TipoCuenta><TipoContrato>RE</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>360</NumeroPagos><FrecuenciaPagos>M</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>03101997</FechaAperturaCuenta><FechaUltimoPago>31122009</FechaUltimoPago><FechaUltimaCompra>03101997</FechaUltimaCompra><FechaCierreCuenta>18092019</FechaCierreCuenta><FechaReporte>30092019</FechaReporte><CreditoMaximo>94077</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>94077</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><ClaveObservacion>CL</ClaveObservacion></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>31072016</FechaActualizacion><NombreOtorgante>COMUNICACIONES</NombreOtorgante><NumeroTelefonoOtorgante>1</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>1</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>O</TipoCuenta><TipoContrato>CL</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>0</NumeroPagos><FrecuenciaPagos>M</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>25032015</FechaAperturaCuenta><FechaUltimoPago>31072016</FechaUltimoPago><FechaUltimaCompra>30042015</FechaUltimaCompra><FechaCierreCuenta>31072016</FechaCierreCuenta><FechaReporte>31072016</FechaReporte><CreditoMaximo>5375</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>0</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>UUUUUU1UUUU</HistoricoPagos><FechaMasRecienteHistoricoPagos>30062016</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>31082015</FechaMasAntiguaHistoricoPagos><ClaveObservacion>CC</ClaveObservacion></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>06072009</FechaActualizacion><NombreOtorgante>TIENDA COMERCIAL</NombreOtorgante><NumeroTelefonoOtorgante>1</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>1</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>I</TipoCuenta><TipoContrato>AF</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>78</NumeroPagos><FrecuenciaPagos>W</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>28082008</FechaAperturaCuenta><FechaUltimoPago>06072009</FechaUltimoPago><FechaUltimaCompra>28082008</FechaUltimaCompra><FechaCierreCuenta>06072009</FechaCierreCuenta><FechaReporte>06072009</FechaReporte><CreditoMaximo>19500</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>0</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>UUUUU1UU11</HistoricoPagos><FechaMasRecienteHistoricoPagos>06062009</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>06092008</FechaMasAntiguaHistoricoPagos></Cuenta><Cuenta xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaActualizacion>08012009</FechaActualizacion><NombreOtorgante>TIENDA COMERCIAL</NombreOtorgante><NumeroTelefonoOtorgante>1</NumeroTelefonoOtorgante><IdentificadorSociedadInformacionCrediticia>1</IdentificadorSociedadInformacionCrediticia><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><TipoCuenta>I</TipoCuenta><TipoContrato>AF</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><NumeroPagos>17</NumeroPagos><FrecuenciaPagos>W</FrecuenciaPagos><MontoPagar>0</MontoPagar><FechaAperturaCuenta>14082008</FechaAperturaCuenta><FechaUltimoPago>08012009</FechaUltimoPago><FechaUltimaCompra>14082008</FechaUltimaCompra><FechaCierreCuenta>08012009</FechaCierreCuenta><FechaReporte>08012009</FechaReporte><CreditoMaximo>2307</CreditoMaximo><SaldoActual>0+</SaldoActual><LimiteCredito>0</LimiteCredito><SaldoVencido>0</SaldoVencido><FormaPagoActual>01</FormaPagoActual><HistoricoPagos>U1U11</HistoricoPagos><FechaMasRecienteHistoricoPagos>08122008</FechaMasRecienteHistoricoPagos><FechaMasAntiguaHistoricoPagos>08082008</FechaMasAntiguaHistoricoPagos></Cuenta></Cuentas><ConsultasEfectuadas xmlns=\"http://bean.consulta.ws.bc.com/\"><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>10032026</FechaConsulta><ClaveOtorgante>FF76241002</ClaveOtorgante><NombreOtorgante>SORIANAFALABELLA</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>10032026</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BURO DE CREDITO </NombreOtorgante><TelefonoOtorgante>54494832</TelefonoOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>09012026</FechaConsulta><NombreOtorgante>FINANCIERA</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>09012026</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BURO DE CREDITO </NombreOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>02092025</FechaConsulta><NombreOtorgante>FINANCIERA</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>02092025</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BURO DE CREDITO </NombreOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>26082025</FechaConsulta><NombreOtorgante>FINANCIERA</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>26082025</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BURO DE CREDITO </NombreOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>10042025</FechaConsulta><NombreOtorgante>SIC</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>10042025</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BANCOS</NombreOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>12042024</FechaConsulta><ClaveOtorgante>FF76241001</ClaveOtorgante><NombreOtorgante>SORIANAFALABELLA</NombreOtorgante><TipoContrato>CC</TipoContrato><ImporteContrato>0</ImporteContrato><IndicadorTipoResponsabilidad>I</IndicadorTipoResponsabilidad><ResultadoFinal>0</ResultadoFinal><IdentificadorOrigenConsulta>0</IdentificadorOrigenConsulta></ConsultaEfectuada><ConsultaEfectuada xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaConsulta>12042024</FechaConsulta><IdentificacionBuro>0000</IdentificacionBuro><NombreOtorgante>BURO DE CREDITO </NombreOtorgante><TipoContrato>CC</TipoContrato><ClaveUnidadMonetaria>MX</ClaveUnidadMonetaria><ImporteContrato>000000000</ImporteContrato><ResultadoFinal>1</ResultadoFinal><IdentificadorOrigenConsulta>1</IdentificadorOrigenConsulta></ConsultaEfectuada></ConsultasEfectuadas><ResumenReporte xmlns=\"http://bean.consulta.ws.bc.com/\"><ResumenReporte xmlns=\"http://bean.consulta.ws.bc.com/\"><FechaIngresoBD>14122015</FechaIngresoBD><NumeroMOP7>00</NumeroMOP7><NumeroMOP6>00</NumeroMOP6><NumeroMOP5>00</NumeroMOP5><NumeroMOP4>00</NumeroMOP4><NumeroMOP3>00</NumeroMOP3><NumeroMOP2>00</NumeroMOP2><NumeroMOP1>08</NumeroMOP1><NumeroMOP0>00</NumeroMOP0><NumeroMOPUR>00</NumeroMOPUR><NumeroCuentas>0008</NumeroCuentas><CuentasPagosFijosHipotecas>0005</CuentasPagosFijosHipotecas><CuentasRevolventesAbiertas>0003</CuentasRevolventesAbiertas><CuentasCerradas>0006</CuentasCerradas><CuentasNegativasActuales>0000</CuentasNegativasActuales><CuentasClavesHistoriaNegativa>0001</CuentasClavesHistoriaNegativa><CuentasDisputa>00</CuentasDisputa><NumeroSolicitudesUltimos6Meses>03</NumeroSolicitudesUltimos6Meses><NuevaDireccionReportadaUltimos60Dias>N</NuevaDireccionReportadaUltimos60Dias><MensajesAlerta>NNNNN</MensajesAlerta><ExistenciaDeclaracionesConsumidor>N</ExistenciaDeclaracionesConsumidor><TipoMoneda>MX</TipoMoneda><TotalCreditosMaximosRevolventes>000000841</TotalCreditosMaximosRevolventes><TotalLimitesCreditoRevolventes>000001000</TotalLimitesCreditoRevolventes><TotalSaldosActualesRevolventes>000000000+</TotalSaldosActualesRevolventes><TotalSaldosVencidosRevolventes>000000000</TotalSaldosVencidosRevolventes><TotalPagosRevolventes>000000000</TotalPagosRevolventes><PctLimiteCreditoUtilizadoRevolventes>000</PctLimiteCreditoUtilizadoRevolventes><TotalCreditosMaximosPagosFijos>000000000</TotalCreditosMaximosPagosFijos><TotalSaldosActualesPagosFijos>000000000+</TotalSaldosActualesPagosFijos><TotalSaldosVencidosPagosFijos>000000000</TotalSaldosVencidosPagosFijos><TotalPagosPagosFijos>000000000</TotalPagosPagosFijos><NumeroMOP96>00</NumeroMOP96><NumeroMOP97>00</NumeroMOP97><NumeroMOP99>00</NumeroMOP99><FechaAperturaCuentaMasAntigua>03101997</FechaAperturaCuentaMasAntigua><FechaAperturaCuentaMasReciente>02092025</FechaAperturaCuentaMasReciente><TotalSolicitudesReporte>11</TotalSolicitudesReporte><FechaSolicitudReporteMasReciente>10032026</FechaSolicitudReporteMasReciente><NumeroTotalCuentasDespachoCobranza>00</NumeroTotalCuentasDespachoCobranza><FechaAperturaCuentaMasRecienteDespachoCobranza>00000000</FechaAperturaCuentaMasRecienteDespachoCobranza><NumeroTotalSolicitudesDespachosCobranza>00</NumeroTotalSolicitudesDespachosCobranza><FechaSolicitudMasRecienteDespachoCobranza>00000000</FechaSolicitudMasRecienteDespachoCobranza></ResumenReporte></ResumenReporte><HawkAlertConsulta xmlns=\"http://bean.consulta.ws.bc.com/\"></HawkAlertConsulta><HawkAlertBD xmlns=\"http://bean.consulta.ws.bc.com/\"></HawkAlertBD><DeclaracionesCliente xmlns=\"http://bean.consulta.ws.bc.com/\"></DeclaracionesCliente><ScoreBuroCredito xmlns=\"http://bean.consulta.ws.bc.com/\"><ScoreBC xmlns=\"http://bean.consulta.ws.bc.com/\"><nombreScore>BC SCORE</nombreScore><CodigoScore>007</CodigoScore><ValorScore>0675</ValorScore><CodigoRazon>09</CodigoRazon><CodigoRazon>16</CodigoRazon></ScoreBC></ScoreBuroCredito><Error xmlns=\"http://bean.consulta.ws.bc.com/\"><AR></AR><UR></UR></Error><Caracteristicas xmlns=\"http://bean.consulta.ws.bc.com/\"></Caracteristicas><ReportePDF></ReportePDF><FR></FR></Persona></Personas></return><idSolicitud>309495430</idSolicitud><tipoSic>B</tipoSic></Response>","codigo":"0","descripcion":"EL REPORTE SE CONSULTO CORRECTAMENTE"}}
+17:48:05.0 (799375001)|STATEMENT_EXECUTE|[44]
+17:48:05.0 (799376403)|STATEMENT_EXECUTE|[46]
+17:48:05.0 (800123595)|HEAP_ALLOCATE|[46]|Bytes:20611
+17:48:05.0 (800141481)|HEAP_ALLOCATE|[46]|Bytes:7
+17:48:05.0 (800148090)|HEAP_ALLOCATE|[46]|Bytes:2
+17:48:05.0 (800178755)|METHOD_ENTRY|[1]|01p3l000005qkth|BuroDeCreditoXMLJSON.BuroDeCreditoXMLJSON()
+17:48:05.0 (800182330)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (800188093)|STATEMENT_EXECUTE|[1]
+17:48:05.0 (800189122)|STATEMENT_EXECUTE|[6]
+17:48:05.0 (800196353)|METHOD_EXIT|[1]|BuroDeCreditoXMLJSON
+17:48:05.0 (800223846)|METHOD_ENTRY|[46]|01p3l000005qkth|BuroDeCreditoXMLJSON.parse(String)
+17:48:05.0 (800230957)|VARIABLE_SCOPE_BEGIN|[15]|json|String|false|false
+17:48:05.0 (800241172)|VARIABLE_ASSIGNMENT|[15]|json|"{\"code\":\"ok\",\"messag (20591 more) ..."
+17:48:05.0 (800247289)|STATEMENT_EXECUTE|[15]
+17:48:05.0 (800248772)|STATEMENT_EXECUTE|[16]
+17:48:05.0 (800251063)|HEAP_ALLOCATE|[16]|Bytes:20
+17:48:05.0 (800356217)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (800366735)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (800370437)|VARIABLE_SCOPE_BEGIN|[4]|this|System.Type|true|false
+17:48:05.0 (800399902)|VARIABLE_ASSIGNMENT|[4]|this|{}|0x7cc621fa
+17:48:05.0 (800402847)|VARIABLE_SCOPE_BEGIN|[4]|apextype|java:common.apex.runtime.ApexObjectType|true|false
+17:48:05.0 (800465305)|VARIABLE_ASSIGNMENT|[4]|apextype|"BuroDeCreditoXMLJSON"|0x3b61eae2
+17:48:05.0 (800501727)|HEAP_ALLOCATE|[16]|Bytes:8
+17:48:05.0 (800510065)|METHOD_ENTRY|[16]||System.JSON.deserialize(String, System.Type)
+17:48:05.0 (801263568)|METHOD_EXIT|[16]||System.JSON.deserialize(String, System.Type)
+17:48:05.0 (801276229)|METHOD_EXIT|[46]|01p3l000005qkth|BuroDeCreditoXMLJSON.parse(String)
+17:48:05.0 (801306274)|VARIABLE_ASSIGNMENT|[46]|result|{"code":"ok","message":"0x675c7566"}|0x7932f1d6
+17:48:05.0 (801314086)|STATEMENT_EXECUTE|[58]
+17:48:05.0 (801318662)|METHOD_EXIT|[134]|01p3l000005qkti|MicroServicioBuroCreditoBO.xmlBuroCredito(Map<String,String>)
+17:48:05.801 (801340914)|CUMULATIVE_LIMIT_USAGE
+17:48:05.801 (801340914)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 2 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:48:05.801 (801340914)|CUMULATIVE_LIMIT_USAGE_END
+
+17:48:05.0 (801403763)|CODE_UNIT_FINISHED|ExpedientesFalabella.getPdfCreditReport(Map<String,String>)
+17:48:05.0 (801863938)|CODE_UNIT_FINISHED|apex://ExpedientesFalabella/ACTION$getPdfCreditReport
+17:48:05.0 (801872916)|EXECUTION_FINISHED

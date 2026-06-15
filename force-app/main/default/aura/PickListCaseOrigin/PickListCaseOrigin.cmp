@@ -1,0 +1,31 @@
+<aura:component controller="PickListCaseOriginController" >
+
+    <aura:attribute name="agentsProfiles" type="List" default="['Agente','Agente Soporte Lia']" />
+    <aura:attribute name="agentsExcludedValues" type="List" default="['Fraudes','Cobranza','Originación','Clientes','Módulo']" />
+
+    <aura:attribute name="supervisorsProfiles" type="List" default="['Supervisor de Call Center Externo','Experiencia al Cliente']" />
+    <aura:attribute name="supervisorsIncludedValues" type="List" default="['NPS','Segunda Línea', 'test']" />
+
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:attribute name="contactMethodOptions" type="List" />
+
+    <aura:attribute name="profileInfoContactMInfoLoaded" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <aura:if isTrue="{! v.profileInfoContactMInfoLoaded }" >
+
+        <lightning:select value="{! v.contactMethodValue }" name="contactMethod" label="Metodo de Contacto" aura:id="contactMethod">
+            <aura:iteration items="{!v.contactMethodOptions}" var="item">
+                <option text="{!item.label}" value="{!item.value}" />
+            </aura:iteration>
+        </lightning:select>
+
+        <aura:set attribute="else">
+            <div class="slds-p-around_xx-large">
+                <lightning:spinner variant="brand" alternativeText="Loading" />
+            </div>  
+        </aura:set>
+    </aura:if>
+
+</aura:component>

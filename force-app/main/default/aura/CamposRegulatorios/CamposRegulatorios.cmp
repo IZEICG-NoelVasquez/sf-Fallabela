@@ -1,0 +1,421 @@
+<aura:component controller="OtrosDatosController">
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="caseRTypes" type="Map" />    
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseRegulatorios" type="String" />
+    
+    <aura:attribute name="otrosDatos" type="Boolean" default="false" />
+
+    <aura:attribute name="noPasoRegulatoriosUpdate" type="Integer" default="0" />
+    <aura:attribute name="loadingRegulatoriosUpdate" type="Boolean" />
+    <aura:attribute name="regulatoriosUpdated" type="Boolean" /> 
+
+    
+    <aura:attribute name="mapCamposMicroS" type="Map" default="{}" />
+    <aura:attribute name="accountComponnet" type="Object" />
+
+    <aura:attribute name="nacionalidad" type="String" />    
+    <aura:attribute name="listNacionalidades" type="List" />
+    <aura:attribute name="mapNacionalidades" type="Map" default="{}" />
+    <aura:attribute name="actividad" type="String" />    
+    <aura:attribute name="listActividades" type="List" />
+    <aura:attribute name="paisNacimiento" type="String" />
+    <aura:attribute name="profesion" type="String" />
+    <aura:attribute name="listProfesiones" type="List" />
+    <aura:attribute name="mapProfesiones" type="Map" default="{}" />
+    <aura:attribute name="estadoNacimiento" type="String" />    
+    <aura:attribute name="listEstadoNacimiento" type="List" />
+    <aura:attribute name="mapEstadoNacimiento" type="Map" default="{}" />
+    <aura:attribute name="fiel" type="String" />
+    <aura:attribute name="genero" type="String" />    
+    <aura:attribute name="listGeneros" type="List" />
+    <aura:attribute name="mapGeneros" type="Map" default="{}" />
+    <aura:attribute name="estadoCivil" type="String" />    
+    <aura:attribute name="listEstadoCivil" type="List" />
+    <aura:attribute name="mapEstadoCivil" type="Map" default="{}" />
+    <aura:attribute name="telefonoCasa" type="String" />
+    <aura:attribute name="telefonoTrabajo" type="String" />
+    <aura:attribute name="rfc" type="String" />
+    <aura:attribute name="publicidad" type="String" />
+
+    <aura:attribute name="nacionalidadCambio" type="Boolean" default="false"/>
+    <aura:attribute name="actividadCambio" type="Boolean" default="false"/>
+    <aura:attribute name="paisCambio" type="Boolean" default="false"/>
+    <aura:attribute name="ocupacionCambio" type="Boolean" default="false"/>
+    <aura:attribute name="estadoCambio" type="Boolean" default="false"/>
+    <aura:attribute name="fielCambio" type="Boolean" default="false"/>
+    <aura:attribute name="generoCambio" type="Boolean" default="false"/>
+    <aura:attribute name="estadoCivilCambio" type="Boolean" default="false"/>
+    <aura:attribute name="telefonoFijoCasaCambio" type="Boolean" default="false"/>
+    <aura:attribute name="telefonoFijoTrabajoCambio" type="Boolean" default="false"/>
+    <aura:attribute name="rfcCambio" type="Boolean" default="false"/>
+    <aura:attribute name="publicidadCambio" type="Boolean" default="false"/>  
+
+    <aura:attribute name="listNumeros" type="List" default="[48,49,50,51,52,53,54,55,56,57]" />
+    <aura:attribute name="listMayusculas" type="List" default="[65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90]" />
+
+    <aura:attribute name="loadedProductos" type="Boolean" />
+
+    <!-- OTP -->
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <a id="{!indexVar}" name="+ Otros Datos" style="font-size:12px;" onclick="{! ( v.loadedProductos || (!v.validacionesOTPCargadas)) ? '' : c.handleOtrosDatos }" > 
+        <span style="font-size:20px; font-weight: bold;">+ </span> 
+        Otros Datos
+    </a>
+
+    <!-- MODAL Campos Regulatorios Update -->
+    <aura:if isTrue="{!v.otrosDatos}">
+        <div aura:id="modal-camposr" class="demo-only" style="">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModal }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"
+                                              disabled="{! v.loadingRegulatoriosUpdate || v.creatingCase }" />
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Otros Datos" iconName="standard:visit_templates" />         
+                    
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">                        
+                        <!-- Paso 1: Editar Campos Regulatorios -->
+                        <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 1}" >
+                            <!--lightning:layout -->
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="selNacionalidad" name="selNacionalidad" label="Nacionalidad" value="{!v.nacionalidad}" >                                            
+                                        <option value="">--</option>
+                                        <aura:iteration items="{!v.listNacionalidades}" var="nac" >
+                                            <aura:if isTrue="{!nac.value == v.nacionalidad}">
+                                                <option value="{!nac.value}" selected="true">{!nac.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!nac.value}">{!nac.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-act" name="sel-act" label="Actividad o Giro del Negocio" value="{!v.actividad}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listActividades}" var="act">
+                                            <aura:if isTrue="{!act == v.actividad}">
+                                                <option value="{!act}" selected="true">{!act}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!act}">{!act}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select> 
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-pais" name="sel-pais" label="País de Nacimiento" value="{!v.paisNacimiento}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listNacionalidades}" var="nac" >
+                                            <aura:if isTrue="{!nac.value == v.paisNacimiento}">
+                                                <option value="{!nac.value}" selected="true">{!nac.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!nac.value}">{!nac.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-pro" name="sel-pro" label="Ocupación o Profesión" value="{!v.profesion}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listProfesiones}" var="pro" >
+                                            <aura:if isTrue="{!pro.value == v.profesion}">
+                                                <option value="{!pro.value}" selected="true">{!pro.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!pro.value}">{!pro.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-est" name="sel-est" label="Entidad Federativa de Nacimiento" value="{!v.estadoNacimiento}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listEstadoNacimiento}" var="est">
+                                            <aura:if isTrue="{!est.value == v.estadoNacimiento}">
+                                                <option value="{!est.value}" selected="true">{!est.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!est.value}">{!est.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:input type="text" aura:id="sel-fiel" name="sel-fiel" label="FIEL" value="{!v.fiel}" maxlength="18" />
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-gen" name="sel-gen" label="Genero" value="{!v.genero}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listGeneros}" var="gen">
+                                            <aura:if isTrue="{!gen.value == v.genero}">
+                                                <option value="{!gen.value}" selected="true">{!gen.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!gen.value}">{!gen.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:select aura:id="sel-estciv" name="estciv2"  label="Estado Civil" value="{!v.estadoCivil}">
+                                        <option value="">-</option>
+                                        <aura:iteration items="{!v.listEstadoCivil}" var="civ" >
+                                            <aura:if isTrue="{!civ.value == v.estadoCivil}">
+                                                <option value="{!civ.value}" selected="true">{!civ.value}</option>
+                                                <aura:set attribute="else" >
+                                                    <option value="{!civ.value}">{!civ.value}</option>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <span onkeypress="{!c.limpiarCelular}" onpaste="{!c.borrarCampo}" >
+                                        <lightning:input aura:id="sel-telc" name="sel-telc" label="Teléfono Fijo Casa" type="text" value="{!v.telefonoCasa}" maxlength="10"/>
+                                    </span>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <span onkeypress="{!c.limpiarCelular}" onpaste="{!c.borrarCampo}" >
+                                        <lightning:input aura:id="sel-telt" name="sel-telt" label="Teléfono Fijo Trabajo" type="text" value="{!v.telefonoTrabajo}" maxlength="10"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <span onkeypress="{!c.limpiarRFC}" >
+                                        <lightning:input type="text" aura:id="sel-rfc" name="sel-rfc" label="RFC" value="{!v.rfc}" maxlength="13" />
+                                    </span>
+                                </div>
+                                <!-- ///// ///// ///// ///// ///// -->
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <ui:inputCheckbox aura:id="sel-pub" name="sel-pub" label="Publicidad" value="{!v.publicidad}"/>
+                                </div>
+                            </div>
+                        </aura:if>
+                        <!-- Paso 2: Confirmar Campos Regulatorios -->
+                        <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 2 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea actualizar los datos ? 
+                                </div>                                    
+                            </div>
+                            <br/>
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-nac2" name="sel-nac2" style="{! (v.nacionalidadCambio) ? 'color: red; font-weight: bold;' : '' }"  label="Nacionalidad" disabled="true" value="{!v.nacionalidad}" />
+
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="selAct2" name="selAct2" style="{! (v.actividadCambio) ? 'color: red; font-weight: bold;' : '' }"  label="Actividad o Giro del Negocio" disabled="true" value="{!v.actividad}" />
+
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-pais2" name="sel-pais2" style="{! (v.paisCambio) ? 'color: red; font-weight: bold;' : '' }" label="País de Nacimiento" disabled="true" value="{!v.paisNacimiento}"/>
+
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-pro2" name="sel-pro2" style="{! (v.ocupacionCambio) ? 'color: red; font-weight: bold;' : '' }" label="Ocupación o Profesión" disabled="true" value="{!v.profesion}"/>
+                                    
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-est2" name="sel-est" style="{! (v.estadoCambio) ? 'color: red; font-weight: bold;' : '' }" label="Entidad Federativa de Nacimiento" disabled="true" value="{!v.estadoNacimiento}"/>
+
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    
+                                    <lightning:input aura:id="sel-fiel2" name="sel-fiel2" style="{! (v.fielCambio) ? 'color: red; font-weight: bold;' : '' }" label="FIEL" disabled="true" value="{!v.fiel}"/>
+
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-gen2" name="sel-gen2" label="Genero" style="{! (v.generoCambio) ? 'color: red; font-weight: bold;' : '' }" disabled="true" value="{!v.genero}"/>
+
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-estciv2" name="estciv22"  label="Estado Civil" style="{! (v.estadoCivilCambio) ? 'color: red; font-weight: bold;' : '' }" disabled="true" value="{!v.estadoCivil}"/>
+
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+
+                                    <lightning:input aura:id="sel-telc2" name="sel-telc2" label="Teléfono Fijo Casa" style="{! (v.telefonoFijoCasaCambio) ? 'color: red; font-weight: bold;' : '' }" disabled="true" type="tel" value="{!v.telefonoCasa}" pattern="[0-9]*"/>
+
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:input aura:id="sel-telt2" name="sel-telt2" label="Teléfono Fijo Trabajo" style="{! (v.telefonoFijoTrabajoCambio) ? 'color: red; font-weight: bold;' : '' }" type="tel" disabled="true" value="{!v.telefonoTrabajo}" pattern="[0-9]*"/>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-gutters" > 
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <lightning:input aura:id="sel-rfc2" name="sel-rfc2" label="RFC" style="{! (v.rfcCambio) ? 'color: red; font-weight: bold;' : '' }" disabled="true" value="{!v.rfc}" />
+                                </div>
+                                <div class="slds-size_6-of-12 slds-p-vertical_x-small slds-p-horizontal_small" >
+                                    <ui:inputCheckbox aura:id="sel-pub2" name="sel-pub2" label="Publicidad"  disabled="true" value="{!v.publicidad}"/>
+                                </div>
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 3 }" >
+                            <aura:if isTrue="{! !(v.loadingRegulatoriosUpdate) }" >
+                                <aura:if isTrue="{! v.regulatoriosUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizo Información con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseRegulatorios }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.regulatoriosUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingRegulatoriosUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>                            
+                    </div>
+                    
+                    <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 3 }" >
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral" 
+                                              label="Cerrar"
+                                              title="Cerrar"
+                                              onclick="{! c.closeModal }"
+                                              disabled="{! v.loadingRegulatoriosUpdate || v.creatingCase }" />
+                        </footer>
+                    </aura:if>
+
+                    <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 2 }" >
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="brand" label="Actualizar" onclick="{! c.guardarOtrosDatos}" title="Actualizar" />
+                            <lightning:button variant="neutral" 
+                                              label="Regresar"
+                                              title="Regresar"
+                                              onclick="{! c.regresarCampos }"/>
+                        </footer>
+                    </aura:if>
+
+                    <aura:if isTrue="{! v.noPasoRegulatoriosUpdate == 1 }" >
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral" 
+                                              label="Cerrar"
+                                              title="Cerrar"
+                                              onclick="{! c.closeModal }"/>
+                            <lightning:button label="Guardar" variant="brand" onclick="{! c.handleGuardar }"/>
+                        </footer>
+                    </aura:if>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- OTP Crear Caso Campos Regulatorios -->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalRegulatoriosUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

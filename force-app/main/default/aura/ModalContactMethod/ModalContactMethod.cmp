@@ -1,0 +1,60 @@
+<aura:component >
+
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:attribute name="profileInfoContactMInfoLoaded" type="Boolean" />
+
+    <aura:attribute name="msMobileUpdateclassBackdrop" type="String" />
+
+    <!-- Caso Consulta de Saldos y Movimientos -->
+    <aura:attribute name="blnBalancesCase" type="Boolean" default="false" />
+
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+
+
+    <aura:if isTrue="{!v.blnOpenModalContactMethod}">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_xx-small">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <aura:if isTrue="{! (!v.blnBalancesCase) }" >
+                            <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalContactMethod }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! (!v.profileInfoContactMInfoLoaded) }"/>
+                        </aura:if>
+                        
+                    </header>                
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+
+                        <c:PickListCaseOrigin contactMethodValue="{! v.contactMethodValue }" profileInfoContactMInfoLoaded="{! v.profileInfoContactMInfoLoaded }" />
+
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <aura:if isTrue="{! (!v.blnBalancesCase) }" >
+                            <lightning:button variant="neutral" 
+                                            label="Cancelar"
+                                            title="Cancelar"
+                                            onclick="{! c.closeModalContactMethod }" 
+                                            disabled="{! (!v.profileInfoContactMInfoLoaded) }" />
+                        </aura:if>
+
+                        <lightning:button variant="brand" 
+                                        label="Continuar"
+                                        title="Continuar"
+                                        onclick="{! c.handleContactMethod }" 
+                                        disabled="{! (!v.profileInfoContactMInfoLoaded) }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+	
+</aura:component>

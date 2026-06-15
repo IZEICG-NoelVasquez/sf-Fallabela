@@ -35,8 +35,6 @@ public class TwilioVerifyClient {
         Http http = new Http();
 
         HttpResponse response = http.send(request);
-        System.debug(request);
-        System.debug(response);
         
         return response;
         

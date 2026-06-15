@@ -1,0 +1,89 @@
+<aura:component controller="CasosRiesgosCustomButtons" implements="flexipage:availableForAllPageTypes,force:hasRecordId" >
+    
+    <aura:attribute name="openModalConsulta" type="Boolean" default="false" />
+    <aura:attribute name="openModalActualizacion" type="Boolean" default="false" />
+    <aura:attribute name="openModalDataUpdate" type="Boolean" default="false" />
+
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:attribute name="showDataUpdateGestor" type="Boolean" default="false" />
+    <aura:attribute name="loadedInfo" type="Boolean" default="false" />
+    <aura:attribute name="commetsValue" type="String" />
+
+    <aura:attribute name="lstDataUpdateValues" type="List" default="['Teléfono Móvil','Límite de Crédito','Ambos']" />
+
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+
+    <lightning:card class="slds-text-title_regular" title="Consulta y Actualizacion de Ticket" iconName="standard:actions_and_buttons" >
+
+        <div class="slds-grid slds-gutters" >
+
+            <div class="slds-col slds-size_1-of-1 slds-p-around_medium slds-text-align_center">
+                <span class="slds-p-around_small">
+                    <lightning:button variant="neutral" 
+                                label="Consultar Campos Restantes"
+                                title="Consultar Campos Restantes"
+                                onclick="{! c.abrirConsulta }"/>
+                </span>
+                <span class="slds-p-around_small">
+                    <lightning:button variant="neutral" 
+                                label="Actualizar Ticket"
+                                title="Actualizar Ticket"
+                                onclick="{! c.abrirActualizacion }"/>
+                </span>
+            </div>
+        </div>
+
+        <aura:if isTrue="{! v.loadedInfo }" >
+            <aura:if isTrue="{! v.showDataUpdateGestor }" >
+                <div class="slds-box slds-m-around_small" >
+                    <div class="slds-grid slds-gutters" >
+                        <div class="slds-col slds-size_1-of-1" >
+                            <div class="slds-text-heading_small slds-text-title_bold">
+                                Actualización de Datos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-p-top_medium" >
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning:textarea value="{! v.commetsValue }" label="Comentarios" readonly="true" />
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-p-top_medium" >
+                        <div class="slds-col slds-size_1-of-1 slds-text-align_right">
+                            <lightning:button variant="brand" 
+                                        label="Actualizar datos"
+                                        title="Actualizar datos"
+                                        onclick="{! c.openDataUpdateGestor }"/>
+                        </div>
+                    </div>
+                </div>
+            </aura:if>
+
+            <aura:set attribute="else">
+                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                </div>
+            </aura:set>
+        </aura:if>
+
+        
+
+    </lightning:card>
+
+    
+    <aura:if isTrue="{! v.openModalConsulta }">
+        <c:ActualizarRestanteTicketRiesgoCmp openModalConsulta="{! v.openModalConsulta }" recordId="{! v.recordId }" />
+    </aura:if>
+
+    <aura:if isTrue="{! v.openModalActualizacion }">
+        <c:ActualizarTicketRiesgosCmp openModalActualizacion="{! v.openModalActualizacion }" recordId="{! v.recordId }" />
+    </aura:if>
+
+    <aura:if isTrue="{! v.openModalDataUpdate }">
+        <c:DataUpdateGestor openModalDataUpdate="{! v.openModalDataUpdate }" recordId="{! v.recordId }" />
+    </aura:if>
+	
+</aura:component>

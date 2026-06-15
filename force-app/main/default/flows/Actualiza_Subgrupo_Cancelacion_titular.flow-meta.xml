@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>formula_1_myRule_3_A1_8581212797</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+{!$Record.Account.Subgrupo__c}, 
+&quot;MC - ORO PLUS&quot;, &apos;MC - ORO PLUS&apos;,
+&quot;MC - ORO&quot;, &apos;Nuevos sin uso&apos;,
+&quot;MC - VERDE&quot;, &apos;Inactivos&apos;,
+&quot;MC - PLATA PLUS&quot;, &apos;Blindados&apos;,
+&quot;MC - PLATA&quot;, &apos;Retencion alta&apos;,
+&quot;MC - BLANCO&quot;, &apos;Retencion media&apos;,
+&quot;MC - BRONCE&quot;, &apos;Cancelar&apos;,
+&quot;MC - NARANJA PLUS&quot;,&apos;Blindados Certificado&apos;,
+&quot;MC - NARANJA&quot;,&apos;MC - NARANJA&apos;,
+&quot;MC - AMARILLO PLUS&quot;,&apos;MC - NARANJA&apos;,
+&quot;MC - AMARILLO&quot;,&apos;MC - AMARILLO&apos;,
+&quot;MC - AZUL&quot;,&apos;MC - AZUL&apos;,
+&quot;MC - COLABORADOR&quot;,&apos;MC - COLABORADOR&apos;,
+&quot;MC - SIN GRUPO&quot;,&apos;MC - SIN GRUPO&apos;,
+&quot;PF - ORO PLUS&quot;,&apos;PF - ORO PLUS&apos;,
+&quot;PF - COLABORADOR&quot;,&apos;PF - COLABORADOR&apos;,
+&quot;PF - PLATA&quot;,&apos;PF - PLATA&apos;,
+&quot;PF - BRONCE&quot;,&apos;PF - BRONCE&apos;,
+&quot;PF - SIN GRUPO&quot;,&apos;PF - SIN GRUPO&apos;,
+&quot;PRIV - ORO PLUS&quot;,&apos;PRIV - ORO PLUS&apos;,
+&quot;PRIV - ORO&quot;,&apos;PRIV - ORO&apos;,
+&quot;PRIV - VERDE&quot;,&apos;PF - ORO PLUS&apos;,
+&quot;PRIV - PLATA PLUS&quot;,&apos;PRIV - PLATA PLUS&apos;,
+&quot;PRIV - PLATA&quot;,&apos;PRIV - PLATA&apos;,
+&quot;PRIV - BLANCO&quot;,&apos;PRIV - BLANCO&apos;,
+&quot;PRIV - BRONCE&quot;,&apos;PRIV - BRONCE&apos;,
+&quot;PRIV - NARANJA PLUS&quot;,&apos;PRIV - NARANJA PLUS&apos;,
+&quot;PRIV - NARANJA&quot;,&apos;PRIV - NARANJA&apos;,
+&quot;PRIV - AMARILLO PLUS&quot;,&apos;PRIV - AMARILLO PLUS&apos;,
+&quot;PRIV - AMARILLO&quot;,&apos;PRIV - AMARILLO&apos;,
+&quot;PRIV - AZUL&quot;,&apos;PRIV - AZUL&apos;,
+&quot;PRIV - COLABORADOR&quot;,&apos;PRIV - COLABORADOR&apos;,
+&quot;PRIV - SIN GRUPO&quot;,&apos;PRIV - SIN GRUPO&apos;,
+&quot;GR - SIN DEPO&quot;,&apos;GR - SIN DEPO&apos;,
+&quot;GR - SIN GRUPO&quot;,&apos;GR - SIN GRUPO&apos;,
+&quot;GR - LINEA&quot;,&apos;GR - LINEA&apos;,
+&quot;GR - GRAD1&quot;,&apos;GR - GRAD1&apos;,
+&quot;GR - GRAD2&quot;,&apos;GR - GRAD2&apos;,
+&quot;GR - SIN GARA&quot;,&apos;GR - SIN GARA&apos;,
+&quot;GR - CON DEPO&quot;,&apos;GR - CON DEPO&apos;,
+&quot;GR - COLABORADOR&quot;,&apos;GR - COLABORADOR&apos;,
+&quot;GR - CANCELACION&quot;, &apos;GR - CANCELACION&apos;,
+NULL)</expression>
+    </formulas>
+    <interviewLabel>Actualiza Subgrupo Cancelacion titular {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Actualiza Subgrupo Cancelacion titular</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Account_Record</name>
+        <label>Get Account Record</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>myRule_3_A1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Contact.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>myRule_3_A1</name>
+        <label>Segmentación Cancelación Subgrupo</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>Subgrupo__c</field>
+            <value>
+                <elementReference>Get_Account_Record.Subgrupo__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Account_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Subcategor_a_Texto__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Cancelación de Titular</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

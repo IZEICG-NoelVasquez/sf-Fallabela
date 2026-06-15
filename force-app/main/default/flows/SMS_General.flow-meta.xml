@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Twilio Send SMS Message</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Enviar SMS de cierre</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>TwilioSF__TwilioSendSMS</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Message</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>message</name>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_8267026465</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>To Mobile Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>toNumber</name>
+            <value>
+                <elementReference>formula_3_myRule_1_A1_2397882609</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>TwilioSF__TwilioSendSMS</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Twilio Send SMS Message</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A1</name>
+        <label>SMS</label>
+        <locationX>500</locationX>
+        <locationY>200</locationY>
+        <actionName>TwilioSF__TwilioSendSMS</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Message</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>message</name>
+            <value>
+                <stringValue>Tu tarjeta se encuentra bloqueada favor de llamar a nuestro Centro de Atención a Clientes 01 800 767 4262 y (55) 5089 4262</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>To Mobile Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>toNumber</name>
+            <value>
+                <elementReference>formula_6_myRule_5_A1_7241709320</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>TwilioSF__TwilioSendSMS</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Twilio Send SMS Message</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_8_A1</name>
+        <label>SMS</label>
+        <locationX>800</locationX>
+        <locationY>200</locationY>
+        <actionName>TwilioSF__TwilioSendSMS</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Message</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>message</name>
+            <value>
+                <elementReference>formula_9_myRule_8_A1_5141567173</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>To Mobile Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>toNumber</name>
+            <value>
+                <elementReference>formula_10_myRule_8_A1_4812176098</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>TwilioSF__TwilioSendSMS</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Record types y etapa</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision4</name>
+        <label>myDecision4</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision7</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_5</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>Bloqueo Seguridad</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision7</name>
+        <label>myDecision7</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_8</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_8</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_8_A1</targetReference>
+            </connector>
+            <label>Reporte por Deterioro</label>
+        </rules>
+    </decisions>
+    <description>SMS Cierre- Cambio MC a Privada, Aumento Línea de Credito, Cancelación Titular, Cancelación Adicional, Liberar Saldo Retenido</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;+52&quot;+[Case].ContactMobile</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_8_A1_4812176098</name>
+        <dataType>String</dataType>
+        <expression>&quot;+52&quot;+{!myVariable_current.ContactMobile}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Case].Contact.FirstName + &quot; &quot; + [Case].Contact.LastName+ &quot; su caso &quot;+[Case].CaseNumber +&quot; &quot;+ [Case].Subcategor_a_Texto__c  + &quot;, ha concluido satisfactoriamente. FALABELLA SORIANA Dudas: 018007674262&quot;
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_8267026465</name>
+        <dataType>String</dataType>
+        <expression>{!myVariable_current.Contact.FirstName} + &quot; &quot; + {!myVariable_current.Contact.LastName}+ &quot; su caso &quot;+{!myVariable_current.CaseNumber} +&quot; &quot;+ {!myVariable_current.Subcategor_a_Texto__c}  + &quot;, ha concluido satisfactoriamente. FALABELLA SORIANA Dudas: 018007674262&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;+52&quot;+[Case].ContactMobile </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_3_myRule_1_A1_2397882609</name>
+        <dataType>String</dataType>
+        <expression>&quot;+52&quot;+{!myVariable_current.ContactMobile}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;+52&quot;+[Case].ContactMobile </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_6_myRule_5_A1_7241709320</name>
+        <dataType>String</dataType>
+        <expression>&quot;+52&quot;+{!myVariable_current.ContactMobile}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Case].Contact.FirstName +&quot; &quot;+[Case].Contact.LastName +&quot; su Tarjeta ha sido bloqueada por seguridad, favor de acudir a Modulo por su reposición, folio:&quot; +[Case].CaseNumber  + &quot; .&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_8_A1_5141567173</name>
+        <dataType>String</dataType>
+        <expression>{!myVariable_current.Contact.FirstName} +&quot; &quot;+{!myVariable_current.Contact.LastName} +&quot; su Tarjeta ha sido bloqueada por seguridad, favor de acudir a Modulo por su reposición, folio:&quot; +{!myVariable_current.CaseNumber}  + &quot; .&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR (
+[Case].RecordType.Name = &quot;Cambio de MC a Privada&quot;,
+[Case].RecordType.Name = &quot;Aumento de Línea de Crédito&quot;,
+[Case].RecordType.Name = &quot;Cancelación Adicional&quot;,
+[Case].RecordType.Name = &quot;Liberar saldo retenido&quot;,
+[Case].RecordType.Name = &quot;Actualización de Teléfono Fijo&quot;,
+
+[Case].RecordType.Name = &quot;Cancelación de Adicional (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Retiro de Efectivo en ATM (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Cargo No Reconocido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;
+
+)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Cambio de MC a Privada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Aumento de Línea de Crédito&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación Adicional&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar saldo retenido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Actualización de Teléfono Fijo&quot;,
+
+{!myVariable_current.RecordType.Name} = &quot;Cancelación de Adicional (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de Efectivo en ATM (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cargo No Reconocido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;
+
+)
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+ISPICKVAL([Case].Status,&quot;Conclusión del Caso&quot;),
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactMobile)),
+[Case].RecordType.Name = &quot;Bloqueo Seguridad&quot;,
+
+OR(
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c,&quot;Validación movimientos&quot;),
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c ,&quot;Por Falta Documentos&quot;),
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c ,&quot;Validación de Celular&quot;))
+)
+
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+ISPICKVAL({!myVariable_current.Status},&quot;Conclusión del Caso&quot;),
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+{!myVariable_current.RecordType.Name} = &quot;Bloqueo Seguridad&quot;,
+
+OR(
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c},&quot;Validación movimientos&quot;),
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c} ,&quot;Por Falta Documentos&quot;),
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c} ,&quot;Validación de Celular&quot;))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+[Case].Account.Description = &quot;SMS_2019&quot;,
+
+OR (
+[Case].RecordType.Name = &quot;Reporte por Deterioro&quot;
+
+)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_8</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+{!myVariable_current.Account.Description} = &quot;SMS_2019&quot;,
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Reporte por Deterioro&quot;
+
+)
+
+
+)</expression>
+    </formulas>
+    <interviewLabel>SMS_General-13_InterviewLabel</interviewLabel>
+    <label>SMS General</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

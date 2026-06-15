@@ -7,7 +7,6 @@
 * --------------------------------------------------------------------------
 * 1.0           25/06/2021      Mauricio Rosales        Creación
 * 2.0           10/08/2021      Mauricio Rosales        Bloqueo de tarjetas desde un registro de Casos
-* 3.0           04/07/2022      Mauricio Rosales            Mapa con fechas de vencimiento de las tarjetas relacionadas a la cuenta
 * --------------------------------------------------------------------------
 */
 @isTest
@@ -26,17 +25,6 @@ public class MicroServicioBloqueoDeTarjetaTest {
         case1.AccountId = acc1.Id;
         case1.Categor_a__c = 'Consultas';
         insert case1;
-
-        Tarjeta__c tarjeta = new Tarjeta__c();
-        tarjeta.Account__c = acc1.Id;
-        tarjeta.BIN__c = '111222';
-        tarjeta.ltimos_4_d_gitos_tarjeta__c = '1234';
-        tarjeta.D_a_Fecha_de_corte__c = '10';
-        tarjeta.Donde_pag_su_tarjeta__c = 'Otro Medio';
-        tarjeta.Cuando_realiz_el_pago_de_tarjeta__c = '10';
-        tarjeta.Compra_diferida__c = 'Si';
-        tarjeta.feccadtar__c = '202212';
-        insert tarjeta;
     }
 
     @isTest static void cardLock_success() {
@@ -133,11 +121,9 @@ public class MicroServicioBloqueoDeTarjetaTest {
 
     @isTest static void getCardLockValues() {
 
-        List<Account> lstAccounts = [SELECT Id FROM Account WHERE LastName = 'Test112233' AND CURP__c = 'ABCD112233HDFABC00'];
-
         Test.startTest();
 
-        Map<String, Object> mapResult = MicroServicioBloqueoDeTarjeta.getCardLockValues(lstAccounts[0].Id);
+        Map<String, Object> mapResult = MicroServicioBloqueoDeTarjeta.getCardLockValues();
 
         Test.stopTest();
 

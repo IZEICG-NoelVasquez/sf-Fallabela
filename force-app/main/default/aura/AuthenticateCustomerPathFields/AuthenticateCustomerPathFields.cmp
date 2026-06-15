@@ -1,0 +1,98 @@
+<aura:component controller="AuthenticateCustomerController" implements="forceCommunity:availableForAllPageTypes" access="GLOBAL">
+	
+	<aura:registerEvent name="stepChange" type="c:stepChange" />
+	
+	<aura:handler event="c:recordIdSelected" action="{! c.handleRecordIdSelected }" />
+
+	<aura:attribute name="fields" type="List" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute name="rtID" type="String" />
+	<aura:attribute name="selectedAccount" type="Object" />
+	<aura:attribute name="mainFields" type="List" />
+    <aura:attribute name="isDisabled" type="Boolean" default="false" />
+    <aura:attribute name="isComplete" type="Boolean" default="false" />
+	
+	<!-- attachments -->    
+    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg']"/>
+    <aura:attribute name="multiple" type="Boolean" default="true"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+
+
+	<div>
+
+		<div class="slds-p-bottom_small" style="width:250px;" onmouseover="{!c.display}" onmouseout="{!c.displayOut}">
+			<a onclick="{!c.navigateToPersonAccount}" class="slds-text-heading_small slds-truncate" aria-describedby="panel" title="Help">
+				{! v.selectedAccount.Name } 
+			</a>
+			
+                <div class="slds-popover slds-popover_panel slds-nubbin_left-top slds-fall-into-ground" role="tooltip" aura:id="tooltip" id="panel" style="position: absolute; width: 500px; top: 20px;">
+                    
+                    <div >
+
+                        <c:PanelComponent iconName="standard:person_account" 
+                                          recordId="{! v.selectedAccount.Id }"
+                                          title="{! v.selectedAccount.Name }"
+                                          mainFields="{! v.mainFields }"
+                                          relatedTitle="Caso"
+                                          relatedTitlePlural="Casos"
+                                          relatedObjects="{! v.selectedAccount.Cases }"
+                                          relatedIconName="standard:case"
+                                          />
+                    </div>
+                    
+                </div>
+	    </div>
+	</div>
+	
+	<aura:if isTrue="{! !empty(v.fields) }">
+		<lightning:recordEditForm aura:id="editform" recordId="{! v.recordId }" recordTypeId="{! v.rtID }" objectApiName="Case" onsuccess="{! c.handleCompleteCase }" 
+                                  onsubmit="{! c.handleSubmit }" onerror="{! c.handleError }" >
+		    <div class="slds-box slds-theme_default">
+		        
+		        <lightning:messages />
+
+		        <lightning:inputField fieldName="CaseNumber" />
+                <lightning:inputField aura:id="statusField" fieldName="Status" disabled="true" />
+                <lightning:inputField fieldName="Categor_a__c" disabled="true" />
+                <lightning:inputField aura:id="subCategoria" fieldName="Subcategor_a_Texto__c" disabled="true" />
+				<lightning:inputField fieldName="Origin"  value="Módulo" disabled="true"/>
+
+		        <aura:iteration items="{! v.fields }" var="item">
+
+		        	<lightning:inputField fieldName="{! item.Campo__r.API_Name__c }" onchange="{! c.onInputChange }" />
+		        	
+		        </aura:iteration>
+                
+
+                    
+                    
+                    <lightning:fileUpload  name="fileUploader"
+                                          label= "Archivos Adjuntos"
+                                          multiple="{! v.multiple }"
+                                          accept="{! v.accept }"
+                                          disabled="{! v.disabled }"
+                                          recordId="{! v.recordId }"
+                                          onuploadfinished="{! c.handleUploadFinished }"/>
+                    
+
+
+		        
+
+		        <lightning:button aura:id="submitbtn" class="slds-m-top_small" variant="brand" type="submit" label="Enviar" disabled="{! v.isDisabled }" />
+
+		    </div>
+		</lightning:recordEditForm>
+	</aura:if>
+
+
+
+	<aura:if isTrue="{! v.showSpinner }">
+
+	    <lightning:spinner variant="brand" size="large"/>
+
+	</aura:if>
+
+
+
+</aura:component>

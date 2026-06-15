@@ -1,0 +1,247 @@
+<aura:component controller="DataUpdateGestor" >
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="caseRecord" type="Case" />
+
+    <aura:attribute name="mobilePhone" type="String" />
+    <aura:attribute name="creditLimit" type="String" />
+
+    <aura:attribute name="mobilePhoneUpdated" type="Boolean" default="false" />
+    <aura:attribute name="creditLimitUpdated" type="Boolean" default="false" />
+
+    <aura:attribute name="openModalDataUpdate" type="Boolean" default="false" />
+    <aura:attribute name="updatingInformation" type="Boolean" default="true" />
+    <aura:attribute name="stepNumberDataUpdate" type="Integer" default="1" />
+
+    <aura:attribute name="changedMobilePhone" type="Boolean" default="false" />
+    <aura:attribute name="changedCreditLimit" type="Boolean" default="false" />
+
+    <aura:attribute name="messageUpdateData" type="String" />
+
+    <!-- Lista Caracteres Permitidos para Telefono celular [0-9] -->
+    <aura:attribute name="allowedCharacters" type="List" default="[48,49,50,51,52,53,54,55,56,57]" />
+
+    <!-- Lista de Perfiles con permiso para Actualizar Datos de la Solicitud  -->
+    <aura:attribute name="lstProfilesAllowedCredito" type="List" default="['Gerente Backoffice','Coordinador Backoffice','Analista Backoffice','System Administrator','Administrador del sistema', 'Soporte Digital']" />
+    <aura:attribute name="allowedDataUpdate" type="Boolean" default="false"/>    
+    <aura:attribute name="lstRolesWhoNeedApproval" type="List" default="['Analista_SR_Backoffice','Analista_JR_Backoffice', 'Soporte Digital']" />
+    <aura:attribute name="allowedUpdateMobile" type="Boolean" default="false"/>
+
+    <aura:attribute name="recordInApproval" type="Boolean" default="false" />
+    <aura:attribute name="approvalRejected" type="Boolean" default="false" />
+
+    <aura:attribute name="lstSelectedUpdateMobile" type="List" default="['Teléfono Móvil','Ambos']" />
+    <aura:attribute name="selectedUpdateMobile" type="Boolean" default="false" />
+    <aura:attribute name="lstSelectedUpdateCreditLimit" type="List" default="['Límite de Crédito','Ambos']" />
+    <aura:attribute name="selectedUpdateCreditLimit" type="Boolean" default="false" />
+    
+    <!-- Status permitidos para Actualizar Datos de la Solicitud -->
+    <aura:attribute name="lstStatusAllowed" type="List" default="['Asignada']" />
+    <aura:attribute name="allowedStatus" type="Boolean" default="false" />
+
+    <aura:attribute name="dataUpdateAttempts" type="Integer" />
+
+    <aura:attribute name="attemptNumberMobilePhone" type="Integer" />
+    <aura:attribute name="attemptNumberCreditLimit" type="Integer" />
+    
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <aura:if isTrue="{! v.openModalDataUpdate }" >
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_xx-small">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalDataUpdate }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close" 
+                                                disabled="{! v.updatingInformation }"/>
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de datos" iconName="standard:record_update" />
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+
+                        <!-- Paso 1: Editar datos -->
+                        <aura:if isTrue="{! v.stepNumberDataUpdate == 1 }" >
+                            <aura:if isTrue="{! !v.updatingInformation  }" >
+                                <aura:if isTrue="{! v.allowedDataUpdate }" >
+                                    <aura:if isTrue="{! v.allowedStatus }" >
+                                        <aura:if isTrue="{! not(and( greaterthanorequal(v.attemptNumberMobilePhone,v.dataUpdateAttempts), greaterthanorequal(v.attemptNumberCreditLimit,v.dataUpdateAttempts))) }" >
+
+                                            <aura:if isTrue="{! v.selectedUpdateMobile }">
+                                                <aura:if isTrue="{! v.allowedUpdateMobile }" >
+                                                    <div class="slds-grid slds-gutters slds-p-vertical_small" >
+                                                        <div class="slds-col slds-size_1-of-6" ></div>
+                                                        <div class="slds-col slds-size_4-of-6" >
+                                                            <span onkeypress="{!c.clearField}" >
+                                                                <lightning:input name="inputMobilePhone" aura:id="mobilePhoneId" label="Teléfono celular" placeholder="" value="{! v.mobilePhone }" maxlength="13" 
+                                                                                disabled="{! greaterthanorequal(v.attemptNumberMobilePhone,v.dataUpdateAttempts) }" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-6" ></div>
+                                                    </div>
+
+                                                    <aura:set attribute="else">
+                                                        <div class="slds-grid slds-gutters" >
+                                                            <div class="slds-col slds-size_1-of-1" >
+                                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                                    Necesita aprobación para actualizar el Teléfono celular
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-grid slds-gutters" >
+                                                            <div class="slds-col slds-size_1-of-1 slds-p-vertical_small slds-text-align_center" >
+                                                                <lightning:button variant="brand" label="Solicitar Aprobación" onclick="{! c.submitApprovalUpdateMobile }" title="Solicitar Aprobación" disabled="{! or(v.recordInApproval,v.approvalRejected) }" />
+                                                            </div>
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:if>
+                                            <aura:if isTrue="{! v.selectedUpdateCreditLimit }">
+                                                <div class="slds-grid slds-gutters slds-p-vertical_small" >
+                                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                                    <div class="slds-col slds-size_4-of-6" >
+                                                        <span onkeypress="{!c.clearField}" >
+                                                            <lightning:input name="inputCreditLimit" aura:id="creditLimitId" label="Límite de crédito" placeholder="" value="{! v.creditLimit }" maxlength="6"
+                                                                            disabled="{! greaterthanorequal(v.attemptNumberCreditLimit,v.dataUpdateAttempts) }" />
+                                                        </span>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                                </div>
+                                            </aura:if>
+                                            <div class="slds-grid slds-gutters" >
+                                                <div class="slds-col slds-size_5-of-6 slds-p-top_large slds-text-align_right" >
+                                                    <lightning:button variant="brand" label="Actualizar" onclick="{! c.dataUpdate }" title="Actualizar" disabled="{! v.recordInApproval }" />
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-6" ></div>
+                                            </div>
+
+                                            <aura:if isTrue="{! or( greaterthanorequal(v.attemptNumberMobilePhone,v.dataUpdateAttempts), greaterthanorequal(v.attemptNumberCreditLimit,v.dataUpdateAttempts)) }" >
+                                                <div class="slds-grid slds-gutters ">
+                                                    <div class="slds-col slds-size_1-of-1 slds-p-top_large slds-text-align_left">
+                                                        *El número de actualizaciones permitidas es {!v.dataUpdateAttempts}
+                                                    </div>                    
+                                                </div>
+                                            </aura:if>
+
+                                            <aura:set attribute="else">
+                                                <div class="slds-grid slds-gutters" >
+                                                    <div class="slds-col slds-size_1-of-1" >
+                                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                            El número de actualizaciones permitidas es {!v.dataUpdateAttempts}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+                                        <aura:set attribute="else">
+                                            <div class="slds-grid slds-gutters" >
+                                                <div class="slds-col slds-size_1-of-1" >
+                                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                        No se permite actualizar la solicitud en la etapa actual
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <div class="slds-grid slds-gutters" >
+                                            <div class="slds-col slds-size_1-of-1" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                    No tiene permisos para actualizar la solicitud
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                        <!-- Paso 2: Confirmar datos -->
+                        <aura:if isTrue="{! v.stepNumberDataUpdate == 2 }" >
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-col slds-size_1-of-12" ></div>
+                                <div class="slds-col slds-size_10-of-12" >
+                                    <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                        <div class="slds-text-color_inverse">
+                                            ¿ Está seguro que desea actualizar la Solicitud ?
+                                        </div>                                    
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_1-of-12" ></div>
+                            </div>
+                            <aura:if isTrue="{! v.selectedUpdateMobile }">
+                                <div class="slds-grid slds-gutters slds-p-vertical_small" >
+                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                    <div class="slds-col slds-size_4-of-6" >
+                                        <lightning:input name="outputMP" label="Teléfono celular" value="{! v.mobilePhone }" disabled="true" 
+                                                        style="{! (v.changedMobilePhone) ? 'color: red !important; font-weight: bold;' : '' }" />
+                                    </div>                               
+                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{! v.selectedUpdateCreditLimit }">
+                                <div class="slds-grid slds-gutters slds-p-vertical_small" >
+                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                    <div class="slds-col slds-size_4-of-6" >
+                                        <lightning:input name="outputMP" label="Límite de crédito" value="{! v.creditLimit }" disabled="true" class="slds-text-color_destructive"
+                                                        style="{! (v.changedCreditLimit) ? 'color: red !important; font-weight: bold;' : '' }" />
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-6" ></div>
+                                </div>
+                            </aura:if>
+                            <div class="slds-grid slds-gutters slds-p-vertical_medium" >
+                                <div class="slds-col slds-size_5-of-6 slds-p-top_large slds-text-align_right" >
+                                    <lightning:button variant="neutral" label="Regresar" onclick="{! c.backDataUpdate }" title="Regresar" />
+                                    <lightning:button variant="brand" label="Confirmar" onclick="{! c.confirmDataUpdate }" title="Confirmar" />
+                                </div>
+                                <div class="slds-col slds-size_1-of-6" ></div>
+                            </div>                        
+                        </aura:if>
+                        <!-- Paso 3: Actualizacion de datos -->
+                        <aura:if isTrue="{! v.stepNumberDataUpdate == 3 }" >
+                            <aura:if isTrue="{! !v.updatingInformation  }" >
+
+                                <div class="slds-grid slds-gutters" >
+                                    <div class="slds-col slds-size_1-of-1" >
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                            {! v.messageUpdateData }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-gutters" >
+                                    <div class="slds-col slds-size_1-of-1" >                                        
+                                    </div>
+                                </div>
+
+                                <aura:set attribute="else">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+
+                    </div>
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                            label="Cerrar"
+                                            title="Cerrar"
+                                            onclick="{! c.closeModalDataUpdate }" 
+                                            disabled="{! v.updatingInformation }"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+        
+</aura:component>

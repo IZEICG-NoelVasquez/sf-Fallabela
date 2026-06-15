@@ -1,0 +1,1267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Copy_4_of_SEND_SMS_WS</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>4031</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <stringValue>racias por quedarte con nosotros! en 5 días veras reflejado el incremento de linea desde tu app. Sigue disfrutando los mejores beneficios con tu TDC Falabella</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_167_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SMS_RETENCION_TITULAR_CAMBIO_DE_C_E</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msg_Anualidad</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_169_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>1031</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_172</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>N</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_Puntos</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_172_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>1331</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_175</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_Dineroelectronico</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_175_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>1631</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_178</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_BonificacionPorComisionTardio</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_178_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>1931</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_181</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_BonificacionPorReposicion</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>N</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_181_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>2231</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_184</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_BonificacionSeguros</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>A</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>myRule_184_A1</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>2531</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_187</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>msj_Upgrade</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SEND_SMS_Bonificaci_n_de_intereses</name>
+        <label>SEND SMS Bonificación de intereses</label>
+        <locationX>50</locationX>
+        <locationY>3431</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SMS_Pago_de_TC_con_D_E</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <stringValue>racias por quedarte con nosotros! En los próximos 5 días te abonaremos los intereses de tu TDC. Sigue disfrutando de todos sus beneficios!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_SMS_Pago_TC_con_DE</name>
+        <label>Send SMS Pago TC con DE</label>
+        <locationX>50</locationX>
+        <locationY>3731</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SMS_RETENCI_N_DE_TITULAR_INCREMENTO_DE_LINEA</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <elementReference>SMS_Pago_TC_con_DE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SEND_SMS_WS_Beneficios</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>2831</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SMS_COMISION_ANUAL</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>N</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <stringValue>os alegra que sigas con nosotros! Recuerda que tu TDC Falabella Soriana te da puntos y dinero electrónico en todas tus compras. Mas beneficios: bit.ly/3vdsIAa</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SEND_SMS_WS_COMISION_ANUAL</name>
+        <label>SEND SMS WS COMISION ANUAL</label>
+        <locationX>50</locationX>
+        <locationY>3131</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SMS_Bonificaci_n_de_intereses</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>G</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <stringValue>racias por quedarte con nosotros! en los proximos 5 dias habiles te abonaremos la comison de pago de tu TDC. Sigue disfrutando de todos sus beneficios!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SENDCAMBIO_CE</name>
+        <label>SEND SMS WS</label>
+        <locationX>50</locationX>
+        <locationY>731</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_169</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>curp</name>
+            <value>
+                <elementReference>$Record.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>inicio</name>
+            <value>
+                <stringValue>B</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mensaje</name>
+            <value>
+                <stringValue>ienvenido a Tasa Prime! Todas tus compras, disposiciones de efectivo y prestamos con TC Falabella tendran una tasa de interes mas baja. Conoce + bit.ly/3YXiDJc</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>$Record.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>myRule_167</name>
+        <label>SMS RETENCIÓN DE TITULAR ANUALIDAD</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>SMS_RETENCION_TITULAR_CAMBIO_DE_C_E</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCIÓN DE TITULAR ANUALIDAD</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_167</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_Anualidad</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_167_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCIÓN DE TITULAR ANUALIDAD</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_169</name>
+        <label>SMS RETENCIÓN DE TITULAR PUNTOS</label>
+        <locationX>182</locationX>
+        <locationY>923</locationY>
+        <defaultConnector>
+            <targetReference>myRule_172</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCIÓN DE TITULAR PUNTOS</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_169</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_Puntos</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_169_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCIÓN DE TITULAR PUNTOS</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_172</name>
+        <label>SMS RETENCIÓN DE TITULAR DINERO ELECTRONICO</label>
+        <locationX>182</locationX>
+        <locationY>1223</locationY>
+        <defaultConnector>
+            <targetReference>myRule_175</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCIÓN DE TITULAR DINERO ELECTRONICO</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_172</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_Dineroelectronico</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_172_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCIÓN DE TITULAR DINERO ELECTRONICO</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_175</name>
+        <label>SMS RETENCION DE TITULA COMISION TARDIO</label>
+        <locationX>182</locationX>
+        <locationY>1523</locationY>
+        <defaultConnector>
+            <targetReference>myRule_178</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCION DE TITULA COMISION TARDIO</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_175</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_BonificacionPorComisionTardio</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_175_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCION DE TITULA COMISION TARDIO</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_178</name>
+        <label>SMS RETENCION DE TITULA COMISION POR REPOSICION</label>
+        <locationX>182</locationX>
+        <locationY>1823</locationY>
+        <defaultConnector>
+            <targetReference>myRule_181</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCION DE TITULA COMISION POR REPOSICION</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_178</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_BonificacionPorReposicion</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_178_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCION DE TITULA COMISION POR REPOSICION</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_181</name>
+        <label>SMS RETENCION DE TITULAR SEGUROS</label>
+        <locationX>182</locationX>
+        <locationY>2123</locationY>
+        <defaultConnector>
+            <targetReference>myRule_184</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCION DE TITULAR SEGUROS</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_181</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_BonificacionSeguros</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_181_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCION DE TITULAR SEGUROS</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_184</name>
+        <label>SMS RETENCION DE TITULAR UPGRADE</label>
+        <locationX>182</locationX>
+        <locationY>2423</locationY>
+        <defaultConnector>
+            <targetReference>myRule_187</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCION DE TITULAR UPGRADE</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_184</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_Upgrade</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_184_A1</targetReference>
+            </connector>
+            <label>TRUE_SMS RETENCION DE TITULAR UPGRADE</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_187</name>
+        <label>SMS RETENCIÓN DE TITULAR BENEFICIOS</label>
+        <locationX>182</locationX>
+        <locationY>2723</locationY>
+        <defaultConnector>
+            <targetReference>SMS_COMISION_ANUAL</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>FALSE_SMS RETENCIÓN DE TITULAR</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_myRule_187</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_Beneficios</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SEND_SMS_WS_Beneficios</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>TRUE_SMS RETENCIÓN DE TITULAR</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SMS_Bonificaci_n_de_intereses</name>
+        <label>SMS Bonificación de intereses</label>
+        <locationX>182</locationX>
+        <locationY>3323</locationY>
+        <defaultConnector>
+            <targetReference>SMS_Pago_de_TC_con_D_E</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Formula_bonificacion_intereses</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SEND_SMS_Bonificaci_n_de_intereses</targetReference>
+            </connector>
+            <label>True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SMS_COMISION_ANUAL</name>
+        <label>SMS COMISION ANUAL</label>
+        <locationX>182</locationX>
+        <locationY>3023</locationY>
+        <defaultConnector>
+            <targetReference>SMS_Bonificaci_n_de_intereses</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Comision_Anual</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_comision_anual</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SEND_SMS_WS_COMISION_ANUAL</targetReference>
+            </connector>
+            <label>Comision Anual</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SMS_Pago_de_TC_con_D_E</name>
+        <label>SMS Pago de TC con D.E</label>
+        <locationX>182</locationX>
+        <locationY>3623</locationY>
+        <defaultConnector>
+            <targetReference>SMS_RETENCI_N_DE_TITULAR_INCREMENTO_DE_LINEA</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_SMS_Pago_de_TC_con_D_E</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Formula_Pago_TC_con_DE</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_SMS_Pago_TC_con_DE</targetReference>
+            </connector>
+            <label>Outcome 1 of SMS Pago de TC con D.E</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SMS_RETENCI_N_DE_TITULAR_INCREMENTO_DE_LINEA</name>
+        <label>SMS RETENCIÓN DE TITULAR INCREMENTO DE LINEA</label>
+        <locationX>182</locationX>
+        <locationY>3923</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>TRUE_SMS_RETENCI_N_DE_TITULAR_INCREMENTO_DE_LINEA</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_IncrementoDeLinea</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_4_of_SEND_SMS_WS</targetReference>
+            </connector>
+            <label>TRUE SMS RETENCIÓN DE TITULAR INCREMENTO DE LINEA</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SMS_RETENCION_TITULAR_CAMBIO_DE_C_E</name>
+        <label>SMS RETENCION TITULAR CAMBIO DE C.E</label>
+        <locationX>182</locationX>
+        <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>myRule_169</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Cambio_C_E</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_cambio_CE</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SENDCAMBIO_CE</targetReference>
+            </connector>
+            <label>Cambio C.E</label>
+        </rules>
+    </decisions>
+    <description>Todas tipificaciones</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>formula_Anualidad</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR(ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de anualidad 100%&quot;) , ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de anualidad 50%&quot;)),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_Beneficios</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR(ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Beneficios&quot;),ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Asesoría producto&quot;)),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Formula_bonificacion_intereses</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de intereses&quot;) ,
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_BonificacionPorComisionTardio</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR(ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de comisión por pago tardío&quot;), ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c}, &quot;Bonificación de comisión por pago tardío 50%&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c}, &quot;Bonificación de comisión por pago tardío 100%&quot;) ),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_BonificacionPorReposicion</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de comisión por reposición&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_BonificacionSeguros</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de seguros&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_cambio_CE</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR(ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Cambio de C.E - Tasa Normal&quot;),ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Cambio de C.E - Tasa Intermedia&quot;), ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Cambio de C.E - Tasa VIP&quot;)),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_comision_anual</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Comisión anual pago en Soriana $60&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_CondicionNormal</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Condicion normal&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_CondicionVIP</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Condicion VIP&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_Dineroelectronico</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR
+(
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $250&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $300&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $700&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $500&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $350&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bonificación de Dinero Electrónico $850&quot;)),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_IncrementoDeLinea</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Incremento de línea&quot;),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Formula_Pago_TC_con_DE</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+CONTAINS(TEXT({!$Record.Motivo_de_la_Retenci_n__c}), &apos;Pago de TDC con D.E&apos;) , 
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_Puntos</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR
+(
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bono de 1,000 Puntos Soriana Ya&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bono de 1,500 Puntos Soriana Ya&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bono de 2,000 Puntos Soriana Ya&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bono de 3,000 Puntos Soriana Ya&quot;),
+ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Bono de 5,000 Puntos Soriana Ya&quot;)),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>formula_Upgrade</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISNEW(),
+ISPICKVAL( {!$Record.Status}, &quot;Cerrado&quot;),
+NOT(ISBLANK({!$Record.ContactId} )),
+NOT(ISPICKVAL({!$Record.Type}, &quot;CURP Duplicado&quot;)),
+NOT(ISBLANK({!$Record.ContactEmail} )),
+NOT(ISBLANK({!$Record.ContactMobile})),
+OR(ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Upgrade/Cambio de Producto&quot;), ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c} , &quot;Upgrade&quot; ) ),
+{!$Record.RecordType.Name} = &quot;Retención de Titular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>msg_Anualidad</name>
+        <dataType>String</dataType>
+        <expression>IF(  ISPICKVAL({!$Record.Motivo_de_la_Retenci_n__c}, &apos;Bonificación de anualidad 100%&apos;) , &apos;racias por quedarte con tu TC Falabella! En max 5 dias habiles abonaremos la ANUALIDAD de tu TDC. Sigue disfrutando mejores beneficios en todas tus compras&apos; , &apos;racias por quedarte con tu TC Falabella! En max 5 dias habiles abonaremos el 50% de ANUALIDAD de tu TDC. Sigue disfrutando de beneficios en todas tus compras&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>msj_BonificacionPorComisionTardio</name>
+        <dataType>String</dataType>
+        <expression>&quot;racias por confiar en Falabella! En 5 dias abonaremos la Comision Pago Tardio de tu Tarjeta. Sigue disfrutando los mejores beneficios en todas tus compras&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>msj_BonificacionPorReposicion</name>
+        <dataType>String</dataType>
+        <expression>&quot;os encanta tenerte de vuelta En 5 dias abonaremos la Comision de Reposicion de tu TC Falabella. Disfruta los mejores beneficios en todas tus compras&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>msj_BonificacionSeguros</name>
+        <dataType>String</dataType>
+        <expression>&quot;gradecemos que te quedes! en 5 dias abonaremos el cargo no reconocido del seguro a tu tarjeta. Sigue disfrutando los mejores beneficios en todas tus compras!&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>msj_Dineroelectronico</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Motivo_de_la_Retenci_n__c}, &apos;Bonificación de dinero electrónico $250&apos;, &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $250 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;Bonificación de dinero electrónico $300&apos;, &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $300 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;Bonificación de dinero electrónico $500&apos; , &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $500 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;,&apos;Bonificación de dinero electrónico $350&apos;, &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $350 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;Bonificación de dinero electrónico $700&apos; , &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $700 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos; , &apos;Bonificación de dinero electrónico $850&apos;, &apos;racias por quedarte con nosotros! En max 5 días hábiles abonaremos $850 de Dinero Electr. a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>msj_Puntos</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Motivo_de_la_Retenci_n__c}, &apos;Bono de 1,000 Puntos Soriana Ya&apos;, &apos;os alegra que sigas con nosotros! En max 5 dias habiles abonaremos 1000 Puntos Soriana Ya a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos; , &apos;Bono de 1,500 Puntos Soriana Ya&apos;, &apos;os alegra que sigas con nosotros! En max 5 dias habiles abonaremos 1500 Puntos Soriana Ya a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;Bono de 2,000 Puntos Soriana Ya&apos;,  &apos;os alegra que sigas con nosotros! En max 5 dias habiles abonaremos 2000 Puntos Soriana Ya a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;Bono de 3,000 Puntos Soriana Ya&apos;, &apos;os alegra que sigas con nosotros! En max 5 dias habiles abonaremos 3000 Puntos Soriana Ya a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;,&apos;Bono de 5,000 Puntos Soriana Ya&apos;,&apos;os alegra que sigas con nosotros! En max 5 dias habiles abonaremos 5000 Puntos Soriana Ya a tu TC Falabella. Sigue disfrutando beneficios en todas tus compras&apos;, &apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>msj_Upgrade</name>
+        <dataType>String</dataType>
+        <expression>&quot;racias por quedarte con nosotros! en los proximos 10 dias realizaremos el cambio de tu TC Falabella y la recibiras en tu domicilio.&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>SMS_Pago_TC_con_DE</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Motivo_de_la_Retenci_n__c}, &apos;Pago de TDC con D.E $250&apos;, &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $250 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos;, &apos;Pago de TDC con D.E $300&apos;, &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $300 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos;, &apos;Pago de TDC con D.E $350&apos; , &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $350 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos;,&apos;Pago de TDC con D.E $500&apos;, &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $500 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos;, &apos;Pago de TDC con D.E $700&apos; , &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $700 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos; , &apos;Pago de TDC con D.E $850&apos;, &apos;racias por confiar en Falabella! En los próximos 7 días hábiles te abonaremos $850 de D.E para que realices el pago de tu TC Falabella. Ve por lo que quieres!&apos;, &apos;&apos;)</expression>
+    </formulas>
+    <interviewLabel>Envío de Email - SMS_1 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Envío de Email - SMS_1</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>myRule_167</targetReference>
+        </connector>
+        <object>Case</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

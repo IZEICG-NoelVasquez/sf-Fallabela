@@ -90,5 +90,4 @@ public class MicroServicioGetUser {
         //Retornamos el mapa result
         return result;
     }
-    
 }

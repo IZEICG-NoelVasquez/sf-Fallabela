@@ -1,0 +1,44 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+14:37:26.0 (350759)|USER_INFO|[EXTERNAL]|0051N000005gvau|etrevinofalabella@izeicg.com.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+14:37:26.0 (481300)|EXECUTION_STARTED
+14:37:26.0 (506407)|CODE_UNIT_STARTED|[EXTERNAL]|apex://SessionController/ACTION$getSessionId
+14:37:26.0 (1732865)|CODE_UNIT_STARTED|[EXTERNAL]|01p1N000005gzam|SessionController.getSessionId()
+14:37:26.0 (2005452)|HEAP_ALLOCATE|[95]|Bytes:3
+14:37:26.0 (2099351)|HEAP_ALLOCATE|[100]|Bytes:152
+14:37:26.0 (2111636)|HEAP_ALLOCATE|[417]|Bytes:408
+14:37:26.0 (2122787)|HEAP_ALLOCATE|[430]|Bytes:408
+14:37:26.0 (2141307)|HEAP_ALLOCATE|[317]|Bytes:6
+14:37:26.0 (2188369)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:1
+14:37:26.0 (2217948)|METHOD_ENTRY|[1]|01p1N000005gzam|SessionController.SessionController()
+14:37:26.0 (2232035)|STATEMENT_EXECUTE|[1]
+14:37:26.0 (2244856)|STATEMENT_EXECUTE|[1]
+14:37:26.0 (2254621)|METHOD_EXIT|[1]|SessionController
+14:37:26.0 (2263961)|STATEMENT_EXECUTE|[4]
+14:37:26.0 (2265159)|STATEMENT_EXECUTE|[5]
+14:37:26.0 (2282582)|HEAP_ALLOCATE|[5]|Bytes:105
+14:37:26.0 (2292096)|SYSTEM_METHOD_ENTRY|[1]|UserInfo.UserInfo()
+14:37:26.0 (2293930)|STATEMENT_EXECUTE|[1]
+14:37:26.0 (2299484)|SYSTEM_METHOD_EXIT|[1]|UserInfo
+14:37:26.0 (2315814)|METHOD_ENTRY|[5]||System.UserInfo.getSessionId()
+14:37:26.0 (7454990)|METHOD_EXIT|[5]||System.UserInfo.getSessionId()
+14:37:26.7 (7604971)|CUMULATIVE_LIMIT_USAGE
+14:37:26.7 (7604971)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+14:37:26.7 (7604971)|CUMULATIVE_LIMIT_USAGE_END
+
+14:37:26.0 (7697815)|CODE_UNIT_FINISHED|SessionController.getSessionId()
+14:37:26.0 (8320099)|CODE_UNIT_FINISHED|apex://SessionController/ACTION$getSessionId
+14:37:26.0 (8347965)|EXECUTION_FINISHED

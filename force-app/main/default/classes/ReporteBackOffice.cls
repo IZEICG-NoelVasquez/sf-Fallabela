@@ -125,7 +125,6 @@ public class ReporteBackOffice {
             String strQueryFraudes = 'WHERE RecordTypeId =: idRecordTypeFraudes ';
             strQueryFraudes += String.isNotBlank(curp) ? 'AND CURP__c =: curp ' : 'AND CreatedDate >=: fechaInicio AND CreatedDate <=: fechaFin' ;
 
-            ////numberOfCasesFraudes = recordTypeDevName == 'Riesgos_Originaci_n' && !allRecords ? Database.countQuery('SELECT COUNT() FROM Case ' + strQueryFraudes) : 0;
             List<Case> listCasosFraudes = recordTypeDevName == 'Riesgos_Originaci_n' && allRecords ? Database.query(strFields + strQueryFraudes + strQueryOrderBy) : new List<Case>();
 
             ///
@@ -199,7 +198,7 @@ public class ReporteBackOffice {
                         break;
                     }
                 }
-                
+
                 contador ++;
             }
 

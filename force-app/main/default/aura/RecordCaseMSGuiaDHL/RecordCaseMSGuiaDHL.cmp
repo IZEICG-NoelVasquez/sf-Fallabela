@@ -1,0 +1,79 @@
+<aura:component controller="RecordCaseMSGuiaDHLController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:attribute name="blnRecordCase" type="Boolean" />
+
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="curp" type="String" />
+    <aura:attribute name="currentEstatus" type="String" />
+
+    <aura:attribute name="loadedRecordCaseInfo" type="Boolean" default="false" />
+    
+    <aura:attribute name="numberGuiaDhl" type="String" />
+
+    <aura:attribute name="maximumLengthGuiaDHL" type="Integer" default="22" />
+    <aura:attribute name="minimumLengthGuiaGHL" type="Integer" default="10" />
+
+    <!-- Lista Caracteres Permitidos [0-9], [A-Z] -->
+    <aura:attribute name="lstAllowedCharacters" type="List" default="[48,49,50,51,52,53,54,55,56,57,
+                                                                    65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90]" />
+
+    <!-- Carga del Componente MicroServicioGuiaDHL  -->
+    <aura:attribute name="HayGuia" type="Boolean" />
+    <aura:attribute name="HayGuias" type="Boolean" />
+    <aura:attribute name="infoGuiasLoaded" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <div class="slds-is-relative">
+
+        <aura:if isTrue="{! v.loadedRecordCaseInfo }" >
+
+            <div class="slds-grid slds-gutters">
+
+                <div class="slds-col slds-size_1-of-1">
+
+                    <c:MicroServicioGuiaDHL aura:id="msGuiaDhl" accountId="{! v.accountId }" CURP="{! v.curp }" recordId="{! v.recordId }" currentEstatus="{! v.currentEstatus }" 
+                                            blnRecordCase="{! v.blnRecordCase }" HayGuia="{! v.HayGuia }" HayGuias="{! v.HayGuias }" infoGuiasLoaded="{! v.infoGuiasLoaded }" />
+
+                </div>
+
+                <!-- Spinner para la carga del componente MicroServicioGuiaDHL -->
+                <aura:if isTrue="{! !v.infoGuiasLoaded }" >
+                    <div class="slds-p-around_xx-large">
+                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                    </div>
+                </aura:if>
+
+            </div>
+
+            <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-bottom_large">
+
+                <div class="slds-col slds-size_4-of-6">
+
+                    <span onkeypress="{!c.allowedCharacters}" onpaste="{!c.deleteField}" >
+
+                        <lightning:input aura:id="numeroGuiaDhl" type="text" name="Numero de guia" label="Numero de guia" value="{! v.numberGuiaDhl }" maxlength="{! v.maximumLengthGuiaDHL }" />
+                    </span>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6 slds-p-top_large ">
+
+                    <lightning:button label="Buscar" variant="brand" onclick="{! c.searchGuiaDHL }" />
+
+                </div>
+
+            </div>
+
+            <aura:set attribute="else">
+                <div class="slds-p-around_xx-large">
+                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                </div>
+            </aura:set>
+
+        </aura:if>
+
+    </div>
+
+</aura:component>

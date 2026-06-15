@@ -1,0 +1,137 @@
+<!--/****************************************************************************************************************************************************************************************
+Lightning Component Name: validateQuestions
+Version : 1.0
+Created Date : 02/08/2019 
+Function :  Componente para validar preguntas, cuando se desea generar un caso de riesgo medio Alto
+Modification Log :
+*********************************************************************************************************************************************************************************************
+*          Developer                    Date                    Description                    Changes
+*********************************************************************************************************************************************************************************************
+*        Luis Sandoval               02/08/2019               Original Version               ******
+*********************************************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************************************/-->
+<aura:component controller="validateQuestionsController">
+    <aura:registerEvent name="validateQuestionsE" type="c:validateQuestionsE" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="numeroDeTarjeta" type="String" />
+    <aura:attribute name="diaDeCorteAns" type="String" />
+    <aura:attribute name="dondePagoAns" type="String" />
+    <aura:attribute name="cuandoPagoAns" type="String" />
+    <aura:attribute name="compraDiferidaAns" type="String" />
+    <aura:attribute name="tieneCasosAns" type="String" />
+    <aura:attribute name="tieneCasosAbiertosAns" type="String" default="No" />
+    <aura:attribute name="DiaDeCorte" type="Integer" />
+    <aura:attribute name="UltimoPago" type="String" />
+    <aura:attribute name="DiaUltimoPago" type="Integer" />
+    <aura:attribute name="CompraDiferida" type="String" />
+    <aura:attribute name="tieneCasos" type="String" />
+    <aura:attribute name="tieneCasosAbiertos" type="String" />
+    <aura:attribute name="recurrencia" type="Integer" default="0" />
+    <aura:attribute name="casos" type="Integer" default="0" />
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="casosAbiertos" type="Integer" default="0" />
+    <aura:attribute name="validacionesIncorrectas" type="Integer" default="0" />
+    <aura:attribute name="validacionesPermitidas" type="Integer" />
+    <aura:attribute name="validacionesIncorrectasMax" type="Boolean" default="false" />
+    <aura:attribute name="validacionesIncorrectasNO" type="Boolean" default="true" />
+
+    <aura:attribute name="rangoDiasVencimiento" type="Integer" />
+    <aura:attribute name="rangoDiasUltimoPago" type="Integer" />
+
+    <aura:attribute name="idValidacionExitosa" type="String" />
+
+    <aura:attribute name="requiredFields" type="Boolean" default="true" />
+    <aura:attribute name="checkboxVisibility" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    <aura:method name="setState" action="{! c.doSetState }" >
+        <aura:attribute name="state" type="String" default="closed"/>
+    </aura:method>
+    <aura:attribute name="customer" type="Object" />
+    <div aura:id="modal-sectionVQ" class="demo-only slds-hide" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <aura:if isTrue="{!v.validacionesIncorrectasMax}">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                                <lightning:buttonIcon iconName="utility:close"
+                                                        onclick="{! c.closeModal }"
+                                                        alternativeText="close"
+                                                        variant="bare-inverse"
+                                                        class="slds-modal__close"/>                       
+                            </header>
+                            <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Validación de Preguntas" iconName="standard:visit_templates" />
+                <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+
+                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                        Bloqueo de Validación
+                    <br/>
+                    <span class="slds-text-heading_medium" >
+                        Error:                                    
+                        <span style="font-weight: bold;"> 
+                            Por motivos de seguridad se bloquearon sus intentos de validación, favor de intentar el día de mañana.
+                        </span>
+                    </span>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                                        label="Regresar"
+                                                        title="Regresar"
+                                                        onclick="{! c.closeModal }"/>
+                </footer>
+                </aura:if>
+                <aura:if isTrue="{!v.validacionesIncorrectasNO}">
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                            onclick="{! c.closeModal }"
+                            alternativeText="close"
+                            variant="bare-inverse"
+                            class="slds-modal__close"/>                       
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Validación de Preguntas" iconName="standard:visit_templates" />    
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_left">
+                    
+
+                        <aura:if isTrue="{!v.checkboxVisibility}">
+                            <div class="slds-text-align_right slds-m-bottom_medium">
+                                <lightning:input value="{! v.requiredFields}" checked="{! v.requiredFields}" type="checkbox" label="Validar preguntas" name="validar preguntas"/>
+                            </div>
+
+                        </aura:if> 
+
+                    <lightning:input required="{! v.requiredFields }" value="{! v.DiaDeCorte }" max="31" min="1" type="number" pattern="[0-9]*"  maxlength="2" onchange="{!c.CheckLength}" name="DiaDeCorte" label="¿Cuál es la fecha de límite de pago de su tarjeta? [NO MENCIONAR FECHAS DE LÍMITE DE PAGO]" aura:id="DiaDeCorte"></lightning:input>
+                    <lightning:select required="{! v.requiredFields }" value="{! v.UltimoPago }" name="UltimoPago" label="¿Dónde realizó el último pago de su tarjeta, sin considerar los últimos dos días? [NO MENCIONAR OPCIONES DE RESPUESTA]" aura:id="UltimoPago">
+                        <option value="-" text="-"/> 
+                        <option value="SORIANA" text="En caja de Soriana"/> 
+                        <option value="OTRO MEDIO" text="Otro Medio"/>       
+                        <option value="NULL" text="No ha realizado pagos"/>       
+
+                    </lightning:select>
+                    <lightning:input value="{! v.DiaUltimoPago }" max="31" min="1" type="number" pattern="[0-9]*"  maxlength="2" onchange="{!c.CheckLength2}" name="DiaUltimoPago" label="¿Qué día realizó el último pago a su tarjeta, sin considerar los últimos dos días? [NO MENCIONAR OPCIONES DE RESPUESTA]" aura:id="DiaUltimoPago"></lightning:input>                  
+                    <lightning:select required="{! v.requiredFields }" value="{! v.CompraDiferida }" name="CompraDiferida" label="¿Tiene alguna compra diferida a meses, sin considerar los últimos dos días?" aura:id="CompraDiferida">
+                        <option value="-" text="-"/> 
+                        <option value="SI" text="Si"/> 
+                        <option value="NO" text="No"/>       
+                    </lightning:select>
+                    <lightning:select required="{! v.requiredFields }" value="{! v.tieneCasosAbiertos }" name="tieneCasosAbiertos" label="¿Tiene alguna aclaración abierta?" aura:id="tieneCasosAbiertos">
+                        <option value="-" text="-"/> 
+                        <option value="SI" text="Si"/> 
+                        <option value="NO" text="No"/>       
+                    </lightning:select>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" 
+                        label="Regresar"
+                        title="Regresar"
+                        onclick="{! c.closeModal }"/>
+                    <lightning:button label="Validar Preguntas" variant="brand" onclick="{! c.doValidate }"/>
+                </footer>
+                </aura:if>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>   
+</aura:component>

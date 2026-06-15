@@ -1,0 +1,453 @@
+<aura:component controller="MicroServicioBloqueoDeTarjeta" >
+
+    <aura:attribute name="currentHour" type="String" />
+
+    <aura:attribute name="numeroDocumento" type="String" />
+    <aura:attribute name="identificador" type="String" />
+    <aura:attribute name="identificadorProducto" type="String" />
+
+    <aura:attribute name="modalTitle" type="String" default="Bloqueo de Tarjeta" />
+    <aura:attribute name="blnOpenModalMSCardLock" type="Boolean" default="false" /> 
+    <aura:attribute name="stepNumberMSCardLock" type="Integer" default="0" />
+    <aura:attribute name="mapCardLockInfo" type="Map" />
+    <aura:attribute name="cardLockValue" type="String" />
+    <aura:attribute name="cardLockOptions" type="List" />
+    <aura:attribute name="cardlockInfoLoaded" type="Boolean" default="false" />
+
+    <aura:attribute name="cardLockDescriptionSelected" type="String" default="" />
+
+    <aura:attribute name="msCardLockLoaded" type="Boolean" default="false" />
+    <aura:attribute name="msCardLockSuccess" type="Boolean" default="false" />
+    <aura:attribute name="messageErrorMS" type="String" default="Ocurrió un error en el Micro Servicio Bloqueo de Tarjeta, favor de reportarlo a su administrador." />
+
+    <!-- Repsicion de Tarjeta -->
+    <aura:attribute name="cardReplacementList" type="List" default="['Domicilio']" /> <!-- Se elimina la opción de 'Sucursal'-->
+    <aura:attribute name="cardReplacementValue" type="String" />
+    <aura:attribute name="cardReplacementOptions" type="List" />
+
+    <!-- Incidencia en la Cuenta -->
+    <aura:attribute name="incidenceList" type="List" default="['Sí','No']" />
+    <aura:attribute name="incidenceValue" type="String" />
+    <aura:attribute name="incidenceOptions" type="List" />
+
+    <!-- Creacion de Casos -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseFolio" type="String" />
+    <aura:attribute name="catSubSelected" type="String" />
+    <aura:attribute name="newCaseId" type="String" />
+
+    <!-- Cerrar Caso -->
+    <aura:attribute name="closingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCloseCase" type="Boolean" default="false" />
+
+    <!-- Bloqueo por Vencimiento -->
+    <aura:attribute name="mapCardsInfo" type="Map" />
+    <aura:attribute name="disabledCardLockButton" type="Boolean" default="false" />
+
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+    <aura:attribute name="selectedAccount" type="Object" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    <!-- Componente CardLockButtons - Bloqueo desde un registro de Casos -->
+    <aura:attribute name="caseRecordCardLock" type="Boolean" default="false" />
+    <aura:attribute name="cardLocked" type="Boolean" />
+
+
+    <aura:method name="openModalCardLock" action="{! c.loadConfig }" />
+
+
+    <!-- MODAL Email Update -->
+    <aura:if isTrue="{! v.blnOpenModalMSCardLock }">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <aura:if isTrue="{! (v.stepNumberMSCardLock == 1) || (v.stepNumberMSCardLock == 2) }" >
+                            <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalMSCardLock }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! (!v.cardlockInfoLoaded) }" /> 
+                        </aura:if>
+                    </header>
+                    <lightning:card class="slds-text-align_center" title="{! v.modalTitle }"  />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+
+                        <!-- Paso 1: Seleccion Bloqueo de Tarjeta -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 1 }" >
+
+                            <aura:if isTrue="{! v.cardlockInfoLoaded }" >
+                                
+                                <div class="slds-grid">
+                                    <div class="slds-size_1-of-2">
+                                        <lightning:select class="slds-p-bottom_large" value="{! v.cardLockValue }" name="cardLock" label="Selecciona el tipo de bloqueo" aura:id="cardLock" onchange="{! c.changeCardLock }">
+                                            <aura:iteration items="{!v.cardLockOptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                    </div>
+                                </div>
+
+                                <div class="slds-text-align_left">
+                                    Por su seguridad su tarjeta ha sido bloqueada a las {!v.currentHour} hrs del día de hoy, a partir de este momento no se podrán realizar transacciones con su tarjeta.
+                                </div>
+
+                                <aura:set attribute="else">
+                                    <div class="slds-p-around_xx-large">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>  
+                                </aura:set>
+                            </aura:if>
+
+                        </aura:if>
+
+                        <!-- Paso 2: Confirmacion Bloqueo de Tarjeta -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 2 }" >
+
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea bloquear la tarjeta ?
+                                </div>                                    
+                            </div>
+
+                            <lightning:input class="slds-p-top_large" name="cardLockConfirm" aura:id="cardLockConfirm" label="Tipo de Bloqueo" placeholder="Tipo de Bloqueo" 
+                                        value="{! v.cardLockDescriptionSelected }" disabled="true" />
+
+                            <div class="slds-text-align_right slds-p-top_xx-large">
+                                <aura:if isTrue="{! (!v.caseRecordCardLock) }" >
+                                    <lightning:button variant="neutral" label="Regresar" onclick="{! c.backCardLock }" title="Regresar" />
+                                </aura:if>
+                            </div>
+                            
+                        </aura:if>
+
+                        <!-- Paso 3: Informe de Folio -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 3 }" >
+
+                            <aura:if isTrue="{! v.msCardLockLoaded }" >
+
+                                <aura:if isTrue="{! v.msCardLockSuccess }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center slds-p-bottom_large">
+                                        Se bloqueo la tarjeta con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >
+                                            
+                                            <aura:if isTrue="{! (!v.caseRecordCardLock) }" >
+
+                                                <div style="font-weight: bold;" class="slds-text-heading_medium slds-text-color_default slds-text-align_center slds-p-bottom_large">
+                                                    <span >{! v.catSubSelected }</span>
+                                                    <br/>
+                                                    <span >
+                                                    Folio:                                    
+                                                        <span > 
+                                                        {! v.newCaseFolio }
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    La reposición de su tarjeta (tiene un costo de 130 pesos + IVA y 
+                                                    <br/>se reflejará en su siguiente estado de cuenta)
+                                                    <br/>
+                                                    <br/><b>La reposición por vencimiento no tiene costo.</b>
+                                                </div>
+
+                                                <aura:set attribute="else" >
+                                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                        <br/>
+                                                        <b>Se actualizó el Caso.</b>
+                                                    </div>
+                                                </aura:set>
+                                            </aura:if>
+
+                                            <aura:set attribute="else" >
+
+                                                <aura:if isTrue="{! (!v.caseRecordCardLock) }" >
+
+                                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                        <br/>
+                                                        Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                    </div>
+
+                                                    <aura:set attribute="else" >
+                                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                            <br/>
+                                                            Ocurrió un error al actualizar el Caso, favor de reportarlo con su Administrador.
+                                                        </div>
+                                                    </aura:set>
+                                                </aura:if>
+
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                                            </div>                                            
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                            {! v.messageErrorMS }
+                                        </div>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                                            
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+
+                        <!-- Paso 4: Medio de Entrega -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 4 }" >
+
+                            <div class="slds-grid">
+                                <div class="slds-size_1-of-2">
+                                    <lightning:select class="slds-p-bottom_large" value="{! v.cardReplacementValue }" name="cardLock" label="Selecciona el medio de entrega" aura:id="cardLock">
+                                        <aura:iteration items="{!v.cardReplacementOptions}" var="item">
+                                            <option text="{!item.label}" value="{!item.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-size_1-of-2"> </div>
+                            </div>
+
+                            <div class="slds-text-body_small slds-text-align_left">
+                                ENTREGA A DOMICILIO 
+                                <br/>
+                                La reposición de su tarjeta le llegara al domicilio que tiene registrado en 10 dias hábiles, en caso 
+                                <br/>
+                                de solicitar un cambio es necesario actualizarlo. 
+                                <br/>
+                                <!--
+                                REPOSICIÓN EN SUCURSAL
+                                <br/>
+                                Para la reposición en módulo es necesario acudir a su sucursal más cercana de lunes a domingo 
+                                <br/>
+                                de &nbsp; 11:00 a.m. &nbsp; a &nbsp; 9:00 p.m. &nbsp; con el número de folio de su reporte y una identificación vigente 
+                                <br/>
+                                (IFE/INE, Pasaporte vigente). -->
+                            </div>
+
+                        </aura:if>
+
+                        <!-- Paso 5: Reposición a Domicilio -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 5 }" >
+
+                            <div class="slds-text-heading_medium slds-text-align_center slds-p-bottom_medium">
+                                No olvides realizar el proceso en SAT correctamente
+                            </div>
+
+                            <div class="slds-grid">
+                                <div class="slds-size_1-of-12"></div>
+                                <div class="slds-size_2-of-12 slds-text-heading_medium slds-align_absolute-center">
+                                    Remisión
+                                </div>
+                                <div class="slds-size_1-of-12"></div>
+                                <div class="slds-size_2-of-12">
+                                    <img src="{!$Resource.TDCVerde}"/>
+                                </div>
+                                <div class="slds-size_2-of-12 slds-align_absolute-center">
+                                    <lightning:icon iconName="utility:forward" />
+                                </div>
+                                <div class="slds-size_2-of-12">
+                                    <img src="{!$Resource.TDCVerde}"/>
+                                </div>
+                                <div class="slds-size_2-of-12"></div>
+                            </div>
+
+                            <div class="slds-grid slds-p-top_small">
+                                <div class="slds-size_1-of-12"></div>
+                                <div class="slds-size_2-of-12 slds-text-heading_medium slds-align_absolute-center">
+                                    Upgrade
+                                </div>
+                                <div class="slds-size_1-of-12"></div>
+                                <div class="slds-size_2-of-12">
+                                    <img src="{!$Resource.TDCDorada}"/>
+                                </div>
+                                <div class="slds-size_2-of-12 slds-align_absolute-center">
+                                    <lightning:icon iconName="utility:forward" />
+                                </div>
+                                <div class="slds-size_2-of-12">
+                                    <img src="{!$Resource.TDCVerde}"/>
+                                </div>
+                                <div class="slds-size_2-of-12"></div>
+                            </div>
+
+                        </aura:if>
+
+                        <!-- Paso 6: Incidencia en la Cuenta  -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 6 }" >
+
+                            <div class="slds-grid">
+                                <div class="slds-size_1-of-2">
+                                    <lightning:select class="slds-p-bottom_large" value="{! v.incidenceValue }" name="incidenceAcc" label="Selecciona" aura:id="incidenceAcc">
+                                        <aura:iteration items="{!v.incidenceOptions}" var="item">
+                                            <option text="{!item.label}" value="{!item.value}" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-size_1-of-2"> </div>
+                            </div>
+
+                        </aura:if>
+
+                        <!-- Paso 7: Validación de Movimientos -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 7 }" >
+
+                            <div class="slds-text-body_regular slds-text-align_center">
+                                Vamos a validar los últimos movimientos en su cuenta, en caso que no reconozca
+                                alguno, será necesario levantar una aclaración por cargos no reconocidos.
+                                <br/><br/>
+                                SI la transacción aún no esta posteada en el sistema, tenemos que esperar un
+                                lapso de 24 a 48 hrs para que se refleje y proceder con la aclaración.
+                                <br/><br/>
+                                <b>¡Ingresa a la sección de movimientos!</b>
+                            </div>
+
+                        </aura:if>
+
+                        <!-- Paso 8: Cierre del Caso -->
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 8 }" >
+
+                            <aura:if isTrue="{! (!v.closingCase) }" >
+                                <aura:if isTrue="{! v.successfulCloseCase }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center slds-p-bottom_large">
+                                        El caso fue concluido satisfactoriamente
+                                    </div>
+                                    <div style="font-weight: bold;" class="slds-text-heading_medium slds-text-color_default slds-text-align_center slds-p-bottom_large">
+                                        <span >{! v.catSubSelected }</span>
+                                        <br/>
+                                        <span >
+                                        Folio:                                    
+                                            <span > 
+                                            {! v.newCaseFolio }
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        La reposición de su tarjeta (tiene un costo de 130 pesos + IVA y 
+                                        <br/>se reflejará en su siguiente estado de cuenta)
+                                        <br/>
+                                        <br/><b>La reposición por vencimiento no tiene costo.</b>
+                                    </div>
+
+                                    <aura:set attribute="else" >
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                            <br/>
+                                            Ocurrió un error al cerrar el Caso, favor de reportarlo con su Administrador.
+                                        </div>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else" >
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                                            
+                                </aura:set>
+                            </aura:if>
+
+                        </aura:if>
+
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+
+                        <aura:if isTrue="{! (v.stepNumberMSCardLock == 1) || (v.stepNumberMSCardLock == 2) }" >
+                            <lightning:button variant="neutral" 
+                                                    label="Cancelar"
+                                                    title="Cancelar"
+                                                    onclick="{! c.closeModalMSCardLock }"
+                                                    disabled="{! (!v.cardlockInfoLoaded) }" />
+                        </aura:if>                       
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 1 }" >
+                            <lightning:button variant="brand" label="Bloquear" onclick="{! c.selectCardLock }" title="Bloquear" disabled="{! or(!v.cardlockInfoLoaded, v.disabledCardLockButton) }" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 2 }" >
+                            <lightning:button variant="brand" label="Confirmar" onclick="{! c.confirmCardLock }" title="Confirmar" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 3 }" >
+
+                            <aura:if isTrue="{! and( and( v.msCardLockSuccess, v.successfulCase), (!v.caseRecordCardLock)) }" >
+
+                                <lightning:button variant="brand" label="Continuar" onclick="{! c.continueCardReplacement }" title="Continuar" disabled="{! (!v.msCardLockLoaded) || (v.creatingCase) }" />
+
+                                <aura:set attribute="else" >
+                                    <lightning:button variant="neutral" label="Cerrar" onclick="{! c.closeModalMSCardLock }" title="Cerrar" disabled="{! (!v.msCardLockLoaded) || (v.creatingCase) }" />
+                                </aura:set>
+                            </aura:if>
+
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 4 }" >
+                            <lightning:button variant="brand" label="Continuar" onclick="{! c.selectCardReplacement }" title="Continuar" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 5 }" >
+                            <lightning:button variant="brand" label="Continuar" onclick="{! c.continueHomeReplacement }"  title="Continuar" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 6 }" >
+                            <lightning:button variant="brand" label="Continuar" onclick="{! c.selectIncidenceOnTheAccount }"  title="Continuar" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 7 }" >
+                            <lightning:button variant="brand" label="Continuar" onclick="{! c.closeCase }" title="Continuar" />
+                        </aura:if>
+
+                        <aura:if isTrue="{! v.stepNumberMSCardLock == 8 }" >
+                            <lightning:button variant="neutral" label="Cerrar" onclick="{! c.closeModalMSCardLock }" title="Cerrar" />
+                        </aura:if>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- Validaciones OTP -->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalCardLock" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+	
+</aura:component>

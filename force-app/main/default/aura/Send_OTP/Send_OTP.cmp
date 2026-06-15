@@ -1,0 +1,47 @@
+<aura:component implements="force:hasRecordId" controller="SendOTPController"> 
+    <aura:attribute name="customer" type="Object" />
+    <aura:attribute name="mode" type="String" default="contact"/>
+    <aura:attribute name="phone" type="String" />
+    <aura:handler name="CustomerDataPhoneE" event="c:CustomerDataPhoneE" action="{! c.handleCustomerDataPhoneE }" />  
+    <aura:attribute name="phoneCustomerData" type="String" />
+    <aura:attribute name="phone4digitos" type="String" />
+    <aura:attribute name="phoneCustomerNotNull" type="Boolean" default="false" />
+    <aura:attribute name="PersonMobilePhone" type="String" default="1"/>
+
+    <aura:attribute name="blnUpdateMobile" type="Boolean" default="false" />
+    <aura:attribute name="mobilePhoneUpdate" type="String" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <!-- Container -->
+    <!--<lightning:recordViewForm recordId="{! v.customer.Id }" objectApiName="Account">-->
+        <div class="slds-box slds-theme_default">
+            <label>Telefono registrado</label>
+            <aura:if isTrue="{! v.blnUpdateMobile }" >
+                <div class="slds-form-element__control">
+                    <lightning:formattedPhone value="{! v.mobilePhoneUpdate }" ></lightning:formattedPhone>
+                </div>
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!v.phoneCustomerNotNull}">
+                        <div class="slds-form-element__control">
+                            <lightning:formattedPhone value="{! v.phone4digitos }" ></lightning:formattedPhone>
+                        </div>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{! v.mode == 'case'}">
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedPhone value="{! v.phone }" ></lightning:formattedPhone>
+                                </div>
+                                <aura:set attribute="else">
+                                    <div class="slds-form-element__control">
+                                        <lightning:formattedPhone value="{! v.PersonMobilePhone }" ></lightning:formattedPhone>
+                                </div>         
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </aura:if>
+        </div>
+    <!--</lightning:recordViewForm>-->
+    <c:MicroServicioCustomerData selectedAccount="{! v.customer }" />
+</aura:component>

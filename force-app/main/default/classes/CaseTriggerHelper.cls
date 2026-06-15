@@ -54,7 +54,13 @@ public class CaseTriggerHelper {
         'Otra incidencias',
         'Agregar 521 en SAT',
         'Error en diferir compras en App',
-        'Eliminar 00 en SAT'
+        'Eliminar 00 en SAT',
+        'Tarjeta Digital - No muestra completo el PAN',
+        'Tarjeta Digital - Error no es posible ver datos TD', 
+        'Tarjeta Digital - Error no es posible cargar tarjeta',
+        'Tarjeta Digital - Error de Seguridad',
+        'Error al tomar Préstamo Personal',
+        'No descarga EECC'
     };
     private static set<String> transactionTypeClose = new set<String>{
         'Cancelación de Prestamo personal',
@@ -216,7 +222,7 @@ public class CaseTriggerHelper {
     public static void loadCaseSetUp() {
         
                 
-        soporteModuloUsuario=[select id from user where alias='epere' limit 1];
+        soporteModuloUsuario=[select id from user where alias='adiaz' limit 1];
 		notificacion=[select id from customNotificationType where developername='Asignacion_de_Caso' limit 1];
 
         if (caseSetUpLoaded == false) {
@@ -686,9 +692,8 @@ public class CaseTriggerHelper {
 
             /// Validacion para NO permitir Saltos de Etapa (Status) por RecordType
             if( !attemptStatusReturn && !c.Status.equals('Cancelado') && !lstCasesMoveStatus.contains(c.Id) 
-                && mapRecordTypeStatus.containsKey( Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName() ) 
-                && String.isNotBlank(mapRecordTypeStatus.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName()).Estados_del_Caso__c) ) {
-                 List<String> lstStatus1  = mapRecordTypeStatus.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName()).Estados_del_Caso__c.split(';');
+                && mapRecordTypeStatus2.containsKey( Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName() )  ) {
+                //  List<String> lstStatus1  = mapRecordTypeStatus2.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName()).Estados_del_Caso__c.split(';');
                 // List<String> lstStatus =Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName() == 'Cargo_no_reconocido' || Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName() ==  'Solicitud_de_Contrato' ?  mapRecordTypeStatus2.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName()) : mapRecordTypeStatus.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName()).Estados_del_Caso__c.split(';');
                     List<String> lstStatus = mapRecordTypeStatus2.get(Schema.SObjectType.Case.getRecordTypeInfosById().get(c.RecordTypeId).getDeveloperName());
                 previousValueFound = false;
@@ -991,8 +996,7 @@ public class CaseTriggerHelper {
                 
             }
 
-        }else if( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Liberaci_n').getRecordTypeId()))
-        {
+        }else if( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Liberaci_n').getRecordTypeId())){
             
             if(!transactionTypeClose.contains(c.Tipo_de_transacci_n__c) &&c.status != oldCase.Status && c.Status == 'Análisis de la aclaración' && oldCase.Status == 'Informar folio y despedida'){
                
@@ -1068,25 +1072,25 @@ public class CaseTriggerHelper {
 
             
             }
-            else if( oldCase.Status.equals('Informar folio y despedida') && c.N_mero_de_cuotas_a_diferir__c != null && 
+            else if( oldCase.Status.equals('Informar folio y despedida') &&  c.Status != oldCase.status && c.N_mero_de_cuotas_a_diferir__c != null && 
                 (c.N_mero_de_cuotas_a_diferir__c == 'CPP 3 MCI' || c.N_mero_de_cuotas_a_diferir__c == 'CPP 6 MCI' || c.N_mero_de_cuotas_a_diferir__c == 'CPP 9 MCI' || 
                 c.N_mero_de_cuotas_a_diferir__c == 'CPP 12 MCI' || c.N_mero_de_cuotas_a_diferir__c == 'CPP buen fin 3 MCI' || c.N_mero_de_cuotas_a_diferir__c == 'CPP buen fin 6 MCI' || 
                 c.N_mero_de_cuotas_a_diferir__c == 'CPP buen fin 9 MCI' || c.N_mero_de_cuotas_a_diferir__c == 'CPP buen fin 12 MCI' || c.N_mero_de_cuotas_a_diferir__c=='3 MSI compra antes del corte' ||  c.N_mero_de_cuotas_a_diferir__c=='3MSI Plan Fazil') ) {
-				c.Tipo_de_caso__c= c.N_mero_de_cuotas_a_diferir__c=='3 MSI compra antes del corte' ||  c.N_mero_de_cuotas_a_diferir__c=='3MSI Plan Fazil' ? 'Servicio':  c.Tipo_de_caso__c;
+				c.Tipo_de_caso__c='Servicio';
                 c.Status = 'Cerrado';
                 lstCasesMoveStatus.add(c.Id);
+            }  else if( oldCase.Status.equals('Informar folio y despedida') && c.status != oldCase.status  && c.N_mero_de_cuotas_a_diferir__c != null){
+                
+				c.Tipo_de_caso__c= c.N_mero_de_cuotas_a_diferir__c == 'Compra a cuotas por Promoción' || c.N_mero_de_cuotas_a_diferir__c == 'Plan Fazil no aplicada' ? 'Reclamos y Quejas' : 'Servicio';
+                c.Status = 'Análisis de la aclaración';
 
-            }
-            
-            
-            
-            
+            }  
+
         } else if (( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Cargo_no_reconocido').getRecordTypeId()) || 
-                    c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Cargo_No_Reconocido_M_dulo').getRecordTypeId()) ) ) {
+            c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Cargo_No_Reconocido_M_dulo').getRecordTypeId()) ) ) {
                       
             if( c.Status != oldCase.status && oldCase.Status == 'Análisis del caso' && latestOwnerCaseByCaseNumberMao.containsKey(c.Id) ){
                 c.ownerId = latestOwnerCaseByCaseNumberMao.get(c.Id);
-
             }
             
             if( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Cargo_no_reconocido').getRecordTypeId()) &&
@@ -1130,7 +1134,6 @@ public class CaseTriggerHelper {
                 }
                 
             }
-            
             // Si el caso se cierra y Clasificaci_n_Cargo_Formula__c es Cargo Desconocido, y si PersonAccount es Soriban 
             // y la tarjeta se entrega a Domicilio, 
             // crear un Case 'Up Grade'
@@ -1289,7 +1292,7 @@ public class CaseTriggerHelper {
                     clonedcase = c.clone(false, true, false, false);                    
                     
                     clonedcase.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Retenci_n_de_Titular').getRecordTypeId();
-                     clonedCase.Status = 'Cerrado';
+                    clonedCase.Status = 'Cerrado';
                     ///
                     // if(/*c.Motivo_de_la_Retenci_n__c.contains('Bono de') || c.Motivo_de_la_Retenci_n__c.equals('Bonificación de anualidad') 
                     //     || c.Motivo_de_la_Retenci_n__c.contains('Dinero Electrónico') || c.Motivo_de_la_Retenci_n__c.contains('Bonificación de comisión por tardío') 
@@ -1321,8 +1324,7 @@ public class CaseTriggerHelper {
                     
                     if (clonedcase != null) {
                         
-                        newCases.add(clonedcase);
-                        
+                        newCases.add(clonedcase);                        
                     }                    
                 }
                 
@@ -1463,9 +1465,7 @@ public class CaseTriggerHelper {
                     newCases.add(clonedcase);
                     
                 }
-                
-                
-                
+                                
                 // #87: Reporte por Robo o Extravío 
                 // Etapa Validación de Movimientos 
                 // si ¿Cliente desconoce transacciones?=Si 
@@ -1530,7 +1530,16 @@ public class CaseTriggerHelper {
             }
             
         } else if ( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Retiro_de_efectivo_en_ATM').getRecordTypeId()) ) { 
-                                                                      
+               if( c.Status != oldCase.status && oldCase.Status == 'Documentación requerida' && c.type != 'Retiro de efectivo en cajas Soriana/City club' ) {
+                c.status = 'Investigación del caso';
+                lstCasesMoveStatus.add(c.Id);
+
+             }      
+               if( c.Status != oldCase.status && oldCase.Status == 'Análisis del caso' && latestOwnerCaseByCaseNumberMao.containsKey(c.Id) && c.type == 'Retiro de efectivo en cajas Soriana/City club' ){
+                c.ownerId = latestOwnerCaseByCaseNumberMao.get(c.Id);
+                // lstCasesMoveStatus.add(c.Id);
+
+            }                                             
             // Retiro de efectivo en ATM 
             // Si el dictamen fue dado en contra 
             // debe de cerrarse el caso directamente sin pasar a Aplicación del pago.
@@ -1540,9 +1549,20 @@ public class CaseTriggerHelper {
                 lstCasesMoveStatus.add(c.Id);
             }
             
+        } else if(c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Desconoce_transacci_n_en_ATM').getRecordTypeId())){
+             if( c.Status != oldCase.status &&  c.Status == 'Análisis del caso' && c.type != 'Retiro de efectivo en cajas Soriana/City club' ) {
+                c.status = 'Dictamen Fraudes';
+                lstCasesMoveStatus.add(c.Id);
+
+             }
+               if( c.Status != oldCase.status && oldCase.Status == 'Análisis del caso' && latestOwnerCaseByCaseNumberMao.containsKey(c.Id) && c.type == 'Retiro de efectivo en cajas Soriana/City club' ){
+                c.ownerId = latestOwnerCaseByCaseNumberMao.get(c.Id);
+                // lstCasesMoveStatus.add(c.Id);
+
+            }     
         } else if ( c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Reversa_de_Comisi_n').getRecordTypeId()) ) {
             
-            if( oldCase.Status == 'Informar folio y despedida' && (c.Tipo_de_comisi_n__c == 'Pago tardío') ) {
+            if( oldCase.Status == 'Informar folio y despedida' && (c.Tipo_de_comisi_n__c == 'Pago tardío / Reclamo' || c.TIpo_de_comisi_n__c == 'Pago tardío / Servicio') ) {
 
                 /// Se valida que al menos exista un Archivo Adjunto
                 if( !mapCaseIdLstAttachments.containsKey(c.Id) || ( mapCaseIdLstAttachments.containsKey(c.Id) && (mapCaseIdLstAttachments.get(c.Id).isEmpty()) ) ) {
@@ -2059,6 +2079,19 @@ public class CaseTriggerHelper {
             if(caseTypes.contains(c.type) && c.Status == 'Cerrado'){
                 c.OwnerId=soporteModuloUsuario.id;
                 CustomNotificationService.sendCustomNotification(new set<String>{soporteModuloUsuario.id}, 'Caso ' + c.Status,  ' El caso ' + c.caseNumber + ' se ha cerrado', notificacion.id, c.id );            
+            }
+        } else if (c.RecordTypeId.equals(Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('Renegociacion').getRecordTypeId())){
+            System.debug('Entra renegociación');
+            if(oldCase.Status == 'Dictamen'){
+                if(c.Dictamen_Cobranza__c == 'En contra'){
+                    c.Status = 'Cerrado';
+                }else if(c.Dictamen_Cobranza__c == 'No procede'){
+                    c.Status = 'Cancelado';
+                }else if(c.Dictamen_Cobranza__c == 'A favor' && c.Type == 'Restitución de línea' || 
+                        c.Dictamen_Cobranza__c == 'A favor' && c.Type == 'Bonificación de la renegociación' ||
+                        c.Dictamen_Cobranza__c == 'A favor' && c.Type == 'No reconoce la renegociación'){
+                    c.Status = 'Cerrado';
+                }
             }
         }
     } 

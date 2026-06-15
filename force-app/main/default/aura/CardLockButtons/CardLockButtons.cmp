@@ -1,0 +1,49 @@
+<aura:component controller="CardLockButtons" implements="flexipage:availableForAllPageTypes,force:hasRecordId" >
+	
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:attribute name="showComponent" type="Boolean" default="false" />
+
+    <aura:attribute name="cardLocked" type="Boolean" default="false" />
+
+    <aura:attribute name="numeroDocumento" type="String" />
+    <aura:attribute name="identificador" type="String" />
+    <aura:attribute name="identificadorProducto" type="String" />
+
+    <aura:attribute name="customMetadataCardLock" type="Object" />
+
+    <aura:attribute name="productsLoaded" type="Boolean" default="true" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    
+    <aura:if isTrue="{! v.showComponent }" >
+
+        <lightning:card class="slds-text-title_regular" title="Bloqueo de Tarjeta" iconName="standard:actions_and_buttons" >
+
+            <div class="slds-p-around_medium slds-text-align_center slds-is-relative">
+
+                <aura:if isTrue="{! v.productsLoaded }" >
+
+                    <lightning:button variant="destructive" 
+                                    label="Bloquear"
+                                    title="Bloquear"
+                                    onclick="{! c.openModalMSCardLock }"/>
+
+
+                    <aura:set attribute="else">
+                        <div class="slds-p-around_xx-large">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div>  
+                    </aura:set>
+                </aura:if>
+
+            </div>
+
+        </lightning:card>
+
+        <!-- Micro Servicio Bloqueo de Tarjeta -->
+        <c:MicroServicioBloqueoDeTarjeta aura:id="idModalMSCardLock" cardLocked="{! v.cardLocked }" />
+
+    </aura:if>
+
+</aura:component>

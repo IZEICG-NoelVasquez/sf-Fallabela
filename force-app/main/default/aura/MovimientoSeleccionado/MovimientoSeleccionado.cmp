@@ -1,0 +1,57 @@
+<aura:component >
+
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="productIdx" type="Integer" />
+
+    <aura:attribute name="movimientosList" type="String" />
+    <aura:attribute name="movimientosListObject" type="Object[]" />
+
+    <aura:attribute name="tarjetaSeleccionada" type="String" />
+    <aura:attribute name="cantidadMovimientos" type="Integer" />
+    <aura:attribute name="montoTotal" type="Integer" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size_8-of-12">
+            <div class="slds-p-top_medium slds-p-left_large slds-p-right_large">
+                <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Movimientos Seleccionados" iconName="standard:record" />
+
+                <div class="slds-grid slds-gutters slds-p-top_medium">
+                    <div class="slds-col slds-size_4-of-12">
+                        <div class="slds-form-element ">
+                            <label class="slds-form-element__label" for="text-input-id-1">Tarjeta</label>
+                            <div class="slds-form-element__control">
+                                <!--input type="text" id="movimientos_1" placeholder="Tarjeta" value="{! v.tarjetaSeleccionada }" class="slds-input" disabled="true" /-->
+                                <ui:outputText value="{! v.tarjetaSeleccionada }" class="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_4-of-12">
+                        <div class="slds-form-element ">
+                            <label class="slds-form-element__label" for="text-input-id-2">Cantidad</label>
+                            <div class="slds-form-element__control">
+                                <!--input type="text" id="movimientos_2" placeholder="Movimientos" value="{! v.cantidadMovimientos }" class="slds-input" disabled="true" /-->
+                                <ui:outputText value="{! v.cantidadMovimientos }" class="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_4-of-12">
+                        <div class="slds-form-element ">
+                            <label class="slds-form-element__label" for="text-input-id-1">Monto</label>
+                            <div class="slds-form-element__control">
+                                <!--input type="text" id="movimientos_3" placeholder="Monto" value="{! v.montoTotal }" class="slds-input" disabled="true" /-->
+                                <ui:outputCurrency value="{! v.montoTotal }" class="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+        </div>
+    </div>
+	
+</aura:component>

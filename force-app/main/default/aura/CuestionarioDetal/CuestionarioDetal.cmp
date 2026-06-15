@@ -1,0 +1,59 @@
+<aura:component controller="CuestionarioApexController" implements="lightning:availableForFlowScreens,flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId" access="global" >
+    <aura:attribute name="newCuestionario" type="Object"/>
+    <aura:attribute name="simpleNewCuestionario" type="Object"/>
+    <aura:attribute name="newCuestinarioError" type="String"/>
+    <aura:attribute name="latitude" type="Double"/>
+    <aura:attribute name="longitude" type="Double"/>
+    <aura:attribute name="sucursales" type="List"/>
+    <aura:attribute name="displayComponent" type="Boolean" default="true"/>
+    <aura:attribute name="FlujoCrear" type="Boolean" default="false"/>
+    <aura:attribute name="ArqueoCrear" type="Boolean" default="false"/>
+    <aura:attribute name="IdCuestionario" type="String"/>
+    <aura:attribute name="recordTypes" type="Map" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <force:recordData aura:id="cuestionarioRecordCreator" 
+                      layoutType="FULL"
+                      targetRecord="{!v.newCuestionario}"
+                      targetFields="{!v.simpleNewCuestionario}"
+                      targetError="{!v.newCuestinarioError}" />         
+    <!-- Display the new cuestionario form -->
+    <aura:if isTrue="{!v.displayComponent}">
+        <div class="Crear Cuestionario">
+            <lightning:card iconName="action:new_contact" title="Crear Cuestionario">
+                <div class="slds-p-horizontal--small">
+                    <lightning:select aura:id="cuestionarioField" label="¿En que sucursal de Falabella te encuentras?" value="{!v.simpleNewCuestionario.Sucursal__c}" required="true">
+                        <option value="">-</option>
+                        <aura:iteration items="{!v.sucursales}" var="suc">
+                            <option value="{!suc}">{!suc}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:select  aura:id="cuestionarioField" label="Tipo de Cuestionario" value="{!v.simpleNewCuestionario.RecordTypeId}" required="true">
+                        <option value="">-</option>
+                        <aura:iteration items="{!v.recordTypes}" var="rec" indexVar="key">
+                            <option value="{!rec.key}">{!rec.value}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    <div style="display:none">
+                        <lightning:input aura:id="cuestionarioField" label="Status" value="{!v.simpleNewCuestionario.Status__c}"/>
+                        <lightning:input aura:id="cuestionarioField" label="Latitude" value="{!v.simpleNewCuestionario.Latitude__c}"/>
+                        <lightning:input aura:id="cuestionarioField" label="Longitude" value="{!v.simpleNewCuestionario.Longitude__c}"/>
+                        <lightning:input aura:id="cuestionarioField" label="Check in" value="{!v.simpleNewCuestionario.Check_in__c}"/>
+                    </div>
+                    <br/>
+                        <lightning:button label="Guardar Cuestionario" variant="brand" onclick="{!c.handleSaveCuestionario}"/>
+                </div>
+            </lightning:card>
+        </div>
+    </aura:if>
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="{!not(empty(v.newCuestinarioError))}">
+        <div class="recordError">
+            {!v.newCuestinarioError}</div>
+    </aura:if>
+    <aura:if isTrue="{!v.FlujoCrear}">
+        <c:CuestionarioFlujoCrear recordId="{!v.IdCuestionario}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="1"/>
+    </aura:if>
+    <aura:if isTrue="{!v.ArqueoCrear}">
+        <c:CuestionarioArqueoCrear recordId="{!v.IdCuestionario}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="1"/>
+    </aura:if>
+</aura:component>

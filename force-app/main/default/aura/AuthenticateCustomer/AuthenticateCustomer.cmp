@@ -1,0 +1,57 @@
+<aura:component controller="AuthenticateCustomerController" implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,force:appHostable,force:hasRecordId,lightning:actionOverride" access="GLOBAL">
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="step" type="Integer" default="0" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="showPanel" type="Boolean" default="true" />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="numeroDeTarjetaValueProducto" type="String" />
+	<aura:attribute name="isMovimiento" type="Boolean" default="false" />
+    <aura:attribute name="movimientosList" type="String" />
+	<aura:attribute name="authCurp" type="String" />
+    
+    <aura:handler name="stepChange" event="c:stepChange" action="{! c.handleStepChange }" />
+    <aura:handler name="lookupSelected" event="c:LookupSelected" action="{!c.handleSelectedEvent}"/>
+    <!--aura:handler event="c:AuthByCurpState" action="{! c.handleAuthByCurpStateAppEvent}" /-->
+    <!--aura:handler name="change" value="{!v.pageReference}" action="{!c.actualizar}"/-->
+    
+    <aura:registerEvent name="LookupSelected" type="c:LookupSelected"/>
+	
+    <!-- Llamado al Autenticador desde un registro de Caso  -->
+    <aura:attribute name="idAcc" type="String" />
+    <aura:attribute name="fechaNac" type="String" />
+    
+    <c:StreamingHandler/>
+    <!-- Container -->
+    <div class="slds-p-around_small" style="{! if(v.showPanel, 'width: 90%;','')}" >
+        
+		<aura:if isTrue="{! v.step == 1 }">            
+			<c:AuthenticateInitial aura:id="authInitial" />
+		</aura:if>
+ 
+		<aura:if isTrue="{! and(if(v.step == 2 || v.step == 3, true, false), v.showPanel )}">
+			<c:AuthenticateProductos esClienteAnonimo="{! v.esClienteAnonimo }" clienteAnonimo="{! v.clienteAnonimo }" selectedAccount="{!v.selectedAccount}" recordId="{! v.recordId }"/>
+		</aura:if>
+
+		<aura:if isTrue="{! v.step == 3 }">
+            
+			<c:AuthenticateSuccess selectedAccount="{!v.selectedAccount}" showPanel="{! v.showPanel }" isCommunity="{! v.isCommunity }"
+                                    esClienteAnonimo="{! v.esClienteAnonimo }" clienteAnonimo="{! v.clienteAnonimo }"
+                                   recordId="{! v.recordId }" numeroDeTarjetaValueProducto="{!v.numeroDeTarjetaValueProducto}" isMovimiento="{!v.isMovimiento}" movimientosList="{!v.movimientosList}"/>
+            
+		</aura:if>
+
+		<aura:if isTrue="{! v.step == 4 }">
+			<c:AuthenticateFail />
+		</aura:if>
+
+		<aura:if isTrue="{! v.step == 5 }">
+			<c:AuthenticateCustomerPathFields />
+		</aura:if> 
+
+	</div>    
+</aura:component>

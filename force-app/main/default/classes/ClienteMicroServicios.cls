@@ -229,7 +229,7 @@ public class ClienteMicroServicios {
     }
 
     public void logError (String apexClass, String message) {
-        System.debug('error message'+message);
+
         Error_Log__c el = new Error_Log__c(ApexClass__c = apexClass, Message__c = message);
         insert el;
     }

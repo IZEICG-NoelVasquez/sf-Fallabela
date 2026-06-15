@@ -1,0 +1,393 @@
+<aura:component controller="AuthenticateCustomerController">
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <!--aura:attribute name="campaigns" type="List" /-->
+    <aura:attribute name="columns" type="List" default="[]"/>
+    <aura:attribute name="showPanel" type="Boolean" default="true" />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="mainFields" type="List" />
+    <aura:attribute name="saldos" type="Object[]"  /> 
+    <aura:attribute name="loadedProductos" type="Boolean" default="true" />
+    <aura:attribute name="loadedCustomerData" type="Boolean" default="true" />
+    <aura:attribute name="tarjetaSelected" type="String" />
+
+    <aura:attribute name="productIdx" type="Integer" description="Product selected for Movimiento una vez que Movimientos sin fecha corte haya sido cargado"/>
+    
+    <!-- modal --> 
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="loadedMovSinFechaCorte" type="Boolean" default="true" />
+    <aura:attribute name="loadedMovConFechaCorte" type="Boolean" default="false" />
+    
+    <!-- pagination Movimientos Sin Corte -->
+    <aura:attribute name="movimientosSinFechaCorte" type="Object[]" default="[]" />
+    <aura:attribute name="movimientosSinFechaCorteBackUp" type="Object[]" default="[]" />
+    <aura:attribute name="PaginationList" type="list"/>
+
+    <!-- Paginacion ** v2 ** Movimientos Sin Corte -->
+    <aura:attribute name="idUltimoRegistroMovSinFecha" type="String" />
+    
+    <!-- pagination Movimientos Con Corte -->
+    <aura:attribute name="movimientosConFechaCorte" type="Object[]"  />
+    <aura:attribute name="movimientosConFechaCorteBackUp" type="Object[]"  />
+    <aura:attribute name="PaginationListMovConFechaCorte" type="list"/>
+
+    <!-- movimiento seleccinado para detalles -->
+    <aura:attribute name="tarjetaCredito" type="Object" />
+    
+    <!-- Fechas Corte -->
+    <aura:attribute name="fechasCorteOptions" type="List" />
+    <aura:attribute name="fechasCorteOptionsEdoCta" type="List" />
+    <aura:attribute name="fechaCorteValue" type="String" />
+    <aura:attribute name="movimientoIdx" type="Integer" description="Product selected for Movimiento"/>
+
+    <!-- Estado de Cuenta -->
+    <aura:attribute name="isOpenEdoCta" type="Boolean" default="false" />
+    <aura:attribute name="loadedPDFEdoCta" type="Boolean" default="true" />
+
+    <!-- Creacion de Caso Actualizacion de Medio de Envio -->
+    <aura:attribute name="caseRTypes" type="Map" />    
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+
+    <!-- Curp Update-->
+    <aura:attribute name="curp" type="String" />
+    <aura:attribute name="openCurpUpdate" type="Boolean" default="false" />
+    <aura:attribute name="noPasoCurpUpdate" type="Integer" default="0" />
+    <aura:attribute name="strCurpUpdate" type="String" />
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <!--aura:handler name="OTPState" event="c:OTPState" action="{! c.handleOTPState }" /-->
+
+    <!-- Crear Caso Saldos -->
+    <aura:attribute name="openModalCasoSaldos" type="Boolean" default="false" />
+    <aura:registerEvent name="stepChange" type="c:stepChange" />
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    <aura:handler name="CustomerDataPhoneE" event="c:CustomerDataPhoneE" action="{! c.handleCustomerDataPhoneE }" />
+    <aura:attribute name="ultimos4digitos" type="String" />
+    <aura:attribute name="phoneCustomerData" type="String" />
+
+    <aura:attribute name="tieneNumeroSat" type="Boolean" default="false"/>
+
+    <!-- Tipo de Consulta -->
+    <aura:attribute name="valuesSelected" type="String" />
+
+    <!-- SEPARACION DE COMPONENTES -->
+    <aura:attribute name="cargarFechasDeCorte" type="Boolean" default="false" />
+    <aura:attribute name="fechaAsignada" type="Boolean" />
+    <aura:attribute name="movimientoIdxMovSinFecha" type="Integer" />
+
+    <!-- Consulta de Cupo -->
+    <aura:attribute name="productoSeleccionado" type="Integer" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" default="{}"/>
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" default="false" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" default="false" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:attribute name="blnBalancesCase" type="Boolean" default="false" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    <!-- Catalogo Tipo de Producto -->
+    <aura:attribute name="mapTypeProduct" type="Map" default="{}" />
+
+
+    <aura:attribute name="loadedGetUser" type="Boolean" default="true" />
+
+    <aura:handler name="change" value="{!v.fechaAsignada}" action="{!c.changeFechaCorte}"/>
+    
+    <div>  
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_4-of-12"> 
+                HOLA
+                <div class="slds-grid">
+                    <div class="slds-size_1-of-24">
+                        <c:MicroServicioActualizacionNombre selectedAccount="{! v.selectedAccount }" loadedProductos="{! v.loadedProductos }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }"
+                                                mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+                    </div>
+                    <div class="slds-size_23-of-24">
+                        <div class="slds-p-bottom_small" style="width:250px;" onmouseover="{!c.display}" onmouseout="{!c.displayOut}">
+                            <a onclick="{!c.navigateToPersonAccount}" class="slds-text-heading_small slds-truncate" aria-describedby="panel" title="Help">
+                                {! v.selectedAccount.Name }   
+                            </a> 
+                            <aura:if isTrue="{! v.selectedAccount.VIP__c }">
+                                <span class="slds-text-heading_small" style="color: green; font-weight: bold;">  VIP </span><lightning:icon iconName="utility:check" size="small" />	
+                            </aura:if>
+                            <aura:if isTrue="{! v.selectedAccount.Flex__c }">
+                                <span class="slds-text-heading_small" style="color: red; font-weight: bold;">  MORA GRAVE </span><lightning:icon iconName="utility:preview" size="small" />	
+                            </aura:if>    
+                            <aura:if isTrue="{! v.showPanel }">
+                                <div class="slds-popover slds-popover_panel slds-nubbin_left-top slds-fall-into-ground" role="tooltip" aura:id="tooltip" id="panel" style="position: absolute; width: 500px; top: 20px;">  
+                                    <div >         
+                                        <c:PanelComponent iconName="standard:person_account" 
+                                                        recordId="{! v.selectedAccount.Id }"
+                                                        title="{! v.selectedAccount.Name }"
+                                                        mainFields="{! v.mainFields }"
+                                                        relatedTitle="Caso"
+                                                        relatedTitlePlural="Casos"
+                                                        relatedObjects="{! v.selectedAccount.Cases }"
+                                                        relatedIconName="standard:case"
+                                                        />
+                                    </div>  
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-text-body_regular">
+                    <aura:text value="01. A: Gracias por la información, ¿En qué le puedo ayudar?" />
+                </div>     
+                <div class="slds-text-body_regular slds-p-bottom_small">
+                    <aura:text value="C: Cliente describe su problema." />
+                </div>
+            </div>
+            <div class="slds-col slds-size_5-of-12">
+                <aura:if isTrue="{! and( (!v.loadedProductos), (!v.loadedGetUser) ) }" >
+                    <c:MicroServicioSaldoEnPuntos selectedAccount="{! v.selectedAccount }" />
+                </aura:if>
+                
+            </div>
+            <div class="slds-col slds-size_3-of-12">
+                <aura:if isTrue="{! (!v.loadedProductos) }" >
+                    <c:MicroServicioCustomerData selectedAccount="{! v.selectedAccount }" />
+                    <aura:if isTrue="{! or((!v.loadedCustomerData),(!v.tieneNumeroSat)) }" >
+                        <c:MicroServicioGetUser selectedAccount="{! v.selectedAccount }" loadedGetUser="{! v.loadedGetUser }" />
+
+                    </aura:if>
+                </aura:if>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_9-of-12">
+
+                <c:MicroServicioActualizacionDomicilio selectedAccount="{! v.selectedAccount }" loadedProductos="{! v.loadedProductos }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }" 
+                                                mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+
+                <div aura:id="contacto" class="slds-section slds-is-open">
+                    <h3 class="slds-section__title">
+                        <lightning:button onclick="{! c.toggleContacto }" class="slds-button slds-section__title-action" iconName="utility:chevrondown" >    
+                            <span class="slds-truncate" style="font-size:12px;" title="Información de Contacto">Información de Contacto</span>
+                        </lightning:button>
+                        
+                    </h3>
+                    <lightning:layout >
+
+                        <lightning:layoutItem class="slds-size_4-of-12" >
+
+                            <c:MicroServicioActualizarCurp loadedProductos="{!v.loadedProductos}" recordId="{! v.recordId }" selectedAccount="{! v.selectedAccount }" caseRTypes="{! v.caseRTypes }" altoRiesgo="{! v.altoRiesgo }"
+                                    openCurpUpdate="{! v.openCurpUpdate }" noPasoCurpUpdate="{! v.noPasoCurpUpdate }" strCurpUpdate="{! v.curp }" 
+                                    mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+
+                        </lightning:layoutItem>
+                        
+                        <lightning:layoutItem class="slds-size_4-of-12" >
+                            
+                            <c:MicroServicioActualizacionCelular numeroDeTarjetaValueProducto="{!v.tarjetaSelected}" selectedAccount="{! v.selectedAccount }" loadedProductos="{! v.loadedProductos }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }" 
+                                                        ultimos4digitos="{! v.ultimos4digitos }" tieneNumeroSat="{! v.tieneNumeroSat }" phoneCustomerData="{! v.phoneCustomerData }" 
+                                                        mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+
+                        </lightning:layoutItem>
+
+                        <lightning:layoutItem class="slds-size_4-of-12" >
+
+                            <c:MicroServicioActualizacionCorreo selectedAccount="{! v.selectedAccount }" loadedProductos="{! v.loadedProductos }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }" 
+                                                        mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+
+                        </lightning:layoutItem>
+
+                    </lightning:layout>
+
+                    <lightning:layout >
+                        <lightning:layoutItem class="slds-size_12-of-12" >
+                            <c:CamposRegulatorios selectedAccount="{! v.selectedAccount }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }" loadedProductos="{! v.loadedProductos }"
+                                                mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                    
+                </div>      
+            </div>
+            <div class="slds-col slds-size_3-of-12">
+                <c:MicroServicioGuiaDHL selectedAccount="{! v.selectedAccount }" CURP="{! v.curp }" altoRiesgo="{! v.altoRiesgo }" caseRTypes="{! v.caseRTypes }"/> 
+                <c:getCampainStatusCmp accountId="{! v.selectedAccount }" />
+                <c:AuthenticateCampanias selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" productoSeleccionado="{! v.productoSeleccionado }" 
+                                    caseRTypes="{! v.caseRTypes }" isCommunity="{! v.isCommunity }" esClienteAnonimo="{! v.esClienteAnonimo }"
+                                    mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+                <!--Agregar campos condición económica y saldo de garantía-->
+                <lightning:card class="slds-m-bottom_medium" title="Condición económica">
+                    <div class="slds-p-left_medium">
+                        <p>
+                            {!v.selectedAccount.Condici_n_econ_mica__c}
+                        </p>
+                    </div>
+                </lightning:card>
+
+                <aura:if isTrue="{! !empty(v.selectedAccount.Saldo_Garantia__c) }">
+                    <lightning:card class="slds-m-bottom_medium" title="Saldo de garantía">
+                        <div class="slds-p-left_medium">
+                            <lightning:formattedNumber value="{!v.selectedAccount.Saldo_Garantia__c}" style="currency" currencyCode="MXN"/>
+                        </div>
+                    </lightning:card>
+                </aura:if>                
+            </div>          
+        </div>
+        
+        <lightning:layout >
+            <lightning:layoutItem size="12" flexibility="auto">
+                
+                <div class="slds-grid slds-gutters slds-is-relative">
+                    <div class="slds-col" style="width:500 px;">
+                        
+                        <table class="slds-table slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Tarjeta de Credito</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Limite de Credito</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Saldo Actual</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Credito Disponible</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Titular</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Tipo de Producto</div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1">Estatus</div>
+                                    </th>                                    
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1"></div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1"></div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1"></div>
+                                    </th>
+                                    <th>
+                                        <div class="slds-truncate" title="Column 1"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody aura:id="camposProductos">
+                                <aura:if isTrue="{! !empty(v.productos) }">
+                                    <aura:iteration items="{! v.productos }" var="item" indexVar="indexVar">
+                                        
+                                        <tr aura:id="{! item.cuentaTarjetaCredito.identificador }" id="{! item.tarjetaCredito.identificadorProducto }" onclick="{!c.seleccionarProducto}" data-index="{!indexVar}" data-rowId="{! item.cuentaTarjetaCredito.identificador }" class="slds-hint-parent data-row" name="{!indexVar}">
+                                            
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default">{! item.tarjetaCredito.identificadorProducto }</div>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <ui:outputCurrency value="{!item.cupoNacional.cupoTotal}" class="slds-text-title slds-text-color_default"/>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <ui:outputCurrency value="{! item.cupoNacional.cupoUtilizado }" class="slds-text-title slds-text-color_default"/>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <ui:outputCurrency value="{! item.cupoNacional.cupoDisponible }" class="slds-text-title slds-text-color_default"/>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default">{! item.plastico.titularidad }</div>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default">{! item.glosaCodigoSubProducto }</div>
+                                            </td>
+                                            <td class="slds-cell-wrap" scope="col">
+                                                <div class="slds-text-title slds-text-color_default">{! item.situacion.glosa }</div>
+                                            </td>                                            
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <button id="{! indexVar }" type="button" class="custom-button slds-custom-destructive" onclick="{! c.handleModalBloqueoDeTarjeta }">Bloqueos</button>
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <button id="{! indexVar }" type="button" class="custom-button slds-custom-brand" onclick="{! c.handleSelecionarMovimiento }">Movimientos</button>
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <button id="{! indexVar }" type="button" class="custom-button slds-custom-brand" onclick="{! c.handleModalEstadoDeCuenta }">Edo de Cta</button>
+                                            </td>
+                                            <td class="slds-cell-nowrap" scope="col">
+                                                <button id="{! item.tarjetaCredito.identificadorProducto }" type="button" class="custom-button slds-custom-brand" onclick="{! c.handleSelecionarReclamo }">Reclamos</button>
+                                            </td>
+                                            
+                                        </tr>
+                                        
+                                        
+                                    </aura:iteration>
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! v.loadedProductos }">
+                                            <div class="slds-m-vertical_large slds-p-around_medium">
+                                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                                            </div>
+                                        </aura:if>                               
+                                    </aura:set> 
+                                </aura:if>  
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+        <!-- MODAL Movimientos -->
+        <aura:if isTrue="{!v.isOpen}">
+            <c:MicroServicioMovimientos isOpen="{! v.isOpen }" selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" saldos="{! v.saldos }" 
+                                productIdx="{! v.productIdx }" movimientoIdx="{! v.movimientoIdx }" fechasCorteOptions="{! v.fechasCorteOptions }" fechaCorteValue="{! v.fechaCorteValue }"
+                                cargarFechasDeCorte="{! v.cargarFechasDeCorte }" movimientoIdxMovSinFecha="{! v.movimientoIdxMovSinFecha }" fechasCorteOptionsEdoCta="{! v.fechasCorteOptionsEdoCta }"
+                                loadedMovSinFechaCorte="{! v.loadedMovSinFechaCorte }" loadedMovConFechaCorte="{! v.loadedMovConFechaCorte }"
+                                movimientosSinFechaCorte="{! v.movimientosSinFechaCorte }" movimientosSinFechaCorteBackUp="{! v.movimientosSinFechaCorteBackUp }" idUltimoRegistroMovSinFecha="{! v.idUltimoRegistroMovSinFecha }"
+                                movimientosConFechaCorte="{! v.movimientosConFechaCorte }" movimientosConFechaCorteBackUp="{! v.movimientosConFechaCorteBackUp }"
+                                PaginationList="{! v.PaginationList }" PaginationListMovConFechaCorte="{! v.PaginationListMovConFechaCorte }"
+                                esClienteAnonimo="{! v.esClienteAnonimo }" clienteAnonimo="{! v.clienteAnonimo }" openModalCasoSaldos="{! v.openModalCasoSaldos }" valuesSelected="{! v.valuesSelected }" 
+                                blnOpenModalContactMethod="{! v.blnOpenModalContactMethod }" blnBalancesCase="{! v.blnBalancesCase }" />
+        </aura:if>
+
+        <!-- MODAL Estado de Cuenta -->
+        <aura:if isTrue="{!v.isOpenEdoCta}">            
+            <c:MicroServicioEstadoCuenta selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" productIdx="{! v.productIdx }" saldos="{! v.saldos }"
+                            fechasCorteOptions="{! v.fechasCorteOptions }" fechaCorteValue="{! v.fechaCorteValue }" movimientoIdx="{! v.movimientoIdx }"
+                            isOpenEdoCta="{! v.isOpenEdoCta }" loadedPDFEdoCta="{! v.loadedPDFEdoCta }" fechasCorteOptionsEdoCta="{! v.fechasCorteOptionsEdoCta }"
+                            altoRiesgo="{! v.altoRiesgo }" isCommunity="{! v.isCommunity }" esClienteAnonimo="{! v.esClienteAnonimo }" 
+                            cargarFechasDeCorte="{! v.cargarFechasDeCorte }" caseRTypes="{! v.caseRTypes }"
+                            mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+        </aura:if>        
+
+        <!-- MODAL Crear Caso Saldos -->
+        <aura:if isTrue="{!v.openModalCasoSaldos}">
+            <c:MicroServicioCrearCasoSaldos selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" movimientoIdx="{! v.movimientoIdx }"
+                            caseRTypes="{! v.caseRTypes }" altoRiesgo="{! v.altoRiesgo }" openModalCasoSaldos="{! v.openModalCasoSaldos }" valuesSelected="{! v.valuesSelected }" 
+                            contactMethodValue="{! v.contactMethodValue }" />
+        </aura:if>
+
+        <!-- OTP Crear Caso Actualizacion de CURP -->
+        <aura:if isTrue="{! v.enableOTPModal }" >
+            <c:OTPGenerator aura:id="otp-modal" customer="{!v.selectedAccount}" recordId="{! v.recordId }" />
+        </aura:if>
+
+        <!-- Componente Modal Metodo de Contacto -->
+        <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+            <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" blnBalancesCase="{! v.blnBalancesCase }" />
+        </aura:if>
+
+        <!-- Componente Modal MS Bloqueo de Tarjeta -->
+            <c:MicroServicioBloqueoDeTarjeta aura:id="modalMSCardLock"  selectedAccount="{! v.selectedAccount }"   caseRTypes="{! v.caseRTypes }" altoRiesgo="{! v.altoRiesgo }" 
+                                        mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" />
+
+    </div>
+    
+</aura:component>

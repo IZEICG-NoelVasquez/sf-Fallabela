@@ -1,0 +1,155 @@
+<aura:component controller="AuthenticateCustomerController" >
+	
+    <aura:registerEvent name="stepChange" type="c:stepChange" />
+
+	<aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+	<aura:handler name="lookupSelected" event="c:LookupSelected" action="{!c.handleSelectedEvent}"/>
+    <aura:handler name="selectedLookupRemoved" event="c:selectedLookupRemoved" action="{!c.handleRemovedEvent}"/>
+	
+	<aura:method name="selectRecord" action="{!c.selectRecord}" > 
+        <aura:attribute name="nombre" type="String" /> 
+        <aura:attribute name="cuenta" type="Object" /> 
+    </aura:method>
+    
+    <aura:attribute name="result" type="String"/>
+    <aura:attribute name="uniqueId" type="String"/>
+    <aura:attribute name="num" type="Integer"/>
+    <aura:attribute name="lookupId" type="Id"/>
+    <aura:attribute name="lookupobj" type="Object"/>
+	<aura:attribute name="agent" type="Object" />
+    <aura:attribute name="authWithoutPhone" type="Boolean" default="false" />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="fechaDeNacimiento" type="String" />
+
+	<!-- Header -->
+	<div class="slds-text-heading_medium slds-p-bottom_small">
+
+		<b><aura:text value="SALUDO Y AUTENTICACI&Oacute;N" /></b>
+
+	</div>
+
+	<div class="slds-text-body_regular">
+
+		<aura:text value="01. A: Gracias por comunicarse a Falabella Soriana, mi nombre es " />
+		
+		<b><aura:text value="{! v.agent.Name }" /></b>
+		
+		<aura:text value=" ¿con qui&eacute;n tengo el gusto?" />
+
+	</div>
+
+	<div class="slds-text-body_regular slds-p-bottom_small">
+
+		<aura:text value="C: Cliente responde con su nombre." />
+
+	</div>
+
+	<div class="slds-text-body_regular">
+
+		<aura:text value="02. A: Buenos días/tardes/noches Sr. / Srita. Nombre del cliente, ¿cómo está usted?" />
+
+	</div>
+
+	<div class="slds-text-body_regular slds-p-bottom_small">
+
+		<aura:text value="C: Cliente responde." />
+
+	</div>
+
+	<div class="slds-text-body_regular slds-p-bottom_small">
+
+		<aura:text value="03. A: Para proteger la privacidad y seguridad de su cuenta, ¿Me puede proporcionar... " />
+
+	</div>
+
+    <aura:if isTrue="{! !v.esClienteAnonimo  }">
+        <lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                
+                <!--<lightning:input aura:id="fecha_nacimiento" type="date" label="Fecha de Nacimiento" value="{!v.fechaDeNacimiento}" name="date" required="true" messageWhenValueMissing="Este campo es requerido"/> -->
+                <ui:inputDate aura:id="fecha_nacimiento" label="Fecha de Nacimiento" value="{!v.fechaDeNacimiento}" displayDatePicker="true" format="dd/MM/YYYY" required="true"/>
+                
+            </lightning:layoutItem>
+        </lightning:layout> 
+    </aura:if>
+
+	<lightning:layout >
+        <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+            
+            <c:LookupComponent aura:id="lookupcomponent" objectName="Account"
+                        fieldSet="['ID_PersonAccount__c', 'Tipo_Direcci_n__c', 'Poblaci_n__c', 'Tipo_de_v_a__c', 'Regi_n__c', 'Resto_Direcci_n__c', 'Delegaci_n__c', 'Nombre_v_a__c', 'Colonia__c', 'N_mero_de_v_a__c', 'C_digo_Postal__c', 'ltimos_4_d_gitos_de_Celular__pc', 'PT__pc', 'Campa_a_Actualizaci_n_SORIBAN__c', 'Cliente_Anonimo__c', 'Autenticar_Sin_Celular__c', 'Name','Id', 'Oficina__c', 'N_m_contrato__c', 'CURP__c', 'ID_Cliente__c', 'PersonMailingAddress', 'PersonEmail', 'PersonContactId', 'PersonMobilePhone', 'Ultimos_4_d_gitos_de_Mobile__c', '(select Subject, Status from cases limit 10)', '(select N_mero_de_tarjeta__c from Tarjetas__r)', 'VIP__c', 'Empleado__c','N_mero_de_Contrato_texto__c','BIN__c', 'Subgrupo__pc','Flex__c','Condici_n_econ_mica__c','Saldo_Garantia__c']"
+                        whereCondition="{! 'AND ParentId = null' + if(not(empty(v.fechaDeNacimiento)),' AND Fecha_de_nacimiento1__c=' + v.fechaDeNacimiento + '', ' AND Fecha_de_nacimiento1__c=null') }"
+                        limit="5"
+                        comparisonField="['Name','ltimos_4_d_gitos_tarjeta__c']" 
+                        primaryDisplayField="Name"
+                        alternateDisplayField="Ultimos_4_d_gitos_de_Mobile__c"
+                        minimumCharacter="3"
+                        lightningIconName="standard:person_account"
+                        uniqueLookupIdentifier="testAccount"
+                        lookupId="{!v.lookupId}"
+                        value="{!v.lookupobj}"
+                        readOnly="{! if(empty(v.fechaDeNacimiento), true, false) }"
+                        required="true"
+                        requiredErrorMessage="Este campo es requerido"
+                        fieldLabel="Nombre completo como aparece en su TDC o los últimos 4 dígitos de su Tarjeta"
+                        lookupInputFocused="true"
+                        /> 
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+    <aura:if isTrue="{! v.esClienteAnonimo }">
+        
+		<div class="slds-text-heading_medium slds-p-bottom_small">
+
+            <b><aura:text value="INFORMACI&Oacute;N DE CLIENTE AN&Oacute;NIMO" /></b>
+    
+        </div>
+		<lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <lightning:input aura:id="nombresAnonimo" type="text" label="Nombre(s)" name="nombresAnonimo" value="" required="true" messageWhenValueMissing="Este campo es requerido"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+		<lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <lightning:input aura:id="apellidosAnonimo" type="text" label="Apellido(s)" name="apellidosAnonimo" value="" required="true" messageWhenValueMissing="Este campo es requerido"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+		<lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <ui:inputDate aura:id="fdnAnonimo" label="Fecha de Nacimiento" value="" displayDatePicker="true" format="dd/MM/YYYY" required="false"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+		<lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <lightning:input aura:id="celularAnonimo" type="tel" label="Celular" name="celularAnonimo" value="" required="true" messageWhenValueMissing="Este campo es requerido"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+		<lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <lightning:input aura:id="oficinaAnonimo" type="text" label="Oficina" name="oficinaAnonimo" value="" required="false" messageWhenValueMissing="Este campo es requerido"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        
+        <lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                <lightning:input aura:id="contratoAnonimo" type="text" label="Contrato" name="oficinaAnonimo" value="" required="false" messageWhenValueMissing="Este campo es requerido"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </aura:if>
+
+    <lightning:layout >
+        <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+    		
+    		<lightning:button label="Autenticar" variant="brand" onclick="{! c.doAuth }"/>
+
+    	</lightning:layoutItem>
+    </lightning:layout>	
+
+	
+
+</aura:component>

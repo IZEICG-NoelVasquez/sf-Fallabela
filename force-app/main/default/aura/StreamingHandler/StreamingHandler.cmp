@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" >
+
+	<lightning:workspaceAPI aura:id="workspace" />
+    <lightning:utilityBarAPI aura:id="utilitybar" />
+    
+    <aura:registerEvent name="OTPState" type="c:OTPState" />
+    <aura:registerEvent name="AuthByCurpState" type="c:AuthByCurpState" />
+    
+	<aura:attribute name="payload" type="Object"/>
+	<aura:attribute name="recordId" type="String"/>
+	<c:streaming channel="/event/MyEvent__e" onMessage="{!c.handleMessage}"/>
+
+</aura:component>

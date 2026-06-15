@@ -25,7 +25,6 @@ global with sharing class MicroServicioSendNotification {
                 else{mensaje = mensaje.right(159);
                 }
             }  
-            system.debug('casos[i]'+casos[i]);
             MicroServicioSendNotification.send_notification_future(casos[i].tipo,casos[i].inicio,mensaje,casos[i].numeroTelefono,casos[i].codigoArea,casos[i].curp);
         }
     }

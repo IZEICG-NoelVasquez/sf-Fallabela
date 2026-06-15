@@ -1,0 +1,244 @@
+<aura:component controller="MicroServicioActualizacionMedioEnvio">
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="movimientoIdx" type="Integer" />
+
+    <!-- Medio de Envio -->
+    <aura:attribute name="openMedioDeEnvio" type="Boolean" />
+    <aura:attribute name="noPasoMedioEnvio" type="Integer" />
+    <aura:attribute name="blnEmail" type="Boolean"  />
+    <aura:attribute name="blnEmail_TMP" type="Boolean"  />
+    <aura:attribute name="medioEnvioSelected" type="Boolean" />
+    <aura:attribute name="email_Text" type="String" />
+    <aura:attribute name="papel_Text" type="String" />
+
+    <aura:attribute name="whatToUse" type="String"/>
+
+    <aura:attribute name="loadingMedioDeEnvio" type="Boolean" />
+    <aura:attribute name="medioEnvioActualizado" type="Boolean" default="false"/>
+
+    <!-- Creacion de Caso Actualizacion de Medio de Envio -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseMedioEnvio" type="String" />
+
+    <!-- Consultar Medio de Envio -->
+    <aura:attribute name="testClass" type="String" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="contactMethodValue" type="String" />
+
+
+    <!-- MODAL Medio de Envio -->
+    <div class="slds-m-around_xx-large">
+        <!--###### MODAL BOX Start######--> 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalMedioDeEnvio }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"
+                                            disabled="{! v.loadingMedioDeEnvio || v.creatingCase }" />
+
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización Medio de Envío" iconName="standard:email" />
+                </header>
+                <!--###### MODAL BOX BODY Part1 Start######-->
+                <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+
+                    <!-- Paso 1: Editar Medio de Envio -->
+                    <aura:if isTrue="{! v.noPasoMedioEnvio == 1 }" >
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_3-of-12" scope="col">
+                                        <div class="slds-text-title slds-text-color_default">Email</div>
+                                    </th>
+                                    <th class="slds-size_3-of-12" scope="col">
+                                        <div class="slds-text-title slds-text-color_default">Domicilio</div>
+                                    </th>
+                                    <th class="slds-size_6-of-12" scope="col">
+                                        <div class="slds-text-title slds-text-color_default">
+                                            <aura:if isTrue="{! v.medioEnvioSelected }" >
+                                                <aura:if isTrue="{! v.blnEmail_TMP }" >
+                                                    Email
+                                                    <aura:set attribute="else">
+                                                            Dirección
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:if>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <td class="slds-cell-nowrap" scope="col">
+                                        <input type="radio" id="remail" name="locations" checked="{! v.blnEmail_TMP }" value="email" onchange="{!c.onWhatToUse}" />
+                                    </td>
+                                    <td class="slds-cell-nowrap" scope="col">
+                                        <input type="radio" id="rpapel" name="locations" checked="{! !(v.blnEmail_TMP) }" value="papel" onchange="{!c.onWhatToUse}"/>
+                                    </td>
+                                    <td class="slds-cell-nowrap" scope="col">
+                                        <div class="slds-text-title slds-text-color_default">
+                                            <aura:if isTrue="{! v.medioEnvioSelected }" >
+                                                <aura:if isTrue="{! v.blnEmail_TMP }" >
+                                                    {! v.email_Text }
+                                                </aura:if>
+                                                <aura:if isTrue="{! !(v.blnEmail_TMP) }" >
+                                                    {! v.papel_Text }
+                                                </aura:if>
+                                                <aura:set attribute="else" >
+                                                    (Seleccionar una opción)
+                                                </aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        
+                        <div class="slds-text-align_right slds-p-top_large slds-p-right_large">
+                            <lightning:button variant="brand" label="Actualizar" title="Actualizar" disabled="{! (!v.medioEnvioSelected) }" onclick="{! c.confirmarMedioDeEnvio }"/>
+                        </div>
+                    </aura:if>
+
+                    <!-- Paso 2: Mensaje de Confirmacion -->
+                    <aura:if isTrue="{! v.noPasoMedioEnvio == 2 }" >
+                        <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                            <div class="slds-text-color_inverse">
+                                ¿ Está seguro que desea actualizar el Medio de Envío ?
+                            </div>                                    
+                        </div>
+                        <div class="slds-p-around_large" >
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_1-of-12" scope="col">
+                                        </th>
+                                        <th class="slds-size_5-of-12" scope="col">
+                                            <div class="slds-text-title slds-text-color_default">
+                                                Medio de Envío Seleccionado
+                                            </div>
+                                        </th>
+                                        <th class="slds-size_5-of-12" scope="col">
+                                        </th>
+                                        <th class="slds-size_1-of-12" scope="col">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="slds-hint-parent">
+                                        <td class="slds-cell-nowrap" scope="col">
+                                        </td>
+                                        <td class="slds-cell-nowrap" scope="col">
+                                            <div class="slds-text-title slds-text-color_default">
+                                                <aura:if isTrue="{! v.blnEmail_TMP }" >
+                                                    Email
+                                                </aura:if>
+                                                <aura:if isTrue="{! !(v.blnEmail_TMP) }" >
+                                                    Domicilio
+                                                </aura:if>
+                                            </div>
+                                        </td>
+                                        <td class="slds-cell-nowrap" scope="col">
+                                            <div class="slds-text-title slds-text-color_default">
+                                                <aura:if isTrue="{! v.blnEmail_TMP }" >
+                                                    {! v.email_Text }
+                                                </aura:if>
+                                                <aura:if isTrue="{! !(v.blnEmail_TMP) }" >
+                                                    {! v.papel_Text }
+                                                </aura:if>
+                                            </div>
+                                        </td>
+                                        <td class="slds-cell-nowrap" scope="col">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                        <div class="slds-text-align_right slds-p-top_large slds-p-right_large">
+                            <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalEnvioUpdate }" title="Regresar" />
+                            <lightning:button variant="brand" label="Actualizar" title="Actualizar" onclick="{! c.guardarMedioDeEnvio }"/>
+                        </div>
+                    </aura:if>
+
+                    <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                    <aura:if isTrue="{! v.noPasoMedioEnvio == 3 }" >
+                        
+                        <aura:if isTrue="{! !(v.loadingMedioDeEnvio) }" >
+                    
+                            <aura:if isTrue="{! v.medioEnvioActualizado }" >
+                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                    Se Actualizo el Medio de Envio con éxito
+                                </div>
+
+                                <aura:if isTrue="{! (!v.creatingCase) }" >
+                                    <aura:if isTrue="{! v.successfulCase }" >                                            
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                            <br/>
+                                            <span class="slds-text-heading_medium" >
+                                            Folio:                                    
+                                                <span style="font-weight: bold;"> 
+                                                {! v.newCaseMedioEnvio }
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <aura:set attribute="else" >
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                            </div>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else" >
+                                        <aura:if isTrue="{! v.creatingCase }">
+                                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                                            </div>                                            
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! !(v.medioEnvioActualizado) }">
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                            Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                        </div>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{! v.loadingMedioDeEnvio }">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                                            
+                                </aura:if>
+                            </aura:set>
+                        </aura:if>
+
+                    </aura:if>
+
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start ######-->
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button variant="neutral" 
+                                                label="Cerrar"
+                                                title="Cerrar"
+                                                onclick="{! c.closeModalMedioDeEnvio }"
+                                                disabled="{! v.loadingMedioDeEnvio || v.creatingCase }" />
+                </footer>
+            </div>
+        </section>
+    </div>
+	
+</aura:component>

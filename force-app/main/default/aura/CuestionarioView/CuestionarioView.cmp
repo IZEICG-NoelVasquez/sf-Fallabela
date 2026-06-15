@@ -1,0 +1,465 @@
+<aura:component controller="CuestionarioFlujoController" implements="flexipage:availableForRecordHome,lightning:actionOverride,force:hasRecordId" access="global" >
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="rtZonales" type="Boolean" default="false"/>
+    <aura:attribute name="rtArqueo" type="Boolean" default="false"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.simpleRecord}"
+                      mode="VIEW"/>
+    <lightning:card iconName="standard:contact" title="{!v.simpleRecord.Name}" >
+        <aura:if isTrue="{!v.rtZonales}">
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Sistematización de Equipo
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿El personal está ubicado de manera distribuida en la tienda?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿El personal está ubicado de manera distribuida en la tienda?" value="{!v.simpleRecord.El_personal_est_ubicado_de_manera_dist__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Promotores y Ejecutivos saben sus metas?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Promotores y Ejecutivos saben sus metas?" value="{!v.simpleRecord.Promotores_y_Ejecutivos_saben_sus_metas__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Se ha comunicado diariamente los resultados de referidos al Gerente de Tienda y Jefe de Cajas? - Entrevistar a Gerente de Tienda, Jefe de Cajas<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Se ha comunicado diariamente los resultados de referidos al Gerente de Tienda y Jefe de Cajas? - Entrevistar a Gerente de Tienda, Jefe de Cajas" value="{!v.simpleRecord.Se_ha_comunicado_diariamente_los_resulta__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Se ha comunicado diariamente los resultados de referidos al Gerente de Tienda y Jefe de Cajas? - Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Se ha comunicado diariamente los resultados de referidos al Gerente de Tienda y Jefe de Cajas? - Entrevistar a Gerente de Tienda, Jefe de Cajas" value="{!v.simpleRecord.Se_ha_comunicado_diariamente_comentario__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Están los registros del resguardo de las llaves en la bitácora de la barra de seguridad, de manera diaria por el Supervisor/Senior?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Están los registros del resguardo de las llaves en la bitácora de la barra de seguridad, de manera diaria por el Supervisor/Senior?" value="{!v.simpleRecord.Est_n_los_registros_del_resguardo_de_la__c}" /></p><br/>
+                </div>
+            </div>
+            <div class="slds-grid">
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Sistematización de Tienda
+                    - ¿Están visibles y actualizados los documentos legales?
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Comisiones Falabella Soriana<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comisiones Falabella Soriana" value="{!v.simpleRecord.Comisiones_Falabella_Soriana__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Comisiones Falabella Soriana Mastercard<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comisiones Falabella Soriana Mastercard" value="{!v.simpleRecord.Comisiones_Falabella_Soriana_Mastercard__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Aviso de Privacidad<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Aviso de Privacidad" value="{!v.simpleRecord.Aviso_de_privacidad__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Anexo de Disposiciones legales<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Anexo de Disposiciones legales" value="{!v.simpleRecord.Anexo_de_Disposiciones_legales__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Directorio de Despachos de Cobranza<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Directorio de Despachos de Cobranza" value="{!v.simpleRecord.Directorio_de_Despachos_de_Cobranza__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Contrato de Adhesión registro Condusef<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Contrato de Adhesión registro Condusef" value="{!v.simpleRecord.Contrato_de_Adhesi_n_registro_Condusef__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Cartel UNE<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Cartel UNE" value="{!v.simpleRecord.Cartel_UNE__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Cartel Buró<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Cartel Buró" value="{!v.simpleRecord.Cartel_Bur__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Están los folletos disponibles y visibles en módulo?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Están los folletos disponibles y visibles en módulo?" value="{!v.simpleRecord.Est_n_los_folletos_disponibles_y_visibl__c}" /></p><br/>
+                </div>
+                <div class="slds-grid">
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Sistematización de Oficina/Sucursal
+                    - Seguridad de la Información
+                    ¿Todos los Ejecutivos y el Supervisor/Coordinador cuentan con sus usuarios y contraseñas activas?
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Plataforma web<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Plataforma web" value="{!v.simpleRecord.Plataforma_web__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Plataforma web Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Plataforma web Comentarios" value="{!v.simpleRecord.Plataforma_comentarios__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Admisiones<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Admisiones" value="{!v.simpleRecord.Admisiones__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Admisiones Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Admisiones Comentarios" value="{!v.simpleRecord.Adminisiones_comentarios__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Iron Mountain<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Iron Mountain" value="{!v.simpleRecord.Iron_mountain__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Iron Mountain Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Iron Mountain Comentarios" value="{!v.simpleRecord.Iron_mountain_comentarios__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Están los usuarios y contraseñas guardados (no visibles)?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Están los usuarios y contraseñas guardados (no visibles)?" value="{!v.simpleRecord.Est_n_los_usuarios_y_contrase_as_guarda__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Están los documentos guardados en cajones bajo llave?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Están los documentos guardados en cajones bajo llave?" value="{!v.simpleRecord.Est_n_los_documentos_guardados_en_cajon__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Equipo candadeado y guardado?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Equipo candadeado y guardado?" value="{!v.simpleRecord.Equipo_candadeado_y_guardado__c	}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Se envió la valija en la última fecha correspondiente? Tomar foto de comprobante último envío<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Se envió la valija en la última fecha correspondiente? Tomar foto de comprobante último envío" value="{!v.simpleRecord.Se_envi_la_valija_en_la_ltima_fecha_c__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Las imágenes están en las carpetas correspondientes? Revisar historial de navegación<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Las imágenes están en las carpetas correspondientes? Revisar historial de navegación" value="{!v.simpleRecord.Las_im_genes_est_n_en_las_carpetas_corr__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Las imágenes están en las carpetas correspondientes? - Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Las imágenes están en las carpetas correspondientes? - Comentarios" value="{!v.simpleRecord.Las_im_genes_est_n_en_las_comentarios__c}" /></p><br/>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Están los expedientes de días anteriores (después del envío de la valija) cerrados y con el formato correspondiente?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Están los expedientes de días anteriores (después del envío de la valija) cerrados y con el formato correspondiente?" value="{!v.simpleRecord.Est_n_los_expedientes_de_d_as_anteriore__c}" /></p><br/>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Productividad y apego a Procesos
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿Se han estado gestionando reclamos desde la plataforma web?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Se han estado gestionando reclamos desde la plataforma web?" value="{!v.simpleRecord.Se_han_estado_gestionando_reclamos_desd__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿Se han estado gestionando reclamos desde la plataforma web? Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿Se han estado gestionando reclamos desde la plataforma web? Comentarios" value="{!v.simpleRecord.Se_han_estado_gestionando_comentarios__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">  
+                    Todo el personal cumple con el uniforme al 100%, limpio y tienen buena presentación?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Todo el personal cumple con el uniforme al 100%, limpio y tienen buena presentación?" value="{!v.simpleRecord.Todo_el_personal_cumple_con_el_uniforme__c}" /></p><br/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">  
+                    ¿La cantidad de tarjetas físicas cuadran con el número registrado en el sistema?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿La cantidad de tarjetas físicas cuadran con el número registrado en el sistema?" value="{!v.simpleRecord.La_cantidad_de_tarjetas_f_sicas_cuadran__c}" /></p><br/>
+                </div>
+            </div>
+            <br/>
+            <div class="slds-grid">
+                <br/>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿El 100% de las tarjetas con error o prueba están destruídas y cuentan con su carta de destrucción?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿El 100% de las tarjetas con error o prueba están destruídas y cuentan con su carta de destrucción?" value="{!v.simpleRecord.El_100_de_las_tarjetas_con_error_o_pru__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    ¿En las cartas de destrucción se encuentras resguardadas en la carpeta electrónica correspondiente?<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="¿En las cartas de destrucción se encuentras resguardadas en la carpeta electrónica correspondiente?" value="{!v.simpleRecord.Elas_cartas_de_destrucci_n_se_encuentra__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Status<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Status" value="{!v.simpleRecord.Status__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Sucursal<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Sucursal" value="{!v.simpleRecord.Sucursal__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                
+            </div>
+            
+            
+            <div class="slds-grid">
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.rtArqueo}">
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Privada
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.Privada_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Físico<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Físico" value="{!v.simpleRecord.Privada_Fisico__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.Privada_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.Privada_Comentarios__c}" /></p>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Error Privada
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.Error_Privada_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+              
+		  </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.Error_Privada_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.Error_Privada_Comentarios__c}" /></p>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    MasterCard
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.MC_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Físico<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Físico" value="{!v.simpleRecord.MC_Fisico__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.MC_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.MC_Comentarios__c}" /></p>
+                </div>
+            </div>
+            
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Error MasterCard
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.Error_MC_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                 
+				</div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.Error_MC_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.Error_MC_Comentarios__c}" /></p>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    MasterCard (CONTACLESS)
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.MC_CONTACLESS_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Físico<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Físico" value="{!v.simpleRecord.MC_CONTACLESS_Fisico__c}" /></p>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.MC_CONTACLESS_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.MC_CONTACLESS_Comentarios__c}" /></p>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Error MasterCard (CONTACLESS)
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Dexis<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber title="Dexis" value="{!v.simpleRecord.Error_MC_CONTACLESS_Dexis__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                   
+				</div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Diferencia<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedNumber  title="Diferencia" value="{!v.simpleRecord.Error_MC_CONTACLESS_Diferencia__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">     
+                    Comentarios<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Comentarios" value="{!v.simpleRecord.Error_MC_CONTACLESS_Comentarios__c}" /></p>
+                </div>
+            </div>
+            <h3 class="slds-section__title slds-theme_shade">
+                <div class="slds-section__title-action">
+                    Información General
+                </div>
+            </h3>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    Status<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Status" value="{!v.simpleRecord.Status__c}" /></p>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    Sucursal<br/>
+                    <p class="slds-text-heading--small">
+                        <lightning:formattedText title="Sucursal" value="{!v.simpleRecord.Sucursal__c}" /></p>
+                </div>
+            </div>
+        </aura:if>
+    </lightning:card>
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}
+        </div>
+    </aura:if>
+</aura:component>

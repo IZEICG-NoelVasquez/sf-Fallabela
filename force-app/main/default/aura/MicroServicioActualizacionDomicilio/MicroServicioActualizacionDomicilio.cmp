@@ -1,0 +1,445 @@
+<aura:component controller="MicroServicioActualizacionDomicilio">
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="loadedProductos" type="Boolean" />
+
+    <!-- Creacion de Caso Actualizacion de Domicilio -->
+    <aura:attribute name="caseRTypes" type="Map" />  
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseAddress" type="String" />
+
+    <aura:attribute name="openModalAddressUpdate" type="Boolean" default="false" />
+    <aura:attribute name="noPasoAddressUpdate" type="Integer" default="0" />
+    <aura:attribute name="loadingAddressUpdate" type="Boolean" />
+    <aura:attribute name="addressUpdated" type="Boolean" /> 
+    <aura:attribute name="messageAddressUpdate" type="String" default="Ha ocurrido un error, Favor de reportarlo a su administrador." />
+
+    <aura:attribute name="tipoDireccion" type="String" />
+    <!--aura:attribute name="poblacion" type="String" /-->
+    <aura:attribute name="tipoDeVia" type="String" />
+    <aura:attribute name="region" type="String" />
+    <aura:attribute name="restoDireccion" type="String" />
+    <aura:attribute name="delegacion" type="String" />
+    <aura:attribute name="nombreVia" type="String" />
+    <aura:attribute name="colonia" type="String" />
+    <aura:attribute name="numeroDeVia" type="String" />
+    <aura:attribute name="codigoPostal" type="String" />
+    <aura:attribute name="mostrarColoniaCPTexto" type="Boolean" default="false" />
+
+    <aura:attribute name="blnTipoDeVia" type="Boolean" default="false" />
+    <aura:attribute name="blnRegion" type="Boolean" default="false" />
+    <aura:attribute name="blnRestoDireccion" type="Boolean" default="false" />
+    <aura:attribute name="blnDelegacion" type="Boolean" default="false" />
+    <aura:attribute name="blnNombreVia" type="Boolean" default="false" />
+    <aura:attribute name="blnColonia" type="Boolean" default="false" />
+    <aura:attribute name="blnNumeroDeVia" type="Boolean" default="false" />
+    <aura:attribute name="blnCodigoPostal" type="Boolean" default="false" />
+
+    <aura:attribute name="lookUpIdEstado" type="Id"/>
+    <aura:attribute name="lookUpObjEstado" type="Object"/>
+    <aura:attribute name="lookUpIdMunicipio" type="Id"/>
+    <aura:attribute name="lookUpObjMunicipio" type="Object"/>
+    <aura:attribute name="lookUpIdColonia" type="Id"/>
+    <aura:attribute name="lookUpObjColonia" type="Object"/>
+
+    <aura:attribute name="mapCamposMicroS" type="Map" default="{}" />
+
+    <aura:handler name="lookupSelected" event="c:LookupSelected" action="{!c.handleSelectedEventLookUp}"/>
+    <aura:handler name="selectedLookupRemoved" event="c:selectedLookupRemoved" action="{!c.handleRemovedEventLookUp}"/>
+    
+    <aura:registerEvent name="selectedLookupRemoved" type="c:selectedLookupRemoved"/>
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+
+    <aura:attribute name="cargandoInfoDireccion" type="Boolean" default="true" />
+
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <div aura:id="direccion" class="slds-section slds-is-open">
+        <h3 class="slds-section__title">
+            <div class="slds-size_11-of-12">
+                <lightning:button onclick="{! c.toggleDireccion }"  class="slds-button slds-section__title-action" iconName="utility:chevrondown" >    
+                    <span class="slds-truncate" style="font-size:12px;" title="Información de la Dirección">Información de la Dirección</span>                        
+                </lightning:button>
+            </div>
+            <div class="slds-size_1-of-12 slds-text-align_right">
+                <lightning:button class="slds-button slds-section__title-action" onclick="{! c.handleModalAddressUpdate }" iconName="utility:edit" 
+                            disabled="{! v.loadedProductos || (!v.validacionesOTPCargadas) }" />
+            </div>
+        </h3>
+        <lightning:layout>
+            <lightning:layoutItem class="slds-size_2-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Tipo Dirección</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Tipo_Direcci_n__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+          
+            <lightning:layoutItem class="slds-size_2-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Estado</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Regi_n__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-size_3-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Delegación o Municipio</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Delegaci_n__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-size_3-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Colonía</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Colonia__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-size_2-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Código Postal</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.C_digo_Postal__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>            
+        </lightning:layout>
+
+        <lightning:layout >
+            <lightning:layoutItem class="slds-size_2-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Tipo de vía</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Tipo_de_v_a__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>            
+            <lightning:layoutItem class="slds-size_5-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Calle</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Nombre_v_a__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>            
+            <lightning:layoutItem class="slds-size_3-of-12" >
+                    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <div class="slds-form-element slds-form-element_readonly">
+                            <span style="font-size: 10px !important;" class="slds-form-element__label">Número</span>
+                            <div  class="slds-form-element__control">
+                                <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.N_mero_de_v_a__c }</div>
+                            </div>
+                        </div>
+                    </div>
+            </lightning:layoutItem> 
+            <lightning:layoutItem class="slds-size_2-of-12" >
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <div class="slds-form-element slds-form-element_readonly">
+                        <span style="font-size: 10px !important;" class="slds-form-element__label">Resto Dirección</span>
+                        <div  class="slds-form-element__control">
+                            <div style="font-size: 10px !important;" class="slds-form-element__static">{! v.selectedAccount.Resto_Direcci_n__c }</div>
+                        </div>
+                    </div>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+
+    <!-- MODAL Address Update -->
+    <aura:if isTrue="{!v.openModalAddressUpdate}">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+                                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalAddressUpdate }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close" 
+                                                disabled="{! v.cargandoInfoDireccion || v.loadingAddressUpdate || v.creatingCase }"/>
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de Domicilio" iconName="standard:address" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_xx-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Editar Domicilio -->
+                        <aura:if isTrue="{! v.noPasoAddressUpdate == 1 }" >
+                            <div class="slds-box">
+                                <div class="slds-grid slds-gutters" >
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="input1" label="Tipo Dirección" placeholder="" value="{! v.tipoDireccion }" disabled="true" />
+                                    </div>
+
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <c:LookupComponent aura:id="lookUpCmpEstado" objectName="Estado__c" 
+                                                    fieldSet="['Name', 'Codigo__c']"
+                                                    limit="3" 
+                                                    comparisonField="['Name']"
+                                                    primaryDisplayField="Name"                                                    
+                                                    minimumCharacter="3"
+                                                    lightningIconName="custom:custom78"
+                                                    uniqueLookupIdentifier="estado"
+                                                    lookupId="{!v.lookUpIdEstado}"
+                                                    value="{!v.lookUpObjEstado}"                                                     
+                                                    fieldLabel="Estado"/>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <c:LookupComponent aura:id="lookUpCmpMunicipio" objectName="Municipio__c" 
+                                                    fieldSet="['Name', 'Estado_Lookup__c']" 
+                                                    whereCondition="{! ' AND Estado_Lookup__c = \'' + v.lookUpIdEstado + '\''}"
+                                                    limit="3" 
+                                                    comparisonField="['Name']"
+                                                    primaryDisplayField="Name"
+                                                    minimumCharacter="3"
+                                                    lightningIconName="custom:custom78" 
+                                                    uniqueLookupIdentifier="municipio"
+                                                    lookupId="{!v.lookUpIdMunicipio}"
+                                                    value="{!v.lookUpObjMunicipio}"                                                     
+                                                    fieldLabel="Delegación o Municipio"/>
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <aura:if isTrue="{! !(v.mostrarColoniaCPTexto) }" >
+                                            <c:LookupComponent aura:id="lookUpCmpColonia" objectName="Colonia__c" 
+                                                        fieldSet="['Name', 'Municipio_Lookup__c', 'C_digo_Postal__c']" 
+                                                        whereCondition="{! ' AND Municipio_Lookup__c = \'' + v.lookUpIdMunicipio + '\''}"
+                                                        limit="3" 
+                                                        comparisonField="['Name']"
+                                                        primaryDisplayField="Name"
+                                                        minimumCharacter="3"
+                                                        lightningIconName="custom:custom78" 
+                                                        uniqueLookupIdentifier="colonia"
+                                                        lookupId="{!v.lookUpIdColonia}"
+                                                        value="{!v.lookUpObjColonia}"                                                     
+                                                        fieldLabel="Colonia"/>
+                                            <aura:set attribute="else" >
+                                                <lightning:input name="input8" label="Colonia Texto" placeholder="" value="{! v.colonia }" required="true" style="font-weight: bold;" />
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <aura:if isTrue="{! !(v.mostrarColoniaCPTexto) }" >
+                                            <lightning:input name="input10" label="Código Postal" placeholder="" value="{! v.codigoPostal }" disabled="true" />
+                                            <aura:set attribute="else" >
+                                                <lightning:input name="input11" label="Código Postal Texto" placeholder="" value="{! v.codigoPostal }" required="true" style="font-weight: bold;" />
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>                                    
+                                </div>
+                                <div class="slds-grid slds-gutters slds-p-top_medium" >
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:select aura:id="selectTipoVia" name="input3" label="Tipo de vía" value="{! v.tipoDeVia }" >
+                                            <option value="">SELECCIONAR ...</option>
+                                            <option value="AV">AVENIDA</option>
+                                            <option value="BLV">BOULEVARD</option>
+                                            <option value="CJ">CALLEJON</option>
+                                            <option value="CL">CALLE</option>
+                                            <option value="CM">CAMINO</option>
+                                            <option value="CR">CARRETERA</option>
+                                            <option value="FRA">FRACCIONAMIENTO</option>
+                                            <option value="PS">PASEO</option>
+                                            <option value="PZ">PLAZA</option>
+                                            <option value="RES">RESIDENCIAL</option>
+                                        </lightning:select>
+                                    </div>                                    
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <lightning:input name="input7" label="Calle" maxlength="40" placeholder="" value="{! v.nombreVia }" />
+                                    </div>                                    
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <lightning:input name="input9" label="Número" maxlength="6" onchange="{! c.validateNumber}" placeholder="" value="{! v.numeroDeVia }" />
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="input5" label="Resto Dirección" maxlength="40" placeholder="" value="{! v.restoDireccion }" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-gutters" >
+                                <div class="slds-col slds-size_4-of-5">
+                                    <aura:if isTrue="{! v.mostrarColoniaCPTexto }">
+                                    <div class="slds-text-body_bold slds-text-align_center slds-p-top_large">   
+                                        * Si la colonia y/o el C.P. no se encuentra en el catálogo, por favor registrarlos en los campos de texto.
+                                    </div> 
+                                    </aura:if>
+                                </div>
+                                <div class="slds-col slds-size_1-of-5">
+                                    <aura:if isTrue="{! (!v.cargandoInfoDireccion) }" >
+
+                                        <div class="slds-text-align_right slds-p-top_large slds-p-right_large">
+                                            <lightning:button variant="brand" label="Actualizar" onclick="{! c.confirmarAddressUpdate }" title="Actualizar" />
+                                        </div>
+
+                                        <aura:set attribute="else">
+                                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                                            </div>                                            
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>                                
+                        </aura:if>
+                        <!-- Paso 2: Confirmar Domicilio -->
+                        <aura:if isTrue="{! v.noPasoAddressUpdate == 2 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea actualizar el Domicilio ?
+                                </div>                                    
+                            </div>
+                            <div>
+                                <div class="slds-grid slds-gutters" >
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="output1" label="Tipo Dirección" value="{! v.tipoDireccion }" disabled="true"  />
+                                    </div>
+                                
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="output4" label="Estado" value="{! v.region }" disabled="true" style="{! (v.blnRegion) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <lightning:input name="output6" label="Delegación o Municipio" value="{! v.delegacion }" disabled="true" style="{! (v.blnDelegacion) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <lightning:input name="output8" label="Colonía" value="{! v.colonia }" disabled="true" style="{! (v.blnColonia) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="output10" label="Código Postal" value="{! v.codigoPostal }" disabled="true" style="{! (v.blnCodigoPostal) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters slds-p-top_medium" >
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="output3" label="Tipo de vía" value="{! v.tipoDeVia }" disabled="true" style="{! (v.blnTipoDeVia) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>                                    
+                                    <div class="slds-col slds-size_5-of-12">
+                                        <lightning:input name="output7" label="Calle" value="{! v.nombreVia }" disabled="true" style="{! (v.blnNombreVia) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>                                    
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <lightning:input name="output9" label="Número" value="{! v.numeroDeVia }" disabled="true" style="{! (v.blnNumeroDeVia) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                    <div class="slds-col slds-size_2-of-12">
+                                        <lightning:input name="output5" label="Resto Dirección" value="{! v.restoDireccion }" disabled="true" style="{! (v.blnRestoDireccion) ? 'color: red; font-weight: bold;' : '' }" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-text-align_right slds-p-top_large slds-p-right_large">
+                                <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalAddressUpdate }" title="Regresar" />
+                                <lightning:button variant="brand" label="Confirmar" onclick="{! c.guardarAddressUpdate }" title="Confirmar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoAddressUpdate == 3 }" >
+                            <aura:if isTrue="{! !(v.loadingAddressUpdate) }" >
+                                <aura:if isTrue="{! v.addressUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizo Información con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseAddress }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.addressUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                {! v.messageAddressUpdate }
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingAddressUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                            label="Cerrar"
+                                            title="Cerrar"
+                                            onclick="{! c.closeModalAddressUpdate }" 
+                                            disabled="{! v.cargandoInfoDireccion || v.loadingAddressUpdate || v.creatingCase }"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- OTP Crear Caso Actualizacion de Domicilio -->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalAddressUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+    	
+</aura:component>

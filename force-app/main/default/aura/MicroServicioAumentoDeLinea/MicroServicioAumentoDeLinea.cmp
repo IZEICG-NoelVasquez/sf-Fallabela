@@ -1,0 +1,246 @@
+<aura:component controller="MicroServicioAumentoDeLinea" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="productoSeleccionado" type="Integer" />
+
+    <aura:attribute name="openModalAumentoLinea" type="Boolean" default="false" />
+    <aura:attribute name="blnAumentoDeLinea" type="Boolean" default="false" />
+    <aura:attribute name="noPasoAumentoLinea" type="Integer" default="0" />
+
+    <aura:attribute name="loadingConsultaCupo" type="Boolean" />
+    <aura:attribute name="consultaExitosa" type="Boolean" default="false" />
+
+    <aura:attribute name="creditoActual" type="Decimal" />
+    <aura:attribute name="nuevoCredito" type="Decimal" />
+ 
+    <aura:attribute name="classBackdrop" type="String" />
+
+    <aura:attribute name="loadingAumentoCupo" type="Boolean" />
+    <aura:attribute name="aumentoExitoso" type="Boolean" default="false" />
+    <aura:attribute name="aumentoNoDisponible" type="Boolean" default="false" />
+    <aura:attribute name="bloqueoPorFraude" type="Boolean" default="false" />
+
+    <!-- Creacion de Caso Aumento de Linea de Credito -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseCupo" type="String" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <!-- OTP -->
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+    <aura:attribute name="verificadoOTP" type="Boolean" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <!-- MODAL Aumento de Linea -->
+    <aura:if isTrue="{! v.openModalAumentoLinea }" >
+        <!--###### MODAL BOX Start######-->
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalAumentoDeLinea }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! v.loadingAumentoCupo || v.creatingCase }" />
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Aumento de Línea" iconName="custom:custom17" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Consulta de Linea de Credito -->
+                        <aura:if isTrue="{! v.noPasoAumentoLinea == 1 }" >
+                            <aura:if isTrue="{! (!v.loadingConsultaCupo) }" >
+                                <aura:if isTrue="{! v.consultaExitosa }" >
+                                    <div class="slds-box">
+                                        <div class="row" >
+                                            
+                                            <lightning:input name="input1" type="number" formatter="currency"  aura:id="creditoActual" label="Limite de Crédito Actual" value="{! v.creditoActual }" disabled="true" />
+                                            <br/>
+                                            <lightning:input name="input2" type="number" formatter="currency"  aura:id="nuevoCredito" label="Nueva Línea de Crédito" value="{! v.nuevoCredito }" disabled="true" />
+
+                                        </div>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                            <br/>
+                                            <aura:if isTrue="{! v.aumentoNoDisponible }" >
+                                                No hay incremento por aplicar o ya fue aplicado.
+                                                <aura:set attribute="else" >
+                                                    Ocurrió un error en la Consulta de Línea de Crédito. 
+                                                    <br/><br/>
+                                                    Favor de reportarlo con su Administrador.
+                                                </aura:set>
+                                            </aura:if>
+                                            
+                                            
+                                            <br/><br/>
+                                        </div>
+                                    </aura:set>
+                                </aura:if>
+                                <aura:set attribute="else">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                                            
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                        <!-- Paso 2: Confirmacion Aumento de Linea de Credito -->
+                        <aura:if isTrue="{! v.noPasoAumentoLinea == 2 }" >
+                                <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                    <div class="slds-text-color_inverse">
+                                        ¿ Está seguro que desea solicitar el Aumento de Línea de Crédito ?
+                                    </div>                                    
+                                </div>
+
+                                <div class="slds-form-element slds-p-around_large">
+                                <div class="row" >                                    
+                                    <lightning:input name="input1" type="number" formatter="currency"  aura:id="creditoActual" label="Limite de Crédito Actual" value="{! v.creditoActual }" disabled="true" />
+                                    <br/>
+                                    <lightning:input name="input2" type="number" formatter="currency"  aura:id="nuevoCredito" label="Nueva Línea de Crédito" value="{! v.nuevoCredito }" disabled="true" />
+                                </div>
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoAumentoLinea == 3 }" >
+
+                            <aura:if isTrue="{! !(v.loadingAumentoCupo) }" >
+                                <aura:if isTrue="{! v.aumentoExitoso }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizo Información con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseCupo }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.aumentoExitoso) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                <br/>
+                                                <aura:if isTrue="{! v.bloqueoPorFraude }" >
+                                                    La cuenta presenta Bloqueo o Incidencia, Favor de crear un caso de Consulta y agregar comentarios.
+                                                    <br/><br/>
+                                                    <aura:set attribute="else" >
+                                                        Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                                    </aura:set>
+                                                </aura:if>
+
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingAumentoCupo }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <aura:if isTrue="{! v.blnAumentoDeLinea }" >
+                            <aura:if isTrue="{! v.noPasoAumentoLinea == 1 }" >
+                                <lightning:button variant="neutral" 
+                                                label="Cancelar"
+                                                title="Cancelar"
+                                                onclick="{! c.closeModalAumentoDeLinea }"/>
+                                <lightning:button variant="brand" 
+                                                label="Confirmar"
+                                                title="Confirmar"
+                                                onclick="{! c.actualizarAumentoDeLinea }"
+                                                disabled="{! (!v.consultaExitosa) }"/>
+                            </aura:if>
+                            <aura:if isTrue="{! v.noPasoAumentoLinea == 2 }" >
+                                <lightning:button variant="neutral" 
+                                                label="Cancelar"
+                                                title="Cancelar"
+                                                onclick="{! c.closeModalAumentoDeLinea }"/>
+                                <lightning:button variant="brand" 
+                                                label="Confirmar"
+                                                title="Confirmar"
+                                                onclick="{! c.confirmarAumentoDeLinea }" />
+                            </aura:if>
+                            <aura:if isTrue="{! v.noPasoAumentoLinea == 3 }" >
+                                <lightning:button variant="neutral" 
+                                            label="Cerrar"
+                                            title="Cerrar"
+                                            onclick="{! c.closeModalAumentoDeLinea }"
+                                            disabled="{! v.loadingAumentoCupo || v.creatingCase }" />
+                            </aura:if>
+                        </aura:if>
+                        <aura:if isTrue="{! (!v.blnAumentoDeLinea) }" >
+                            <lightning:button variant="brand" 
+                                            label="Cerrar"
+                                            title="Cerrar"
+                                            onclick="{! c.closeModalAumentoDeLinea }"/>
+                        </aura:if>
+                    </footer>
+                </div>
+                <div aura:id="idMobileUpdate" class="{! v.classBackdrop }" ></div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- OTP Crear Caso Aumento de Linea de Credito-->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalAumentoCupo" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" msMobileUpdateclassBackdrop="{! v.classBackdrop }" />
+    </aura:if>
+	
+</aura:component>

@@ -1,0 +1,95 @@
+<aura:component controller="ReporteBackOffice" implements="force:appHostable" >
+
+    <aura:attribute name="fechaInicio" type="Date" />
+    <aura:attribute name="fechaFin" type="Date" />
+    <aura:attribute name="curp" type="String" />
+
+    <aura:attribute name="listaDeCasos" type="String[]" />
+
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+
+    <aura:attribute name="cargandoDatos" type="Boolean" />
+    <aura:attribute name="colapsarCasos" type="Boolean" default="false" />
+
+    <!-- Canal Origen -->    
+    <aura:attribute name="canalOrigenList" type="List" default="['Presencial','Figital']" />
+    <aura:attribute name="canalOrigenOptions" type="List" />
+    <aura:attribute name="canalOrigenValue" type="String" />
+
+    <!-- Paginacion -->
+    <aura:attribute name="offSet" type="Integer" default="0" />
+    <aura:attribute name="disablePreviousButton" type="Boolean" default="true" />
+    <aura:attribute name="disableNextButton" type="Boolean" default="true" />
+    <aura:attribute name="totalRecords" type="Integer" default="0" />
+    <aura:attribute name="recordsPerPage" type="Integer" />
+
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }" />
+
+
+    <div>
+    
+        <div class="slds-grid slds-gutters slds-p-around_large">
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:select value="{! v.canalOrigenValue }" name="dataUpdate" label="Canal Origen" aura:id="canlOrigen">
+                    <aura:iteration items="{!v.canalOrigenOptions}" var="item">
+                        <option text="{!item.label}" value="{!item.value}" />
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:input type="date" aura:id="idFechaInicio" name="idFechaInicio" label="Fecha de Inicio" value="{!v.fechaInicio}" />
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:input type="date" aura:id="idFechaFin" name="idFechaFin" label="Fecha Fin" value="{!v.fechaFin}" />
+            </div>
+            <div class="slds-col slds-size_1-of-12 slds-text-align_left slds-p-top_large">
+                <lightning:button label="Actualizar" variant="brand" onclick="{! c.actualizarReporte }"/>
+            </div>
+
+            <div class="slds-col slds-size_1-of-12 slds-text-align_left slds-p-top_large">
+                <lightning:button label="Colapsar" variant="neutral" onclick="{! c.colapsarReporte }" />
+            </div>
+
+            <div class="slds-col slds-size_2-of-12">
+                <lightning:input aura:id="idCURP" name="idCURP" label="CURP" value="{!v.curp}" />
+            </div>
+            <div class="slds-col slds-size_1-of-12 slds-p-top_large">
+                <lightning:button label="Buscar" variant="brand" onclick="{! c.buscarCURP }" />
+            </div>
+
+            <div class="slds-col slds-size_1-of-12 slds-text-align_center slds-p-top_large">
+                <lightning:button label="Descargar" variant="neutral" onclick="{! c.descargarReporte }"/>
+            </div>
+        </div>
+    
+        <div class="slds-var-m-around_small" style="height: 500px;">
+            <aura:if isTrue="{! (!v.cargandoDatos) }" >
+                <lightning:datatable
+                        keyField="idSolicitud"
+                        data="{! v.data }"
+                        columns="{! v.columns }"
+                        hideCheckboxColumn="true" />
+
+                <aura:set attribute="else">
+                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                    </div>                                            
+                </aura:set>
+            </aura:if>
+        
+        </div>
+        <div class="slds-grid slds-gutters slds-p-around_large">
+            <div class="slds-col slds-size_2-of-6"></div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning:button label="Anterior" variant="neutral" onclick="{! c.previousRecords }" disabled="{! v.disablePreviousButton }" />
+            </div>
+            <div class="slds-col slds-size_1-of-6">
+                <lightning:button label="Siguiente" variant="neutral" onclick="{! c.nextRecords }" disabled="{! v.disableNextButton }" />
+            </div>
+            <div class="slds-col slds-size_2-of-6"></div>
+        </div>
+    </div>    
+
+</aura:component>

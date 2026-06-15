@@ -1,0 +1,1443 @@
+<aura:component implements="force:appHostable" controller="MicroServicioBuroCreditoBO">
+
+    <aura:handler name="init" value="{!this}" action="{!c.getData}" />
+    <aura:attribute name="Persona" type="Object" />
+    <aura:attribute name="PersonaJson" type="String" />
+    <aura:attribute name="currentYear" type="integer" />
+
+    <div class='main'>
+
+        <div class="slds-grid slds-gutters footer logos">
+
+            <div class="slds-col slds-size_10-of-12">
+
+                <div class="content-img">
+                    <img alt="falabella" src="https://www.falabella.com.mx/assets/logo-falabella-soriana.svg" />
+                </div>
+
+            </div>
+
+            <div class="slds-col slds-size_2-of-12">
+
+                <dl class="slds-dl_inline txt-logos">
+
+                    <dt class="slds-dl_inline__label">
+                        NUMERO DE CONTROL:
+                    </dt>
+                    <dd class="slds-dl_inline__detail">{!v.Persona.encabezado.NumeroControlConsulta}</dd>
+
+                    <dt class="slds-dl_inline__label">
+                        FECHA DE CONSULTA:
+                    </dt>
+                    <dd class="slds-dl_inline__detail">{!v.Persona.consultasEfectuadas[0].FechaConsulta}</dd>
+
+                </dl>
+
+            </div>
+
+
+        </div>
+        <div class="slds-text-heading_large logos">REPORTE DE CREDITO</div>
+
+        <!--Datos generales-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>DATOS GENERALES</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Nombre">NOMBRE(S)</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Apellidos">APELLIDOS</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="RFC">RFC</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="fechNacimiento">FECHA DE NACIMIENTO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="IFE">IFE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="CURP">CURP</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="regBC">REGISTRO EN BC</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="slds-hint-parent">
+                    <th data-label="Nombre" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.PrimerNombre}&nbsp;&nbsp;{!v.Persona.nombre.SegundoNombre}
+                        </div>
+                    </th>
+                    <th data-label="Apellidos" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.ApellidoPaterno}&nbsp;&nbsp;{!v.Persona.nombre.ApellidoMaterno}
+                        </div>
+                    </th>
+                    <th data-label="RFC" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.RFC}
+                        </div>
+                    </th>
+                    <th data-label="fechNacimiento" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.FechaNacimiento}
+                        </div>
+                    </th>
+                    <th data-label="IFE" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.NumeroRegistroElectoral}
+                        </div>
+                    </th>
+                    <th data-label="CURP" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.nombre.ClaveImpuestosOtroPais}
+                        </div>
+                    </th>
+                    <th data-label="regBC" scope="row">
+                        <div class="slds-truncate">
+                            {!v.Persona.ResumenReportes[0].FechaIngresoBD}
+                        </div>
+                    </th>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <!--Domicilios reportados-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>DOMICILIO(S) REPORTADOS(S)</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="CALLEYNUMERO ">CALLE Y NUMERO </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="COLONIA">COLONIA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="DELMPIO">DEL / MPIO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="CIUDAD">CIUDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="EDO">EDO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="CP">CP</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="TEL">TEL</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="PAIS">PAIS</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="REGISTROENBC">REGISTRO EN BC</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.domicilios}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="CALLEYNUMERO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Direccion1}
+                            </div>
+                        </th>
+                        <th data-label="COLONIA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.ColoniaPoblacion}
+                            </div>
+                        </th>
+                        <th data-label="DELMPIO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.DelegacionMunicipio}
+                            </div>
+                        </th>
+                        <th data-label="CIUDAD" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Ciudad}
+                            </div>
+                        </th>
+                        <th data-label="EDO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Estado}
+                            </div>
+                        </th>
+                        <th data-label="CP" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CP}
+                            </div>
+                        </th>
+                        <th data-label="TEL" scope="row">
+                            <div class="slds-truncate">
+                                {!item.NumeroTelefono}
+                            </div>
+                        </th>
+                        <th data-label="PAIS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CodPais}
+                            </div>
+                        </th>
+                        <th data-label="REGISTROENBC" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaReporteDireccion}
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <!--DOMICILIO(S) DE EMPLEO(S) REPORTADO(S)-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>DOMICILIO(S) DE EMPLEO(S) REPORTADO(S)</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COMPAIA">COMPAIA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="PUESTO">PUESTO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="SALARIO">SALARIO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="BASE">BASE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CALLEYNUMERO">CALLE Y NUMERO </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COLONIA">COLONIA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title=" DELMPIO"> DEL / MPIO </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CIUDAD">CIUDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="EDO ">EDO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CP ">CP</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="TEL ">TEL</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="PAIS ">PAIS</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="REGISTROENBC ">REGISTRO <br></br>EN BC </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHACONTRATACION ">FECHA <br></br>CONTRATACION </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ULTIMODIAEMPLEO">ULTIMO DIA <br></br>EMPLEO </div>
+                    </th>
+
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.empleos}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="COMPAIA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.NombreEmpresa}
+                            </div>
+                        </th>
+                        <th data-label="PUESTO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Cargo}
+                            </div>
+                        </th>
+                        <th data-label="SALARIO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Salario}
+                            </div>
+                        </th>
+                        <th data-label="BASE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.BaseSalarial}
+                            </div>
+                        </th>
+                        <th data-label="CALLEYNUMERO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Direccion1}, {!item.Direccion2}
+                            </div>
+                        </th>
+                        <th data-label="COLONIA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.ColoniaPoblacion}
+                            </div>
+                        </th>
+                        <th data-label="DELMPIO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.DelegacionMunicipio}
+                            </div>
+                        </th>
+                        <th data-label="CIUDAD" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Ciudad}
+                            </div>
+                        </th>
+                        <th data-label="EDO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Estado}
+                            </div>
+                        </th>
+                        <th data-label="CP" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CP}
+                            </div>
+                        </th>
+                        <th data-label="TEL" scope="row">
+                            <div class="slds-truncate">
+                                {!item.NumeroTelefono}
+                            </div>
+                        </th>
+                        <th data-label="PAIS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CodPais}
+                            </div>
+                        </th>
+                        <th data-label="REGISTROENBC" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaReportoEmpleo}
+                            </div>
+                        </th>
+                        <th data-label="FECHACONTRATACION" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaContratacion}
+                            </div>
+                        </th>
+                        <th data-label="ULTIMODIAEMPLEO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaUltimoDiaEmpleo}
+                            </div>
+                        </th>
+
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <!--MENSAJES-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJES</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MSJ">Mensaje</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="no hay mensajes" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="MSJ" scope="row">
+                            <div class="slds-truncate">
+                                {!item}
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <!--INFORMACION EN HAWK-->
+        <!--div class="slds-grid slds-gutters subtitle">
+            <div class="slds-col slds-size_7-of-7">
+                <div class="slds-text-heading_medium">INFORMACION EN HAWK</div>
+            </div>
+        </div-->
+
+        <!--MENSAJE DE PREVENCION-->
+        <!--div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJE DE PREVENCION</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHAREPORTE">FECHA REPORTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CLAVE">CLAVE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="DESCRIPCION">DESCRIPCION</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="RESPONSABILIDAD">RESPONSABILIDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="REPORTADOPOR">REPORTADO POR:</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MENSAJE">MENSAJE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COINCIDENCIAPORDATOSDE">COINCIDENCIA POR DATOS DE:</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="no hay mensajes" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="FECHAREPORTE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="CLAVE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="DESCRIPCION" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="RESPONSABILIDAD" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="REPORTADOPOR" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="MENSAJE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="COINCIDENCIAPORDATOSDE" scope="row">
+                            <div class="slds-truncate">
+                                CONSULTA
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table-->
+
+        <!--MENSAJE POR INCONSISTENCIA EN DATOS-->
+        <!--div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJE POR INCONSISTENCIA EN DATOS</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHAREPORTE">FECHA REPORTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CLAVE">CLAVE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MENSAJE">MENSAJE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COINCIDENCIAPORDATOSDE">COINCIDENCIA POR DATOS DE:</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="no hay registros" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="FECHAREPORTE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="CLAVE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="MENSAJE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="COINCIDENCIAPORDATOSDE" scope="row">
+                            <div class="slds-truncate">
+                                REP. CREDITO
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table-->
+
+        <!--MENSAJE POR INFORMACION REPORTADA EN BURO DE CREDITOS EMPRESARIALES-->
+        <!--div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJE POR INFORMACION REPORTADA EN BURO DE CREDITOS EMPRESARIALES</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHAREPORTE">FECHA REPORTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CLAVE">CLAVE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="RESPONSABILIDAD">RESPONSABILIDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="REPORTADOPOR">REPORTADO POR:</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MENSAJE">MENSAJE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COINCIDENCIAPORDATOSDE">COINCIDENCIA POR DATOS DE:</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.HawkAlertConsulta}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="FECHAREPORTE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaReporte}
+                            </div>
+                        </th>
+                        <th data-label="CLAVE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CodigoClave}
+                            </div>
+                        </th>
+                        <th data-label="RESPONSABILIDAD" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="REPORTADOPOR" scope="row">
+                            <div class="slds-truncate">
+                                {!item.TipoInstitucion}
+                            </div>
+                        </th>
+                        <th data-label="MENSAJE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Mensaje}
+                            </div>
+                        </th>
+                        <th data-label="COINCIDENCIAPORDATOSDE" scope="row">
+                            <div class="slds-truncate">
+                                REP. CREDITO
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table-->
+
+        <!--MENSAJE POR INFORMACION DE JUICIOS (NOMBRE DEL CONSULTADO ASOCIADO A UN JUICIO COMO DEMANDADO)-->
+        <!--div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJE POR INFORMACION DE JUICIOS (NOMBRE DEL CONSULTADO ASOCIADO A UN JUICIO COMO
+                        DEMANDADO)</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHAREPORTE">FECHA REPORTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CLAVE">CLAVE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MENSAJE">MENSAJE</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="no hay registros" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="FECHAREPORTE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="CLAVE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="MENSAJE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table-->
+
+        <!--MENSAJE POR INFORMACIÓN REPORTADA POR OFAC - OFICINA DE CONTROL DE ACTIVOS DE EXTRANJEROS DEL DEPARTAMENTO DEL TESORO DE EEUU.-->
+        <!--div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>MENSAJE POR INFORMACIÓN REPORTADA POR OFAC - OFICINA DE CONTROL DE ACTIVOS DE EXTRANJEROS DEL
+                        DEPARTAMENTO DEL TESORO DE EEUU.</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHADEPUBLICACION">FECHA DE PUBLICACIÓN</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CLAVE">CLAVE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="RESPONSABILIDAD">RESPONSABILIDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="REPORTADOPOR">REPORTADO POR:</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MENSAJE">MENSAJE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="COINCIDENCIAPORDATOSDE">COINCIDENCIA POR DATOS DE:</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="no hay registros" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="FECHADEPUBLICACION" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="CLAVE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="RESPONSABILIDAD" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="REPORTADOPOR" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="MENSAJE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="COINCIDENCIAPORDATOSDE" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table-->
+
+        <!--SCORE-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_7-of-7">
+                <span><B>SCORE</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="NOMBREDELSCORE">NOMBRE DEL SCORE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="VALORDELSCORE">VALOR DEL SCORE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CAUSA(S)DELVALORDELSCORE">CAUSA(S) DEL VALOR DEL SCORE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CAUSADENOSCORE">CAUSA DE NO SCORE</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.ScoreBuroCredito}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NOMBREDELSCORE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.nombreScore}
+                            </div>
+                        </th>
+                        <th data-label="VALORDELSCORE" scope="row">
+
+                            <div class="slds-truncate">
+                                {!item.ValorScore}
+                            </div>
+
+                        </th>
+                        <th data-label="CAUSA(S)DELVALORDELSCORE" scope="row">
+
+                            <div style="text-transform:uppercase" class="slds-truncate">
+                                <ul>
+                                    <aura:iteration items="{!item.codigosRazon}" var="it">
+                                        <li>
+                                            {!it.CodRazon}
+                                        </li>
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+
+                        </th>
+                        <th data-label="CAUSADENOSCORE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CodigoError}
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <!--DETALLE DE LOS CREDITOS-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_12-of-12">
+                <span><B>DETALLE DE LOS CREDITOS</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="TCCR">TIPO DE: <br></br>CUENTA <br></br>RESPONSABILIDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ONC">OTORGANTE <br></br>NO. CUENTA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MONEDA">MONEDA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ACTUALIZADOAL">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            ACTUALIZADO AL
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="APERTURA">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            APERTURA
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ULTIMOPAGO">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            ULTIMO <br></br>PAGO
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ULTIMACOMPRA">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            ULTIMA <br></br>COMPRA
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CIERRE">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            CIERRE
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="ULTVEZSDO">
+                            <lightning:icon iconName="standard:event" size="x-small" alternativeText="Fecha" />
+                            ULT VEZ <br></br>SDO = 0
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="LIMITEDECRED">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            LIMITE DE <br></br>CRED
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+
+                        <div class="slds-truncate " title="CREDITOMAXIMO">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            CREDITO <br></br>MAXIMO
+                        </div>
+                    </th>
+
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.cuentas}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="TCCR" scope="row">
+                            <div class="slds-truncate" style="text-transform: uppercase;">
+                                {!item.TipoCuenta}
+                                <br/>
+                                {!item.TipoContrato}
+                            </div>
+                        </th>
+                        <th data-label="ONC" scope="row">
+                            <div class="slds-truncate">
+                                {!item.NombreOtorgante}
+                            </div>
+                        </th>
+                        <th data-label="MONEDA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.ClaveUnidadMonetaria}
+                            </div>
+                        </th>
+                        <th data-label="ACTUALIZADOAL" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaReporte}
+                            </div>
+                        </th>
+                        <th data-label="APERTURA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaAperturaCuenta}
+                            </div>
+                        </th>
+                        <th data-label="ULTIMOPAGO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaUltimoPago}
+                            </div>
+                        </th>
+                        <th data-label="ULTIMACOMPRA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaUltimaCompra}
+                            </div>
+                        </th>
+                        <th data-label="CIERRE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaCierreCuenta}
+                            </div>
+                        </th>
+                        <th data-label="ULTVEZSDO" scope="row">
+                            <div class="slds-truncate">
+
+                            </div>
+                        </th>
+                        <th data-label="LIMITEDECRED" scope="row">
+                            <div class="slds-truncate">
+                                {!item.LimiteCredito}
+                            </div>
+                        </th>
+                        <th data-label="CREDITOMAXIMO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CreditoMaximo} 
+                            </div>
+                        </th>
+
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="Num">
+                            <lightning:icon iconName="standard:topic2" size="X-Small" alternativeText="Fecha" />
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="SALDOACTUAL">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            SALDO <br></br>ACTUAL
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MONTO">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            MONTO
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MONTOULTIMOPAGO">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            MONTO <br></br>ULTIMO PAGO
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MONTOAPAGAR">
+                            <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                            MONTO <br></br>A PAGAR
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FPFA">
+                            FORMA DE PAGO EN<br></br>FECHA ACTUALIZACION
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MFI">
+                            <lightning:icon iconName="standard:dashboard" size="XX-Small" alternativeText="Fecha" />
+                            MOP <br></br>FECHA IMPORTE
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="HPCO">
+                            HISTORICO DE PAGOS<br></br>
+                            CLAVE DE OBSERVACION
+                        </div>
+                    </th>
+
+                </tr>
+
+            </thead>
+            <aura:iteration items="{!v.Persona.cuentas}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="NUM" scope="row">
+                            <div class="slds-truncate">
+                                {!_index + 1}
+                            </div>
+                        </th>
+                        <th data-label="SALDOACTUAL" scope="row">
+                            <div class="slds-truncate">
+                                {!item.SaldoActual} 
+                            </div>
+                        </th>
+                        <th data-label="MONTO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.SaldoVencido}
+                            </div>
+                        </th>
+                        <th data-label="MONTOULTIMOPAGO" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MontoUltimoPago}
+                            </div>
+                        </th>
+                        <th data-label="MONTOAPAGAR" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MontoPagar} 
+                                <br/>
+                                <span style="text-transform: uppercase;">{!item.FrecuenciaPagos}</span>
+                                <br/>
+                                {!item.NumeroPagos}
+                            </div>
+                        </th>
+                        <th data-label="FPFA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FormaPagoActual}
+                            </div>
+                        </th>
+                        <th data-label="MFI" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MopHistoricoMorosidadMasGrave} 
+                                <br/>
+                                {!item.FechaHistoricaMorosidadMasGrave} 
+                                <br/>
+                                {!item.ImporteSaldoMorosidadHistMasGrave}
+                            </div>
+                        </th>
+                        <th data-label="HPCO" scope="row">
+                            <div class="slds-truncate">
+
+                                <table>
+                                    <tr>
+                                        <td class="tg-0pky slds-text-align_center ancho33">{!v.currentYear}</td>
+                                        <td class="tg-0pky slds-text-align_center ancho33">{!v.currentYear - 1}</td>
+                                        <td class="tg-0pky slds-text-align_center ancho33">{!v.currentYear - 2}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky slds-text-align_center">{!item.PrimeroMeses}</td>
+                                        <td class="tg-0pky slds-text-align_center">{!item.SegundoMeses}</td>
+                                        <td class="tg-0pky slds-text-align_center">{!item.TerceroMeses}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0pky slds-text-align_center">{!item.PrimeroDigitos}</td>
+                                        <td class="tg-0pky slds-text-align_center">{!item.SegundoDigitos}</td>
+                                        <td class="tg-0pky slds-text-align_center">{!item.TerceroDigitos}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="slds-text-align_center" colspan="3" style="text-transform: uppercase;">{!item.ClaveObservacion}</td>
+                                    </tr>
+                                    
+                                </table>
+
+                            </div>
+                        </th>
+
+
+
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+        
+        <!--RESUMEN DE CREDITOS (M.N.)-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_12-of-12">
+                <span><B>RESUMEN DE CREDITOS (M.N.)</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MOP">MOP</div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CUENTASABIERTAS">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            CUENTAS <br></br>ABIERTAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="LIMITEABIERTAS">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            LIMITE <br></br>ABIERTAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MAXIMOABIERTAS">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            MAXIMO <br></br>ABIERTAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="SALDOACTUALABIERTAS">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            SALDO ACTUAL<br></br> ABIERTAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="SALDOVENCIDOABIERTAS">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            SALDO VENCIDO<br></br> ABIERTAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="PAGOAREALIZAR">
+                            <lightning:icon iconName="standard:user" size="X-Small" alternativeText="Fecha" />
+                            PAGO A <br></br>REALIZAR
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="CUENTASCERRADAS">
+                            <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                                class="blackOnRed" />
+                            CUENTAS <br></br>CERRADAS
+                        </div>
+                    </th>
+
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="LIMITECERRADAS">
+                            <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                                class="blackOnRed" />
+                            LIMITE <br></br>CERRADAS
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MAXIMOCERRADAS">
+                            <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                                class="blackOnRed" />
+                            MAXIMO <br></br>CERRADAS
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="SALDOACTUALCERRADAS">
+                            <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                                class="blackOnRed" />
+                            SALDO ACTUAL<br></br> CERRADAS
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="MONTOCERRADAS">
+                            <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                                class="blackOnRed" />
+                            MONTO <br></br>CERRADAS
+                        </div>
+                    </th>
+
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.ResumenReportesSumaCuentas}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+
+                        <th data-label="MOP" scope="row">
+                            <div class="slds-truncate">
+                                {!item.Mop}
+                            </div>
+                        </th>
+
+                        <th data-label="CUENTASABIERTAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CuentasAbiertas}
+                            </div>
+                        </th>
+
+                        <th data-label="LIMITEABIERTAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.LimiteAbiertas}
+                            </div>
+                        </th>
+
+                        <th data-label="MAXIMOABIERTAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MaximoAbiertas}
+                            </div>
+                        </th>
+
+                        <th data-label="SALDOACTUALABIERTAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.SaldoActualAbiertas}
+                            </div>
+                        </th>
+
+                        <th data-label="SALDOVENCIDOABIERTAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.SaldoVencidoAbiertas}
+                            </div>
+                        </th>
+
+                        <th data-label="PAGOAREALIZAR" scope="row">
+                            <div class="slds-truncate">
+                                {!item.PagoARealizar}
+                            </div>
+                        </th>
+
+                        <th data-label="CUENTASCERRADAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.CuentasCerradas}
+                            </div>
+                        </th>
+
+                        <th data-label="LIMITECERRADAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.LimiteCerradas}
+                            </div>
+                        </th>
+
+                        <th data-label="MAXIMOCERRADAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MaximoCerradas}
+                            </div>
+                        </th>
+
+                        <th data-label="SALDOACTUALCERRADAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.SaldoActualCerradas}
+                            </div>
+                        </th>
+
+                        <th data-label="MONTOCERRADAS" scope="row">
+                            <div class="slds-truncate">
+                                {!item.MontoCerradas}
+                            </div>
+                        </th>
+
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <!--DETALLE DE LAS CONSULTAS-->
+        <div class="slds-grid slds-gutters title">
+            <div class="slds-col slds-size_12-of-12">
+                <span><B>DETALLE DE LAS CONSULTAS</B></span>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered tabJM">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="OTORGANTE">OTORGANTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="FECHADELACONSULTA">FECHA DE LA CONSULTA</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="RESPONSABILIDAD">RESPONSABILIDAD</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="TIPODECONTRATO">TIPO DE CONTRATO</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="IMPORTE">IMPORTE</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate " title="TIPODEMONEDA">TIPO DE MONEDA</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.Persona.consultasEfectuadas}" var="item">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        
+                        <th data-label="OTORGANTE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.NombreOtorgante}
+                            </div>
+                        </th>
+                        <th data-label="FECHADELACONSULTA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.FechaConsulta}
+                            </div>
+                        </th>
+                        <th data-label="RESPONSABILIDAD" scope="row">
+                            <div class="slds-truncate" style="text-transform: uppercase;">
+                                {!item.IndicadorTipoResponsabilidad}
+                            </div>
+                        </th>
+                        <th data-label="TIPODECONTRATO" scope="row">
+                            <div class="slds-truncate" style="text-transform: uppercase;">
+                                {!item.TipoContrato}
+                            </div>
+                        </th>
+                        <th data-label="IMPORTE" scope="row">
+                            <div class="slds-truncate">
+                                {!item.ImporteContrato}
+                            </div>
+                        </th>
+                        <th data-label="TIPODEMONEDA" scope="row">
+                            <div class="slds-truncate">
+                                {!item.ClaveUnidadMonetaria}
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </aura:iteration>
+        </table>
+
+        <div class="slds-text-heading_small titlefooter">* MONTO: puede tener las siguientes interpretaciones:</div>
+
+        <!--footer-->
+        <div class="slds-grid slds-gutters footer">
+
+            <div class="slds-col">
+
+                <dl class="slds-dl_inline">
+                    <dt class="slds-dl_inline__label">1)</dt>
+                    <dd class="slds-dl_inline__detail">
+                        Saldo Vencido (monto no pagado a la fecha límite de pago)
+                    </dd>
+                    <dt class="slds-dl_inline__label">2)</dt>
+                    <dd class="slds-dl_inline__detail">
+                        Monto de la Quita otorgada (con clave de observación LC - esinformativo)
+                    </dd>
+                    <dt class="slds-dl_inline__label">3)</dt>
+                    <dd class="slds-dl_inline__detail">
+                        Saldo Vencido al momento de la venta de la cartera (con clave de observación CV - es
+                        informativo)
+                    </dd>
+                </dl>
+
+            </div>
+
+
+            <div class="slds-col">
+
+                <dl class="slds-dl_inline">
+
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:topic2" size="XX-Small" alternativeText="Fecha" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">INDICA NUMERACIÓN DE REGISTROS</dd>
+
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:dashboard" size="XX-Small" alternativeText="Fecha" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">MAX MOROS.</dd>
+
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:currency" size="XX-Small" alternativeText="Fecha" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">INDICA CANTIDADES</dd>
+
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:event" size="XX-Small" alternativeText="Fecha" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">INDICA FECHAS</dd>
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">INDICA CUENTAS ABIERTAS</dd>
+                    <dt class="slds-dl_inline__label">
+                        <lightning:icon iconName="standard:user" size="XX-Small" alternativeText="Fecha"
+                            class="blackOnRed" />
+                    </dt>
+                    <dd class="slds-dl_inline__detail">INDICA CUENTAS CERRADAS</dd>
+
+                </dl>
+
+            </div>
+
+        </div>
+
+        <div class="slds-grid slds-gutters titleDown">
+            <div class="slds-col slds-size_12-of-12">
+                <span><B>DOCUMENTO SIN VALOR PROBATORIO EN JUICIOS</B></span>
+            </div>
+        </div>
+
+    </div>
+
+
+</aura:component>

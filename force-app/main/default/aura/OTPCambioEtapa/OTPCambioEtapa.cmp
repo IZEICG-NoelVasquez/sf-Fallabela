@@ -1,0 +1,42 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" controller="AuthenticateCustomerController" access="global" >
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="record" type="Object" />
+	<aura:attribute name="simpleRecord" type="Object" />
+    <aura:attribute name="error" type="String" />
+ 
+    <aura:registerEvent name="OTPState" type="c:OTPState" />
+    
+    <aura:handler name="change" value="{!v.simpleRecord}" action="{! c.doInit}" /> 
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+             
+    <force:recordData aura:id="forceRecordCmp"
+        recordId="{!v.recordId}"
+        layoutType="FULL"
+        fields="['Account.PersonMobilePhone','Celular_Nuevo__c', 'Celular_Nuevo_Verificado__c', 'Status', 'RecordType.Name', 'Celular_PAN_Verificado__c']"
+        mode="VIEW"
+        targetRecord="{!v.record}"
+        targetFields="{!v.simpleRecord}"
+        targetError="{!v.error}" />
+
+    <aura:if isTrue="{! and(v.simpleRecord.RecordType.Name == 'Actualización de Celular', v.simpleRecord.Celular_Nuevo_Verificado__c == false, v.simpleRecord.Status == 'Actualización de Datos') || 
+                     and(v.simpleRecord.RecordType.Name == 'Consulta de PAN', v.simpleRecord.Celular_PAN_Verificado__c == false, v.simpleRecord.Status == 'Consulta Cuenta') ||
+                     and(v.simpleRecord.RecordType.Name == 'Alta Cliente', v.simpleRecord.Celular_Nuevo_Verificado__c == false, v.simpleRecord.Status == 'Análisis de la Cuenta') }">
+        <div class="slds-box">
+        	<h1 class="slds-text-heading_medium">Validar OTP</h1>
+            <div class="slds-p-top_medium">
+            	<lightning:button label="Validacion OTP" onclick="{! c.abrirOtp }"/>
+            </div>
+        	
+        </div>
+        
+    </aura:if>
+    
+    <!--<c:OTPGenerator aura:id="otpCmp" recordId="{! v.recordId }" mode="casePAN" phone="{! v.simpleRecord.Account.PersonMobilePhone }"/> -->
+	
+    
+    <c:OTPGenerator aura:id="otpCmp" recordId="{! v.recordId }" />
+    
+    
+   
+</aura:component>

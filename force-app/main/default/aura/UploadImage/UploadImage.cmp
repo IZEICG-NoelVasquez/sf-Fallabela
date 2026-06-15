@@ -1,0 +1,73 @@
+<aura:component controller="UploadImageController" implements="lightning:availableForFlowScreens,flexipage:availableForRecordHome,force:hasRecordId,force:LightningQuickAction,force:appHostable" access="global" >
+   <aura:registerEvent name="UploadImageEvent" type="c:UploadImageEvent" />
+    <aura:attribute name="accept" type="List" default="['.jpg']"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:attribute name="multiple" type="Boolean" default="false"/>
+    <aura:attribute name="files" type="ContentDocument[]"/>  
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="DesdeFlujo" type="Boolean" default="false"/>
+    <aura:attribute name="FotoCargada" type="Boolean" default="false"/>
+    <aura:attribute name="displayUploadImage" type="Boolean" default="true"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="documentId" type="String" />
+    <aura:attribute name="simpleNewCuestionario" type="Object"/>
+
+    <aura:attribute name="paso" type="Integer" default="0" />
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+    <!--accept="image/* capture=camera" -->
+    <!--accept="{!v.accept}" -->
+    <aura:if isTrue="{!v.displayUploadImage}">
+        <div class="slds">  
+            <lightning:notificationsLibrary aura:id="notifLib"/>
+            <div class="contentbox">  
+                <div class="slds-page-header header">Files</div>  
+                <div class="slds-grid">  
+                    <div style="width:100%">  
+                        <center>
+                            <lightning:fileUpload  name="Subir foto"
+                                                  label= "Tomar foto"
+                                                  multiple="{!v.multiple}"
+                                                  accept="{!v.accept}"
+                                                  capture="camera"
+                                                  recordId="{!v.recordId}"
+                                                  onuploadfinished="{! c.handleUploadFinished }"/>
+                        </center>
+                    </div>  
+                </div><br/> 
+                <div class="slds-form--compound" style="position:relative">
+                    <table class="slds-table slds-table--bordered">  
+                        <thead>  
+                            <tr>  
+                                <th style="width:20%"></th>
+                                <th style="width:80%">Nomobre</th>                     
+                            </tr>  
+                        </thead>  
+                        <tbody>
+                            <aura:iteration items="{!v.files}" var="f">  
+                                <tr>  
+                                    <td style="width:20%"><a href="javascript:void(0)" id="{!f.Id}" onclick="{!c.delFiles}">Delete</a></td>
+                                    <td style="width:80%"><a href="" id="{!f.Id}" onclick="{!c.previewFile}">{!f.Title}</a></td>  
+                                    
+                                </tr>  
+                            </aura:iteration>  
+                        </tbody>  
+                    </table>  
+                    <aura:if isTrue="{!v.Spinner}">
+                        <div class="slds-spinner_container">
+                            <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>  
+        </div>  
+    </aura:if>
+    <aura:if isTrue="{!and(v.FotoCargada,v.DesdeFlujo)}">
+        <aura:if isTrue="{!v.paso != 0}">
+           <!-- <c:CuestionarioFlujoCrear recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="true" paso="{!v.paso}"/>-->
+        </aura:if>
+    </aura:if>
+    
+</aura:component>

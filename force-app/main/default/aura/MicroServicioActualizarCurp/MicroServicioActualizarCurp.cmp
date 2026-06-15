@@ -1,0 +1,241 @@
+<aura:component controller="MicroServicioActualizarCurp">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <!-- Curp Update -->
+    
+    <aura:attribute name="openCurpUpdate" type="Boolean" default="false" />
+    <aura:attribute name="loadedProductos" type="Boolean" default="false" />
+    <aura:attribute name="noPasoCurpUpdate" type="Integer" default="0" />
+    <aura:attribute name="strCurpUpdate" type="String" />
+    <aura:attribute name="strCurpAntes" type="String" />
+    <aura:attribute name="loadingCurpUpdate" type="Boolean" />
+    <aura:attribute name="curpUpdated" type="Boolean" /> 
+    <!-- Creacion de Caso Actualizacion de Curp -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseCurp" type="String" />
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+    
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+        <div class="slds-form-element slds-m-right_x-small">
+            <span style="font-size: 11px !important;" class="slds-form-element__label">CURP</span>
+            <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                <div class="slds-grid" >
+                    <div class="slds-size_11-of-12">
+                        <div style="font-size: 11px !important;" class="slds-form-element__static">{! v.selectedAccount.CURP__c }</div>             
+                    </div>
+                    <div class="slds-size_1-of-12">
+                        <aura:if isTrue="{! and( !v.loadedProductos, v.validacionesOTPCargadas) }" >
+                            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.handleModalCURPUpdate }" alternativeText="Sr(a). Le confirmamos que el cambio de su CURP se realizó con éxito. Le recordamos que en caso de tenga habilitada la opción de disposición de efectivo a través de su App, ésta se podrá realizar hasta 48 hrs después" />
+                        </aura:if> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--###### MODAL BOX Start######--> 
+    <aura:if isTrue="{! v.openCurpUpdate }" >
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModalCurpUpdate }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"
+                                              disabled="{! v.loadingCurpUpdate || v.creatingCase }" />
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de CURP" iconName="standard:contact" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Editar Curp -->
+                        <aura:if isTrue="{! v.noPasoCurpUpdate == 1 }" >
+                            <div class="slds-box">
+                                <div class="row" >
+                                    
+                                    <lightning:input class="label-bold" maxlength="18" onchange="{!c.RevisaCaracteres}" name="input1" aura:id="curpUpdateId_1" label="CURP" placeholder="CURP" value="{! v.strCurpUpdate }" />
+                                </div>
+                            </div>
+                            <aura:if isTrue="{! v.loadingCurpUpdate }">
+                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>                                            
+                            </aura:if>
+                            <div class="slds-text-align_right  slds-p-around_large">
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.confirmarCurpUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 2: Confirmar Curp -->
+                        <aura:if isTrue="{! v.noPasoCurpUpdate == 2 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea actualizar el CURP ?
+                                </div>                                    
+                            </div>
+                            <div class="slds-form-element slds-p-around_large">
+                                <b><label style="font-size: 11px !important;font-weight:bold !important" class="slds-form-element__label" for="text-input-id-1">CURP</label></b>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="curpUpdateId_1" placeholder="CURP" value="{! v.strCurpUpdate }" class="slds-input" disabled="true" />
+                                </div>
+                            </div>
+                            <div class="slds-text-align_right  slds-p-right_large">
+                                <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalCurpUpdate }" title="Regresar" />
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.guardarCurpUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoCurpUpdate == 3 }" >
+                            <aura:if isTrue="{! !(v.loadingCurpUpdate) }" >
+                                <aura:if isTrue="{! v.curpUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizó Información con éxito
+                                    </div>
+                                    
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                    Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                        {! v.newCaseCurp }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+                                        
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                    
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.curpUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+                                
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingCurpUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                         <!-- Paso 4: Mensaje de Exito y Numero de Caso -->
+                         <aura:if isTrue="{! v.noPasoCurpUpdate == 4 }" >
+                            <aura:if isTrue="{! !(v.loadingCurpUpdate) }" >
+                                <aura:if isTrue="{! v.curpUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se detectó CURP Duplicado. Favor de dar siguimiento dentro de los siguientes 10 días hábiles, al número de
+                                    </div>
+                                    
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                    Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                        {! v.newCaseCurp }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+                                        
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                    
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.curpUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+                                
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingCurpUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                          label="Cerrar"
+                                          title="Cerrar"
+                                          onclick="{! c.closeModalCurpUpdate }"
+                                          disabled="{! v.loadingCurpUpdate || v.creatingCase }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalCURPUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

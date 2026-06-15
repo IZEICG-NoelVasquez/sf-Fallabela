@@ -1,0 +1,568 @@
+<aura:component controller="MicroServicioMovimientos" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="saldos" type="Object[]"  /> 
+
+    <aura:attribute name="productIdx" type="Integer" description="Product selected for Movimiento una vez que Movimientos sin fecha corte haya sido cargado"/>
+
+    <aura:attribute name="glosaCodigoSubProducto" type="String" />
+
+    <!-- modal --> 
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="loadedMovSinFechaCorte" type="Boolean" />
+    <aura:attribute name="loadedMovConFechaCorte" type="Boolean" />
+
+    <aura:attribute name="selectAllMovSinFechaCorteCheck" type="Boolean"  />
+    <aura:attribute name="selectAllMovConFechaCorteCheck" type="Boolean"  />
+
+    <!-- pagination Movimientos Sin Corte -->
+
+    <aura:attribute name="movimientosSinFechaCorte" type="Object[]" default="[]" />
+    <aura:attribute name="movimientosSinFechaCorteBackUp" type="Object[]" default="[]" />
+    <aura:attribute name="PaginationList" type="list"/>
+    <aura:attribute name="selectedCountMovSinFechaCorte" type="integer" default="0" description="selected Records Count"/>
+    <aura:attribute name="selectedCountMovSinFechaCorteBackUp" type="integer" default="0" description="selected Records Count"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecordsCountMovSinFechaCorte" type="Integer" />
+    <aura:attribute name="pageSize" type="Integer" default="28" description="number of records to be display on per page"/>
+    <aura:attribute name="currentPage" type="integer" default="1"/>
+    <aura:attribute name="totalPagesCount" type="integer"/>
+    <!-- Paginacion ** v2 ** Movimientos Sin Corte -->
+    <aura:attribute name="idPrimerRegistroMovSinFecha" type="String" />
+    <aura:attribute name="idUltimoRegistroMovSinFecha" type="String" />
+    <aura:attribute name="movimientosSinFechaTodos" type="Object[]" />
+    <aura:attribute name="movimientosSinFechaUltimaPagina" type="Boolean" default="false" />
+
+    <!-- pagination Movimientos Con Corte -->
+    <aura:attribute name="movimientosConFechaCorte" type="Object[]"  />
+    <aura:attribute name="movimientosConFechaCorteBackUp" type="Object[]"  />
+    <aura:attribute name="PaginationListMovConFechaCorte" type="list"/>
+    <aura:attribute name="selectedCountMovConFechaCorte" type="integer" default="0" description="selected Records Count"/>
+    <aura:attribute name="selectedCountMovConFechaCorteBackUp" type="integer" default="0" description="selected Records Count"/>
+    <aura:attribute name="startPageMovConFechaCorte" type="Integer" />
+    <aura:attribute name="endPageMovConFechaCorte" type="Integer"/>
+    <aura:attribute name="totalRecordsCountMovConFechaCorte" type="Integer" />
+    <aura:attribute name="pageSizeMovConFechaCorte" type="Integer" default="28" description="number of records to be display on per page"/>
+    <aura:attribute name="currentPageMovConFechaCorte" type="integer" default="1"/>
+    <aura:attribute name="totalPagesCountMovConFechaCorte" type="integer"/>
+    <!-- Paginacion ** v2 ** Movimientos Con Corte -->
+    <aura:attribute name="idPrimerRegistroMovConFecha" type="String" />
+    <aura:attribute name="idUltimoRegistroMovConFecha" type="String" />
+    <aura:attribute name="movimientosConFechaTodos" type="Object[]" />
+    <aura:attribute name="movimientosConFechaUltimaPagina" type="Boolean" default="false" />
+
+    <aura:attribute name="mapaMomimientosConFecha" type="Map" default="{}" />
+    <aura:attribute name="mapaFechaCortePaginacion" type="Map" default="{}" />
+    
+    <!-- MicroServicio Detalle de Movimientos -->
+    <aura:attribute name="isOpen2" type="boolean" default="false"/>
+    <aura:attribute name="movimientoDetalle" type="Object"/>  
+
+    <!-- Movimientos seleccionado -->
+    <aura:attribute name="isMovimiento" type="Boolean" default="true"/>
+    <aura:attribute name="movimientosSeleccionados" type="Boolean" default="false" />
+    <aura:attribute name="movimientosList" type="String" />
+    <aura:attribute name="sumAniosMovimientosConFecha" type="Integer" default="0" />      
+
+    <!-- movimiento seleccinado para detalles -->
+    <aura:attribute name="movimiento" type="Object" />
+    <aura:attribute name="tarjetaCredito" type="Object" />
+    <aura:attribute name="loadedDetalles" type="Boolean" default="true" />
+
+    <!-- Guardar Movimientos Seleccionados para Crear Caso -->
+    <aura:attribute name="openGuardarMovimientos" type="Boolean" default="false" />
+    <aura:attribute name="movimientosBackdropClass" type="String" />
+    <aura:attribute name="numeroDeTarjetaValueProducto" type="String" />
+    <aura:attribute name="movimientosListObject" type="Object[]" />
+
+    <aura:attribute name="consultaMovimientosExitosa" type="Boolean" />
+    <aura:attribute name="mensajeErrorConsulta" type="String" />
+
+    <!-- Fechas Corte -->
+    <aura:attribute name="fechasCorteOptions" type="List" />
+    <aura:attribute name="fechasCorteOptionsEdoCta" type="List" />
+    <aura:attribute name="fechaCorteValue" type="String" />
+    <aura:attribute name="movimientoIdx" type="Integer" description="Product selected for Movimiento"/>
+
+    <!-- Crear Caso Saldos -->
+    <aura:attribute name="openModalCasoSaldos" type="Boolean" default="false" /> 
+    <!--aura:registerEvent name="stepChange" type="c:stepChange" /-->
+    <aura:attribute name="casoConsultaSaldosCreado" type="Boolean" default="false" />
+    <aura:attribute name="loadingCasoConsultaDeSaldos" type="Boolean" default="true" />
+
+    <!-- SEPARACION DE COMPONENTES -->
+    <aura:attribute name="cargarFechasDeCorte" type="Boolean" default="false" />
+    <aura:attribute name="fechaAsignada" type="Boolean" />
+    <aura:attribute name="movimientoIdxMovSinFecha" type="Integer" />
+
+    <aura:attribute name="mostrarTablaSaldos" type="Boolean" />
+    <aura:attribute name="cargarMicroServicioSaldos" type="Boolean" />
+
+    <aura:handler name="change" value="{!v.fechaAsignada}" action="{!c.changeFechaCorte}"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <!-- Plan de Pagos -->
+    <aura:attribute name="blnPlanDePagos" type="Boolean" default="false" />
+
+    <!-- Liberar Saldo Retenido -->
+    <aura:attribute name="blnSoloMovsNoFacturados" type="Boolean" default="false" />
+    <aura:attribute name="limpiarNombreComercio" type="List" default="['CONSUMO NACIONAL','COMPRA COMERCIO ELECTRONICO','COMPRAS INTERNACIONALES','PAGOS REALIZADOS']" />
+
+    <!-- Tipo de Consulta -->
+    <aura:attribute name="valuesSelected" type="String" />
+
+    <!-- MS Movimientos Creacion de Casos sin Seleccionar Movimientos -->
+    <aura:attribute name="casoSinSeleccionarMovimientos" type="Boolean" default="false" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="blnBalancesCase" type="Boolean" default="false" />
+
+    <aura:html tag="style">
+        .forceToastMessage {
+            white-space : pre-line !important;
+        }
+    </aura:html>
+
+    <div class="slds-m-around_xx-large">
+        
+        <aura:if isTrue="{!v.isOpen}">
+            
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModel }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"/>
+                        
+                    </header>
+                    <lightning:tabset variant="scoped">
+                        <lightning:tab label="ÚLTIMOS MOVIMIENTOS">
+
+                            <aura:if isTrue="{! !(v.loadedMovSinFechaCorte) }">
+                                <lightning:layout class="slds-p-horizontal_large">
+
+                                    <lightning:layoutItem class="slds-size_9-of-12" ></lightning:layoutItem>
+
+                                    <lightning:layoutItem class="slds-size_3-of-12" >
+                                        <c:MultiPicklistTipoDeConsulta valuesSelected="{! v.valuesSelected }" />
+                                    </lightning:layoutItem>
+
+                                </lightning:layout>
+                            </aura:if>
+
+                            <!--###### MODAL BOX BODY Part1 Start######-->
+                            <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+                                <div class="slds-scrollable">
+                                    <!--c:MicroServicioSaldos aura:id="msSaldos" productos="{! v.productos }" saldos="{! v.saldos }" movimientoIdx="{! v.movimientoIdx }" 
+                                                        fechaCorteValue="{! v.fechaCorteValue }" cargarFechasDeCorte="{! v.cargarFechasDeCorte }" 
+                                                        mostrarTablaSaldos="{! v.mostrarTablaSaldos }" cargarMicroServicioSaldos="{! v.cargarMicroServicioSaldos }"  /-->
+                                    <aura:if isTrue="{! !empty(v.saldos) }">
+                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-box">
+                                            <thead>
+                                                <tr class="slds-line-height_reset">
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Límite de Crédito</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Saldo Actual</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Crédito Disponible</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Pago para no generar intereses</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Pago Mínimo</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Fecha Límite de Pago</div>
+                                                    </th>
+                                                    <th class=".slds-cell-wrap" scope="col">
+                                                        <div class="slds-text-title slds-text-color_default">Próxima fecha<br/>de corte</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <aura:iteration items="{! v.saldos }" var="item" indexVar="indexVar">
+                                                    <tr class="slds-hint-parent">
+                                                        <th class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.cuentaTarjetaCredito.cupoNacional.cupoTotal }" class="slds-text-title slds-text-color_default"/>
+                                                        </th>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.cuentaTarjetaCredito.cupoNacional.cupoUtilizado }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.cuentaTarjetaCredito.cupoNacional.cupoDisponible }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.resumenFacturacion.resumenUltimaFacturacion.consumoFacturado }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.resumenFacturacion.resumenUltimaFacturacion.pagoMinimo }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">
+                                                                <lightning:formattedDateTime value="{! item.resumenFacturacion.resumenUltimaFacturacion.fechaVencimiento}" year="numeric" month="2-digit" day="2-digit" timeZone="UTC" /> 
+                                                            </div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">
+                                                                <lightning:formattedDateTime value="{! item.resumenFacturacion.resumenProximaFacturacion.fechaProximaFacturacion }" year="numeric" month="2-digit" day="2-digit" timeZone="UTC" /> 
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </aura:iteration>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </aura:if>
+                                    
+                                    
+                                    <lightning:layout>
+                                        <lightning:layoutItem class="slds-size_2-of-12" padding="around-small">
+                                            <div class="slds-text-title slds-text-color_default" style="font-weight: bold;">
+                                                <ui:inputCheckbox disabled="false" aura:id="planDePagosId" value="{! v.blnPlanDePagos }" label="Plan de Pagos" change="{!c.changePlanDePagos}"/>
+                                            </div>
+                                        </lightning:layoutItem>
+
+                                        <lightning:layoutItem class="slds-size_2-of-12" padding="around-small">
+                                            <div class="slds-text-title slds-text-color_default" style="font-weight: bold;">Tipo de Producto</div>
+                                            <div class="slds-text-title slds-text-color_default"> {! v.glosaCodigoSubProducto }</div>
+                                        </lightning:layoutItem>
+
+                                        <lightning:layoutItem class="slds-size_2-of-12" padding="around-small">
+                                            <div class="slds-text-title slds-text-color_default" style="font-weight: bold;">Condición económica</div>
+                                            <div class="slds-text-title slds-text-color_default"> {! v.selectedAccount.Condici_n_econ_mica__c }</div>
+                                        </lightning:layoutItem>
+
+                                        <lightning:layoutItem class="slds-size_2-of-12" padding="around-small">
+                                            <div class="slds-text-title slds-text-color_default" style="font-weight: bold;">Saldo de garantía</div>
+                                            <!--<div class="slds-text-title slds-text-color_default"> {! v.selectedAccount.Saldo_Garantia__c }</div>-->
+                                            <lightning:formattedNumber value="{!v.selectedAccount.Saldo_Garantia__c}" style="currency" currencyCode="MXN"/>
+
+                                        </lightning:layoutItem>
+
+                                        <lightning:layoutItem class="slds-size_4-of-12" padding="around-small"></lightning:layoutItem>
+                                    </lightning:layout>
+
+                                    
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-box">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th style="width:3.25rem;" class="slds-text-align_right">
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control">
+                                                            <label class="slds-checkbox">
+                                                                <ui:inputCheckbox disabled="{! or(v.totalRecordsCountMovSinFechaCorte == 0, v.blnPlanDePagos) }"
+                                                                                    aura:id="selectAllMovSinFechaCorteId"
+                                                                                    value="{! v.selectAllMovSinFechaCorteCheck }"
+                                                                                    change="{!c.selectAllCheckboxMovSinFechaCorte}"/>
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Fecha de Compra</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Descripción(*)</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Titular/Adicional</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Transacción<br/>moneda local</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Mensualidad</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Monto a pagar</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Detalle</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:if isTrue="{! and( !empty(v.movimientosSinFechaCorte), !v.loadedMovSinFechaCorte ) }">
+                                                <aura:iteration items="{! v.PaginationList }" var="item" indexVar="indexVar">
+                                                    <tr class="slds-hint-parent">
+                                                        <th scope="row" class="slds-text-align_right" style="width:3.25rem;">
+                                                            <div class="slds-form-element">
+                                                                <div class="slds-form-element__control">
+                                                                    <label class="slds-checkbox">
+                                                                        <ui:inputCheckbox text="movimientosSinFechaCorte"
+                                                                                            value="{!item.isChecked}"
+                                                                                            change="{!c.checkboxSelectMovSinFechaCorte}" 
+                                                                                            disabled="{! v.blnPlanDePagos }" />
+                                                                        <span class="slds-checkbox_faux"></span>
+                                                                        <span class="slds-form-element__label text"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">
+                                                                <lightning:formattedDateTime value="{! item.transaccion.fechaHoraTransaccion }" year="numeric" month="2-digit" day="2-digit" timeZone="UTC" /> 
+                                                            </div>
+                                                        </th>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.transaccion.estadoTransaccion.descripcion }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.titularidad }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.montoMovimientoTC.montoLocal }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.cuota.numeroCuota}/{! item.cuota.totalCuota }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.cuota.valorCuota }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <lightning:buttonIcon iconName="utility:add" variant="bare" alternativeText="Detalle" name="detalle" value="{! indexVar }" onclick="{!c.detalleMovSinFechaCorte}" />
+                                                        </td> 
+                                                    </tr>
+                                                </aura:iteration>
+                                                <aura:set attribute="else">
+                                                    <aura:if isTrue="{! v.loadedMovSinFechaCorte }">
+                                                        <lightning:spinner variant="brand" alternativeText="Loading"  />
+                                                    </aura:if>
+                                                </aura:set>  
+                                                
+                                            </aura:if>
+                                        </tbody>
+                                    </table>
+                                    <!-- DataTable End -->
+                                    <br/>
+                                    <!--  Pagination Buttons Start -->
+                                    <div class="slds-align_absolute-center">         
+                                        <lightning:button label="Anterior"
+                                                            disabled="{! lessthanorequal( v.currentPage, 1) }"  
+                                                            onclick="{!c.navigation}"
+                                                            variant="brand"
+                                                            iconName="utility:back"
+                                                            name="previous"/>
+                                        
+                                        <span class="slds-badge slds-badge_lightest"
+                                                style="margin-right: 10px;margin-left: 10px;">
+                                            Página {!v.currentPage} 
+                                        </span>
+                                        
+                                        <lightning:button label="Siguiente"
+                                                            disabled="{!  (v.currentPage == 0) || ( (!v.idUltimoRegistroMovSinFecha) &amp;&amp; lessthanorequal(v.totalRecordsCountMovSinFechaCorte, v.currentPage * v.pageSize) ) }" 
+                                                            onclick="{!c.navigation}"
+                                                            variant="brand"
+                                                            iconName="utility:forward"
+                                                            iconPosition="right"
+                                                            name="next"/>
+
+                                    </div>  
+                                    <!--  Pagination Buttons End -->                                        
+                                    
+                                </div>
+                            </div>
+                        </lightning:tab>
+                        <lightning:tab label="MOVIMIENTOS AL CORTE">
+                            <!--###### MODAL BOX BODY Part Start######-->
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                
+                                <!-- Fechas de Corte --> 
+                                <aura:if isTrue="{! !empty(v.saldos) }">
+                                    <c:MicroServicioFechasDeCorte selectedAccount="{! v.selectedAccount }" 
+                                                fechasCorteOptions="{! v.fechasCorteOptions }" fechaCorteValue="{! v.fechaCorteValue }" movimientoIdx="{! v.movimientoIdx }" sumAniosMovimientosConFecha="{! v.sumAniosMovimientosConFecha }"
+                                                cargarFechasDeCorte="{! v.cargarFechasDeCorte }" fechaAsignada="{! v.fechaAsignada }" fechasCorteOptionsEdoCta="{! v.fechasCorteOptionsEdoCta }" />
+                                    <aura:set attribute="else">
+                                        <div class="slds-is-relative slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                   
+                                    </aura:set>
+                                </aura:if>                                    
+
+                                <div class="slds-is-relative slds-m-top_medium" >
+                                    
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th style="width:3.25rem;" class="slds-text-align_right">
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control">
+                                                            <label class="slds-checkbox">
+                                                                <ui:inputCheckbox disabled="{! or(v.totalRecordsCountMovConFechaCorte == 0, v.blnPlanDePagos) }"
+                                                                                    aura:id="selectAllMovConFechaCorteId"
+                                                                                    value="{! v.selectAllMovConFechaCorteCheck }"
+                                                                                    change="{!c.selectAllCheckboxMovConFechaCorte}"/>
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Fecha de Compra</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Descripción(*)</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Titular/Adicional</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Transacción<br/>moneda local</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Mensualidad</div>
+                                                </th>
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Monto a pagar</div>
+                                                </th>
+                                                
+                                                <th class=".slds-cell-wrap" scope="col">
+                                                    <div class="slds-text-title slds-text-color_default">Detalle</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:if isTrue="{! and( !empty(v.movimientosConFechaCorte),  !(v.loadedMovConFechaCorte) ) }" >
+                                                <aura:iteration items="{! v.PaginationListMovConFechaCorte }" var="item" indexVar="indexVar">
+                                                    <tr class="slds-hint-parent">
+                                                        <th scope="row" class="slds-text-align_right" style="width:3.25rem;">
+                                                            <div class="slds-form-element">
+                                                                <div class="slds-form-element__control">
+                                                                    <label class="slds-checkbox">
+                                                                        <ui:inputCheckbox text="movimientosConFechaCorte"
+                                                                                            value="{!item.isChecked}"
+                                                                                            name="{!item}"
+                                                                                            change="{!c.checkboxSelectMovConFechaCorte}" 
+                                                                                            disabled="{! v.blnPlanDePagos }"/>
+                                                                        <span class="slds-checkbox_faux"></span>
+                                                                        <span class="slds-form-element__label text"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">
+                                                                <lightning:formattedDateTime value="{! item.transaccion.fechaHoraTransaccion }" year="numeric" month="2-digit" day="2-digit" timeZone="UTC" /> 
+                                                            </div>
+                                                        </th>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.transaccion.estadoTransaccion.descripcion }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.titularidad }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.montoMovimientoTC.montoLocal }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <div class="slds-text-title slds-text-color_default">{! item.cuota.numeroCuota}/{! item.cuota.totalCuota }</div>
+                                                        </td>
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <ui:outputCurrency value="{! item.cuota.valorCuota }" class="slds-text-title slds-text-color_default"/>
+                                                        </td>
+                                                        
+                                                        <td class="slds-cell-nowrap" scope="col">
+                                                            <lightning:buttonIcon iconName="utility:add" variant="bare" alternativeText="Detalle" name="detalle" value="{! indexVar }" onclick="{!c.detalleMovConFechaCorte}" />
+                                                        </td> 
+                                                    </tr>
+                                                </aura:iteration>
+                                                <aura:set attribute="else">
+                                                    <aura:if isTrue="{! v.loadedMovConFechaCorte }">
+                                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                        </div>
+                                                        
+                                                    </aura:if>
+                                                </aura:set>        
+                                            </aura:if>
+                                        </tbody>
+                                    </table>
+                                    <!-- DataTable End -->
+                                    <br/>
+                                    <!--  Pagination Buttons Start -->
+                                    <div class="slds-align_absolute-center">         
+                                        <lightning:button label="Anterior"
+                                                            disabled="{! lessthanorequal( v.currentPageMovConFechaCorte, 1) }"  
+                                                            onclick="{!c.navigationMovConFechaCorte}"
+                                                            variant="brand"
+                                                            iconName="utility:back"
+                                                            name="previous"/>
+                                        
+                                        <span class="slds-badge slds-badge_lightest"
+                                                style="margin-right: 10px;margin-left: 10px;">
+                                            Página {!v.currentPageMovConFechaCorte} 
+                                        </span>
+                                        
+                                        <lightning:button label="Siguiente"
+                                                            disabled="{! or( v.currentPageMovConFechaCorte == 0 , and(!v.idUltimoRegistroMovConFecha, lessthanorequal( v.totalRecordsCountMovConFechaCorte, v.currentPageMovConFechaCorte * v.pageSizeMovConFechaCorte) ) ) }" 
+                                                            onclick="{!c.navigationMovConFechaCorte}"
+                                                            variant="brand"
+                                                            iconName="utility:forward"
+                                                            iconPosition="right"
+                                                            name="next"/>
+                                    </div>  
+                                    <!--  Pagination Buttons End -->                                        
+                                    
+                                </div>                                    
+                                
+                            </div>
+                        </lightning:tab>
+                    </lightning:tabset>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" 
+                                            label="Regresar"
+                                            title="Regresar"
+                                            onclick="{! c.closeModel }"
+                                            disabled="{! or(v.loadedMovSinFechaCorte, v.loadingCasoConsultaDeSaldos) }" />
+                        <lightning:button variant="brand" 
+                                            label="Crear Caso"
+                                            title="Crear Caso"
+                                            onclick="{! c.getSelectedRecords }"
+                                            disabled="{! v.loadedMovSinFechaCorte }" />
+                    </footer> 
+                </div>
+                <div aura:id="detailMove" class="{! v.movimientosBackdropClass }" ></div>
+            </section>
+            
+            <aura:if isTrue="{!v.isOpen2}">
+                <c:MicroServicioDetalleMovimientos aura:id="cmpDetalleMovimientos" isOpen2="{! v.isOpen2 }" loadedDetalles="{! v.loadedDetalles }" 
+                                        movimientosBackdropClass="{! v.movimientosBackdropClass }" />
+            </aura:if>
+            
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->                
+            
+        </aura:if>
+    </div>
+
+    <!-- MODAL Guardar Movimiento Seleccionado -->
+    <aura:if isTrue="{! v.openGuardarMovimientos }" >
+        <c:GuardarMovimientoSeleccionado selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" productIdx="{! v.productIdx }" 
+                        esClienteAnonimo="{! v.esClienteAnonimo }" clienteAnonimo="{! v.clienteAnonimo }" numeroDeTarjetaValueProducto="{! v.numeroDeTarjetaValueProducto }"
+                        isMovimiento="{! v.isMovimiento }" movimientosList="{! v.movimientosList }" movimientosListObject="{! v.movimientosListObject }"
+                        movimientosSeleccionados="{! v.movimientosSeleccionados }" openGuardarMovimientos="{! v.openGuardarMovimientos }" movimientosBackdropClass="{! v.movimientosBackdropClass }" 
+                        consultaMovimientosExitosa="{! v.consultaMovimientosExitosa }" mensajeErrorConsulta="{! v.mensajeErrorConsulta }" blnPlanDePagos="{! v.blnPlanDePagos }" 
+                        blnSoloMovsNoFacturados="{! v.blnSoloMovsNoFacturados }" casoSinSeleccionarMovimientos="{! v.casoSinSeleccionarMovimientos }" />
+    </aura:if>
+    
+</aura:component>

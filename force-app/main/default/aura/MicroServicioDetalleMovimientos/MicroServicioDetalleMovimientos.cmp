@@ -1,0 +1,113 @@
+<aura:component >
+
+    <aura:attribute name="isOpen2" type="boolean" default="false"/>
+    <aura:attribute name="movimientoDetalle" type="Object"/>
+
+    <!-- movimiento seleccinado para detalles -->
+    <aura:attribute name="movimiento" type="Object" />
+    <aura:attribute name="loadedDetalles" type="Boolean" default="true" />    
+
+    <aura:attribute name="movimientosBackdropClass" type="String" />
+
+    <aura:if isTrue="{!v.isOpen2}">                
+        <div class="demo-only" style="width:640px">
+            <!--###### MODAL BOX Start######--> 
+            <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open" aria-modal="true">
+                <div class="slds-modal__container slds-modal__container2">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModel2 }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"/>
+                        <h2 id="prompt-heading-id" class="slds-text-heading_medium">Detalle de movimiento</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="prompt-message-wrapper">
+                        
+                        <aura:if isTrue="{! !empty(v.movimientoDetalle) }">
+                            <div class="c-container">
+                                <lightning:layout  multipleRows="true">
+                                    <lightning:layoutItem padding="around-small" size="12">
+                                        <div class="slds-text-heading_large slds-text-align_center">
+                                                <ui:outputCurrency value="{! v.movimiento.cuota.valorCuota }" /> 
+                                        </div>      
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">Monto de Operación</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">
+                                                <ui:outputCurrency value="{! v.movimiento.montoMovimientoTC.montoTotal }" /> 
+                                        </div>      
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">Mensualidad</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">{! v.movimientoDetalle.movimiento.cuota.numeroCuota } de {! v.movimientoDetalle.movimiento.cuota.totalCuota }</div>      
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">Origen de compra</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">{! if(v.movimiento.transaccion.localidadTransaccion.pais=='MEX', 'Nacional', 'Internacional')}</div>      
+                                    </lightning:layoutItem>
+
+                                    <aura:if isTrue="{! if(v.movimientoDetalle.movimiento.transaccion.localidadTransaccion.nombreComercio=='0' || v.movimientoDetalle.movimiento.transaccion.localidadTransaccion.nombreComercio=='',false,true)}">
+                                        <lightning:layoutItem padding="around-small" size="6">
+                                            <div class="slds-text-align_left">Comercio</div>     
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem padding="around-small" size="6">
+                                            <div class="slds-text-align_right">{! v.movimientoDetalle.movimiento.transaccion.localidadTransaccion.nombreComercio }</div>      
+                                        </lightning:layoutItem>
+                                    </aura:if>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">N° de Referencia</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">{! v.movimientoDetalle.movimiento.identificador }</div>      
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">Fecha</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">
+                                            <lightning:formattedDateTime value="{! v.movimiento.transaccion.fechaHoraTransaccion }" year="numeric" month="2-digit" day="2-digit" timeZone="UTC" />
+                                        </div>      
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_left">Hora</div>     
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem padding="around-small" size="6">
+                                        <div class="slds-text-align_right">
+                                            <lightning:formattedDateTime value="{! v.movimiento.transaccion.fechaHoraTransaccion }" hour="2-digit" minute="2-digit" timeZone="UTC" />
+                                        </div>      
+                                    </lightning:layoutItem>
+                                    
+                                </lightning:layout>
+                            </div>
+                            <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadedDetalles }">
+                                        <div class="slds-is-relative slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>
+                                    </aura:if>                        
+                            </aura:set> 
+                        </aura:if>
+                        
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                            label="Cerrar"
+                                            title="Cerrar"
+                                            onclick="{! c.closeModel2 }"/>
+                    </footer>
+                </div>
+            </section>            
+        </div>        
+    </aura:if>
+	
+</aura:component>

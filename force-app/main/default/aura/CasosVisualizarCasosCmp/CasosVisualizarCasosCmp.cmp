@@ -1,0 +1,319 @@
+<aura:component controller="CasosControllerExtension" implements="flexipage:availableForRecordHome,force:appHostable,flexipage:availableForAllPageTypes">
+	
+	<aura:attribute name="data" type="Object" />
+	<aura:attribute name="columns" type="List" />
+	<aura:attribute name="hora" type="Date" />
+    <aura:attribute name="listaCasos" type="List" />
+    <aura:attribute name="segundos" type="List" />
+    <aura:attribute name="totalNuevo" type="Integer" />
+    <aura:attribute name="totalAsignada" type="Integer" />
+    <aura:attribute name="totalAutorizada" type="Integer" />
+    <aura:attribute name="totalCasos" type="Integer" />
+    <aura:attribute name="totalToday" type="Integer" />
+    <aura:attribute name="setIntervalId" type="Integer"/>
+    <aura:attribute name="tiempoPromedio" type="String" />
+    <aura:attribute name="profileName" type="String" />
+    <aura:attribute name="unicas" type="Integer" />
+    <aura:attribute name="repetidas" type="Integer" />
+
+    <aura:attribute name="changeStatus" type="Boolean" default="false" />
+    <aura:attribute name="dataUpdate" type="Boolean" default="false" />
+    <aura:attribute name="dataUpdateList" type="List" default="['Teléfono Móvil','Límite de Crédito','Ambos']" />
+
+    <!-- Semaforos dinamicos -->
+    <aura:attribute name="presencialAmarillo" type="Integer" />
+    <aura:attribute name="presencialRojo" type="Integer" />
+    <aura:attribute name="figitalAmarillo" type="Integer" />
+    <aura:attribute name="figitalRojo" type="Integer" />
+
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+	<ltng:require scripts="{!join(',',
+								$Resource.jquery, 
+								$Resource.easytimer + '/easytimer.js-master/dist/easytimer.min.js')}"
+								afterScriptsLoaded="{!c.init}"/>
+
+	<lightning:card title="Revisión de casos">
+    <div class="slds-table--header-fixed_container">
+        <div class="slds-scrollable" style="height: 400px">
+            <table role="grid" class="tablesorter slds-table slds-table_fixed-layout slds-table_bordered slds-table_resizable-cols slds-no-row-hover slds-scrollable_none slds-table--header-fixed">
+                <thead>
+                    <tr>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 4%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Número de Folio">Folio</span>
+                                </a>    
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 6%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Id. Solicitud">Id Solicitud</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 7%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Id. Solicitud">Canal Origen</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 8%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Cambio de Estado">Pendientes</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Cambio de Estado">Cambio de Estado</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 8%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Cliente">Cliente</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 5%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Estatus">Estatus</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Fecha y Hora de Solicitud">Fecha Solicitud</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Fecha y Hora de Solicitud">Fecha Nuevo</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                    <span class="slds-truncate" title="Tiempo en Proceso">Tiempo en Proceso</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 8%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Usuario">Usuario</span>
+                                </a>
+                            </div>
+                            
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Fecha y Hora de Solicitud en Analisis">Fecha Analisis</span>
+                                </a>
+                            </div>
+                        </th>
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Product" scope="col" style="width: 9%;">
+                            <div class="slds-truncate slds-cell-fixed">
+                                <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+                                <span class="slds-truncate" title="Tiempo en Analisis">Tiempo en analisis</span>
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.listaCasos}" var="item">
+                        <tr class="slds-hint-parent">
+
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                          
+                                    <a id="{! item.Id }" onclick="{! c.navToRecord }" >{!item.CaseNumber}</a>
+                                </div>
+                            </td> 
+                            
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                                     
+                                {!item.ID_Solicitud__c }                                
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                                     
+                                    {!item.Canal_origen__c}
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">
+                                    <aura:if isTrue="{!item.Publicidad__c}" >
+                                        Fraudes
+                                    </aura:if>
+                                    <aura:if isTrue="{!item.Validar_Movimientos__c}" >
+                                        <aura:if isTrue="{!item.Publicidad__c}" > / </aura:if>
+                                        Crédito
+                                    </aura:if>
+                                    <aura:if isTrue="{!item.Bloqueo_de_Tarjeta_por_Cancelaci_n__c}" >
+                                        <aura:if isTrue="{! or(item.Validar_Movimientos__c, and(item.Publicidad__c,!item.Validar_Movimientos__c)) }" > / </aura:if>
+                                        <aura:if isTrue="{! and(item.Publicidad__c,item.Validar_Movimientos__c) }" >
+                                            <br/>
+                                        </aura:if>
+                                        INE
+                                    </aura:if>
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">
+                                    <aura:if isTrue="{!item.Solicitud_de_cancelaci_n__c}" >
+                                        Cambio de Estado 
+                                    </aura:if>
+                                    <aura:if isTrue="{!item.dataUpdate}" >
+                                        / <br/> Actualización de Datos
+                                    </aura:if>
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                                     
+                                {!item.Nombre_s__c} {!Primer_Apellido__c} {!Segundo_Apellido__c}                                    
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                                     
+                                {!item.Status}                                  
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">
+                                
+                                {!item.fechaCreacion}                                    
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">
+                                
+                                {!item.fechaReenvio}                                    
+                                </div>
+                            </td>
+
+                                <aura:if isTrue="{! item.Canal_origen__c == 'Figital' }" >
+                                    
+                                    <td role="gridcell" style="{! if(item.segundos le v.figitalAmarillo,'background-color: green; color:white;', if( and(item.segundos > v.figitalAmarillo,item.segundos le v.figitalRojo) , 'background-color: yellow;', 'background-color: red; color:white;') )}">
+                                        <div id="{!item.CaseNumber}">
+                                            <span class="days">0</span>d:<span class="hours">00</span>h:<span class="minutes">00</span>m:<span class="seconds">00</span>s
+                                        </div>
+                                    </td>
+
+                                    <aura:set attribute="else">
+
+                                        <td role="gridcell" style="{! if(item.segundos le v.presencialAmarillo,'background-color: green; color:white;', if( and(item.segundos > v.presencialAmarillo,item.segundos le v.presencialRojo) , 'background-color: yellow;', 'background-color: red; color:white;') )}">
+                                            <div id="{!item.CaseNumber}">
+                                                <span class="days">0</span>d:<span class="hours">00</span>h:<span class="minutes">00</span>m:<span class="seconds">00</span>s
+                                            </div>
+                                        </td>
+
+                                    </aura:set>
+                                </aura:if>
+
+                            <td role="gridcell" >
+                                <div class="slds-truncate">                                     
+                                {!item.Owner.Name}                                   
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div class="slds-truncate">
+
+                                {!item.fechaAnalisis}       
+                                </div>
+                            </td>
+                            <td role="gridcell" >
+                                <div id="{!item.CaseNumber+'A'}">
+                                    <span class="days">0</span>d:<span class="hours">00</span>h:<span class="minutes">00</span>m:<span class="seconds">00</span>s
+                                </div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+	</lightning:card>
+
+    <lightning:card>
+        
+        <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size_3-of-12">
+            <div style="height: 250px;">
+        
+                <div id="totalCasos" class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-left slds-is-open" aria-hidden="false">
+                <div class="slds-panel__header slds-panel__header_custom slds-panel__header_align-center">
+                <div class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Total de Solicitudes en Bandeja">Total de Solicitudes en Bandeja</div>
+                </div>
+                <div class="slds-panel__body">{!v.totalCasos}</div>
+                </div>
+
+            </div>
+          </div>
+          <div class="slds-col slds-size_3-of-12">
+            <div style="height: 250px;">
+                <div id="numSolicitudes" class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-left slds-is-open" aria-hidden="false">
+                <div class="slds-panel__header slds-panel__header_align-center">
+                <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Solicitudes en bandeja">Solicitudes en bandeja</h2>
+                </div>
+                <div class="slds-panel__body">
+                        Por asignar: <div><span>{!v.totalNuevo}</span></div>
+                </div>
+                <div class="slds-panel__body">
+                        Asignadas: <div><span>{!v.totalAsignada}</span></div>
+                </div>
+                </div>
+                
+            </div>
+          </div>
+          <div class="slds-col slds-size_3-of-12 ">
+            <div style="height: 250px;">
+        
+                <div id="totalToday" class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-left slds-is-open" aria-hidden="false">
+                <div class="slds-panel__header slds-panel__header_align-center">
+                <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Total de Solicitudes del día">Solicitudes del día</h2>
+                </div>
+                <div class="slds-panel__body">
+                    Total: <div><span>{!v.totalToday}</span></div>
+                </div>
+                <div class="slds-panel__body">
+                    Tiempo promedio en proceso: <div><span>{!v.tiempoPromedio}</span></div>
+                </div>
+                </div>
+
+            </div>
+          </div>
+          <div class="slds-col slds-size_3-of-12">
+            <div style="height: 250px;">
+                <div id="solicitudDia" class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-left slds-is-open" aria-hidden="false">
+                <div class="slds-panel__header slds-panel__header_align-center">
+                <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Solicitudes del día">Solicitudes del día</h2>
+                </div>
+                <div class="slds-panel__body">
+                       Únicas: <div><span>{!v.unicas}</span></div>
+                </div>
+                <div class="slds-panel__body">
+                        Repetidas: <div><span>{!v.repetidas}</span></div>
+                </div>
+                </div>
+            </div>
+          </div>
+          
+        </div>
+
+    </lightning:card>
+    
+</aura:component>

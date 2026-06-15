@@ -1,0 +1,2322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_13_A1</name>
+        <label>Send SMS WS</label>
+        <locationX>1300</locationX>
+        <locationY>200</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_14_myRule_13_A1_8658589789</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <stringValue>P</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_16_A1</name>
+        <label>Send SMS</label>
+        <locationX>1600</locationX>
+        <locationY>200</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_17_myRule_16_A1_3506804042</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <elementReference>formula_18_myRule_16_A1_4787878086</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>Actualizaci_n_Celular</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Correo</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.Actualizaci_n_Celular</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>myRule_1_A2</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Case.Actualizaci_n_Celular</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>Send SMS WS</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_2_myRule_1_A2_4021780252</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <stringValue>S</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_20_A1</name>
+        <label>Send SMS WS</label>
+        <locationX>2000</locationX>
+        <locationY>200</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_21_myRule_20_A1_9797374412</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <elementReference>formula_22_myRule_20_A1_8506210623</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>Actualizaci_n_Celular</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_4_A1</name>
+        <label>Correo</label>
+        <locationX>400</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.Actualizaci_n_Celular</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Case.Actualizaci_n_Celular</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_6_A1</name>
+        <label>Send SMS WS</label>
+        <locationX>600</locationX>
+        <locationY>200</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_7_myRule_6_A1_8183821919</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <stringValue>S</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Send Notification</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Send SMS WS</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <actionName>MicroServicioSendNotification</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>numeroTelefono</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>numeroTelefono</name>
+            <value>
+                <elementReference>myVariable_current.ContactMobile</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>codigoArea</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>codigoArea</name>
+            <value>
+                <stringValue>00152</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>curp</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>curp</name>
+            <value>
+                <elementReference>myVariable_current.CURPcontacto__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>mensaje</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>mensaje</name>
+            <value>
+                <elementReference>formula_10_myRule_9_A1_5672641299</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>inicio</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>inicio</name>
+            <value>
+                <elementReference>formula_11_myRule_9_A1_4161957551</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>tipo</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>tipo</name>
+            <value>
+                <stringValue>SMS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>MicroServicioSendNotification</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision3</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>SMS</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision12</name>
+        <label>myDecision12</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision15</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_13</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_13</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_13_A1</targetReference>
+            </connector>
+            <label>Bloqueo Seguridad</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>5.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision15</name>
+        <label>myDecision15</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision19</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_16</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_16</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_16_A1</targetReference>
+            </connector>
+            <label>SMS Cierre a favor</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>6.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision19</name>
+        <label>myDecision19</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_20</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_20</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_20_A1</targetReference>
+            </connector>
+            <label>SMS Cierre en contra</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision5</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_4</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>CORREO</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision5</name>
+        <label>myDecision5</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision8</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_6</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_6</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_6_A1</targetReference>
+            </connector>
+            <label>SMS 2</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision12</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_9</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>General Cierre</label>
+        </rules>
+    </decisions>
+    <description>SMS Cierre General, A Favor, En Contra, Actualización de Cel, Bloqueo Seguridad</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>RIGHT([Case].Contact.FirstName, (LEN([Case].Contact.FirstName)-1)) + &quot; &quot; + [Case].Contact.LastName+ &quot; su caso &quot;+[Case].CaseNumber +&quot; &quot;+ [Case].Subcategor_a_Texto__c  + &quot;, ha concluido satisfactoriamente. FALABELLA SORIANA Dudas: 55 5089 4262&quot;
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_9_A1_5672641299</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!myVariable_current.Contact.FirstName}, (LEN({!myVariable_current.Contact.FirstName})-1)) + &quot; &quot; + {!myVariable_current.Contact.LastName}+ &quot; su caso &quot;+{!myVariable_current.CaseNumber} +&quot; &quot;+ {!myVariable_current.Subcategor_a_Texto__c}  + &quot;, ha concluido satisfactoriamente. FALABELLA SORIANA Dudas: 55 5089 4262&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>LEFT([Case].Contact.FirstName,1) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_11_myRule_9_A1_4161957551</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!myVariable_current.Contact.FirstName},1)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;or tu seguridad, tu Tarjeta Falabella &quot;+[Case].Account.Ultimos_4_d_gitos_de_tarjeta__c+&quot; ha sido bloqueada. Para más información, comunícate a nuestro Centro de Atención Telefónica 55 5089 4262.&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_14_myRule_13_A1_8658589789</name>
+        <dataType>String</dataType>
+        <expression>&quot;or tu seguridad, tu Tarjeta Falabella &quot;+{!myVariable_current.Account.Ultimos_4_d_gitos_de_tarjeta__c}+&quot; ha sido bloqueada. Para más información, comunícate a nuestro Centro de Atención Telefónica 55 5089 4262.&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>RIGHT([Case].Contact.FirstName,(LEN([Case].Contact.FirstName)-1)) +&quot; &quot;+[Case].Contact.LastName +&quot; su aclaración &quot; +[Case].CaseNumber + &quot; se dictaminó a favor. Validar en su siguiente edo de cuenta. FALABELLA SORIANA Dudas: 55 5089 4262&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_17_myRule_16_A1_3506804042</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!myVariable_current.Contact.FirstName},(LEN({!myVariable_current.Contact.FirstName})-1)) +&quot; &quot;+{!myVariable_current.Contact.LastName} +&quot; su aclaración &quot; +{!myVariable_current.CaseNumber} + &quot; se dictaminó a favor. Validar en su siguiente edo de cuenta. FALABELLA SORIANA Dudas: 55 5089 4262&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>LEFT([Case].Contact.FirstName,1)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_18_myRule_16_A1_4787878086</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!myVariable_current.Contact.FirstName},1)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>RIGHT([Case].Contact.FirstName,(LEN([Case].Contact.FirstName)-1)) +&quot; &quot;+[Case].Contact.LastName +&quot; su aclaración &quot; +[Case].CaseNumber + &quot; se ha dictaminado en contra. FALABELLA SORIANA Dudas: 55 5089 4262&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_21_myRule_20_A1_9797374412</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!myVariable_current.Contact.FirstName},(LEN({!myVariable_current.Contact.FirstName})-1)) +&quot; &quot;+{!myVariable_current.Contact.LastName} +&quot; su aclaración &quot; +{!myVariable_current.CaseNumber} + &quot; se ha dictaminado en contra. FALABELLA SORIANA Dudas: 55 5089 4262&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>LEFT([Case].Contact.FirstName,1)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_22_myRule_20_A1_8506210623</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!myVariable_current.Contact.FirstName},1)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;e actualizo tu numero celular actual a: &quot; +[Case].Celular_Nuevo__c  +&quot;. En caso de no haber sido usted, favor de contactarnos al numero de FALABELLA SORIANA: 55 5089 4262.&quot;
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A2_4021780252</name>
+        <dataType>String</dataType>
+        <expression>&quot;e actualizo tu numero celular actual a: &quot; +{!myVariable_current.Celular_Nuevo__c}  +&quot;. En caso de no haber sido usted, favor de contactarnos al numero de FALABELLA SORIANA: 55 5089 4262.&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;e actualizo tu numero celular actual a: &quot; +[Case].Celular_Nuevo__c  +&quot;. En caso de no haber sido usted, favor de contactarnos al numero de FALABELLA SORIANA: 55 5089 4262.&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_7_myRule_6_A1_8183821919</name>
+        <dataType>String</dataType>
+        <expression>&quot;e actualizo tu numero celular actual a: &quot; +{!myVariable_current.Celular_Nuevo__c}  +&quot;. En caso de no haber sido usted, favor de contactarnos al numero de FALABELLA SORIANA: 55 5089 4262.&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+ISPICKVAL([Case].Status,&quot;Actualización de Celular&quot;),
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactMobile)),
+NOT(ISBLANK([Case].ContactEmail)),
+[Case].RecordType.Name = &quot;Actualización de Celular&quot;
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+ISPICKVAL({!myVariable_current.Status},&quot;Actualización de Celular&quot;),
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+NOT(ISBLANK({!myVariable_current.ContactEmail})),
+{!myVariable_current.RecordType.Name} = &quot;Actualización de Celular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+ISPICKVAL([Case].Status,&quot;Conclusión del Caso&quot;),
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactMobile)),
+[Case].RecordType.Name = &quot;Bloqueo Seguridad&quot;,
+
+OR(
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c,&quot;Validación movimientos&quot;),
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c ,&quot;Por Falta Documentos&quot;),
+ISPICKVAL([Case].Clasificaci_n_Bloqueo_Seguridad__c ,&quot;Validación de Celular&quot;))
+)
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_13</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+ISPICKVAL({!myVariable_current.Status},&quot;Conclusión del Caso&quot;),
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+{!myVariable_current.RecordType.Name} = &quot;Bloqueo Seguridad&quot;,
+
+OR(
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c},&quot;Validación movimientos&quot;),
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c} ,&quot;Por Falta Documentos&quot;),
+ISPICKVAL({!myVariable_current.Clasificaci_n_Bloqueo_Seguridad__c} ,&quot;Validación de Celular&quot;))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR(
+ISPICKVAL([Case].Dictamen__c , &quot;A favor&quot;),
+OR(ISPICKVAL([Case].Dictamen_Fraudes__c, &quot;A Favor&quot;))),
+
+OR (
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM&quot;,
+[Case].RecordType.Name = &quot;Retiro de efectivo en ATM&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado&quot;,
+[Case].RecordType.Name = &quot;Promoción no Aplicada&quot;,
+[Case].RecordType.Name = &quot;Reversa de Anualidad&quot;,
+[Case].RecordType.Name = &quot;Reversa de Comisión&quot;,
+[Case].RecordType.Name = &quot;Compra no diferida&quot;,
+[Case].RecordType.Name = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Cargo No Reconocido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_16</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR(
+ISPICKVAL({!myVariable_current.Dictamen__c} , &quot;A favor&quot;),
+OR(ISPICKVAL({!myVariable_current.Dictamen_Fraudes__c}, &quot;A Favor&quot;))),
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de efectivo en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Promoción no Aplicada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Anualidad&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Comisión&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Compra no diferida&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cargo No Reconocido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR(
+ISPICKVAL([Case].Dictamen__c , &quot;En contra&quot;),
+OR(ISPICKVAL([Case].Dictamen_Fraudes__c, &quot;En Contra&quot;))),
+
+OR (
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM&quot;,
+[Case].RecordType.Name = &quot;Retiro de efectivo en ATM&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado&quot;,
+[Case].RecordType.Name = &quot;Promoción no Aplicada&quot;,
+[Case].RecordType.Name = &quot;Reversa de Anualidad&quot;,
+[Case].RecordType.Name = &quot;Reversa de Comisión&quot;,
+[Case].RecordType.Name = &quot;Compra no diferida&quot;,
+[Case].RecordType.Name = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Cargo No Reconocido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_20</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR(
+ISPICKVAL({!myVariable_current.Dictamen__c} , &quot;En contra&quot;),
+OR(ISPICKVAL({!myVariable_current.Dictamen_Fraudes__c}, &quot;En Contra&quot;))),
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de efectivo en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Promoción no Aplicada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Anualidad&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Comisión&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Compra no diferida&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cargo No Reconocido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+ISPICKVAL([Case].Status,&quot;Actualización de Celular&quot;),
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactEmail)),
+[Case].RecordType.Name = &quot;Actualización de Celular&quot;
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_4</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+ISPICKVAL({!myVariable_current.Status},&quot;Actualización de Celular&quot;),
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactEmail})),
+{!myVariable_current.RecordType.Name} = &quot;Actualización de Celular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+ISPICKVAL([Case].Status,&quot;Actualización de Celular&quot;),
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactMobile)),
+[Case].RecordType.Name = &quot;Actualización de Celular&quot;
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_6</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+ISPICKVAL({!myVariable_current.Status},&quot;Actualización de Celular&quot;),
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+{!myVariable_current.RecordType.Name} = &quot;Actualización de Celular&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR (
+[Case].RecordType.Name = &quot;Cambio de MC a Privada&quot;,
+[Case].RecordType.Name = &quot;Aumento de Línea de Crédito&quot;,
+[Case].RecordType.Name = &quot;Cancelación Adicional&quot;,
+[Case].RecordType.Name = &quot;Liberar saldo retenido&quot;,
+[Case].RecordType.Name = &quot;Actualización de Teléfono Fijo&quot;,
+
+[Case].RecordType.Name = &quot;Cancelación de Adicional (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Retiro de Efectivo en ATM (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Cargo No Reconocido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;
+
+)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_9</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Cambio de MC a Privada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Aumento de Línea de Crédito&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación Adicional&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar saldo retenido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Actualización de Teléfono Fijo&quot;,
+
+{!myVariable_current.RecordType.Name} = &quot;Cancelación de Adicional (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de Efectivo en ATM (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cargo No Reconocido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;
+
+)
+
+
+)</expression>
+    </formulas>
+    <interviewLabel>SMS_Actualizaci_n_Celular-9_InterviewLabel</interviewLabel>
+    <label>Envío de SMS</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

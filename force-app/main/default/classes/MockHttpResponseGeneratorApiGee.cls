@@ -27,12 +27,42 @@ global class MockHttpResponseGeneratorApiGee implements HttpCalloutMock {
     global HTTPResponse respond(HTTPRequest req) {
 
         HttpResponse res = new HttpResponse();
+        if (req.getEndpoint().contains('/oauth/cc/token')) {
+           
+            req.setHeader('Content-Type', 'application/x-www-form-urlencoded');
+            res.setBody('grant_type=client_credentials');
 
-        res.setHeader('Content-Type', 'application/json');
+            GetCampainsController.AutenticateSuccessApiGee tokenResponse = new GetCampainsController.AutenticateSuccessApiGee();
+            tokenResponse.access_token = 'abc123';
+            res.setBody(JSON.serialize(tokenResponse));
+            res.setStatusCode(200);
+        }else if(req.getEndpoint().contains('/customer-relationship-management/v2/customers/')){
+             GetCampainsController.status statusCampain = new GetCampainsController.status();
+            statusCampain.statusId = 'OK';
+            statusCampain.statusDescription = 'OK';
+            GetCampainsController.campaignStatus campaignStatus = new GetCampainsController.campaignStatus();
+            campaignStatus.status = statusCampain;
 
-        res.setBody(body);
+               
+            GetCampainsController.campaignBody campaignBody = new GetCampainsController.campaignBody();
+            campaignBody.campaignStatus = campaignStatus;
+            campaignBody.campaignId = 'prueba campaña';
 
-        res.setStatusCode(statusCode);
+             GetCampainsController.CampainResponse campainResponse = new GetCampainsController.CampainResponse();
+                campainResponse.campaign = campaignBody;
+
+             List<GetCampainsController.CampainResponse> campainResponseList = new List<GetCampainsController.CampainResponse>{campainResponse};
+           
+            res.setBody(Json.serialize(campainResponseList));
+            res.setStatusCode(200);
+        } else{
+                res.setHeader('Content-Type', 'application/json');
+
+                res.setBody(body);
+
+                res.setStatusCode(statusCode);
+        }
+       
 
         return res;
     }

@@ -48,10 +48,10 @@ public class MicroServicioEnviarOTP {
                 result = res.getBody();
                 System.debug('MicroServicioEnviarOTP - result:  ' + result);
             } else {
-                System.debug('MicroServicioEnviarOTP - error:  ' + res.getBody());
+
                 // Se envia el error para mostrarlo en Pantalla
                 result = res.getBody(); 
-                cliente.logError(currentClassName, String.valueOf(res.getBody()));
+                cliente.logError(currentClassName, String.valueOf(res.getStatusCode()));
             }
             
         } catch (Exception e) {

@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,force:lightningQuickAction" access="global">
+    <!-- attributes -->
+    <aura:attribute name="mapMarkers" type="Object"/>
+    <aura:attribute name="zoomLevel" type="Integer" />
+    <aura:attribute name="Latitude" type="String" />
+    <aura:attribute name="Longitude" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="record" type="Object" /> 
+    <force:recordData layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.record}"
+                      recordUpdated="{!c.init}" />
+    <!-- the map component -->
+    <aura:if isTrue="{!v.mapMarkers.length > 0}" >
+        <lightning:map 
+                       mapMarkers="{! v.mapMarkers }" 
+                       zoomLevel="{!v.zoomLevel}" />
+    </aura:if>
+</aura:component>

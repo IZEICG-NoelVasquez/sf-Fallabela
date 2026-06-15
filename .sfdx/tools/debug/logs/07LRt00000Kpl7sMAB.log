@@ -1,0 +1,743 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+14:37:24.0 (213985)|USER_INFO|[EXTERNAL]|0051N000005gvau|etrevinofalabella@izeicg.com.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+14:37:24.0 (248860)|EXECUTION_STARTED
+14:37:24.0 (263046)|CODE_UNIT_STARTED|[EXTERNAL]|apex://MicroServicioCustomerData/ACTION$consulta_Customer_Data
+14:37:24.0 (3466496)|CODE_UNIT_STARTED|[EXTERNAL]|01p0v000003GxUV|MicroServicioCustomerData.consulta_Customer_Data(String)
+14:37:24.0 (3628465)|VARIABLE_SCOPE_BEGIN|[20]|MicroServicioCustomerData.GETDATA|String|false|true
+14:37:24.0 (3665876)|VARIABLE_SCOPE_BEGIN|[18]|MicroServicioCustomerData.POST|String|false|true
+14:37:24.0 (3804136)|HEAP_ALLOCATE|[95]|Bytes:3
+14:37:24.0 (3847514)|HEAP_ALLOCATE|[100]|Bytes:152
+14:37:24.0 (3861348)|HEAP_ALLOCATE|[417]|Bytes:408
+14:37:24.0 (3873256)|HEAP_ALLOCATE|[430]|Bytes:408
+14:37:24.0 (3891494)|HEAP_ALLOCATE|[317]|Bytes:6
+14:37:24.0 (3902207)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+14:37:24.0 (3905556)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:20
+14:37:24.0 (3907232)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:15
+14:37:24.0 (3956783)|VARIABLE_ASSIGNMENT|[EXTERNAL]|MicroServicioCustomerData.GETDATA|"client/get/data"
+14:37:24.0 (3959593)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+14:37:24.0 (3963071)|VARIABLE_ASSIGNMENT|[EXTERNAL]|MicroServicioCustomerData.POST|"POST"
+14:37:24.0 (3970443)|METHOD_ENTRY|[14]|01p0v000003GxUV|MicroServicioCustomerData.MicroServicioCustomerData()
+14:37:24.0 (3975856)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (3981127)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (3984096)|METHOD_EXIT|[14]|MicroServicioCustomerData
+14:37:24.0 (3987247)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:18
+14:37:24.0 (3993221)|VARIABLE_SCOPE_BEGIN|[67]|numeroDocumento|String|false|false
+14:37:24.0 (3999670)|VARIABLE_ASSIGNMENT|[67]|numeroDocumento|"FERM900101MASRDI09"
+14:37:24.0 (4007203)|STATEMENT_EXECUTE|[67]
+14:37:24.0 (4009141)|STATEMENT_EXECUTE|[69]
+14:37:24.0 (4023360)|HEAP_ALLOCATE|[69]|Bytes:4
+14:37:24.0 (4034561)|VARIABLE_SCOPE_BEGIN|[69]|result|Map<String,ANY>|true|false
+14:37:24.0 (4052696)|VARIABLE_ASSIGNMENT|[69]|result|{}|0x2986b5e7
+14:37:24.0 (4055918)|STATEMENT_EXECUTE|[71]
+14:37:24.0 (4074002)|HEAP_ALLOCATE|[68]|Bytes:5
+14:37:24.0 (4094361)|HEAP_ALLOCATE|[74]|Bytes:5
+14:37:24.0 (4099170)|HEAP_ALLOCATE|[82]|Bytes:7
+14:37:24.0 (4104499)|VARIABLE_SCOPE_BEGIN|[71]|success|Boolean|false|false
+14:37:24.0 (4251180)|HEAP_ALLOCATE|[71]|Bytes:5
+14:37:24.0 (4256752)|VARIABLE_ASSIGNMENT|[71]|success|false
+14:37:24.0 (4265339)|STATEMENT_EXECUTE|[73]
+14:37:24.0 (4272732)|HEAP_ALLOCATE|[73]|Bytes:4
+14:37:24.0 (4277889)|VARIABLE_SCOPE_BEGIN|[73]|params|Map<String,String>|true|false
+14:37:24.0 (4284693)|VARIABLE_ASSIGNMENT|[73]|params|{}|0x1db1851b
+14:37:24.0 (4287709)|STATEMENT_EXECUTE|[74]
+14:37:24.0 (4289397)|HEAP_ALLOCATE|[74]|Bytes:15
+14:37:24.0 (4340503)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+14:37:24.0 (4345901)|STATEMENT_EXECUTE|[75]
+14:37:24.0 (4347209)|HEAP_ALLOCATE|[75]|Bytes:39
+14:37:24.0 (4359782)|HEAP_ALLOCATE|[75]|Bytes:57
+14:37:24.0 (4392641)|USER_DEBUG|[75]|DEBUG|Consulta CustomerData numeroDocumento: FERM900101MASRDI09
+14:37:24.0 (4397688)|STATEMENT_EXECUTE|[77]
+14:37:24.0 (4400377)|HEAP_ALLOCATE|[77]|Bytes:8
+14:37:24.0 (4410102)|CONSTRUCTOR_ENTRY|[77]|01p0v000003GxUV|<init>()|MicroServicioCustomerData
+14:37:24.0 (4428284)|VARIABLE_SCOPE_BEGIN|[22]|this|MicroServicioCustomerData|true|false
+14:37:24.0 (7645294)|VARIABLE_ASSIGNMENT|[22]|this|{}|0x53c23441
+14:37:24.0 (7663739)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (7665004)|STATEMENT_EXECUTE|[16]
+14:37:24.0 (7683037)|HEAP_ALLOCATE|[24]|Bytes:6
+14:37:24.0 (9726359)|STATEMENT_EXECUTE|[22]
+14:37:24.0 (9728900)|STATEMENT_EXECUTE|[24]
+14:37:24.0 (9816588)|HEAP_ALLOCATE|[24]|Bytes:76
+14:37:24.0 (9838090)|HEAP_ALLOCATE|[24]|Bytes:76
+14:37:24.0 (9843098)|HEAP_ALLOCATE|[24]|Bytes:1
+14:37:24.0 (9861380)|HEAP_ALLOCATE|[24]|Bytes:25
+14:37:24.0 (9866618)|VARIABLE_SCOPE_BEGIN|[24]|currentClassName|String|false|false
+14:37:24.0 (9882948)|VARIABLE_ASSIGNMENT|[24]|currentClassName|"MicroServicioCustome (5 more) ..."
+14:37:24.0 (9885598)|STATEMENT_EXECUTE|[26]
+14:37:24.0 (9890607)|HEAP_ALLOCATE|[26]|Bytes:61
+14:37:24.0 (9897326)|HEAP_ALLOCATE|[26]|Bytes:31
+14:37:24.0 (9928628)|METHOD_ENTRY|[12]|01p0v000002OV5X|ClienteMicroServicios.ClienteMicroServicios()
+14:37:24.0 (9932323)|STATEMENT_EXECUTE|[12]
+14:37:24.0 (9937158)|STATEMENT_EXECUTE|[12]
+14:37:24.0 (9940683)|METHOD_EXIT|[12]|ClienteMicroServicios
+14:37:24.0 (10203865)|HEAP_ALLOCATE|[26]|Bytes:124
+14:37:24.0 (10214077)|CONSTRUCTOR_ENTRY|[26]|01p0v000002OV5X|<init>()|ClienteMicroServicios
+14:37:24.0 (10234811)|VARIABLE_SCOPE_BEGIN|[54]|this|ClienteMicroServicios|true|false
+14:37:24.0 (10277557)|VARIABLE_ASSIGNMENT|[54]|this|{}|0x6b258141
+14:37:24.0 (10281736)|STATEMENT_EXECUTE|[12]
+14:37:24.0 (10282812)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (10284878)|HEAP_ALLOCATE|[14]|Bytes:23
+14:37:24.0 (10305670)|VARIABLE_ASSIGNMENT|[14]|this.BASE_URL|"https://cmr-mx-busin (3 more) ..."|0x6b258141
+14:37:24.0 (10308480)|STATEMENT_EXECUTE|[15]
+14:37:24.0 (10309597)|HEAP_ALLOCATE|[15]|Bytes:23
+14:37:24.0 (10314244)|VARIABLE_ASSIGNMENT|[15]|this.URI|".fif.tech/api/busine (3 more) ..."|0x6b258141
+14:37:24.0 (10316751)|STATEMENT_EXECUTE|[17]
+14:37:24.0 (10317799)|HEAP_ALLOCATE|[17]|Bytes:7
+14:37:24.0 (10321116)|VARIABLE_ASSIGNMENT|[17]|this.BACKEND|"backend"|0x6b258141
+14:37:24.0 (10323568)|STATEMENT_EXECUTE|[19]
+14:37:24.0 (10324753)|HEAP_ALLOCATE|[19]|Bytes:16
+14:37:24.0 (10328051)|VARIABLE_ASSIGNMENT|[19]|this.APP_JSON|"application/json"|0x6b258141
+14:37:24.0 (10330268)|STATEMENT_EXECUTE|[20]
+14:37:24.0 (10331322)|HEAP_ALLOCATE|[20]|Bytes:12
+14:37:24.0 (10335073)|VARIABLE_ASSIGNMENT|[20]|this.CONT_TYPE|"Content-Type"|0x6b258141
+14:37:24.0 (10337336)|STATEMENT_EXECUTE|[21]
+14:37:24.0 (10340519)|HEAP_ALLOCATE|[21]|Bytes:4
+14:37:24.0 (10346224)|VARIABLE_ASSIGNMENT|[21]|this.TIME_OUT|120000|0x6b258141
+14:37:24.0 (10348426)|STATEMENT_EXECUTE|[22]
+14:37:24.0 (10349641)|HEAP_ALLOCATE|[22]|Bytes:8
+14:37:24.0 (10353106)|VARIABLE_ASSIGNMENT|[22]|this.endpoint|"products"|0x6b258141
+14:37:24.0 (10355570)|STATEMENT_EXECUTE|[23]
+14:37:24.0 (10356640)|HEAP_ALLOCATE|[23]|Bytes:4
+14:37:24.0 (10360428)|VARIABLE_ASSIGNMENT|[23]|this.method|"POST"|0x6b258141
+14:37:24.0 (10362616)|STATEMENT_EXECUTE|[24]
+14:37:24.0 (10363877)|HEAP_ALLOCATE|[24]|Bytes:2
+14:37:24.0 (10367277)|VARIABLE_ASSIGNMENT|[24]|this.version|"v1"|0x6b258141
+14:37:24.0 (10369446)|STATEMENT_EXECUTE|[25]
+14:37:24.0 (10370391)|HEAP_ALLOCATE|[25]|Bytes:14
+14:37:24.0 (10373956)|VARIABLE_ASSIGNMENT|[25]|this.MDW_CS_CHANNEL|"mdw-cs-channel"|0x6b258141
+14:37:24.0 (10376160)|STATEMENT_EXECUTE|[26]
+14:37:24.0 (10377101)|HEAP_ALLOCATE|[26]|Bytes:15
+14:37:24.0 (10380438)|VARIABLE_ASSIGNMENT|[26]|this.MDW_CS_COMMERCE|"mdw-cs-commerce"|0x6b258141
+14:37:24.0 (10382784)|STATEMENT_EXECUTE|[27]
+14:37:24.0 (10383744)|HEAP_ALLOCATE|[27]|Bytes:14
+14:37:24.0 (10398939)|VARIABLE_ASSIGNMENT|[27]|this.MDW_CS_COUNTRY|"mdw-cs-country"|0x6b258141
+14:37:24.0 (10401658)|STATEMENT_EXECUTE|[28]
+14:37:24.0 (10402858)|HEAP_ALLOCATE|[28]|Bytes:11
+14:37:24.0 (10406362)|VARIABLE_ASSIGNMENT|[28]|this.MDW_CS_DATE|"mdw-cs-date"|0x6b258141
+14:37:24.0 (10408911)|STATEMENT_EXECUTE|[29]
+14:37:24.0 (10409840)|HEAP_ALLOCATE|[29]|Bytes:11
+14:37:24.0 (10413183)|VARIABLE_ASSIGNMENT|[29]|this.MDW_CS_HOUR|"mdw-cs-hour"|0x6b258141
+14:37:24.0 (10415451)|STATEMENT_EXECUTE|[30]
+14:37:24.0 (10416352)|STATEMENT_EXECUTE|[31]
+14:37:24.0 (10417433)|HEAP_ALLOCATE|[31]|Bytes:7
+14:37:24.0 (10421038)|VARIABLE_ASSIGNMENT|[31]|this.microServicio|"default"|0x6b258141
+14:37:24.0 (10423300)|STATEMENT_EXECUTE|[34]
+14:37:24.0 (10424309)|HEAP_ALLOCATE|[34]|Bytes:10
+14:37:24.0 (10429333)|VARIABLE_ASSIGNMENT|[34]|this.GRANT_TYPE|"grant_type"|0x6b258141
+14:37:24.0 (10431631)|STATEMENT_EXECUTE|[35]
+14:37:24.0 (10432984)|HEAP_ALLOCATE|[35]|Bytes:8
+14:37:24.0 (10436416)|VARIABLE_ASSIGNMENT|[35]|this.PASSWORD|"password"|0x6b258141
+14:37:24.0 (10438648)|STATEMENT_EXECUTE|[36]
+14:37:24.0 (10439851)|HEAP_ALLOCATE|[36]|Bytes:9
+14:37:24.0 (10442961)|VARIABLE_ASSIGNMENT|[36]|this.CLIENT_ID|"client_id"|0x6b258141
+14:37:24.0 (10445188)|STATEMENT_EXECUTE|[37]
+14:37:24.0 (10446078)|HEAP_ALLOCATE|[37]|Bytes:13
+14:37:24.0 (10449321)|VARIABLE_ASSIGNMENT|[37]|this.CLIENT_SECRET|"client_secret"|0x6b258141
+14:37:24.0 (10451478)|STATEMENT_EXECUTE|[38]
+14:37:24.0 (10452448)|HEAP_ALLOCATE|[38]|Bytes:13
+14:37:24.0 (10455791)|VARIABLE_ASSIGNMENT|[38]|this.PROVISION_KEY|"provision_key"|0x6b258141
+14:37:24.0 (10457997)|STATEMENT_EXECUTE|[39]
+14:37:24.0 (10458935)|HEAP_ALLOCATE|[39]|Bytes:20
+14:37:24.0 (10462281)|VARIABLE_ASSIGNMENT|[39]|this.AUTHENTICATED_USERID|"authenticated_userid"|0x6b258141
+14:37:24.0 (10464593)|STATEMENT_EXECUTE|[40]
+14:37:24.0 (10465660)|HEAP_ALLOCATE|[40]|Bytes:12
+14:37:24.0 (10468829)|VARIABLE_ASSIGNMENT|[40]|this.AT|"access_token"|0x6b258141
+14:37:24.0 (10471251)|STATEMENT_EXECUTE|[42]
+14:37:24.0 (10472411)|HEAP_ALLOCATE|[42]|Bytes:13
+14:37:24.0 (10475584)|VARIABLE_ASSIGNMENT|[42]|this.AUTH|"Authorization"|0x6b258141
+14:37:24.0 (10477738)|STATEMENT_EXECUTE|[43]
+14:37:24.0 (10478787)|HEAP_ALLOCATE|[43]|Bytes:6
+14:37:24.0 (10481746)|VARIABLE_ASSIGNMENT|[43]|this.BEARER|"Bearer"|0x6b258141
+14:37:24.0 (10484158)|STATEMENT_EXECUTE|[44]
+14:37:24.0 (10485134)|HEAP_ALLOCATE|[44]|Bytes:12
+14:37:24.0 (10488474)|VARIABLE_ASSIGNMENT|[44]|this.OAUTH|"oauth2/token"|0x6b258141
+14:37:24.0 (10490650)|STATEMENT_EXECUTE|[47]
+14:37:24.0 (10491783)|HEAP_ALLOCATE|[47]|Bytes:8
+14:37:24.0 (10495094)|VARIABLE_ASSIGNMENT|[47]|this.SECCTION|"secction"|0x6b258141
+14:37:24.0 (10497402)|STATEMENT_EXECUTE|[48]
+14:37:24.0 (10498331)|HEAP_ALLOCATE|[48]|Bytes:10
+14:37:24.0 (10501289)|VARIABLE_ASSIGNMENT|[48]|this.APIVERSION|"apiversion"|0x6b258141
+14:37:24.0 (10503596)|STATEMENT_EXECUTE|[49]
+14:37:24.0 (10504762)|HEAP_ALLOCATE|[49]|Bytes:5
+14:37:24.0 (10508133)|VARIABLE_ASSIGNMENT|[49]|this.SCORETOKEN|"token"|0x6b258141
+14:37:24.0 (10510281)|STATEMENT_EXECUTE|[52]
+14:37:24.0 (10513107)|VARIABLE_ASSIGNMENT|[52]|this.access_token|""|0x6b258141
+14:37:24.0 (10525920)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (10526801)|STATEMENT_EXECUTE|[55]
+14:37:24.0 (10553986)|METHOD_ENTRY|[55]|01p0v000002OV5X|ClienteMicroServicios.setMicroServicio(String)
+14:37:24.0 (10603770)|VARIABLE_SCOPE_BEGIN|[74]|this|ClienteMicroServicios|true|false
+14:37:24.0 (10638337)|VARIABLE_ASSIGNMENT|[74]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (10645887)|VARIABLE_SCOPE_BEGIN|[74]|microServicio|String|false|false
+14:37:24.0 (10649546)|VARIABLE_ASSIGNMENT|[74]|microServicio|"default"
+14:37:24.0 (10653300)|STATEMENT_EXECUTE|[74]
+14:37:24.0 (10654334)|STATEMENT_EXECUTE|[76]
+14:37:24.0 (10658938)|VARIABLE_ASSIGNMENT|[76]|this.microServicio|"default"|0x6b258141
+14:37:24.0 (10661750)|STATEMENT_EXECUTE|[77]
+14:37:24.0 (10663175)|HEAP_ALLOCATE|[77]|Bytes:226
+14:37:24.0 (10674318)|HEAP_ALLOCATE|[77]|Bytes:4
+14:37:24.0 (10679441)|HEAP_ALLOCATE|[77]|Bytes:7
+14:37:24.0 (12512078)|SOQL_EXECUTE_BEGIN|[77]|Aggregations:0|SELECT Ambiente__c, Channel__c, Commerce__c, Country__c, Client_ID__c, Client_Secret__c, Provision_Key__c, Authenticated_UserID__c, Section__c, Apiversion__c FROM Configuracion_Microservicio__mdt WHERE Label = :tmpVar1 LIMIT 1
+14:37:24.0 (22798119)|SOQL_EXECUTE_END|[77]|Rows:1
+14:37:24.0 (22825646)|HEAP_ALLOCATE|[77]|Bytes:8
+14:37:24.0 (22846406)|HEAP_ALLOCATE|[77]|Bytes:277
+14:37:24.0 (22941787)|HEAP_ALLOCATE|[77]|Bytes:8
+14:37:24.0 (22958221)|HEAP_ALLOCATE|[77]|Bytes:58
+14:37:24.0 (23055541)|HEAP_ALLOCATE|[77]|Bytes:40
+14:37:24.0 (23180116)|VARIABLE_ASSIGNMENT|[77]|this.cm|{"Country__c":"MX","Client_Secret__c":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","Ambiente__c":"qa","Authenticated_UserID__c":"0","Client_ID__c":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","Id":"m080v0000000W1tAAE","Channel__c":"Web","Provision_Key__c":"MjU2NjIwMTFjYmJkZjJk (12 more) ...","Commerce__c":"CMR"}|0x6b258141
+14:37:24.0 (23193783)|METHOD_EXIT|[55]|01p0v000002OV5X|ClienteMicroServicios.setMicroServicio(String)
+14:37:24.0 (23202803)|CONSTRUCTOR_EXIT|[26]|01p0v000002OV5X|<init>()|ClienteMicroServicios
+14:37:24.0 (23209631)|VARIABLE_ASSIGNMENT|[26]|this.cliente|0x6b258141|0x53c23441
+14:37:24.0 (23216571)|STATEMENT_EXECUTE|[27]
+14:37:24.0 (23237245)|METHOD_ENTRY|[27]|01p0v000002OV5X|ClienteMicroServicios.setMethod(String)
+14:37:24.0 (23267301)|VARIABLE_SCOPE_BEGIN|[64]|this|ClienteMicroServicios|true|false
+14:37:24.0 (23338914)|VARIABLE_ASSIGNMENT|[64]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x3f636f75","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (23346234)|VARIABLE_SCOPE_BEGIN|[64]|method|String|false|false
+14:37:24.0 (23350397)|VARIABLE_ASSIGNMENT|[64]|method|"POST"
+14:37:24.0 (23355392)|STATEMENT_EXECUTE|[64]
+14:37:24.0 (23356544)|STATEMENT_EXECUTE|[66]
+14:37:24.0 (23361081)|VARIABLE_ASSIGNMENT|[66]|this.method|"POST"|0x6b258141
+14:37:24.0 (23365015)|METHOD_EXIT|[27]|01p0v000002OV5X|ClienteMicroServicios.setMethod(String)
+14:37:24.0 (23367497)|STATEMENT_EXECUTE|[28]
+14:37:24.0 (23374035)|METHOD_ENTRY|[28]|01p0v000002OV5X|ClienteMicroServicios.setEndpoint(String)
+14:37:24.0 (23383035)|VARIABLE_SCOPE_BEGIN|[59]|this|ClienteMicroServicios|true|false
+14:37:24.0 (23407737)|VARIABLE_ASSIGNMENT|[59]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x3f636f75","CONT_TYPE":"Content-Type","endpoint":"products","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (23414302)|VARIABLE_SCOPE_BEGIN|[59]|endpoint|String|false|false
+14:37:24.0 (23418129)|VARIABLE_ASSIGNMENT|[59]|endpoint|"client/get/data"
+14:37:24.0 (23421114)|STATEMENT_EXECUTE|[59]
+14:37:24.0 (23422112)|STATEMENT_EXECUTE|[61]
+14:37:24.0 (23425444)|VARIABLE_ASSIGNMENT|[61]|this.endpoint|"client/get/data"|0x6b258141
+14:37:24.0 (23428685)|METHOD_EXIT|[28]|01p0v000002OV5X|ClienteMicroServicios.setEndpoint(String)
+14:37:24.0 (23431111)|STATEMENT_EXECUTE|[29]
+14:37:24.0 (23434657)|METHOD_ENTRY|[29]|01p0v000002OV5X|ClienteMicroServicios.setMicroServicio(String)
+14:37:24.0 (23439060)|VARIABLE_SCOPE_BEGIN|[74]|this|ClienteMicroServicios|true|false
+14:37:24.0 (23459371)|VARIABLE_ASSIGNMENT|[74]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x3f636f75","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"default","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (23470925)|VARIABLE_SCOPE_BEGIN|[74]|microServicio|String|false|false
+14:37:24.0 (23475337)|VARIABLE_ASSIGNMENT|[74]|microServicio|"MicroServicioCustome (5 more) ..."
+14:37:24.0 (23478150)|STATEMENT_EXECUTE|[74]
+14:37:24.0 (23479202)|STATEMENT_EXECUTE|[76]
+14:37:24.0 (23486849)|VARIABLE_ASSIGNMENT|[76]|this.microServicio|"MicroServicioCustome (5 more) ..."|0x6b258141
+14:37:24.0 (23490091)|STATEMENT_EXECUTE|[77]
+14:37:24.0 (23499595)|HEAP_ALLOCATE|[77]|Bytes:4
+14:37:24.0 (23788756)|SOQL_EXECUTE_BEGIN|[77]|Aggregations:0|SELECT Ambiente__c, Channel__c, Commerce__c, Country__c, Client_ID__c, Client_Secret__c, Provision_Key__c, Authenticated_UserID__c, Section__c, Apiversion__c FROM Configuracion_Microservicio__mdt WHERE Label = :tmpVar1 LIMIT 1
+14:37:24.0 (25950525)|SOQL_EXECUTE_END|[77]|Rows:1
+14:37:24.0 (25972817)|HEAP_ALLOCATE|[77]|Bytes:8
+14:37:24.0 (26018797)|HEAP_ALLOCATE|[77]|Bytes:277
+14:37:24.0 (26050969)|HEAP_ALLOCATE|[77]|Bytes:8
+14:37:24.0 (26074371)|HEAP_ALLOCATE|[77]|Bytes:40
+14:37:24.0 (26177717)|VARIABLE_ASSIGNMENT|[77]|this.cm|{"Country__c":"MX","Client_Secret__c":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","Ambiente__c":"qa","Authenticated_UserID__c":"0","Client_ID__c":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","Id":"m080v0000004rRfAAI","Channel__c":"Web","Provision_Key__c":"NmM4Y2JkMDM0YjgwYWU3 (12 more) ...","Commerce__c":"CMR"}|0x6b258141
+14:37:24.0 (26190672)|METHOD_EXIT|[29]|01p0v000002OV5X|ClienteMicroServicios.setMicroServicio(String)
+14:37:24.0 (26197019)|STATEMENT_EXECUTE|[30]
+14:37:24.0 (26212493)|METHOD_ENTRY|[30]|01p0v000002OV5X|ClienteMicroServicios.generarToken()
+14:37:24.0 (26254974)|VARIABLE_SCOPE_BEGIN|[83]|this|ClienteMicroServicios|true|false
+14:37:24.0 (26309946)|VARIABLE_ASSIGNMENT|[83]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (26325759)|STATEMENT_EXECUTE|[83]
+14:37:24.0 (26326908)|STATEMENT_EXECUTE|[86]
+14:37:24.0 (26335614)|HEAP_ALLOCATE|[86]|Bytes:4
+14:37:24.0 (26431797)|VARIABLE_SCOPE_BEGIN|[86]|params|Map<String,String>|true|false
+14:37:24.0 (26450709)|VARIABLE_ASSIGNMENT|[86]|params|{"grant_type":"password","client_id":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","client_secret":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","provision_key":"NmM4Y2JkMDM0YjgwYWU3 (12 more) ...","authenticated_userid":"0"}|0x233b5402
+14:37:24.0 (26454760)|STATEMENT_EXECUTE|[92]
+14:37:24.0 (26461751)|METHOD_ENTRY|[92]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (26470468)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+14:37:24.0 (26499994)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (26507938)|STATEMENT_EXECUTE|[115]
+14:37:24.0 (26508908)|STATEMENT_EXECUTE|[117]
+14:37:24.0 (26510688)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+14:37:24.0 (26515720)|VARIABLE_ASSIGNMENT|[117]|url|""
+14:37:24.0 (26518030)|STATEMENT_EXECUTE|[118]
+14:37:24.0 (26520228)|HEAP_ALLOCATE|[118]|Bytes:1
+14:37:24.0 (26535097)|HEAP_ALLOCATE|[118]|Bytes:3
+14:37:24.0 (26538107)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+14:37:24.0 (26542810)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-qa"
+14:37:24.0 (26547539)|STATEMENT_EXECUTE|[120]
+14:37:24.0 (26548412)|STATEMENT_EXECUTE|[122]
+14:37:24.0 (26551493)|HEAP_ALLOCATE|[122]|Bytes:1
+14:37:24.0 (26559977)|HEAP_ALLOCATE|[122]|Bytes:59
+14:37:24.0 (26563168)|HEAP_ALLOCATE|[122]|Bytes:16
+14:37:24.0 (26565180)|HEAP_ALLOCATE|[122]|Bytes:75
+14:37:24.0 (26568727)|VARIABLE_ASSIGNMENT|[122]|url|"https://cmr-mx-busin (55 more) ..."
+14:37:24.0 (26571572)|STATEMENT_EXECUTE|[129]
+14:37:24.0 (26574272)|METHOD_EXIT|[92]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (26580684)|HEAP_ALLOCATE|[92]|Bytes:88
+14:37:24.0 (26582992)|VARIABLE_SCOPE_BEGIN|[92]|url|String|false|false
+14:37:24.0 (26587514)|VARIABLE_ASSIGNMENT|[92]|url|"https://cmr-mx-busin (68 more) ..."
+14:37:24.0 (26589584)|STATEMENT_EXECUTE|[94]
+14:37:24.0 (26595341)|METHOD_ENTRY|[94]|01p0v000002OV5X|ClienteMicroServicios.crearRequest(Map<String,String>)
+14:37:24.0 (26605071)|VARIABLE_SCOPE_BEGIN|[132]|this|ClienteMicroServicios|true|false
+14:37:24.0 (26628694)|VARIABLE_ASSIGNMENT|[132]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (26636182)|VARIABLE_SCOPE_BEGIN|[132]|params|Map<String,String>|true|false
+14:37:24.0 (26644678)|VARIABLE_ASSIGNMENT|[132]|params|{"grant_type":"password","client_id":"MTI3ZjBjNmE3NTg1ZTVm (12 more) ...","client_secret":"OTM5ZTgxMzIwNzI2ZGNl (12 more) ...","provision_key":"NmM4Y2JkMDM0YjgwYWU3 (12 more) ...","authenticated_userid":"0"}|0x233b5402
+14:37:24.0 (26648634)|STATEMENT_EXECUTE|[132]
+14:37:24.0 (26649507)|STATEMENT_EXECUTE|[134]
+14:37:24.0 (26667255)|VARIABLE_SCOPE_BEGIN|[134]|http|System.Http|true|false
+14:37:24.0 (26834981)|VARIABLE_ASSIGNMENT|[134]|http|"System.Http[]"|0x3b25e922
+14:37:24.0 (26839128)|STATEMENT_EXECUTE|[135]
+14:37:24.0 (26846691)|VARIABLE_SCOPE_BEGIN|[135]|req|System.HttpRequest|true|false
+14:37:24.0 (26910074)|VARIABLE_ASSIGNMENT|[135]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x42473100
+14:37:24.0 (26913745)|STATEMENT_EXECUTE|[136]
+14:37:24.0 (26951554)|HEAP_ALLOCATE|[136]|Bytes:24
+14:37:24.0 (26962451)|SYSTEM_METHOD_ENTRY|[1]|JSON.JSON()
+14:37:24.0 (26964519)|STATEMENT_EXECUTE|[1]
+14:37:24.0 (26995177)|SYSTEM_METHOD_EXIT|[1]|JSON
+14:37:24.0 (27007781)|METHOD_ENTRY|[136]||System.JSON.serialize(Object)
+14:37:24.0 (27517975)|METHOD_EXIT|[136]||System.JSON.serialize(Object)
+14:37:24.0 (27584739)|STATEMENT_EXECUTE|[138]
+14:37:24.0 (27596985)|METHOD_ENTRY|[138]|01p0v000002OV5X|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+14:37:24.0 (27609743)|VARIABLE_SCOPE_BEGIN|[181]|this|ClienteMicroServicios|true|false
+14:37:24.0 (27664498)|VARIABLE_ASSIGNMENT|[181]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (27672310)|VARIABLE_SCOPE_BEGIN|[181]|req|System.HttpRequest|true|false
+14:37:24.0 (27733138)|VARIABLE_ASSIGNMENT|[181]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x42473100
+14:37:24.0 (27738942)|STATEMENT_EXECUTE|[181]
+14:37:24.0 (27740074)|STATEMENT_EXECUTE|[183]
+14:37:24.0 (27745848)|METHOD_ENTRY|[183]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (27752824)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+14:37:24.0 (27778008)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (27785473)|STATEMENT_EXECUTE|[115]
+14:37:24.0 (27786345)|STATEMENT_EXECUTE|[117]
+14:37:24.0 (27788946)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+14:37:24.0 (27794196)|VARIABLE_ASSIGNMENT|[117]|url|""
+14:37:24.0 (27804482)|STATEMENT_EXECUTE|[118]
+14:37:24.0 (27818918)|HEAP_ALLOCATE|[118]|Bytes:3
+14:37:24.0 (27822879)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+14:37:24.0 (27827046)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-qa"
+14:37:24.0 (27830896)|STATEMENT_EXECUTE|[120]
+14:37:24.0 (27831742)|STATEMENT_EXECUTE|[122]
+14:37:24.0 (27836204)|HEAP_ALLOCATE|[122]|Bytes:59
+14:37:24.0 (27838880)|HEAP_ALLOCATE|[122]|Bytes:16
+14:37:24.0 (27840860)|HEAP_ALLOCATE|[122]|Bytes:75
+14:37:24.0 (27844197)|VARIABLE_ASSIGNMENT|[122]|url|"https://cmr-mx-busin (55 more) ..."
+14:37:24.0 (27846880)|STATEMENT_EXECUTE|[129]
+14:37:24.0 (27849520)|METHOD_EXIT|[183]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (27851868)|VARIABLE_SCOPE_BEGIN|[183]|url|String|false|false
+14:37:24.0 (27855887)|VARIABLE_ASSIGNMENT|[183]|url|"https://cmr-mx-busin (55 more) ..."
+14:37:24.0 (27857933)|STATEMENT_EXECUTE|[185]
+14:37:24.0 (27890454)|VARIABLE_SCOPE_BEGIN|[185]|strChannel|String|false|false
+14:37:24.0 (27894464)|VARIABLE_ASSIGNMENT|[185]|strChannel|"Web"
+14:37:24.0 (27896327)|STATEMENT_EXECUTE|[186]
+14:37:24.0 (27902130)|VARIABLE_SCOPE_BEGIN|[186]|strCommerce|String|false|false
+14:37:24.0 (27906251)|VARIABLE_ASSIGNMENT|[186]|strCommerce|"CMR"
+14:37:24.0 (27908319)|STATEMENT_EXECUTE|[187]
+14:37:24.0 (27913349)|VARIABLE_SCOPE_BEGIN|[187]|strCountry|String|false|false
+14:37:24.0 (27916962)|VARIABLE_ASSIGNMENT|[187]|strCountry|"MX"
+14:37:24.0 (27918894)|STATEMENT_EXECUTE|[189]
+14:37:24.0 (27941692)|STATEMENT_EXECUTE|[190]
+14:37:24.0 (27950147)|STATEMENT_EXECUTE|[191]
+14:37:24.0 (27963622)|STATEMENT_EXECUTE|[192]
+14:37:24.0 (27977772)|STATEMENT_EXECUTE|[193]
+14:37:24.0 (27985792)|STATEMENT_EXECUTE|[194]
+14:37:24.0 (27992541)|STATEMENT_EXECUTE|[195]
+14:37:24.0 (28025557)|STATEMENT_EXECUTE|[197]
+14:37:24.0 (28027429)|STATEMENT_EXECUTE|[202]
+14:37:24.0 (28033047)|METHOD_ENTRY|[202]|01p0v000002OV5X|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+14:37:24.0 (28041484)|VARIABLE_SCOPE_BEGIN|[215]|this|ClienteMicroServicios|true|false
+14:37:24.0 (28066233)|VARIABLE_ASSIGNMENT|[215]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (28073136)|VARIABLE_SCOPE_BEGIN|[215]|req|System.HttpRequest|true|false
+14:37:24.0 (28105476)|VARIABLE_ASSIGNMENT|[215]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]"|0x42473100
+14:37:24.0 (28110226)|STATEMENT_EXECUTE|[215]
+14:37:24.0 (28111110)|STATEMENT_EXECUTE|[217]
+14:37:24.0 (28112928)|HEAP_ALLOCATE|[217]|Bytes:5
+14:37:24.0 (28128746)|HEAP_ALLOCATE|[217]|Bytes:117
+14:37:24.0 (28134089)|HEAP_ALLOCATE|[217]|Bytes:122
+14:37:24.0 (28145448)|USER_DEBUG|[217]|DEBUG|REQ: System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]
+14:37:24.0 (28150409)|STATEMENT_EXECUTE|[218]
+14:37:24.0 (28151591)|HEAP_ALLOCATE|[218]|Bytes:30
+14:37:24.0 (28165346)|HEAP_ALLOCATE|[218]|Bytes:16
+14:37:24.0 (28168759)|HEAP_ALLOCATE|[218]|Bytes:46
+14:37:24.0 (28171857)|USER_DEBUG|[218]|DEBUG|req.getHeader(Content-Type):  application/json
+14:37:24.0 (28175060)|STATEMENT_EXECUTE|[219]
+14:37:24.0 (28176324)|HEAP_ALLOCATE|[219]|Bytes:32
+14:37:24.0 (28184308)|HEAP_ALLOCATE|[219]|Bytes:3
+14:37:24.0 (28187381)|HEAP_ALLOCATE|[219]|Bytes:35
+14:37:24.0 (28190350)|USER_DEBUG|[219]|DEBUG|req.getHeader(mdw-cs-channel):  Web
+14:37:24.0 (28193442)|STATEMENT_EXECUTE|[220]
+14:37:24.0 (28194472)|HEAP_ALLOCATE|[220]|Bytes:33
+14:37:24.0 (28200087)|HEAP_ALLOCATE|[220]|Bytes:3
+14:37:24.0 (28203033)|HEAP_ALLOCATE|[220]|Bytes:36
+14:37:24.0 (28206021)|USER_DEBUG|[220]|DEBUG|req.getHeader(mdw-cs-commerce):  CMR
+14:37:24.0 (28208981)|STATEMENT_EXECUTE|[221]
+14:37:24.0 (28209966)|HEAP_ALLOCATE|[221]|Bytes:32
+14:37:24.0 (28215526)|HEAP_ALLOCATE|[221]|Bytes:2
+14:37:24.0 (28218586)|HEAP_ALLOCATE|[221]|Bytes:34
+14:37:24.0 (28221543)|USER_DEBUG|[221]|DEBUG|req.getHeader(mdw-cs-country):  MX
+14:37:24.0 (28224600)|STATEMENT_EXECUTE|[222]
+14:37:24.0 (28225561)|HEAP_ALLOCATE|[222]|Bytes:16
+14:37:24.0 (28244701)|HEAP_ALLOCATE|[222]|Bytes:201
+14:37:24.0 (28247794)|HEAP_ALLOCATE|[222]|Bytes:217
+14:37:24.0 (28250768)|USER_DEBUG|[222]|DEBUG|req.getBody():  {"authenticated_userid":"0","provision_key":"NmM4Y2JkMDM0YjgwYWU3OWZlNjE1YWY1","client_secret":"OTM5ZTgxMzIwNzI2ZGNlYmFhNzU0ZmY2","client_id":"MTI3ZjBjNmE3NTg1ZTVmOTY2NzYwYzQy","grant_type":"password"}
+14:37:24.0 (28286271)|METHOD_EXIT|[202]|01p0v000002OV5X|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+14:37:24.0 (28289363)|STATEMENT_EXECUTE|[204]
+14:37:24.0 (28291768)|METHOD_EXIT|[138]|01p0v000002OV5X|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+14:37:24.0 (28295221)|METHOD_EXIT|[94]|01p0v000002OV5X|ClienteMicroServicios.crearRequest(Map<String,String>)
+14:37:24.0 (28297898)|VARIABLE_SCOPE_BEGIN|[94]|req|System.HttpRequest|true|false
+14:37:24.0 (28324274)|VARIABLE_ASSIGNMENT|[94]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]"|0x42473100
+14:37:24.0 (28327542)|STATEMENT_EXECUTE|[95]
+14:37:24.0 (28332607)|VARIABLE_SCOPE_BEGIN|[95]|res|System.HttpResponse|true|false
+14:37:24.0 (28337494)|VARIABLE_ASSIGNMENT|[95]|res|null|
+14:37:24.0 (28339470)|STATEMENT_EXECUTE|[97]
+14:37:24.0 (28384819)|HEAP_ALLOCATE|[98]|Bytes:118
+14:37:24.0 (28393660)|SYSTEM_METHOD_ENTRY|[1]|Test.Test()
+14:37:24.0 (28395559)|STATEMENT_EXECUTE|[1]
+14:37:24.0 (28400710)|SYSTEM_METHOD_EXIT|[1]|Test
+14:37:24.0 (28406345)|METHOD_ENTRY|[98]||System.Test.isRunningTest()
+14:37:24.0 (28422480)|METHOD_EXIT|[98]||System.Test.isRunningTest()
+14:37:24.0 (28426910)|STATEMENT_EXECUTE|[98]
+14:37:24.0 (28427980)|STATEMENT_EXECUTE|[99]
+14:37:24.0 (28434294)|METHOD_ENTRY|[99]|01p0v000002OV5X|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+14:37:24.0 (28439791)|VARIABLE_SCOPE_BEGIN|[225]|this|ClienteMicroServicios|true|false
+14:37:24.0 (28469586)|VARIABLE_ASSIGNMENT|[225]|this|{"access_token":"","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (28476852)|VARIABLE_SCOPE_BEGIN|[225]|req|System.HttpRequest|true|false
+14:37:24.0 (28500535)|VARIABLE_ASSIGNMENT|[225]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data/oauth2/token, Method=POST]"|0x42473100
+14:37:24.0 (28505186)|STATEMENT_EXECUTE|[225]
+14:37:24.0 (28506086)|STATEMENT_EXECUTE|[227]
+14:37:24.0 (28515915)|VARIABLE_SCOPE_BEGIN|[227]|http|System.Http|true|false
+14:37:24.0 (28565764)|VARIABLE_ASSIGNMENT|[227]|http|"System.Http[]"|0x609d4703
+14:37:24.0 (28569491)|STATEMENT_EXECUTE|[228]
+14:37:24.0 (28639734)|CALLOUT_REQUEST|[228]|System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data/oauth2/token, Method=POST]
+14:37:24.0 (251666863)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:990
+14:37:24.0 (253039521)|CALLOUT_RESPONSE|[228]|System.HttpResponse[Status=OK, StatusCode=200]
+14:37:24.0 (253065036)|HEAP_ALLOCATE|[228]|Bytes:146
+14:37:24.0 (253101852)|METHOD_EXIT|[99]|01p0v000002OV5X|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+14:37:24.0 (253203186)|VARIABLE_ASSIGNMENT|[99]|res|"System.HttpResponse[Status=OK, StatusCode=200]"|0x70522c27
+14:37:24.0 (253216365)|STATEMENT_EXECUTE|[108]
+14:37:24.0 (253300983)|HEAP_ALLOCATE|[108]|Bytes:140
+14:37:24.0 (255193208)|HEAP_ALLOCATE|[108]|Bytes:5
+14:37:24.0 (255205485)|HEAP_ALLOCATE|[108]|Bytes:2
+14:37:24.0 (255244173)|METHOD_ENTRY|[5]|01p0v000003GpM8|oAuthJSON.oAuthJSON()
+14:37:24.0 (255249389)|STATEMENT_EXECUTE|[5]
+14:37:24.0 (255256609)|STATEMENT_EXECUTE|[5]
+14:37:24.0 (255257794)|STATEMENT_EXECUTE|[7]
+14:37:24.0 (255263462)|METHOD_EXIT|[5]|oAuthJSON
+14:37:24.0 (255288562)|METHOD_ENTRY|[108]|01p0v000003GpM8|oAuthJSON.parse(String)
+14:37:24.0 (255296268)|VARIABLE_SCOPE_BEGIN|[15]|json|String|false|false
+14:37:24.0 (255312677)|VARIABLE_ASSIGNMENT|[15]|json|"{\"expires_in\":60,\"ac (120 more) ..."
+14:37:24.0 (255318407)|STATEMENT_EXECUTE|[15]
+14:37:24.0 (255319397)|STATEMENT_EXECUTE|[16]
+14:37:24.0 (255322327)|HEAP_ALLOCATE|[16]|Bytes:15
+14:37:24.0 (255503557)|HEAP_ALLOCATE|[16]|Bytes:33
+14:37:24.0 (255511356)|SYSTEM_METHOD_ENTRY|[1]|Type.Type()
+14:37:24.0 (255513156)|STATEMENT_EXECUTE|[1]
+14:37:24.0 (255518722)|SYSTEM_METHOD_EXIT|[1]|Type
+14:37:24.0 (255525827)|HEAP_ALLOCATE|[16]|Bytes:8
+14:37:24.0 (255542409)|HEAP_ALLOCATE|[16]|Bytes:8
+14:37:24.0 (255545797)|VARIABLE_SCOPE_BEGIN|[4]|this|System.Type|true|false
+14:37:24.0 (255574236)|VARIABLE_ASSIGNMENT|[4]|this|{}|0x68206518
+14:37:24.0 (255577434)|VARIABLE_SCOPE_BEGIN|[4]|apextype|java:common.apex.runtime.ApexObjectType|true|false
+14:37:24.0 (255665986)|VARIABLE_ASSIGNMENT|[4]|apextype|"oAuthJSON.oAuth"|0x224a0783
+14:37:24.0 (255700808)|HEAP_ALLOCATE|[16]|Bytes:8
+14:37:24.0 (255716372)|METHOD_ENTRY|[16]||System.JSON.deserialize(String, System.Type)
+14:37:24.0 (255994010)|METHOD_EXIT|[16]||System.JSON.deserialize(String, System.Type)
+14:37:24.0 (256000971)|METHOD_EXIT|[108]|01p0v000003GpM8|oAuthJSON.parse(String)
+14:37:24.0 (256005911)|VARIABLE_SCOPE_BEGIN|[108]|result|oAuthJSON.oAuth|true|false
+14:37:24.0 (256034635)|VARIABLE_ASSIGNMENT|[108]|result|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","expires_in":60,"refresh_token":"eSliYyqRqdZJnBRJdDKe (12 more) ...","token_type":"bearer"}|0x18034f0d
+14:37:24.0 (256039363)|STATEMENT_EXECUTE|[110]
+14:37:24.0 (256041457)|HEAP_ALLOCATE|[110]|Bytes:10
+14:37:24.0 (256075584)|HEAP_ALLOCATE|[110]|Bytes:140
+14:37:24.0 (256086151)|HEAP_ALLOCATE|[110]|Bytes:150
+14:37:24.0 (256097078)|USER_DEBUG|[110]|DEBUG|res token {"expires_in":60,"access_token":"fUWKkoskwqilZgpCPFoFUMlvXIDmf7Ms","refresh_token":"eSliYyqRqdZJnBRJdDKeGjIlvl4TEAqu","token_type":"bearer"}
+14:37:24.0 (256102448)|STATEMENT_EXECUTE|[112]
+14:37:24.0 (256112244)|VARIABLE_ASSIGNMENT|[112]|this.access_token|"fUWKkoskwqilZgpCPFoF (12 more) ..."|0x6b258141
+14:37:24.0 (256123139)|METHOD_EXIT|[30]|01p0v000002OV5X|ClienteMicroServicios.generarToken()
+14:37:24.0 (256129113)|CONSTRUCTOR_EXIT|[77]|01p0v000003GxUV|<init>()|MicroServicioCustomerData
+14:37:24.0 (256137964)|VARIABLE_SCOPE_BEGIN|[77]|CustomerData|MicroServicioCustomerData|true|false
+14:37:24.0 (256149972)|VARIABLE_ASSIGNMENT|[77]|CustomerData|{"cliente":"0x6b258141"}|0x53c23441
+14:37:24.0 (256152858)|STATEMENT_EXECUTE|[78]
+14:37:24.0 (256154024)|HEAP_ALLOCATE|[78]|Bytes:14
+14:37:24.0 (256374876)|HEAP_ALLOCATE|[78]|Bytes:1123
+14:37:24.0 (256384105)|HEAP_ALLOCATE|[78]|Bytes:1137
+14:37:24.0 (256390052)|USER_DEBUG|[78]|DEBUG|CustomerData: MicroServicioCustomerData:[GETDATA=client/get/data, POST=POST, cliente=ClienteMicroServicios:[APIVERSION=apiversion, APP_JSON=application/json, AT=access_token, AUTH=Authorization, AUTHENTICATED_USERID=authenticated_userid, BACKEND=backend, BASE_URL=https://cmr-mx-business, BEARER=Bearer, CLIENT_ID=client_id, CLIENT_SECRET=client_secret, CONT_TYPE=Content-Type, GRANT_TYPE=grant_type, MDW_CS_CHANNEL=mdw-cs-channel, MDW_CS_COMMERCE=mdw-cs-commerce, MDW_CS_COUNTRY=mdw-cs-country, MDW_CS_DATE=mdw-cs-date, MDW_CS_HOUR=mdw-cs-hour, OAUTH=oauth2/token, PASSWORD=password, PROVISION_KEY=provision_key, SCORETOKEN=token, SECCTION=secction, TIME_OUT=120000, URI=.fif.tech/api/business/, access_token=fUWKkoskwqilZgpCPFoFUMlvXIDmf7Ms, cm=Configuracion_Microservicio__mdt:{Ambiente__c=qa, Channel__c=Web, Commerce__c=CMR, Country__c=MX, Client_ID__c=MTI3ZjBjNmE3NTg1ZTVmOTY2NzYwYzQy, Client_Secret__c=OTM5ZTgxMzIwNzI2ZGNlYmFhNzU0ZmY2, Provision_Key__c=NmM4Y2JkMDM0YjgwYWU3OWZlNjE1YWY1, Authenticated_UserID__c=0, Id=m080v0000004rRfAAI}, endpoint=client/get/data, method=POST, microServicio=MicroServicioCustomerData, version=v1]]
+14:37:24.0 (256400230)|STATEMENT_EXECUTE|[80]
+14:37:24.0 (256411591)|METHOD_ENTRY|[80]|01p0v000003GxUV|MicroServicioCustomerData.obtenerCustomerData(Map<String,String>)
+14:37:24.0 (258612558)|VARIABLE_SCOPE_BEGIN|[33]|this|MicroServicioCustomerData|true|false
+14:37:24.0 (258661092)|VARIABLE_ASSIGNMENT|[33]|this|{"cliente":"0x6b258141"}|0x53c23441
+14:37:24.0 (258666554)|VARIABLE_SCOPE_BEGIN|[33]|params|Map<String,String>|true|false
+14:37:24.0 (258681222)|VARIABLE_ASSIGNMENT|[33]|params|{"numeroDocumento":"FERM900101MASRDI09"}|0x1db1851b
+14:37:24.0 (258689337)|STATEMENT_EXECUTE|[33]
+14:37:24.0 (258690529)|STATEMENT_EXECUTE|[35]
+14:37:24.0 (258835514)|HEAP_ALLOCATE|[35]|Bytes:1123
+14:37:24.0 (258896616)|HEAP_ALLOCATE|[35]|Bytes:1123
+14:37:24.0 (258915761)|HEAP_ALLOCATE|[35]|Bytes:25
+14:37:24.0 (258920478)|VARIABLE_SCOPE_BEGIN|[35]|currentClassName|String|false|false
+14:37:24.0 (258927833)|VARIABLE_ASSIGNMENT|[35]|currentClassName|"MicroServicioCustome (5 more) ..."
+14:37:24.0 (259077114)|STATEMENT_EXECUTE|[36]
+14:37:24.0 (259098338)|VARIABLE_SCOPE_BEGIN|[36]|res|System.HttpResponse|true|false
+14:37:24.0 (259104908)|VARIABLE_ASSIGNMENT|[36]|res|null|
+14:37:24.0 (259106976)|STATEMENT_EXECUTE|[37]
+14:37:24.0 (259122515)|METHOD_ENTRY|[37]|01p0v000002OV5X|ClienteMicroServicios.crearRequest(Map<String,String>)
+14:37:24.0 (259134353)|VARIABLE_SCOPE_BEGIN|[132]|this|ClienteMicroServicios|true|false
+14:37:24.0 (259180852)|VARIABLE_ASSIGNMENT|[132]|this|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (259188932)|VARIABLE_SCOPE_BEGIN|[132]|params|Map<String,String>|true|false
+14:37:24.0 (259197493)|VARIABLE_ASSIGNMENT|[132]|params|{"numeroDocumento":"FERM900101MASRDI09"}|0x1db1851b
+14:37:24.0 (259202115)|STATEMENT_EXECUTE|[132]
+14:37:24.0 (259203117)|STATEMENT_EXECUTE|[134]
+14:37:24.0 (259216438)|VARIABLE_SCOPE_BEGIN|[134]|http|System.Http|true|false
+14:37:24.0 (259297305)|VARIABLE_ASSIGNMENT|[134]|http|"System.Http[]"|0x48c8e3dc
+14:37:24.0 (259300984)|STATEMENT_EXECUTE|[135]
+14:37:24.0 (259306487)|VARIABLE_SCOPE_BEGIN|[135]|req|System.HttpRequest|true|false
+14:37:24.0 (259329366)|VARIABLE_ASSIGNMENT|[135]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x2801543f
+14:37:24.0 (259332403)|STATEMENT_EXECUTE|[136]
+14:37:24.0 (259337207)|METHOD_ENTRY|[136]||System.JSON.serialize(Object)
+14:37:24.0 (259652318)|METHOD_EXIT|[136]||System.JSON.serialize(Object)
+14:37:24.0 (259710338)|STATEMENT_EXECUTE|[138]
+14:37:24.0 (259715125)|METHOD_ENTRY|[138]|01p0v000002OV5X|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+14:37:24.0 (259719230)|VARIABLE_SCOPE_BEGIN|[181]|this|ClienteMicroServicios|true|false
+14:37:24.0 (259758190)|VARIABLE_ASSIGNMENT|[181]|this|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (259766195)|VARIABLE_SCOPE_BEGIN|[181]|req|System.HttpRequest|true|false
+14:37:24.0 (259802758)|VARIABLE_ASSIGNMENT|[181]|req|"System.HttpRequest[Endpoint=null, Method=null]"|0x2801543f
+14:37:24.0 (259807858)|STATEMENT_EXECUTE|[181]
+14:37:24.0 (259808779)|STATEMENT_EXECUTE|[183]
+14:37:24.0 (259812658)|METHOD_ENTRY|[183]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (259816421)|VARIABLE_SCOPE_BEGIN|[115]|this|ClienteMicroServicios|true|false
+14:37:24.0 (259847122)|VARIABLE_ASSIGNMENT|[115]|this|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (259855096)|STATEMENT_EXECUTE|[115]
+14:37:24.0 (259855975)|STATEMENT_EXECUTE|[117]
+14:37:24.0 (259858697)|VARIABLE_SCOPE_BEGIN|[117]|url|String|false|false
+14:37:24.0 (259864103)|VARIABLE_ASSIGNMENT|[117]|url|""
+14:37:24.0 (259866003)|STATEMENT_EXECUTE|[118]
+14:37:24.0 (259882718)|HEAP_ALLOCATE|[118]|Bytes:3
+14:37:24.0 (259886113)|VARIABLE_SCOPE_BEGIN|[118]|Enviroment|String|false|false
+14:37:24.0 (259890156)|VARIABLE_ASSIGNMENT|[118]|Enviroment|"-qa"
+14:37:24.0 (259894136)|STATEMENT_EXECUTE|[120]
+14:37:24.0 (259895003)|STATEMENT_EXECUTE|[122]
+14:37:24.0 (259900155)|HEAP_ALLOCATE|[122]|Bytes:59
+14:37:24.0 (259902693)|HEAP_ALLOCATE|[122]|Bytes:16
+14:37:24.0 (259904845)|HEAP_ALLOCATE|[122]|Bytes:75
+14:37:24.0 (259908142)|VARIABLE_ASSIGNMENT|[122]|url|"https://cmr-mx-busin (55 more) ..."
+14:37:24.0 (259910867)|STATEMENT_EXECUTE|[129]
+14:37:24.0 (259913247)|METHOD_EXIT|[183]|01p0v000002OV5X|ClienteMicroServicios.obtenerURLENDPOINT()
+14:37:24.0 (259915633)|VARIABLE_SCOPE_BEGIN|[183]|url|String|false|false
+14:37:24.0 (259919777)|VARIABLE_ASSIGNMENT|[183]|url|"https://cmr-mx-busin (55 more) ..."
+14:37:24.0 (259921747)|STATEMENT_EXECUTE|[185]
+14:37:24.0 (259925516)|VARIABLE_SCOPE_BEGIN|[185]|strChannel|String|false|false
+14:37:24.0 (259929437)|VARIABLE_ASSIGNMENT|[185]|strChannel|"Web"
+14:37:24.0 (259931306)|STATEMENT_EXECUTE|[186]
+14:37:24.0 (259933752)|VARIABLE_SCOPE_BEGIN|[186]|strCommerce|String|false|false
+14:37:24.0 (259937604)|VARIABLE_ASSIGNMENT|[186]|strCommerce|"CMR"
+14:37:24.0 (259939629)|STATEMENT_EXECUTE|[187]
+14:37:24.0 (259942723)|VARIABLE_SCOPE_BEGIN|[187]|strCountry|String|false|false
+14:37:24.0 (259946287)|VARIABLE_ASSIGNMENT|[187]|strCountry|"MX"
+14:37:24.0 (259948061)|STATEMENT_EXECUTE|[189]
+14:37:24.0 (259955956)|STATEMENT_EXECUTE|[190]
+14:37:24.0 (259961287)|STATEMENT_EXECUTE|[191]
+14:37:24.0 (259967960)|STATEMENT_EXECUTE|[192]
+14:37:24.0 (259977666)|STATEMENT_EXECUTE|[193]
+14:37:24.0 (259981624)|STATEMENT_EXECUTE|[194]
+14:37:24.0 (259985592)|STATEMENT_EXECUTE|[195]
+14:37:24.0 (260002146)|STATEMENT_EXECUTE|[197]
+14:37:24.0 (260003957)|STATEMENT_EXECUTE|[199]
+14:37:24.0 (260007935)|HEAP_ALLOCATE|[199]|Bytes:1
+14:37:24.0 (260014882)|HEAP_ALLOCATE|[199]|Bytes:39
+14:37:24.0 (260045669)|STATEMENT_EXECUTE|[202]
+14:37:24.0 (260048937)|METHOD_ENTRY|[202]|01p0v000002OV5X|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+14:37:24.0 (260051729)|VARIABLE_SCOPE_BEGIN|[215]|this|ClienteMicroServicios|true|false
+14:37:24.0 (260074469)|VARIABLE_ASSIGNMENT|[215]|this|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (260081809)|VARIABLE_SCOPE_BEGIN|[215]|req|System.HttpRequest|true|false
+14:37:24.0 (260108659)|VARIABLE_ASSIGNMENT|[215]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]"|0x2801543f
+14:37:24.0 (260112744)|STATEMENT_EXECUTE|[215]
+14:37:24.0 (260113611)|STATEMENT_EXECUTE|[217]
+14:37:24.0 (260121735)|HEAP_ALLOCATE|[217]|Bytes:117
+14:37:24.0 (260126863)|HEAP_ALLOCATE|[217]|Bytes:122
+14:37:24.0 (260133698)|USER_DEBUG|[217]|DEBUG|REQ: System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]
+14:37:24.0 (260137989)|STATEMENT_EXECUTE|[218]
+14:37:24.0 (260147343)|HEAP_ALLOCATE|[218]|Bytes:16
+14:37:24.0 (260150766)|HEAP_ALLOCATE|[218]|Bytes:46
+14:37:24.0 (260153952)|USER_DEBUG|[218]|DEBUG|req.getHeader(Content-Type):  application/json
+14:37:24.0 (260156944)|STATEMENT_EXECUTE|[219]
+14:37:24.0 (260160452)|HEAP_ALLOCATE|[219]|Bytes:3
+14:37:24.0 (260163852)|HEAP_ALLOCATE|[219]|Bytes:35
+14:37:24.0 (260166843)|USER_DEBUG|[219]|DEBUG|req.getHeader(mdw-cs-channel):  Web
+14:37:24.0 (260169906)|STATEMENT_EXECUTE|[220]
+14:37:24.0 (260173813)|HEAP_ALLOCATE|[220]|Bytes:3
+14:37:24.0 (260176973)|HEAP_ALLOCATE|[220]|Bytes:36
+14:37:24.0 (260179956)|USER_DEBUG|[220]|DEBUG|req.getHeader(mdw-cs-commerce):  CMR
+14:37:24.0 (260182977)|STATEMENT_EXECUTE|[221]
+14:37:24.0 (260186221)|HEAP_ALLOCATE|[221]|Bytes:2
+14:37:24.0 (260189316)|HEAP_ALLOCATE|[221]|Bytes:34
+14:37:24.0 (260192072)|USER_DEBUG|[221]|DEBUG|req.getHeader(mdw-cs-country):  MX
+14:37:24.0 (260195283)|STATEMENT_EXECUTE|[222]
+14:37:24.0 (260205661)|HEAP_ALLOCATE|[222]|Bytes:40
+14:37:24.0 (260208715)|HEAP_ALLOCATE|[222]|Bytes:56
+14:37:24.0 (260211699)|USER_DEBUG|[222]|DEBUG|req.getBody():  {"numeroDocumento":"FERM900101MASRDI09"}
+14:37:24.0 (260216395)|METHOD_EXIT|[202]|01p0v000002OV5X|ClienteMicroServicios.imprimirRequest(System.HttpRequest)
+14:37:24.0 (260218988)|STATEMENT_EXECUTE|[204]
+14:37:24.0 (260221066)|METHOD_EXIT|[138]|01p0v000002OV5X|ClienteMicroServicios.crearRequest_v1_v2(System.HttpRequest)
+14:37:24.0 (260224811)|METHOD_EXIT|[37]|01p0v000002OV5X|ClienteMicroServicios.crearRequest(Map<String,String>)
+14:37:24.0 (260227489)|VARIABLE_SCOPE_BEGIN|[37]|req|System.HttpRequest|true|false
+14:37:24.0 (260247693)|VARIABLE_ASSIGNMENT|[37]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]"|0x2801543f
+14:37:24.0 (260250981)|STATEMENT_EXECUTE|[38]
+14:37:24.0 (260253289)|VARIABLE_SCOPE_BEGIN|[38]|isSuccess|Boolean|false|false
+14:37:24.0 (260259071)|HEAP_ALLOCATE|[38]|Bytes:5
+14:37:24.0 (260262715)|VARIABLE_ASSIGNMENT|[38]|isSuccess|false
+14:37:24.0 (260264622)|STATEMENT_EXECUTE|[39]
+14:37:24.0 (260267035)|VARIABLE_SCOPE_BEGIN|[39]|result|CustomerDataJSON|true|false
+14:37:24.0 (260271253)|VARIABLE_ASSIGNMENT|[39]|result|null|
+14:37:24.0 (260273343)|STATEMENT_EXECUTE|[40]
+14:37:24.0 (260274947)|HEAP_ALLOCATE|[40]|Bytes:4
+14:37:24.0 (260291704)|HEAP_ALLOCATE|[40]|Bytes:117
+14:37:24.0 (260296653)|HEAP_ALLOCATE|[40]|Bytes:121
+14:37:24.0 (260301471)|USER_DEBUG|[40]|DEBUG|req System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]
+14:37:24.0 (260305011)|STATEMENT_EXECUTE|[42]
+14:37:24.0 (260305922)|STATEMENT_EXECUTE|[42]
+14:37:24.0 (260308141)|STATEMENT_EXECUTE|[43]
+14:37:24.0 (260309663)|VARIABLE_SCOPE_BEGIN|[43]|i|Integer|false|false
+14:37:24.0 (260314213)|HEAP_ALLOCATE|[43]|Bytes:4
+14:37:24.0 (260317324)|VARIABLE_ASSIGNMENT|[43]|i|0
+14:37:24.0 (260324124)|STATEMENT_EXECUTE|[43]
+14:37:24.0 (260325132)|STATEMENT_EXECUTE|[44]
+14:37:24.0 (260334093)|METHOD_ENTRY|[44]|01p0v000002OV5X|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+14:37:24.0 (260339744)|VARIABLE_SCOPE_BEGIN|[225]|this|ClienteMicroServicios|true|false
+14:37:24.0 (260363563)|VARIABLE_ASSIGNMENT|[225]|this|{"access_token":"fUWKkoskwqilZgpCPFoF (12 more) ...","APIVERSION":"apiversion","APP_JSON":"application/json","AT":"access_token","AUTH":"Authorization","AUTHENTICATED_USERID":"authenticated_userid","BACKEND":"backend","BASE_URL":"https://cmr-mx-busin (3 more) ...","BEARER":"Bearer","CLIENT_ID":"client_id","CLIENT_SECRET":"client_secret","cm":"0x19dfb3ec","CONT_TYPE":"Content-Type","endpoint":"client/get/data","GRANT_TYPE":"grant_type","MDW_CS_CHANNEL":"mdw-cs-channel","MDW_CS_COMMERCE":"mdw-cs-commerce","MDW_CS_COUNTRY":"mdw-cs-country","MDW_CS_DATE":"mdw-cs-date","MDW_CS_HOUR":"mdw-cs-hour","method":"POST","microServicio":"MicroServicioCustome (5 more) ...","OAUTH":"oauth2/token","PASSWORD":"password","PROVISION_KEY":"provision_key","SCORETOKEN":"token","SECCTION":"secction","TIME_OUT":120000,"URI":".fif.tech/api/busine (3 more) ...","version":"v1"}|0x6b258141
+14:37:24.0 (260370751)|VARIABLE_SCOPE_BEGIN|[225]|req|System.HttpRequest|true|false
+14:37:24.0 (260390885)|VARIABLE_ASSIGNMENT|[225]|req|"System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]"|0x2801543f
+14:37:24.0 (260395017)|STATEMENT_EXECUTE|[225]
+14:37:24.0 (260396118)|STATEMENT_EXECUTE|[227]
+14:37:24.0 (260403301)|VARIABLE_SCOPE_BEGIN|[227]|http|System.Http|true|false
+14:37:24.0 (260427116)|VARIABLE_ASSIGNMENT|[227]|http|"System.Http[]"|0x79208847
+14:37:24.0 (260430001)|STATEMENT_EXECUTE|[228]
+14:37:24.0 (260469812)|CALLOUT_REQUEST|[228]|System.HttpRequest[Endpoint=https://cmr-mx-business-qa.fif.tech/api/business/v1/backend/client/get/data, Method=POST]
+14:37:24.0 (866868016)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:1016
+14:37:24.0 (867943169)|CALLOUT_RESPONSE|[228]|System.HttpResponse[Status=OK, StatusCode=200]
+14:37:24.0 (867974958)|HEAP_ALLOCATE|[228]|Bytes:150
+14:37:24.0 (868011525)|METHOD_EXIT|[44]|01p0v000002OV5X|ClienteMicroServicios.enviarRequest(System.HttpRequest)
+14:37:24.0 (868172964)|VARIABLE_ASSIGNMENT|[44]|res|"System.HttpResponse[Status=OK, StatusCode=200]"|0x80bd2c6
+14:37:24.0 (868243900)|STATEMENT_EXECUTE|[45]
+14:37:24.0 (868245125)|STATEMENT_EXECUTE|[47]
+14:37:24.0 (868257350)|HEAP_ALLOCATE|[47]|Bytes:5
+14:37:24.0 (868266254)|VARIABLE_ASSIGNMENT|[47]|isSuccess|true
+14:37:24.0 (868268524)|STATEMENT_EXECUTE|[47]
+14:37:24.0 (868271944)|STATEMENT_EXECUTE|[50]
+14:37:24.0 (868276429)|HEAP_ALLOCATE|[50]|Bytes:4
+14:37:24.0 (868305623)|HEAP_ALLOCATE|[50]|Bytes:143
+14:37:24.0 (868320858)|HEAP_ALLOCATE|[50]|Bytes:147
+14:37:24.0 (868337555)|USER_DEBUG|[50]|DEBUG|res {"code":"ok","message":{"estadoOperacion":{"codigoOperacion":"00","glosaOperacion":"No se encontraron datos para los criterios de selección"}}}
+14:37:24.0 (868355908)|HEAP_ALLOCATE|[53]|Bytes:143
+14:37:24.0 (868408637)|HEAP_ALLOCATE|[53]|Bytes:7
+14:37:24.0 (868410590)|HEAP_ALLOCATE|[53]|Bytes:14
+14:37:24.0 (868411993)|HEAP_ALLOCATE|[53]|Bytes:18
+14:37:24.0 (868413363)|HEAP_ALLOCATE|[53]|Bytes:18
+14:37:24.0 (868414882)|HEAP_ALLOCATE|[53]|Bytes:21
+14:37:24.0 (868416394)|HEAP_ALLOCATE|[53]|Bytes:60
+14:37:24.0 (868419766)|HEAP_ALLOCATE|[53]|Bytes:28
+14:37:24.0 (868452157)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868472688)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868480725)|VARIABLE_ASSIGNMENT|[53]|s|"{\"code\""
+14:37:24.0 (868483409)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868484458)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868485847)|HEAP_ALLOCATE|[54]|Bytes:2
+14:37:24.0 (868488834)|HEAP_ALLOCATE|[54]|Bytes:9
+14:37:24.0 (868532763)|USER_DEBUG|[54]|DEBUG|s {"code"
+14:37:24.0 (868539313)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868543720)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868548144)|VARIABLE_ASSIGNMENT|[53]|s|"\"ok\",\"message\""
+14:37:24.0 (868550362)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868551243)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868552783)|HEAP_ALLOCATE|[54]|Bytes:16
+14:37:24.0 (868556039)|USER_DEBUG|[54]|DEBUG|s "ok","message"
+14:37:24.0 (868560946)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868564505)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868568908)|VARIABLE_ASSIGNMENT|[53]|s|"{\"estadoOperacion\""
+14:37:24.0 (868571018)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868571918)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868573163)|HEAP_ALLOCATE|[54]|Bytes:20
+14:37:24.0 (868576038)|USER_DEBUG|[54]|DEBUG|s {"estadoOperacion"
+14:37:24.0 (868580703)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868584208)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868588035)|VARIABLE_ASSIGNMENT|[53]|s|"{\"codigoOperacion\""
+14:37:24.0 (868589988)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868590803)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868591998)|HEAP_ALLOCATE|[54]|Bytes:20
+14:37:24.0 (868594832)|USER_DEBUG|[54]|DEBUG|s {"codigoOperacion"
+14:37:24.0 (868599406)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868602901)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868607727)|VARIABLE_ASSIGNMENT|[53]|s|"\"00\",\"glosaOperacion (1 more) ..."
+14:37:24.0 (868609791)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868610626)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868611821)|HEAP_ALLOCATE|[54]|Bytes:23
+14:37:24.0 (868614836)|USER_DEBUG|[54]|DEBUG|s "00","glosaOperacion"
+14:37:24.0 (868619426)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868622938)|VARIABLE_SCOPE_BEGIN|[53]|s|String|false|false
+14:37:24.0 (868627331)|VARIABLE_ASSIGNMENT|[53]|s|"\"No se encontraron d (40 more) ..."
+14:37:24.0 (868629250)|STATEMENT_EXECUTE|[53]
+14:37:24.0 (868630078)|STATEMENT_EXECUTE|[54]
+14:37:24.0 (868631295)|HEAP_ALLOCATE|[54]|Bytes:62
+14:37:24.0 (868634174)|USER_DEBUG|[54]|DEBUG|s "No se encontraron datos para los criterios de selección"}}}
+14:37:24.0 (868639423)|HEAP_ALLOCATE|[53]|Bytes:5
+14:37:24.0 (868644943)|VARIABLE_ASSIGNMENT|[53]|s|null
+14:37:24.0 (868647853)|STATEMENT_EXECUTE|[56]
+14:37:24.0 (868648813)|STATEMENT_EXECUTE|[56]
+14:37:24.0 (868660890)|HEAP_ALLOCATE|[56]|Bytes:143
+14:37:24.0 (868672900)|HEAP_ALLOCATE|[56]|Bytes:107
+14:37:24.0 (868678814)|HEAP_ALLOCATE|[56]|Bytes:2
+14:37:24.0 (868700293)|METHOD_ENTRY|[14]|01p0v000003GxUU|CustomerDataJSON.CustomerDataJSON()
+14:37:24.0 (868702883)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (868708366)|STATEMENT_EXECUTE|[14]
+14:37:24.0 (868709558)|STATEMENT_EXECUTE|[19]
+14:37:24.0 (868710791)|STATEMENT_EXECUTE|[24]
+14:37:24.0 (868711726)|STATEMENT_EXECUTE|[28]
+14:37:24.0 (868712777)|STATEMENT_EXECUTE|[37]
+14:37:24.0 (868713743)|STATEMENT_EXECUTE|[41]
+14:37:24.0 (868714753)|STATEMENT_EXECUTE|[46]
+14:37:24.0 (868715751)|STATEMENT_EXECUTE|[50]
+14:37:24.0 (868716538)|STATEMENT_EXECUTE|[57]
+14:37:24.0 (868721561)|METHOD_EXIT|[14]|CustomerDataJSON
+14:37:24.0 (868745759)|METHOD_ENTRY|[56]|01p0v000003GxUU|CustomerDataJSON.parse(String)
+14:37:24.0 (868752336)|VARIABLE_SCOPE_BEGIN|[62]|json|String|false|false
+14:37:24.0 (868757721)|VARIABLE_ASSIGNMENT|[62]|json|"{\"code\":\"ok\",\"messag (123 more) ..."
+14:37:24.0 (868762746)|STATEMENT_EXECUTE|[62]
+14:37:24.0 (868763782)|STATEMENT_EXECUTE|[63]
+14:37:24.0 (868765404)|HEAP_ALLOCATE|[63]|Bytes:16
+14:37:24.0 (868836959)|HEAP_ALLOCATE|[63]|Bytes:8
+14:37:24.0 (868842744)|HEAP_ALLOCATE|[63]|Bytes:8
+14:37:24.0 (868845712)|VARIABLE_SCOPE_BEGIN|[4]|this|System.Type|true|false
+14:37:24.0 (868871612)|VARIABLE_ASSIGNMENT|[4]|this|{}|0x836b177
+14:37:24.0 (868874583)|VARIABLE_SCOPE_BEGIN|[4]|apextype|java:common.apex.runtime.ApexObjectType|true|false
+14:37:24.0 (868928545)|VARIABLE_ASSIGNMENT|[4]|apextype|"CustomerDataJSON"|0x701bdd06
+14:37:24.0 (868959379)|HEAP_ALLOCATE|[63]|Bytes:8
+14:37:24.0 (868965830)|METHOD_ENTRY|[63]||System.JSON.deserialize(String, System.Type)
+14:37:24.0 (869661095)|METHOD_EXIT|[63]||System.JSON.deserialize(String, System.Type)
+14:37:24.0 (869672719)|METHOD_EXIT|[56]|01p0v000003GxUU|CustomerDataJSON.parse(String)
+14:37:24.0 (869698867)|VARIABLE_ASSIGNMENT|[56]|result|{"code":"ok","message":"0x1cfdc367"}|0x195e399f
+14:37:24.0 (869704774)|STATEMENT_EXECUTE|[62]
+14:37:24.0 (869708359)|METHOD_EXIT|[80]|01p0v000003GxUV|MicroServicioCustomerData.obtenerCustomerData(Map<String,String>)
+14:37:24.0 (869711473)|VARIABLE_SCOPE_BEGIN|[80]|resultCustomerData|CustomerDataJSON|true|false
+14:37:24.0 (869719848)|VARIABLE_ASSIGNMENT|[80]|resultCustomerData|{"code":"ok","message":"0x1cfdc367"}|0x195e399f
+14:37:24.0 (869722803)|STATEMENT_EXECUTE|[81]
+14:37:24.0 (869724821)|HEAP_ALLOCATE|[81]|Bytes:20
+14:37:24.0 (869794594)|HEAP_ALLOCATE|[81]|Bytes:184
+14:37:24.0 (869802863)|HEAP_ALLOCATE|[81]|Bytes:204
+14:37:24.0 (869811633)|USER_DEBUG|[81]|DEBUG|resultCustomerData: CustomerDataJSON:[code=ok, message=Message:[cliente=null, estadoOperacion=EstadoOperacion:[codigoOperacion=00, glosaOperacion=No se encontraron datos para los criterios de selección]]]
+14:37:24.0 (869819188)|STATEMENT_EXECUTE|[83]
+14:37:24.0 (869820128)|STATEMENT_EXECUTE|[83]
+14:37:24.0 (869825261)|HEAP_ALLOCATE|[83]|Bytes:5
+14:37:24.0 (869830168)|VARIABLE_ASSIGNMENT|[83]|success|true
+14:37:24.0 (869832778)|STATEMENT_EXECUTE|[85]
+14:37:24.0 (869834320)|HEAP_ALLOCATE|[85]|Bytes:32
+14:37:24.0 (869844003)|HEAP_ALLOCATE|[85]|Bytes:4
+14:37:24.0 (869848631)|HEAP_ALLOCATE|[85]|Bytes:36
+14:37:24.0 (869852376)|USER_DEBUG|[85]|DEBUG|Consultar CustomerData Success: true
+14:37:24.0 (869855759)|STATEMENT_EXECUTE|[86]
+14:37:24.0 (869857163)|HEAP_ALLOCATE|[86]|Bytes:7
+14:37:24.0 (869879928)|HEAP_ALLOCATE|[86]|Bytes:5
+14:37:24.0 (869888778)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+14:37:24.0 (869893463)|STATEMENT_EXECUTE|[87]
+14:37:24.0 (869894507)|HEAP_ALLOCATE|[87]|Bytes:18
+14:37:24.0 (869917266)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+14:37:24.0 (869920529)|STATEMENT_EXECUTE|[89]
+14:37:24.869 (869944236)|CUMULATIVE_LIMIT_USAGE
+14:37:24.869 (869944236)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 28 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 2 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+14:37:24.869 (869944236)|CUMULATIVE_LIMIT_USAGE_END
+
+14:37:24.0 (869971103)|CODE_UNIT_FINISHED|MicroServicioCustomerData.consulta_Customer_Data(String)
+14:37:24.0 (870222469)|CODE_UNIT_FINISHED|apex://MicroServicioCustomerData/ACTION$consulta_Customer_Data
+14:37:24.0 (870229350)|EXECUTION_FINISHED

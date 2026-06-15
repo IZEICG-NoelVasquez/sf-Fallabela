@@ -108,7 +108,7 @@ public class MicroServicioMovimientos {
         params.get('movimiento').put('codigo', codigo);
         params.get('movimiento').put('identificador', identificador);
 
-        Integer intNumeroDeRegistros = Integer.valueOf(obtenerNumRegistrosPorPagina());
+        Decimal intNumeroDeRegistros = obtenerNumRegistrosPorPagina();
         params.put('paginacion', new Map<String, String>() );
         params.get('paginacion').put('registrosPorPagina', String.valueOf(intNumeroDeRegistros) ); // <---------------------------------------
         params.get('paginacion').put('identificadorPrimerRegistro', identificadorPrimerRegistro);
@@ -127,7 +127,6 @@ public class MicroServicioMovimientos {
         result.put('success', success);
         result.put('movimientos', movimientos);
         result.put('numRegistros', String.valueOf(intNumeroDeRegistros) );
-        System.debug('TESTTEST: ' + result);
         return result;
     }
 
@@ -144,7 +143,7 @@ public class MicroServicioMovimientos {
         params.get('movimiento').put('identificador', identificador);
         params.get('movimiento').put('fechaCorte', fechaCorte);
 
-        Integer intNumeroDeRegistros = Integer.valueOf(obtenerNumRegistrosPorPagina());
+        Decimal intNumeroDeRegistros = obtenerNumRegistrosPorPagina();
         params.put('paginacion', new Map<String, String>() );
         params.get('paginacion').put('registrosPorPagina', String.valueOf(intNumeroDeRegistros) ); // <---------------------------------------
         params.get('paginacion').put('identificadorPrimerRegistro', identificadorPrimerRegistro);

@@ -1,0 +1,89 @@
+<aura:component controller="MicroServicioCrearCasoSaldosCntrllr" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="movimientoIdx" type="Integer" />
+
+    <!-- Modal Crear Caso Consulta de Saldos -->
+    <aura:attribute name="openModalCasoSaldos" type="Boolean" default="false" />
+    <!-- Creacion de Caso Consulta de Saldos -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseSaldos" type="String" />
+
+    <!-- Tipo de Consulta -->
+    <aura:attribute name="valuesSelected" type="String" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="contactMethodValue" type="String" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+	<!--###### MODAL BOX Start######--> 
+    <div class="slds-m-around_xx-large">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                            
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalCasoSaldos }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"
+                                            disabled="{! v.creatingCase }" />                       
+                </header>
+                <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Consulta de Saldos" iconName="standard:visit_templates" />
+                <!--###### MODAL BOX BODY Part1 Start######-->
+                <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+
+                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                Se creo el 
+                                Caso
+                                con éxito.
+                                <br/>
+                                <span class="slds-text-heading_medium" >
+                                Folio:                                    
+                                    <span style="font-weight: bold;"> 
+                                    {! v.newCaseSaldos }
+                                    </span>
+                                </span>
+                            </div>
+                            <aura:set attribute="else" >
+                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                    <br/>
+                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                </div>
+                            </aura:set>
+                        </aura:if>
+
+                        <aura:set attribute="else" >
+                            <aura:if isTrue="{! v.creatingCase }">
+                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>                                            
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                    
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start ######-->
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button variant="neutral" 
+                                                    label="Regresar"
+                                                    title="Regresar"
+                                                    onclick="{! c.closeModalCasoSaldos }"
+                                                    disabled="{! v.creatingCase }" />
+                </footer>
+            </div>
+
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+
+</aura:component>

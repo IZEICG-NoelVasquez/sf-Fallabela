@@ -10,7 +10,9 @@
 * --------------------------------------------------------------------------
 */
 public class CaseTriggerHandler extends TriggerHandler {
-    
+    public override void beforeInsert() {
+		SLAconfigurationController.assingInitialSlaConfiguration(Trigger.New);
+	}
 	public override void afterInsert() {
 
 		CaseTriggerHelper.loadMapCasesEmboce();

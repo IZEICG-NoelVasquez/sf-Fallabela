@@ -1,0 +1,238 @@
+<aura:component controller="ExpedientesFalabella" implements="force:appHostable,flexipage:availableForRecordHome,flexipage:availableForAllPageTypes" >
+
+    <aura:attribute name="idRequestCURP" type="String" default="" />
+    <aura:attribute name="idRequest" type="String" default="" />
+    <aura:attribute name="curp" type="String" default="" />
+    <aura:attribute name="isCurp" type="Boolean" />
+    <aura:attribute name="showCurpField" type="Boolean" default="false" />
+    <aura:attribute name="requiredCurpField" type="Boolean" default="false" />
+    
+    <aura:attribute name="contractNumber" type="String" default="" />    
+    <aura:attribute name="urlCreditReport" type="String" default="" />
+
+    <aura:attribute name="stepNumberExpedientes" type="Integer" default="1" />
+
+    <!-- Lista Caracteres Permitidos [A-Z] y [0-9] -->
+    <aura:attribute name="lstValidCharacters" type="List" default="[65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,
+                                                                    48,49,50,51,52,53,54,55,56,57]" />    
+    
+    <aura:attribute name="listDocumentsLoaded" type="Boolean" default="false" />
+    <aura:attribute name="listDocumentsSuccess" type="Boolean" default="false" />
+    <aura:attribute name="wistonDataOptions" type="List" />
+    <aura:attribute name="wistonDataAdditionalOptions" type="List" />
+    <aura:attribute name="blobStorageOptions" type="List" />
+
+    <aura:attribute name="documentsAvailableLoaded" type="Boolean" default="true" />
+
+    <aura:attribute name="showAdditionalDocumentsAvailable" type="Boolean" default="false" />
+
+    <aura:attribute name="blnAdditionalDocuments" type="Boolean" default="false" />
+
+    <aura:attribute name="disabledAdditionalButtons" type="Boolean" default="false" />
+
+    <aura:attribute name="documentAvailable" type="Boolean" default="false" />
+
+    <aura:attribute name="pdfCreditReportAvailable" type="Boolean" default="false" />
+
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <lightning:workspaceAPI aura:id="workspace" />
+
+
+    <!-- Paso 1: Busqueda por Id Solicitud o CURP -->
+    <aura:if isTrue="{! v.stepNumberExpedientes == 1 }" >
+
+        <div class="slds-grid slds-gutters">
+
+            <div class="slds-col slds-size_3-of-12"></div>
+
+            <div class="slds-col slds-size_6-of-12">
+
+                <lightning:card class="slds-text-title_regular slds-is-relative expedientesBackground" title="Para la búsqueda del expediente por favor ingrese el Id Solicitud o CURP" iconName="standard:folder" >
+
+                    <aura:if isTrue="{! and(v.documentsAvailableLoaded, v.listDocumentsLoaded) }" >
+
+                        <div class="slds-grid slds-gutters slds-p-top_large slds-p-bottom_xx-large">
+
+                            <div class="slds-col slds-size_3-of-12"></div>
+
+                            <div class="slds-col slds-size_4-of-12">
+                                <span onkeypress="{!c.validateCharacter}" >
+                                    <lightning:input aura:id="idRequest" name="idRequest" label="Id Solicitud / CURP" value="{!v.idRequestCURP}" maxlength="18" />
+                                </span>
+                            </div>
+
+                            <div class="slds-col slds-size_2-of-12 slds-p-top_large">
+                                <lightning:button label="Buscar" variant="brand" onclick="{! c.searchDocumentsAvailable }" disabled="{! !v.listDocumentsSuccess }" />
+                            </div>
+
+                            <div class="slds-col slds-size_3-of-12"></div>
+
+                        </div>
+
+                        <div class="slds-grid slds-gutters ">
+
+                            <div class="slds-col slds-size_12-of-12 slds-p-around_large slds-text-align_center">
+                                *Recuerda que la consulta del expediente es válida en un periodo menor a 90 días
+                            </div>
+
+                        </div>
+
+                        <aura:set attribute="else">
+                            <div class="slds-p-around_xx-large">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>  
+                        </aura:set>
+                    </aura:if>
+                
+                </lightning:card>
+
+            </div>
+
+            <div class="slds-col slds-size_3-of-12"></div>
+
+        </div>
+
+    </aura:if>
+
+
+    <!-- Paso 2: Documentos Encontrados -->
+    <aura:if isTrue="{! v.stepNumberExpedientes == 2 }" >
+
+        <div class="slds-grid">
+
+            <div class="slds-col slds-size_2-of-12"></div>
+
+            <div class="slds-col slds-size_8-of-12">
+
+                <div class="slds-m-vertical_small slds-m-horizontal_x-large slds-is-relative " >
+
+                    <lightning:card class="slds-text-title_regular expedientesBackground" title="Documentos disponibles" iconName="standard:folder" >
+                        <aura:set attribute="actions">                          
+                            <span class="slds-p-around_medium">
+                                <lightning:button label="Nueva Busqueda" variant="brand" onclick="{! c.newSearch }"/>
+                            </span>         
+                        </aura:set>
+
+                        <div class="slds-grid slds-gutters slds-p-around_large">
+
+                            <div class="slds-col slds-size_1-of-12"></div>
+
+                            <div class="slds-col slds-size_3-of-12">                                
+                                <lightning:input aura:id="idRequest" name="idRequest" label="Id Solicitud / CURP" value="{!v.idRequestCURP}" maxlength="18" disabled="true" />
+                            </div>                         
+
+                            <div class="slds-col slds-size_3-of-12 slds-text-align_right slds-p-top_large">                                
+                                <lightning:input type="toggle" label="¿Requieres más documentos?" name="addDocs" checked="{! v.blnAdditionalDocuments }" onchange="{! c.searchAdditionalDocumentsAvailable }" 
+                                                disabled="{! v.disabledAdditionalButtons }" />                                          
+                            </div>        
+                            
+                            <div class="slds-col slds-size_3-of-12">
+                                <aura:if isTrue="{! v.showCurpField }" >
+                                    <span onkeypress="{!c.validateCharacter}" >
+                                        <lightning:input aura:id="idCurp" name="idCurp" label="CURP" value="{!v.curp}" maxlength="18" disabled="{! v.disabledAdditionalButtons }" 
+                                                        required="{! v.requiredCurpField }" messageWhenValueMissing="Ingrese un CURP válido." />
+                                    </span>
+                                </aura:if>                
+                            </div>
+
+                            <div class="slds-col slds-size_2-of-12"></div>
+
+                        </div>
+
+
+                        <div class="slds-grid slds-p-around_large" >
+
+                                <aura:if isTrue="{! v.documentsAvailableLoaded }" >
+
+                                    <div class="slds-col slds-size_6-of-12 slds-p-around_large slds-text-heading_small">
+                                        <div >
+                                            <b>Documentación OB</b>
+                                        </div>
+
+                                        <div class="slds-p-top_x-small slds-text-align_left">
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+
+                                                <tbody>
+                                                    <aura:iteration items="{! v.wistonDataOptions }" var="doc" >
+                                                        <tr>
+                                                            <th scope="col">
+                                                                <a id="{! doc.value }" name="{! doc.label }" title="{! doc.label }" class="{! if(doc.disabled, 'isDisabled','') }" 
+                                                                    onclick="{! doc.disabled ? '' : c.openDocumentApiGee }" >
+                                                                    {! doc.label }
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </aura:iteration>                            
+
+                                                    <aura:if isTrue="{! v.showAdditionalDocumentsAvailable }" >
+                                                        <aura:iteration items="{! v.wistonDataAdditionalOptions }" var="doc" >
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    <a id="{! doc.value }" name="{! doc.label }" title="{! doc.label }" class="{! if(doc.disabled, 'isDisabled','') }" 
+                                                                        onclick="{! doc.disabled ? '' : c.openDocumentApiGeeAdditional }" >
+                                                                        {! doc.label }
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </aura:iteration>
+                                                    </aura:if>                                    
+
+                                                </tbody>
+                                            </table>
+                                        </div>                
+                                    </div>
+
+                                    <div class="slds-col slds-size_6-of-12 slds-p-around_large slds-text-heading_small">
+                                        <div >
+                                            <b>Blob Storage</b>
+                                        </div>
+                                    
+                                        <div class="slds-p-top_x-small slds-text-align_left">
+                                            <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+                                                <tbody>
+                                                    <aura:iteration items="{! v.blobStorageOptions }" var="doc" >
+                                                        <tr>
+                                                            <th scope="col">
+                                                                <a id="{! doc.value }" name="{! doc.label }" title="{! doc.label }" class="{! if(doc.disabled, 'isDisabled','') }" 
+                                                                    onclick="{! doc.disabled ? '' : c.openImageBS }" >
+                                                                    {! doc.label }
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </aura:iteration>
+                                                    <tr>
+                                                        <th scope="col">
+                                                            <a title=" Reporte de Credito " class="{! if(v.pdfCreditReportAvailable, '', 'isDisabled') }" onclick="{! v.pdfCreditReportAvailable ? c.openCreditReport : '' }">
+                                                                Reporte de Credito
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <aura:set attribute="else">
+                                        <div class="slds-p-around_xx-large">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>  
+                                    </aura:set>
+                                </aura:if>
+
+                        </div>
+
+                    </lightning:card>
+
+                </div>
+
+            </div>
+
+            <div class="slds-col slds-size_2-of-12"></div>
+
+        </div>
+
+    </aura:if>
+	
+</aura:component>

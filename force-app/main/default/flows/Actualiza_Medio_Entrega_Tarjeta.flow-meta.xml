@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>7 AND 2 AND (1 OR 3 OR 4 OR 5 OR 6)</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reporte por Retención Cajero</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Account.Cliente_Soriban__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reporte por Deterioro</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reporte por Robo o Extravío</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cargo no reconocido</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sospecha de Fraude</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Account</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.AccountId</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Reposición Tarjeta Falabella</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision5</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_3</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_3_A1</targetReference>
+            </connector>
+            <label>CAUSAS CONDUSEF</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision5</name>
+        <label>myDecision5</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision7</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_6</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Riesgos/Originación</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_6_A1</targetReference>
+            </connector>
+            <label>METODO DE CONTACTO</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision7</name>
+        <label>myDecision7</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_8</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Remisión</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Subcategor_a_Texto__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reposición</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_8_A1</targetReference>
+            </connector>
+            <label>METODO DE CONTACTO SOPORTE</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE([Case].RecordType.Name,
+&quot;Seguimiento a Folios&quot;, &apos;a0H3l00000SAVabEAH&apos;,
+&quot;Procedimiento de Cobro&quot;, &apos;a0H1N00000PBcJ8UAL&apos;,
+&quot;Reversa de Comisión&quot;,&apos;a0H1N00000PBcJRUA1&apos;,
+&quot;Reversa de Comisión (Módulo)&quot;,&apos;a0H1N00000PBcJRUA1&apos;,
+&quot;Actualización Buró&quot;,&apos;a0H1N00000PBcJKUA1&apos;,
+&quot;Carta Finiquito&quot;,&apos;a0H1N00000PBcKCUA1&apos;,
+&quot;Cancelación de Titular&quot;,&apos;a0H1N00000PBcJTUA1&apos;,
+&quot;Reversa de Anualidad&quot;,&apos;a0H1N00000PBcJOUA1&apos;,
+&quot;Reversa de Anualidad (Módulo)&quot;,&apos;a0H1N00000PBcJOUA1&apos;,
+&quot;Estado de Cuenta No Llega&quot;,&apos;a0H1N00000PBcJiUAL&apos;,
+&quot;Cobro a Persona&quot;,&apos;a0H1N00000PBcJVUA1&apos;,
+&quot;Desconoce transacción en ATM&quot;,&apos;a0H1N00000PBcJvUAL&apos;,
+&quot;Desconoce transacción en ATM (Módulo)&quot;,&apos;a0H1N00000PBcJvUAL&apos;,
+&quot;Compra no diferida&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Compra no diferida (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberar saldo retenido&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberar Saldo Retenido (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Abono de Puntos&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Abono de Puntos (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Promoción no Aplicada&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Promoción no Aplicada (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberación de Compra Diferida&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Tarjeta de Crédito&quot;,&apos;a0H3l00000SAVaVEAX&apos;,
+&quot;Pago No Aplicado&quot;,&apos;a0H1N00000PBcJdUAL&apos;,
+&quot;Pago No Aplicado (Módulo)&quot;,&apos;a0H1N00000PBcJdUAL&apos;,
+&quot;Reenvío de Estado de Cuenta&quot;,&apos;a0H3l00000SAVaXEAX&apos;,
+&quot;Retiro de efectivo en ATM&quot;,&apos;a0H1N00000PBcJxUAL&apos;,
+&quot;Retiro de Efectivo en ATM (Módulo)&quot;,&apos;a0H1N00000PBcJxUAL&apos;,NULL)
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_4_myRule_3_A1_1399205791</name>
+        <dataType>String</dataType>
+        <expression>CASE({!myVariable_current.RecordType.Name},
+&quot;Seguimiento a Folios&quot;, &apos;a0H3l00000SAVabEAH&apos;,
+&quot;Procedimiento de Cobro&quot;, &apos;a0H1N00000PBcJ8UAL&apos;,
+&quot;Reversa de Comisión&quot;,&apos;a0H1N00000PBcJRUA1&apos;,
+&quot;Reversa de Comisión (Módulo)&quot;,&apos;a0H1N00000PBcJRUA1&apos;,
+&quot;Actualización Buró&quot;,&apos;a0H1N00000PBcJKUA1&apos;,
+&quot;Carta Finiquito&quot;,&apos;a0H1N00000PBcKCUA1&apos;,
+&quot;Cancelación de Titular&quot;,&apos;a0H1N00000PBcJTUA1&apos;,
+&quot;Reversa de Anualidad&quot;,&apos;a0H1N00000PBcJOUA1&apos;,
+&quot;Reversa de Anualidad (Módulo)&quot;,&apos;a0H1N00000PBcJOUA1&apos;,
+&quot;Estado de Cuenta No Llega&quot;,&apos;a0H1N00000PBcJiUAL&apos;,
+&quot;Cobro a Persona&quot;,&apos;a0H1N00000PBcJVUA1&apos;,
+&quot;Desconoce transacción en ATM&quot;,&apos;a0H1N00000PBcJvUAL&apos;,
+&quot;Desconoce transacción en ATM (Módulo)&quot;,&apos;a0H1N00000PBcJvUAL&apos;,
+&quot;Compra no diferida&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Compra no diferida (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberar saldo retenido&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberar Saldo Retenido (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Abono de Puntos&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Abono de Puntos (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Promoción no Aplicada&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Promoción no Aplicada (Módulo)&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Liberación de Compra Diferida&quot;,&apos;a0H3l00000SAVakEAH&apos;,
+&quot;Tarjeta de Crédito&quot;,&apos;a0H3l00000SAVaVEAX&apos;,
+&quot;Pago No Aplicado&quot;,&apos;a0H1N00000PBcJdUAL&apos;,
+&quot;Pago No Aplicado (Módulo)&quot;,&apos;a0H1N00000PBcJdUAL&apos;,
+&quot;Reenvío de Estado de Cuenta&quot;,&apos;a0H3l00000SAVaXEAX&apos;,
+&quot;Retiro de efectivo en ATM&quot;,&apos;a0H1N00000PBcJxUAL&apos;,
+&quot;Retiro de Efectivo en ATM (Módulo)&quot;,&apos;a0H1N00000PBcJxUAL&apos;,NULL)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+NOT(ISBLANK([Case].ContactId )),
+NOT(ISBLANK([Case].ContactEmail )),
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR( 
+[Case].RecordType.Name = &quot;Procedimiento de Cobro&quot;,
+[Case].RecordType.Name = &quot;Reversa de Comisión&quot;,
+[Case].RecordType.Name = &quot;Reversa de Comisión (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Actualización Buró&quot;,
+[Case].RecordType.Name = &quot;Carta Finiquito&quot;,
+[Case].RecordType.Name = &quot;Cancelación de Titular&quot;,
+[Case].RecordType.Name = &quot;Reversa de Anualidad&quot;,
+[Case].RecordType.Name = &quot;Reversa de Anualidad (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Estado de Cuenta No Llega&quot;,
+[Case].RecordType.Name = &quot;Cobro a Persona&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Compra no diferida&quot;,
+[Case].RecordType.Name = &quot;Compra no diferida (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Abono de Puntos&quot;,
+[Case].RecordType.Name = &quot;Abono de Puntos (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Promoción no Aplicada&quot;,
+[Case].RecordType.Name = &quot;Promoción no Aplicada (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Liberar saldo retenido&quot;,
+[Case].RecordType.Name = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+AND(
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;,
+[Case].Clasificaci_n_Cargo_Formula__c = &quot;Cargo no reconocido&quot;),
+[Case].RecordType.Name = &quot;Tarjeta de Crédito&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Reenvío de Estado de Cuenta&quot;,
+[Case].RecordType.Name = &quot;Seguimiento a Folios&quot;,
+[Case].RecordType.Name = &quot;Retiro de efectivo en ATM&quot;,
+[Case].RecordType.Name = &quot;Retiro de Efectivo en ATM (Módulo)&quot;
+
+)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_3</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+NOT(ISBLANK({!myVariable_current.ContactEmail} )),
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR( 
+{!myVariable_current.RecordType.Name} = &quot;Procedimiento de Cobro&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Comisión&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Comisión (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Actualización Buró&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Carta Finiquito&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación de Titular&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Anualidad&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Anualidad (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Estado de Cuenta No Llega&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cobro a Persona&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Compra no diferida&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Compra no diferida (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Abono de Puntos&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Abono de Puntos (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Promoción no Aplicada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Promoción no Aplicada (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar saldo retenido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Liberar Saldo Retenido (Módulo)&quot;,
+AND(
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;,
+{!myVariable_current.Clasificaci_n_Cargo_Formula__c} = &quot;Cargo no reconocido&quot;),
+{!myVariable_current.RecordType.Name} = &quot;Tarjeta de Crédito&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reenvío de Estado de Cuenta&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Seguimiento a Folios&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de efectivo en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de Efectivo en ATM (Módulo)&quot;
+
+)
+)</expression>
+    </formulas>
+    <interviewLabel>Actualiza_Medio_Entrega_Tarjeta-25_InterviewLabel</interviewLabel>
+    <label>Actualiza Medio Entrega Tarjeta</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onCreateOnly</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Actualiza medio de Envío</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>¿Medio de entrega tarjeta?</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Medio_de_entrega_tarjeta__c</field>
+            <value>
+                <stringValue>Domicilio</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_3_A1</name>
+        <label>CAUSAS CONDUSEF</label>
+        <locationX>300</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision5</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Causa CONDUSEF</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Causas_Condusef__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Causa_CONDUSEF__c</field>
+            <value>
+                <elementReference>formula_4_myRule_3_A1_1399205791</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_6_A1</name>
+        <label>METODO DE CONTACTO</label>
+        <locationX>600</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision7</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Método de contacto</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Origin</field>
+            <value>
+                <stringValue>Originación</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_8_A1</name>
+        <label>SOPORTE</label>
+        <locationX>800</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Método de contacto</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Origin</field>
+            <value>
+                <stringValue>Soporte</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

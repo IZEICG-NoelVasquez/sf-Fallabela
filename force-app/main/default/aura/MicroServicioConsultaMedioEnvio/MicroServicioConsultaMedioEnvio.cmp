@@ -1,0 +1,121 @@
+<aura:component controller="MicroServicioConsultaMedioDeEnvio" >
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" />
+    <aura:attribute name="isCommunity" type="Boolean" />
+
+    <!-- Fechas Corte -->
+    <aura:attribute name="movimientoIdx" type="Integer" />
+
+    <!-- Estado de Cuenta -->
+    <aura:attribute name="showPDF" type="Boolean" />  
+    
+    <!-- Modal Medio de Envio -->
+    <aura:attribute name="openMedioDeEnvio" type="Boolean" default="false" />
+    <aura:attribute name="noPasoMedioEnvio" type="Integer" default="0" />
+    <aura:attribute name="blnEmail" type="Boolean"  />
+    <aura:attribute name="blnEmail_TMP" type="Boolean"  />
+    <aura:attribute name="medioEnvioSelected" type="Boolean" default="false" />
+    <aura:attribute name="email_Text" type="String" />
+    <aura:attribute name="papel_Text" type="String" />
+
+    <!-- OTP -->
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="verificadoOTP" type="Boolean" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <!--aura:handler name="OTPState" event="c:OTPState" action="{! c.handleOTPState }" /-->
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Consulta Medio de Envio -->
+    <aura:attribute name="testClass" type="String" />
+    <aura:attribute name="loadingConsultaMedioEnvio" type="Boolean" default="false" />
+    <aura:attribute name="consultaExitosa" type="Boolean" default="false" />
+    <aura:attribute name="blnDireccion" type="Boolean"  />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <div> 
+    <aura:if isTrue="{! v.showPDF }">
+        
+        <aura:if isTrue="{! !(v.loadingConsultaMedioEnvio) }">
+            <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización Medio de Envío" iconName="standard:email" />
+
+            <div class="slds-p-top_medium slds-p-bottom_x-large" >
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-text-title slds-text-color_default">Email</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-text-title slds-text-color_default">Domicilio</div>
+                            </th>
+                            <th class="slds-size_3-of-12" scope="col">
+                                <div class="slds-text-title slds-text-color_default">Email</div>
+                            </th>
+                            <th class="slds-size_4-of-12" scope="col">
+                                <div class="slds-text-title slds-text-color_default">Dirección</div>
+                            </th>
+                            <th class="slds-size_1-of-12" scope="col">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="slds-hint-parent">
+                            <td class="slds-cell-nowrap" scope="col">
+                                <input type="radio" id="radio-39" value="radio-39" name="options" disabled="true" checked="{! v.blnEmail }" />
+                            </td>
+                            <td class="slds-cell-nowrap" scope="col">
+                                <input type="radio" id="radio-40" value="radio-40" name="options" disabled="true" checked="{! v.blnDireccion }" />
+                            </td>
+                            <td class="slds-cell-nowrap" scope="col">
+                                <div class="slds-text-title slds-text-color_default">{! v.email_Text }</div>
+                            </td>
+                            <td class="slds-cell-nowrap" scope="col">
+                                <div class="slds-text-title slds-text-color_default">{! v.papel_Text }</div>                                                        
+                            </td>
+                            <td class="slds-cell-nowrap" scope="col">
+                                <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.handleModalMedioDeEnvio }"  alternativeText="Edit" 
+                                                    disabled="{! (!v.consultaExitosa) || (!v.validacionesOTPCargadas) }" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <aura:set attribute="else">
+                <aura:if isTrue="{! v.loadingConsultaMedioEnvio }">
+                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                    </div>                                            
+                </aura:if>
+            </aura:set>
+        </aura:if>        
+
+    </aura:if>   
+    </div>
+
+    <div>
+        <!-- OTP Crear Caso Actualizacion de Medio de Envio -->
+        <c:OTPGenerator aura:id="otp-modal-MedioEnvio" customer="{!v.selectedAccount}" recordId="{! v.recordId }" />
+    </div>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision3</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>NO HAY CRITERIA</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cargo no reconocido</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>CONDUSEF</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision8</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Solicitud de Contrato</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_A1</targetReference>
+            </connector>
+            <label>Solicitud Contrato</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Renegociación</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>Renegociación</label>
+        </rules>
+    </decisions>
+    <description>Revisión de Change Owner Reclamos</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+[Case].RecordType.Name,
+
+&quot;Consulta de Saldos y Movimientos&quot;, &quot;5501N000002qSRMQA2&quot;,
+&quot;Reenvío de Estado de Cuenta&quot;, &quot;5501N000002qSdxQAE&quot;,
+&quot;Cambio de Medio Envío&quot;, &quot;5501N000002qSdsQAE&quot;,
+&quot;Reporte por Robo o Extravío&quot;, &quot;5501N000002qSThQAM&quot;, 
+&quot;Reporte por Deterioro&quot;, &quot;5501N000002qSiZQAU&quot;,
+&quot;Reporte por Retención Cajero&quot;, &quot;5501N000002qSiUQAU&quot;,
+&quot;Quejas y Sugerencias&quot;, &quot;5501N000002qSiPQAU&quot;,
+&quot;Compra no diferida&quot;, &quot;5501N000002qSiyQAE&quot;,
+&quot;Compra no diferida (Módulo)&quot;,&quot;5501N000002V7BdQAK&quot;,
+&quot;Activación de Tarjeta&quot;, &quot;5501N000002qSieQAE&quot;,
+&quot;Desbloqueo de PIN&quot;, &quot;5501N000002qSijQAE&quot;,
+&quot;Liberación de Compra Diferida&quot;, &quot;5501N000002qSitQAE&quot;,
+&quot;Información de Promociones&quot;, &quot;5501N000002qSioQAE&quot;,
+&quot;Abono de Puntos&quot;, &quot;5501N000002qSj3QAE&quot;,
+&quot;Abono de Puntos (Módulo)&quot;, &quot;5501N000002V1mqQAC&quot;,
+&quot;Promoción no Aplicada&quot;, &quot;5501N000002qSj8QAE&quot;,
+&quot;Promoción no Aplicada (Módulo)&quot;, &quot;5501N000002V7BdQAK&quot;,
+&quot;Cambio de MC a Privada&quot;, &quot;5501N000002qSrcQAE&quot;,
+&quot;Aumento de Línea de Crédito&quot;, &quot;5501N000002qSrhQAE&quot;,
+&quot;Reversa de Anualidad&quot;, &quot;5501N000002qSuRQAU&quot;,
+&quot;Reversa de Anualidad (Módulo)&quot;, &quot;5501N000002V1j3QAC&quot;,
+&quot;Reversa de Comisión&quot;, &quot;5501N000002qSuMQAU&quot;,
+&quot;Reversa de Comisión (Módulo)&quot;, &quot;5501N000002V1QpQAK&quot;,
+&quot;Cancelación de Titular&quot;, &quot;5501N000002qTCiQAM&quot;,
+&quot;Retiro de efectivo en ATM&quot;, &quot;5501N000002qTDHQA2&quot;,
+&quot;Pago No Aplicado&quot;, &quot;5501N000002qTDCQA2&quot;,
+&quot;Tarjeta de Crédito&quot;, &quot;5501N000002qTD2QAM&quot;,
+&quot;Cancelación Adicional&quot;, &quot;5501N000002qTCnQAM&quot;,
+&quot;Liberar saldo retenido&quot;, &quot;5501N000002qTD7QAM&quot;,
+&quot;Desconoce transacción en ATM&quot;,&quot;5501N000002qTDMQA2&quot;,
+&quot;Estado de Cuenta No Llega&quot;, &quot;5501N000002qTDRQA2&quot;,
+&quot;Tarjeta no pasa&quot;, &quot;5501N000002zx69QAA&quot;,
+&quot;Actualización Nom, RFC, FN&quot;, &quot;5501N000002m2NTQAY&quot;,
+&quot;Actualización de Cel-Fijo&quot;, &quot;5501N000002m2NOQAY&quot;,
+&quot;Actualización de Correo&quot;, &quot;5501N000002m2NJQAY&quot;,
+&quot;Actualización de Domicilio&quot;, &quot;5501N000002m2NEQAY&quot;,
+&quot;APP&quot;, &quot;5501N000002zxtJQAQ&quot;,
+&quot;Sospecha de Fraude&quot;, &quot;5501N000002zxtdQAA&quot;,
+&quot;WEB&quot;, &quot;5501N000002zxtOQAQ&quot;,
+&quot;Bloqueo Seguridad&quot;, &quot;5501N000002zxtYQAQ&quot;,
+&quot;Actualización de Teléfono Fijo&quot;, &quot;5501N000002zxtTQAQ&quot;,
+&quot;Cancelación por fallecimiento del titular (Módulo)&quot;, &quot;5501N000002zyhtQAA&quot;,
+&quot;Cancelación de Adicional (Módulo)&quot;, &quot;5501N000002zygvQAA&quot;,
+&quot;Cargo No Reconocido (Módulo)&quot;, &quot;5501N000002zyh0QAA&quot;,
+&quot;Desconoce transacción en ATM (Módulo)&quot;,&quot;5501N000002zyh5QAA&quot;,
+&quot;Liberar Saldo Retenido (Módulo)&quot;, &quot;5501N000002zyhAQAQ&quot;,
+&quot;Pago No Aplicado (Módulo)&quot;, &quot;5501N000002zyhKQAQ&quot;,
+&quot;Retiro de Efectivo en ATM (Módulo)&quot;, &quot;5501N000002zyhPQAQ&quot;,
+&quot;Actualización SORIBAN&quot;, &quot;5501N000002zzprQAA&quot;,
+&quot;Actualización de Celular&quot;,&quot;5501N000003OZVhQAO&quot;,
+&quot;Seguimiento a Folios&quot;,&quot;5501N000003OZWaQAO&quot;,
+&quot;Up Grade&quot;,&quot;5501N000003OqUXQA0&quot;,
+&quot;Retención de Titular&quot;,&quot;5501N000003PIpvQAG&quot;,
+&quot;Quita&quot;, &quot;5501N000003PVkpQAG&quot;,
+&quot;Reestructura&quot;, &quot;5501N000003PVkkQAG&quot;,
+&quot;Condonación&quot;, &quot;5501N000003PVkfQAG&quot;,
+&quot;Actualización de CURP&quot;, &quot;5501N000003PVlJQAW&quot;,
+&quot;Campañas Outbound&quot;, &quot;5501N000003PdLyQAK&quot;,
+&quot;Consulta de PAN&quot;,&quot;5501N000003PfOSQA0&quot;,
+&quot;Cliente en Mora Grave&quot;, &quot;5501N000003j4FyQAI&quot;,
+&quot;Consulta de Seguros&quot;, &quot;5501N000003j57RQAQ&quot;,
+&quot;Cancelación de Tarjeta por Fallecimiento&quot;,&quot;5501N000003jFeaQAE&quot;,
+&quot;Audiencia CONDUSEF&quot;,&quot;5501N000002YyWiQAK&quot;,
+&quot;REDECO&quot;,&quot;5501N000002YnJIQA0&quot;,
+&quot;Notificación Publicidad&quot;,&quot;5503l000003Y4QfAAK&quot;,
+&quot;Invitación Canales Digitales&quot;,&quot;5503l000003Y4QgAAK&quot;,
+&quot;Alta Cliente&quot;,&quot;5503l000003pxUwAAI&quot;,
+&quot;Saldo a Favor&quot;,&quot;5503l000003q1ZMAAY&quot;,
+&quot;Cobro a Persona Equivocada&quot;, &quot;5503l000002dK7WAAU&quot;,
+&quot;Mal proceso de cobro&quot;,&quot;5503l000002dK7XAAU&quot;,
+&quot;Actualización Buró&quot;,&quot;5503l000002dK7gAAE&quot;,
+&quot;Carta Finiquito&quot;,&quot;5503l000002dK7YAAU&quot;,
+&quot;Retorno de Tarjeta&quot;, &quot;5503l000002dMGxAAM&quot;,
+&quot;Plan de Pagos&quot;, &quot;5503l000004GZAdAAO&quot;,
+&quot;CVV Dinámico&quot;, &quot;5503l000004OrDlAAK&quot;,
+&quot;Activación de NIP&quot;, &quot;5503l000004GxabAAC&quot;,
+&quot;Emboce Centralizado&quot;, &quot;5503l000004OtkNAAS&quot;,
+&quot;QR&quot;, &quot;5503l000004nrNxAAI&quot;,
+&quot;Reposición&quot;,&quot;5503l000004dkI4AAI&quot;,
+&quot;Remisión&quot;,&quot;5503l000004dkI9AAI&quot;,
+&quot;Soporte a Módulo&quot;, &quot;550Qg000005ip7FIAQ&quot;,
+&quot;Contrato manual&quot;, &quot;550Qg00000CCXZBIA5&quot;,
+null)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_2270873877</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+{!myVariable_current.RecordType.Name},
+
+&quot;Consulta de Saldos y Movimientos&quot;, &quot;5501N000002qSRMQA2&quot;,
+&quot;Reenvío de Estado de Cuenta&quot;, &quot;5501N000002qSdxQAE&quot;,
+&quot;Cambio de Medio Envío&quot;, &quot;5501N000002qSdsQAE&quot;,
+&quot;Reporte por Robo o Extravío&quot;, &quot;5501N000002qSThQAM&quot;, 
+&quot;Reporte por Deterioro&quot;, &quot;5501N000002qSiZQAU&quot;,
+&quot;Reporte por Retención Cajero&quot;, &quot;5501N000002qSiUQAU&quot;,
+&quot;Quejas y Sugerencias&quot;, &quot;5501N000002qSiPQAU&quot;,
+&quot;Compra no diferida&quot;, &quot;5501N000002qSiyQAE&quot;,
+&quot;Compra no diferida (Módulo)&quot;,&quot;5501N000002V7BdQAK&quot;,
+&quot;Activación de Tarjeta&quot;, &quot;5501N000002qSieQAE&quot;,
+&quot;Desbloqueo de PIN&quot;, &quot;5501N000002qSijQAE&quot;,
+&quot;Liberación de Compra Diferida&quot;, &quot;5501N000002qSitQAE&quot;,
+&quot;Información de Promociones&quot;, &quot;5501N000002qSioQAE&quot;,
+&quot;Abono de Puntos&quot;, &quot;5501N000002qSj3QAE&quot;,
+&quot;Abono de Puntos (Módulo)&quot;, &quot;5501N000002V1mqQAC&quot;,
+&quot;Promoción no Aplicada&quot;, &quot;5501N000002qSj8QAE&quot;,
+&quot;Promoción no Aplicada (Módulo)&quot;, &quot;5501N000002V7BdQAK&quot;,
+&quot;Cambio de MC a Privada&quot;, &quot;5501N000002qSrcQAE&quot;,
+&quot;Aumento de Línea de Crédito&quot;, &quot;5501N000002qSrhQAE&quot;,
+&quot;Reversa de Anualidad&quot;, &quot;5501N000002qSuRQAU&quot;,
+&quot;Reversa de Anualidad (Módulo)&quot;, &quot;5501N000002V1j3QAC&quot;,
+&quot;Reversa de Comisión&quot;, &quot;5501N000002qSuMQAU&quot;,
+&quot;Reversa de Comisión (Módulo)&quot;, &quot;5501N000002V1QpQAK&quot;,
+&quot;Cancelación de Titular&quot;, &quot;5501N000002qTCiQAM&quot;,
+&quot;Retiro de efectivo en ATM&quot;, &quot;5501N000002qTDHQA2&quot;,
+&quot;Pago No Aplicado&quot;, &quot;5501N000002qTDCQA2&quot;,
+&quot;Tarjeta de Crédito&quot;, &quot;5501N000002qTD2QAM&quot;,
+&quot;Cancelación Adicional&quot;, &quot;5501N000002qTCnQAM&quot;,
+&quot;Liberar saldo retenido&quot;, &quot;5501N000002qTD7QAM&quot;,
+&quot;Desconoce transacción en ATM&quot;,&quot;5501N000002qTDMQA2&quot;,
+&quot;Estado de Cuenta No Llega&quot;, &quot;5501N000002qTDRQA2&quot;,
+&quot;Tarjeta no pasa&quot;, &quot;5501N000002zx69QAA&quot;,
+&quot;Actualización Nom, RFC, FN&quot;, &quot;5501N000002m2NTQAY&quot;,
+&quot;Actualización de Cel-Fijo&quot;, &quot;5501N000002m2NOQAY&quot;,
+&quot;Actualización de Correo&quot;, &quot;5501N000002m2NJQAY&quot;,
+&quot;Actualización de Domicilio&quot;, &quot;5501N000002m2NEQAY&quot;,
+&quot;APP&quot;, &quot;5501N000002zxtJQAQ&quot;,
+&quot;Sospecha de Fraude&quot;, &quot;5501N000002zxtdQAA&quot;,
+&quot;WEB&quot;, &quot;5501N000002zxtOQAQ&quot;,
+&quot;Bloqueo Seguridad&quot;, &quot;5501N000002zxtYQAQ&quot;,
+&quot;Actualización de Teléfono Fijo&quot;, &quot;5501N000002zxtTQAQ&quot;,
+&quot;Cancelación por fallecimiento del titular (Módulo)&quot;, &quot;5501N000002zyhtQAA&quot;,
+&quot;Cancelación de Adicional (Módulo)&quot;, &quot;5501N000002zygvQAA&quot;,
+&quot;Cargo No Reconocido (Módulo)&quot;, &quot;5501N000002zyh0QAA&quot;,
+&quot;Desconoce transacción en ATM (Módulo)&quot;,&quot;5501N000002zyh5QAA&quot;,
+&quot;Liberar Saldo Retenido (Módulo)&quot;, &quot;5501N000002zyhAQAQ&quot;,
+&quot;Pago No Aplicado (Módulo)&quot;, &quot;5501N000002zyhKQAQ&quot;,
+&quot;Retiro de Efectivo en ATM (Módulo)&quot;, &quot;5501N000002zyhPQAQ&quot;,
+&quot;Actualización SORIBAN&quot;, &quot;5501N000002zzprQAA&quot;,
+&quot;Actualización de Celular&quot;,&quot;5501N000003OZVhQAO&quot;,
+&quot;Seguimiento a Folios&quot;,&quot;5501N000003OZWaQAO&quot;,
+&quot;Up Grade&quot;,&quot;5501N000003OqUXQA0&quot;,
+&quot;Retención de Titular&quot;,&quot;5501N000003PIpvQAG&quot;,
+&quot;Quita&quot;, &quot;5501N000003PVkpQAG&quot;,
+&quot;Reestructura&quot;, &quot;5501N000003PVkkQAG&quot;,
+&quot;Condonación&quot;, &quot;5501N000003PVkfQAG&quot;,
+&quot;Actualización de CURP&quot;, &quot;5501N000003PVlJQAW&quot;,
+&quot;Campañas Outbound&quot;, &quot;5501N000003PdLyQAK&quot;,
+&quot;Consulta de PAN&quot;,&quot;5501N000003PfOSQA0&quot;,
+&quot;Cliente en Mora Grave&quot;, &quot;5501N000003j4FyQAI&quot;,
+&quot;Consulta de Seguros&quot;, &quot;5501N000003j57RQAQ&quot;,
+&quot;Cancelación de Tarjeta por Fallecimiento&quot;,&quot;5501N000003jFeaQAE&quot;,
+&quot;Audiencia CONDUSEF&quot;,&quot;5501N000002YyWiQAK&quot;,
+&quot;REDECO&quot;,&quot;5501N000002YnJIQA0&quot;,
+&quot;Notificación Publicidad&quot;,&quot;5503l000003Y4QfAAK&quot;,
+&quot;Invitación Canales Digitales&quot;,&quot;5503l000003Y4QgAAK&quot;,
+&quot;Alta Cliente&quot;,&quot;5503l000003pxUwAAI&quot;,
+&quot;Saldo a Favor&quot;,&quot;5503l000003q1ZMAAY&quot;,
+&quot;Cobro a Persona Equivocada&quot;, &quot;5503l000002dK7WAAU&quot;,
+&quot;Mal proceso de cobro&quot;,&quot;5503l000002dK7XAAU&quot;,
+&quot;Actualización Buró&quot;,&quot;5503l000002dK7gAAE&quot;,
+&quot;Carta Finiquito&quot;,&quot;5503l000002dK7YAAU&quot;,
+&quot;Retorno de Tarjeta&quot;, &quot;5503l000002dMGxAAM&quot;,
+&quot;Plan de Pagos&quot;, &quot;5503l000004GZAdAAO&quot;,
+&quot;CVV Dinámico&quot;, &quot;5503l000004OrDlAAK&quot;,
+&quot;Activación de NIP&quot;, &quot;5503l000004GxabAAC&quot;,
+&quot;Emboce Centralizado&quot;, &quot;5503l000004OtkNAAS&quot;,
+&quot;QR&quot;, &quot;5503l000004nrNxAAI&quot;,
+&quot;Reposición&quot;,&quot;5503l000004dkI4AAI&quot;,
+&quot;Remisión&quot;,&quot;5503l000004dkI9AAI&quot;,
+&quot;Soporte a Módulo&quot;, &quot;550Qg000005ip7FIAQ&quot;,
+&quot;Contrato manual&quot;, &quot;550Qg00000CCXZBIA5&quot;,
+null)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF( 
+AND( ISPICKVAL([Case].Origin, &quot;CONDUSEF&quot;),
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;), &quot;5501N000003j4qLQAQ&quot;, 
+
+IF(
+AND(
+NOT(ISPICKVAL([Case].Origin, &quot;CONDUSEF&quot;)),
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;), &quot;5501N000002zx64QAA&quot;, null))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_5_myRule_4_A1_6442152675</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+AND( ISPICKVAL({!myVariable_current.Origin}, &quot;CONDUSEF&quot;),
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;), &quot;5501N000003j4qLQAQ&quot;, 
+
+IF(
+AND(
+NOT(ISPICKVAL({!myVariable_current.Origin}, &quot;CONDUSEF&quot;)),
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;), &quot;5501N000002zx64QAA&quot;, null))</expression>
+    </formulas>
+    <formulas>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>true</expression>
+    </formulas>
+    <interviewLabel>Prueba_case-64_InterviewLabel</interviewLabel>
+    <label>Entitlement cases VERSIÓN PRODUCCIÓN</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onCreateOnly</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Entitlement</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision3</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Entitlement ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Entitlement</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EntitlementId</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_2270873877</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_4_A1</name>
+        <label>Entitlement</label>
+        <locationX>400</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Entitlement ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Entitlement</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EntitlementId</field>
+            <value>
+                <elementReference>formula_5_myRule_4_A1_6442152675</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_7_A1</name>
+        <label>Entitlement</label>
+        <locationX>700</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Entitlement ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Entitlement</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EntitlementId</field>
+            <value>
+                <stringValue>550RQ00000Vrb61YAB</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Case]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Entitlement</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Entitlement ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Entitlement</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EntitlementId</field>
+            <value>
+                <stringValue>550RQ00000dfiDAYAY</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

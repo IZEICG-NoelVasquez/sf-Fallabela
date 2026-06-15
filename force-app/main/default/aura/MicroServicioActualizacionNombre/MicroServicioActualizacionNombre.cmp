@@ -1,0 +1,225 @@
+<aura:component controller="MicroServicioActualizacionNombre">
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="loadedProductos" type="Boolean" />
+
+    <!-- MODAL Name Update -->
+    <aura:attribute name="openNameUpdate" type="Boolean" default="false" />
+    <aura:attribute name="noPasoNameUpdate" type="Integer" default="0" />
+    <aura:attribute name="strApellidoPaterno" type="String" />
+    <aura:attribute name="strApellidoMaterno" type="String" />
+    <aura:attribute name="strNombres" type="String" />
+    <aura:attribute name="loadingNameUpdate" type="Boolean" />
+    <aura:attribute name="nameUpdated" type="Boolean" /> 
+
+    <!-- Lista Caracteres Permitidos [A-Z], [a-z], [espacio] -->
+    <aura:attribute name="listCaracteresPermitidos" type="List" default="[65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,
+                                                                        97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,
+                                                                        32]" />
+
+    <!-- Creacion de Caso Actualizacion de Nombre -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseName" type="String" />
+
+    <aura:attribute name="mapCamposMicroS" type="Map" default="{}" />
+
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+
+    <aura:attribute name="enableOTPModal" type="Boolean" default="false" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <!--lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.handleModalNameUpdate }" alternativeText="Editar Nombre" disabled="{! v.loadedProductos || (!v.validacionesOTPCargadas) }" /-->
+    
+    
+    <!-- MODAL Mobile Update -->
+    <aura:if isTrue="{! v.openNameUpdate }" >
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalNameUpdate }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! v.loadingNameUpdate || v.creatingCase }" />
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de Nombre" iconName="standard:person_account" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                    <!-- Paso 1: Editar Nombre -->
+                    <aura:if isTrue="{! v.noPasoNameUpdate == 1 }" >
+                        <div class="slds-box">
+                            <div class="slds-grid" >
+                                <div class="slds-col slds-size_1-of-1 slds-text-heading_medium slds-text-align_center" >
+                                    <span class="slds-text-title_bold">Nombre Actual:  </span>
+                                    {! v.selectedAccount.Name }
+                                </div>                                
+                            </div>
+                            <br/><br/>
+                            <div class="slds-grid" >
+                                <div class="slds-col slds-size_1-of-2" >
+                                    <span onkeypress="{!c.limpiarCampo}" >
+                                        <lightning:input name="input1" aura:id="apellidoPaternoId" label="Apellido Paterno" placeholder="" value="{! v.strApellidoPaterno }" />
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2" >
+                                    <span onkeypress="{!c.limpiarCampo}" >
+                                        <lightning:input name="input2" aura:id="apellidoMaternoId" label="Apellido Materno" placeholder="" value="{! v.strApellidoMaterno }" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="slds-grid" >
+                                <div class="slds-col slds-size_1-of-1 slds-p-top_large" >
+                                    <span onkeypress="{!c.limpiarCampo}" >
+                                        <lightning:input name="input3" aura:id="primerNombreId" label="Nombres" placeholder="" value="{! v.strNombres }" />  
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-text-align_right  slds-p-around_large">
+                            <lightning:button variant="brand" label="Actualizar" onclick="{! c.confirmarNameUpdate }" title="Actualizar" />
+                        </div>
+                    </aura:if>
+                    <!-- Paso 1: Confirmar Nombre -->
+                    <aura:if isTrue="{! v.noPasoNameUpdate == 2 }" >
+                        <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                            <div class="slds-text-color_inverse">
+                                ¿ Está seguro que desea actualizar el Nombre ?
+                            </div>                                    
+                        </div>
+                        <div class="slds-grid" >
+                            <div class="slds-col slds-size_1-of-2" >
+                                <div class="slds-form-element slds-p-top_large slds-p-bottom_large">
+                                    <label class="slds-form-element__label" for="text-input-id-1">Apellido Paterno</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="NameUpdateId_1" value="{! v.strApellidoPaterno }" class="slds-input" disabled="true" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" >
+                                <div class="slds-form-element slds-p-top_large slds-p-bottom_large">
+                                    <label class="slds-form-element__label" for="text-input-id-1">Apellido Materno</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="NameUpdateId_1" value="{! v.strApellidoMaterno }" class="slds-input" disabled="true" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid" >
+                            <div class="slds-col slds-size_1-of-1" >
+                                <div class="slds-form-element ">
+                                    <label class="slds-form-element__label" for="text-input-id-1">Nombres</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="NameUpdateId_1" value="{! v.strNombres }" class="slds-input" disabled="true" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                            
+                        <div class="slds-text-align_right slds-p-top_large slds-p-right_large">
+                            <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalNameUpdate }" title="Regresar" />
+                            <lightning:button variant="brand" label="Actualizar" onclick="{! c.guardarNameUpdate }" title="Actualizar" />
+                        </div>
+                    </aura:if>
+                    <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                    <aura:if isTrue="{! v.noPasoNameUpdate == 3 }" >
+                        <aura:if isTrue="{! !(v.loadingNameUpdate) }" >
+                            <aura:if isTrue="{! v.nameUpdated }" >
+                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                    Se Actualizo Información con éxito
+                                </div>
+
+                                <aura:if isTrue="{! (!v.creatingCase) }" >
+                                    <aura:if isTrue="{! v.successfulCase }" >                                            
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                            <br/>
+                                            <span class="slds-text-heading_medium" >
+                                            Folio:                                    
+                                                <span style="font-weight: bold;"> 
+                                                {! v.newCaseName }
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <aura:set attribute="else" >
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                            </div>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else" >
+                                        <aura:if isTrue="{! v.creatingCase }">
+                                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                                            </div>                                            
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! !(v.nameUpdated) }">
+                                        <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                            Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                        </div>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{! v.loadingNameUpdate }">
+                                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                                            
+                                </aura:if>
+                            </aura:set>
+                        </aura:if>
+                    </aura:if>
+
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                                    label="Cerrar"
+                                                    title="Cerrar"
+                                                    onclick="{! c.closeModalNameUpdate }"
+                                                    disabled="{! v.loadingNameUpdate || v.creatingCase }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>        
+    </aura:if>    
+
+    <!-- OTP Crear Caso Actualizacion de Nombre -->
+    <aura:if isTrue="{! v.enableOTPModal }" >
+        <c:OTPGenerator aura:id="otpModalNamelUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+
+</aura:component>

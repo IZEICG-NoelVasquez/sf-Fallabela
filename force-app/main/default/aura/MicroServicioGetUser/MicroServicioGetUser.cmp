@@ -1,0 +1,24 @@
+<aura:component controller="MicroServicioGetUser">
+<aura:attribute name="selectedAccount" type="Object" />
+<aura:attribute name="esUsuarioAppWeb" type="Boolean" />
+<aura:attribute name="loadedGetUser" type="Boolean" default="true" />
+<aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+<lightning:card variant="Narrow" title="Usuario App/Web" iconName="standard:user" >
+<aura:if isTrue="{! v.loadedGetUser }">
+        <div class="exampleHolder">
+                <lightning:spinner alternativeText="Loading" size="small" />
+        </div>
+    <aura:set attribute="else">
+        <aura:if isTrue="{!v.esUsuarioAppWeb}">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="slds-text-heading_small" style="color: green; font-weight: bold;"> </span><lightning:icon iconName="utility:check" size="small" />	
+                <aura:set attribute="else">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="slds-text-heading_small" style="color: black; font-weight: bold;"> </span><lightning:icon iconName="utility:close" size="small" />	
+                </aura:set>
+            </aura:if>
+    </aura:set>
+</aura:if>   
+</lightning:card>
+
+
+
+</aura:component>

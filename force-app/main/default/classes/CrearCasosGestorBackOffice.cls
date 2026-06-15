@@ -65,7 +65,7 @@ public without sharing class CrearCasosGestorBackOffice {
     
 
     public static Map<String, Object> casoUpsertCreacion(WSCreateDataBO createData, String idSolicitud) {
- 
+
         Map<String, Object> result = new Map<String, Object>();
         Boolean success = false;
 
@@ -517,7 +517,7 @@ public without sharing class CrearCasosGestorBackOffice {
 
                     /// DIRECCIONES
                     if ( validateObjectNullValue(rec.data.solicitud.custom.data.datos_contacto) && validateObjectNullValue(rec.data.solicitud.custom.data.datos_contacto.direcciones) ) {
-                        System.debug('fer'+rec.data.solicitud.custom.data.datos_contacto.direcciones.Lisdirecciones );
+
                         for (String keyId: rec.data.solicitud.custom.data.datos_contacto.direcciones.Lisdirecciones.keySet()) {
 
                             SolicitudGestorJSON.CustomDireccionId customDireccionId = rec.data.solicitud.custom.data.datos_contacto.direcciones.Lisdirecciones.get(keyId);

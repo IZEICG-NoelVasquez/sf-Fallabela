@@ -1,0 +1,70 @@
+<aura:component >
+
+    <aura:attribute name="openModalTipoDeConsulta" type="Boolean" default="false" />
+    <aura:attribute name="options" type="List" default="[]"/>
+    <aura:attribute name="values" type="List" default="[]" />
+    <aura:attribute name="valuesSelected" type="String" />
+
+    <!-- Valores del Multi-PickList Tipo de Consulta -->
+    <aura:attribute name="listTipoConsulta" type="List" default="['Saldos','Explicación de Movimientos','Mensualidades pendientes','Validación de saldos para cancelación','Validación de saldos previo a retención','
+Consulta de anualidad de cliente sin uso','Validación de pagos','Explicación de intereses y comisiones','Incidencia operativa','Intereses menor a $1.00','Cobranza - Validación de pagos','Saldo Préstamo Personal']" />
+
+    
+    <div class="slds-form-element slds-m-right_x-small">
+        <span style="font-size: 11px !important;" class="slds-form-element__label">Tipo de consulta</span>
+        <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+            <div class="slds-grid" >
+                <div class="slds-size_11-of-12">
+                    <div style="font-size: 11px !important;" class="slds-form-element__static">{! v.valuesSelected }</div>
+                </div>
+                <div class="slds-size_1-of-12 slds-text-align_right">
+                    <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.openModalMultiPickList }" alternativeText="Editar" />
+                </div>
+            </div>                
+        </div>
+    </div>
+
+    <!-- MODAL MultiPickList Tipo de Consulta -->
+    <aura:if isTrue="{!v.openModalTipoDeConsulta}">
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_xx-small">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalMultiPickList }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"/>
+                        
+                    </header>
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_medium slds-is-relative slds-text-align_center" id="modal-content-id-1">
+
+                        <lightning:dualListbox name="tipoDeConsulta"
+                                            label= "Tipo de consulta"
+                                            sourceLabel="Disponible"
+                                            selectedLabel="Elegido"
+                                            options="{!v.options}"
+                                            value="{!v.values}"/>
+
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                        label="Cancelar"
+                                        title="Cancelar"
+                                        onclick="{! c.closeModalMultiPickList }"/>
+                        <lightning:button variant="brand" 
+                                        label="Guardar"
+                                        title="Guardar"
+                                        onclick="{! c.saveModalMultiPickList }"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>   
+	
+</aura:component>

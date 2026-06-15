@@ -1,0 +1,53 @@
+<aura:component controller="MicroServicioSaldoEnPuntos" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="totalPuntosDisponibles" type="String" default="0"/>
+    <aura:attribute name="cargandoSaldoPuntos" type="Boolean" default="true" />
+
+    <aura:attribute name="resumenPeriodo" type="String" default="0"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_6-of-12">
+            <lightning:card class="" title="Dinero electrónico" iconName="standard:entity" >
+                
+                <aura:if isTrue="{! (!v.cargandoSaldoPuntos) }" >
+                    <div class="slds-text-heading_medium slds-text-align_center" style="color: green; font-weight: bold;">
+                        <aura:text value="{! v.resumenPeriodo }" />
+                    </div>
+    
+                    <aura:set attribute="else" >
+                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div>  
+                    </aura:set>            
+                </aura:if>
+
+            </lightning:card>
+        </div>
+
+        <div class="slds-col slds-size_6-of-12">
+            <lightning:card class="" title="Saldo en Puntos" iconName="standard:cms" >
+
+                <aura:if isTrue="{! (!v.cargandoSaldoPuntos) }" >
+                    <div class="slds-text-heading_medium slds-text-align_center" style="color: green; font-weight: bold;">
+                        <aura:text value="{! v.totalPuntosDisponibles }" />
+                    </div>
+
+                    <aura:set attribute="else" >
+                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div>  
+                    </aura:set>            
+                </aura:if>
+
+            </lightning:card> 
+        </div>
+    </div>
+      
+    
+    
+	
+</aura:component>

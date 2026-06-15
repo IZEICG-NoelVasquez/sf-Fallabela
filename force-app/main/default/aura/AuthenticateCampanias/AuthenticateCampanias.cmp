@@ -1,0 +1,79 @@
+<aura:component controller="AuthenticateCampaniasController" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="campaigns" type="List" />
+    <aura:attribute name="productoSeleccionado" type="Integer" />
+
+    <aura:attribute name="campaniaEmail" type="String" />
+    <aura:attribute name="campaniaSMS" type="String" />
+    <aura:attribute name="blnAumentoDeLinea" type="Boolean" default="false" />
+
+    <aura:attribute name="openModalAumentoLinea" type="Boolean" default="false" />
+    <aura:attribute name="loadingConsultaCupo" type="Boolean" />
+
+    <!-- Creacion de Caso Aumento de Linea de Credito -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="isCommunity" type="Boolean" />
+    <aura:attribute name="esClienteAnonimo" type="Boolean" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <lightning:card variant="Narrow" title="Campañas" iconName="standard:campaign" >
+                
+        <p class="slds-p-horizontal_small slds-scrollable_y" style="height: 9.5rem;">
+                
+            <aura:iteration items="{! v.campaigns }" var="item">
+                <a id="{!item.Campaign.Id}" name="{!item.Campaign.Name}" style="font-size:12px;" onmouseover="{!c.setDescription}"  onmouseout="{!c.closePop}" 
+                    onclick="{! (!v.validacionesOTPCargadas) ? '' : c.openModal }" >
+                    {! item.Campaign.Name } 
+                </a>
+                <section id="{!'1'+item.Campaign.Id}" style="display: none" class="slds-popover slds-nubbin_top slds-show slds-is-fixed" role="dialog" aria-labelledby="dialog-heading-id-1" aria-describedby="dialog-body-id-6">
+                    <div class="slds-popover__body" id="dialog-body-id-6">
+                        <p>{! item.Campaign.Description }</p>
+                    </div>
+                </section>
+                <lightning:layout>
+                    <lightning:layoutItem size="6">
+                        Fecha Inicio:
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6">
+                        {! item.Campaign.StartDate }
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6">
+                        Vigencia:
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6">
+                        {! item.Campaign.EndDate }
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6">
+                        Tipo:
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6">
+                        {! item.Campaign.Tipo_Campa_a__c }
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:iteration>    
+        </p>
+    </lightning:card>
+
+    <aura:if isTrue="{! v.openModalAumentoLinea }" >
+        <c:MicroServicioAumentoDeLinea selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" productoSeleccionado="{! v.productoSeleccionado }" 
+                                openModalAumentoLinea="{! v.openModalAumentoLinea }" loadingConsultaCupo="{! v.loadingConsultaCupo }" blnAumentoDeLinea="{! v.blnAumentoDeLinea }" 
+                                caseRTypes="{! v.caseRTypes }" isCommunity="{! v.isCommunity }" esClienteAnonimo="{! v.esClienteAnonimo }" 
+                                mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }"
+                                verificadoOTP="{! v.verificadoOTP }" />
+    </aura:if>
+	
+</aura:component>

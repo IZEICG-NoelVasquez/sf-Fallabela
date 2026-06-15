@@ -1,0 +1,159 @@
+<aura:component controller="MicroServicioEstadoDeCuenta" >
+   
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="productIdx" type="Integer" />
+    <aura:attribute name="saldos" type="Object[]"  />
+
+    <!-- Fechas Corte -->
+    <aura:attribute name="fechasCorteOptions" type="List" />
+    <aura:attribute name="fechasCorteOptionsEdoCta" type="List" />
+    <aura:attribute name="fechaCorteValue" type="String" />
+    <aura:attribute name="movimientoIdx" type="Integer" />
+    <aura:attribute name="sumAniosMovimientosConFecha" type="Integer" />
+    <aura:attribute name="fechasEdoCta" type="Boolean" />
+
+    <!-- Estado de Cuenta -->
+    <aura:attribute name="isOpenEdoCta" type="Boolean" default="false" />
+    <aura:attribute name="pdfData" type="String" />
+    <aura:attribute name="showPDF" type="Boolean" default="false" />
+    <aura:attribute name="loadedPDFEdoCta" type="Boolean" default="true" />
+
+    <!-- Medio de Envio -->
+    <aura:attribute name="openMedioDeEnvio" type="Boolean" default="false" />
+    <aura:attribute name="noPasoMedioEnvio" type="Integer" default="0" />
+    <aura:attribute name="blnEmail" type="Boolean"  />
+    <aura:attribute name="blnEmail_TMP" type="Boolean"  />
+    <aura:attribute name="medioEnvioSelected" type="Boolean" default="false" />
+    <aura:attribute name="email_Text" type="String" />
+    <aura:attribute name="papel_Text" type="String" />
+    <!-- Creacion de Caso Actualizacion de Medio de Envio -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+
+    <!-- Consultar Medio de Envio -->
+    <aura:attribute name="testClass" type="String" />
+
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="contactMethodValue" type="String" />
+
+    <aura:attribute name="cargarFechasDeCorte" type="Boolean" />    
+    <aura:attribute name="fechaAsignada" type="Boolean" />
+
+    <aura:handler name="change" value="{!v.fechaAsignada}" action="{!c.changeFechaCortePDFEdoCta}"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <aura:html tag="style">
+        .forceToastMessage {
+            white-space : pre-line !important;
+        }
+    </aura:html>
+    
+    <!-- MODAL Estado de Cuenta -->
+    <div class="slds-m-around_xx-large">    
+        <!--###### MODAL BOX Start######--> 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalEdoCta }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"/>           
+                </header>
+                <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Estado de Cuenta" iconName="doctype:pdf" />
+                <!--###### MODAL BOX BODY Part1 Start######-->
+                <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+                    
+                    <div class="slds-grid slds-gutters">
+                        <!-- Fechas de Corte -->                        
+                        <div class="slds-col slds-size_3-of-12">
+
+                            <aura:if isTrue="{! !empty(v.saldos) }">
+                                <c:MicroServicioFechasDeCorte selectedAccount="{! v.selectedAccount }" 
+                                            fechasCorteOptions="{! v.fechasCorteOptions }" fechaCorteValue="{! v.fechaCorteValue }" movimientoIdx="{! v.movimientoIdx }" sumAniosMovimientosConFecha="{! v.sumAniosMovimientosConFecha }"
+                                            cargarFechasDeCorte="{! v.cargarFechasDeCorte }" fechaAsignada="{! v.fechaAsignada }" fechasCorteOptionsEdoCta="{! v.fechasCorteOptionsEdoCta }" fechasEdoCta="{! v.fechasEdoCta }" />
+                                <aura:set attribute="else">
+                                    <div class="slds-is-relative slds-m-vertical_xx-large slds-p-around_medium">
+                                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                                    </div>                   
+                                </aura:set>
+                            </aura:if>
+
+                        </div>
+                        <!-- Actualización Medio de Envío -->
+                        <div class="slds-col slds-size_6-of-12">
+                            
+                            <aura:if isTrue="{! v.showPDF }">
+                                <c:MicroServicioConsultaMedioEnvio recordId="{! v.recordId }" selectedAccount="{! v.selectedAccount }" productos="{! v.productos }" esClienteAnonimo="{! v.esClienteAnonimo }" isCommunity="{! v.isCommunity }" 
+                                                    movimientoIdx="{! v.movimientoIdx }" showPDF="{! v.showPDF }" 
+                                                    openMedioDeEnvio="{! v.openMedioDeEnvio }" noPasoMedioEnvio="{! v.noPasoMedioEnvio }" blnEmail="{! v.blnEmail }" blnEmail_TMP="{! v.blnEmail_TMP }" 
+                                                    altoRiesgo="{! v.altoRiesgo }" verificadoOTP="{! v.verificadoOTP }"
+                                                    medioEnvioSelected="{! v.medioEnvioSelected }"  email_Text="{! v.email_Text }" papel_Text="{! v.papel_Text }" testClass="{! v.testClass }"
+                                                    mapValidacionesOTP="{! v.mapValidacionesOTP }" validacionesOTPCargadas="{! v.validacionesOTPCargadas }" verificadoOTPGlobal="{! v.verificadoOTPGlobal }" 
+                                                    contactMethodValue="{! v.contactMethodValue }" />
+                            </aura:if>
+                          
+                        </div>
+                        <!-- Envio de Estado de Cuenta por Correo -->
+                        <div class="slds-col slds-size_3-of-12">
+                            <aura:if isTrue="{! v.showPDF }">
+                                <c:MicroServicioEnvioEstadoDeCuenta selectedAccount="{! v.selectedAccount }" caseRTypes="{! v.caseRTypes }" altoRiesgo="{! v.altoRiesgo }"
+                                                    productos="{! v.productos }" fechaCorteValue="{! v.fechaCorteValue }" movimientoIdx="{! v.movimientoIdx }" email_Text="{! v.email_Text }" />
+                            </aura:if>
+                        </div>
+
+                    </div>
+
+                    <aura:if isTrue="{! v.showPDF }">
+                        
+                        <div style="height: 50rem !important; max-height: 50rem !important;" >
+                            <c:pdfViewer pdfData="{! v.pdfData }" />
+                        </div>                                
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{! v.loadedPDFEdoCta }">
+                                <div class="slds-is-relative slds-m-vertical_xx-large slds-p-around_medium">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>
+                            </aura:if>                        
+                        </aura:set> 
+                    </aura:if>
+                    
+                </div>
+
+                <!--###### MODAL BOX FOOTER Part Start ######-->
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button variant="neutral" 
+                                                label="Regresar"
+                                                title="Regresar"
+                                                onclick="{! c.closeModalEdoCta }"/>
+                </footer>
+            </div>
+            <div aura:id="idEdoCta" class="{! v.testClass }" ></div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+
+    <!-- MODAL Medio de Envio -->
+    <aura:if isTrue="{!v.openMedioDeEnvio}">
+        <c:MicroServicioActualizacionMedioEnvio selectedAccount="{! v.selectedAccount }" caseRTypes="{! v.caseRTypes }" altoRiesgo="{! v.altoRiesgo }" productos="{! v.productos }" movimientoIdx="{! v.movimientoIdx }"
+                    openMedioDeEnvio="{! v.openMedioDeEnvio }" noPasoMedioEnvio="{! v.noPasoMedioEnvio }" blnEmail_TMP="{! v.blnEmail_TMP }" 
+                    medioEnvioSelected="{! v.medioEnvioSelected }" email_Text="{! v.email_Text }" papel_Text="{! v.papel_Text }" testClass="{! v.testClass }"
+                    contactMethodValue="{! v.contactMethodValue }" />
+    </aura:if>
+	
+</aura:component>

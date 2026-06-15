@@ -42,15 +42,15 @@ private static String token;
         HttpResponse res;
         ApiGeeJSON result;
         String[] endpoints = msV2 ? new String[]{ENDPOINT_MS_V2, ENDPOINT_MS} : new String[]{ENDPOINT_MS, ENDPOINT_MS_V2};
-        Integer maxAttempts = 6; // Total de intentos alternados entre v1 y v2
+        Integer maxAttempts = 3; // Total de intentos alternados entre v1 y v2
 
         try {
             for (Integer attempt = 0; attempt < maxAttempts; attempt++) {
                 // Alternar entre los endpoints
-                String currentEndpoint = endpoints[Math.mod(attempt, 2)];
-                System.debug('Intento ' + (attempt + 1) + ': Usando endpoint ' + currentEndpoint);
+                //String currentEndpoint = endpoints[Math.mod(attempt, 2)];
+                //System.debug('Intento ' + (attempt + 1) + ': Usando endpoint ' + currentEndpoint);
 
-                res = tryRequest(currentEndpoint, idRequest, documentSubTypeId);
+                res = tryRequest(ENDPOINT_MS_V2, idRequest, documentSubTypeId);
 
                 if (res != null && (res.getStatusCode() == 200 || res.getStatusCode() == 201)) {
                     System.debug('Solicitud exitosa en intento ' + (attempt + 1));
@@ -103,6 +103,7 @@ private static String token;
             
             HttpResponse res = client.sendRequest(req);
             System.debug('Código de respuesta para ' + endpoint + ': ' + res.getStatusCode());
+            System.debug('Mensaje de respuesta para ' + endpoint + ': ' + res.getBody());
             return res;
         } catch (Exception e) {
             System.debug('Error en la solicitud para ' + endpoint + ': ' + e.getMessage());

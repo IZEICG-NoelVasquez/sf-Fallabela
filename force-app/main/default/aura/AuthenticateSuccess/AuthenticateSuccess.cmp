@@ -1,0 +1,191 @@
+<!--/****************************************************************************************************************************************************************************************
+Lightning Component Name: validateQuestions
+Version : 2.0
+Created Date : - / - / -  
+Function :  Componente para ingresar la categoría y subcategoría del caso que se desea crear
+Modification Log :
+*********************************************************************************************************************************************************************************************
+*          Developer                    Date                    Description                    Changes
+*********************************************************************************************************************************************************************************************
+*         - - - - - - -               - / - / -              Original Version                   ******
+*        Luis Sandoval                03/08/19               Modificación               Se agregó la llamada al componente de validación de preguntas     
+*********************************************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************************************/-->
+<aura:component controller="AuthenticateCustomerController" >
+    
+    <aura:registerEvent name="stepChange" type="c:stepChange" />
+    <aura:registerEvent name="recordIdSelected" type="c:recordIdSelected" />
+    
+    
+    
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:handler name="OTPState" event="c:OTPState" action="{! c.handleOTPState }" />
+    <aura:handler name="validateQuestionsE" event="c:validateQuestionsE" action="{! c.handlevalidateQuestionsE }" />  
+
+    <aura:attribute name="recordId" type="String" />
+    
+    <aura:attribute name="showPanel" type="Boolean" default="true" />
+    <aura:attribute name="catOptions" type="List" />
+    <aura:attribute name="subCatOptions" type="List" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="medioAltoRiesgo" type="List" />
+    <aura:attribute name="catValue" type="String" />
+    <aura:attribute name="subCatSelected" type="String" />
+    <aura:attribute name="disableSub" type="Boolean" default="true" />
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="mainFields" type="List" />
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:attribute name="isCommunity" type="Boolean" default="false"/>
+    <aura:attribute name="esClienteAnonimo" type="Boolean" default="false" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="isMovimiento" type="Boolean" default="false" />
+    <aura:attribute name="movimientosList" type="String" />
+    
+    <!-- Componente PickListCaseOrigin  -->
+    <aura:attribute name="contactMethodValue" type="String" />
+
+    <aura:attribute name="numeroDeTarjetaValue" type="String" />
+    <aura:attribute name="hashId" type="String" />
+    <aura:attribute name="numeroDeTarjetaValueProducto" type="String" />
+
+    <!-- Creacion de Caso con Movimientos -->
+    <aura:attribute name="casoConMovimientos" type="Boolean" default="false" />
+    <aura:attribute name="creandoCaso" type="Boolean" default="false" />
+    
+    <aura:handler name="change" value="{!v.movimientosList}" action="{!c.handleMovChange}"/>
+   
+    <!-- Boton para redirigir al Autenticador -->
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="pageReference" type="Object"/>
+
+    <!-- Plan de Pagos -->
+    <aura:attribute name="blnPlanDePagos" type="Boolean" default="false" />
+
+    <!-- Liberar Saldo Retenido -->
+    <aura:attribute name="blnSoloMovsNoFacturados" type="Boolean" default="false" />
+
+    <!-- MS Movimientos Creacion de Casos sin Seleccionar Movimientos -->
+    <aura:attribute name="casoSinSeleccionarMovimientos" type="Boolean" />
+
+    <!-- Spinner Cargado Categorias SubCategorias -->
+    <aura:attribute name="categoriasLoaded" type="Boolean" default="false" />
+    <aura:attribute name="subCategoriasLoaded" type="Boolean" default="true" />
+
+    <c:StreamingHandler />
+    
+    <!-- Header -->
+    <div class="slds-text-heading_medium slds-p-bottom_small">
+        
+        <aura:if isTrue="{! v.showPanel }">
+            
+            <aura:set attribute="else">
+                <b><aura:text value="CREACI&Oacute;N DE CASO" /></b>
+            </aura:set>
+        </aura:if>
+       
+    </div>
+
+    <div class="slds-is-relative" >
+        <lightning:layout >
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                
+            <aura:if isTrue="{! v.categoriasLoaded }" >
+                <lightning:select name="categoria" label="Categor&iacute;a" aura:id="categoria" value="{!v.catValue}" onchange="{! c.changeCategory }">
+                    <aura:iteration items="{!v.catOptions}" var="item">
+                        <option text="{!item.label}" value="{!item.value}" selected="{!item.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+
+                <aura:set attribute="else">
+                    <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                        <lightning:spinner variant="brand" alternativeText="Loading" />
+                    </div>                                            
+                </aura:set>
+            </aura:if>
+                
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+
+                <aura:if isTrue="{! v.subCategoriasLoaded }" >
+                    <lightning:select name="subCategoria" label="Sub Categor&iacute;a" aura:id="subCategoria" onchange="{! c.changeSubCategory }" disabled="{! v.disableSub }">
+                        <aura:iteration items="{!v.subCatOptions}" var="item">
+                            <option text="{!item.label}" value="{!item.value}" selected="{!item.selected}"/>
+                        </aura:iteration>
+                    </lightning:select>
+
+                    <aura:set attribute="else">
+                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div>                                            
+                    </aura:set>
+                </aura:if>
+
+            </lightning:layoutItem>
+            
+            
+        </lightning:layout>	
+        
+        
+        <lightning:layout >
+
+                <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+
+                    <c:PickListCaseOrigin contactMethodValue="{! v.contactMethodValue }" />
+                    
+                </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
+                
+                <lightning:select value="{! v.numeroDeTarjetaValue }" name="tarjeta" label="Tarjeta" aura:id="tarjeta">
+                    <aura:if isTrue="{!v.numeroDeTarjetaValueProducto!=null}">
+                        <option text="{!v.numeroDeTarjetaValueProducto}"/>
+                    </aura:if>
+                    <aura:iteration items="{!v.selectedAccount.Tarjetas__r}" var="item">
+                        <option text="{!item.N_mero_de_tarjeta__c}"/>
+                    </aura:iteration>
+                </lightning:select>
+                
+            </lightning:layoutItem> 
+        </lightning:layout>	
+        
+        
+        
+        <lightning:layout >        
+            <lightning:layoutItem smallDeviceSize="12"  size="6" flexibility="auto" padding="around-small">
+                <aura:if isTrue="{! !(v.creandoCaso) }" >
+
+                    <aura:if isTrue="{! !(v.casoConMovimientos) }" >
+                        <aura:if isTrue="{! v.showPanel }">
+                            <lightning:button label="Regresar" onclick="{! c.handleCancel }"/>
+                        </aura:if>
+                        <aura:if isTrue="{! !v.showPanel }">
+                            <lightning:button label="Retipificar Caso" onclick="{! c.handleRetipificar }"/>
+                        </aura:if>
+                    </aura:if>
+                    <lightning:button label="Crear Caso" variant="brand" onclick="{! c.handleCreateTicket }"/>
+                    <aura:if isTrue="{! !v.showPanel }">
+                        <lightning:navigation aura:id="navService"/>
+                            <a class="slds-button slds-button_text-destructive" href="{!v.url}">Página Principal</a>
+                    </aura:if>
+                    
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{! v.creandoCaso }">
+                            <div class="slds-m-vertical_large slds-p-around_medium">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>                                            
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+
+            </lightning:layoutItem>            
+        </lightning:layout>	
+    </div>
+        
+    
+    
+    <c:OTPGenerator aura:id="otp-modal" customer="{!v.selectedAccount}" recordId="{! v.recordId }" />
+    <c:validateQuestions aura:id="medioAlto-modal" altoRiesgo="{!v.altoRiesgo}" caseRTypes="{! v.caseRTypes }" customer="{!v.selectedAccount}" numeroDeTarjeta="{! v.numeroDeTarjetaValue }" />
+</aura:component>

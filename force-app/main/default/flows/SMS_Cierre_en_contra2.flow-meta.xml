@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Twilio Send SMS Message</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>SMS Cierre</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>TwilioSF__TwilioSendSMS</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Message</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>message</name>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_5766152677</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>To Mobile Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>toNumber</name>
+            <value>
+                <elementReference>formula_3_myRule_1_A1_4953185710</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>TwilioSF__TwilioSendSMS</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Record type y etapa</label>
+        </rules>
+    </decisions>
+    <description>SMS- Cargo no reconocido, Desconoce transacción en ATM, Retiro de efectivo en ATM, Pago no aplicado, Promoción  no aplicada, Compra no diferida, Reversa de comisión, Reversa de anualidad, MODULO Cancelacion fallecimiento titular, MODULO Cargo no reconocido, MODULO Desconoce transaccion en ATM</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Case].Contact.FirstName +&quot; &quot;+[Case].Contact.LastName +&quot; su aclaración &quot; +[Case].CaseNumber  + &quot; se ha dictaminado en contra. FALABELLA SORIANA Dudas: 018007674262&quot;
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_5766152677</name>
+        <dataType>String</dataType>
+        <expression>{!myVariable_current.Contact.FirstName} +&quot; &quot;+{!myVariable_current.Contact.LastName} +&quot; su aclaración &quot; +{!myVariable_current.CaseNumber}  + &quot; se ha dictaminado en contra. FALABELLA SORIANA Dudas: 018007674262&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>&quot;+52&quot;+[Case].ContactMobile </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_3_myRule_1_A1_4953185710</name>
+        <dataType>String</dataType>
+        <expression>&quot;+52&quot;+{!myVariable_current.ContactMobile}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ISCHANGED([Case].Status ),
+
+ISPICKVAL([Case].Status,&quot;Cerrado&quot;),
+
+NOT(ISBLANK([Case].ContactId )),
+
+
+NOT(ISBLANK([Case].ContactMobile)),
+
+OR(
+ISPICKVAL([Case].Dictamen__c , &quot;En contra&quot;),
+OR(ISPICKVAL([Case].Dictamen_Fraudes__c, &quot;En Contra&quot;))),
+
+OR (
+[Case].RecordType.Name = &quot;Cargo no reconocido&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM&quot;,
+[Case].RecordType.Name = &quot;Retiro de efectivo en ATM&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado&quot;,
+[Case].RecordType.Name = &quot;Promoción no Aplicada&quot;,
+[Case].RecordType.Name = &quot;Reversa de Anualidad&quot;,
+[Case].RecordType.Name = &quot;Reversa de Comisión&quot;,
+[Case].RecordType.Name = &quot;Compra no diferida&quot;,
+[Case].RecordType.Name = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Cargo No Reconocido (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Pago No Aplicado (Módulo)&quot;,
+[Case].RecordType.Name = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISCHANGED({!myVariable_current.Status} ),
+
+ISPICKVAL({!myVariable_current.Status},&quot;Cerrado&quot;),
+
+NOT(ISBLANK({!myVariable_current.ContactId} )),
+
+
+NOT(ISBLANK({!myVariable_current.ContactMobile})),
+
+OR(
+ISPICKVAL({!myVariable_current.Dictamen__c} , &quot;En contra&quot;),
+OR(ISPICKVAL({!myVariable_current.Dictamen_Fraudes__c}, &quot;En Contra&quot;))),
+
+OR (
+{!myVariable_current.RecordType.Name} = &quot;Cargo no reconocido&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Retiro de efectivo en ATM&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Promoción no Aplicada&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Anualidad&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Reversa de Comisión&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Compra no diferida&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cancelación por fallecimiento del titular (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Cargo No Reconocido (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Pago No Aplicado (Módulo)&quot;,
+{!myVariable_current.RecordType.Name} = &quot;Desconoce transacción en ATM (Módulo)&quot;)
+
+
+)</expression>
+    </formulas>
+    <interviewLabel>SMS_Cierre_en_contra2-5_InterviewLabel</interviewLabel>
+    <label>SMS Cierre en contra2</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

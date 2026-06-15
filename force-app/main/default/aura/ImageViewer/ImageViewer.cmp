@@ -1,0 +1,14 @@
+<aura:component >
+
+    <aura:attribute name="imageSrc" type="String" />
+	
+    <ltng:require 
+            styles="{!$Resource.imageViewerCss}" 
+            scripts="{! join(',' ,$Resource.jquery,  $Resource.imageViewerJs) }" 
+            afterScriptsLoaded="{!c.doInit}" />
+
+    <div aura:id="gallery" >
+        <img data-original="{! v.imageSrc }" src="{! v.imageSrc }" alt="" />
+    </div>
+
+</aura:component>

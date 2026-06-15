@@ -1,0 +1,78 @@
+<aura:component controller="MicroServicioModalImagenesBO" implements="lightning:isUrlAddressable" >
+
+    <aura:attribute name="urlImagen" type="String" />
+    <aura:attribute name="nombreImagen" type="String" />
+    <aura:attribute name="idDocumento" type="String" />
+
+
+    <aura:attribute name="idSolicitud" type="String" />
+    <aura:attribute name="link" type="String" />
+    <aura:attribute name="microServicio" type="String" />
+
+
+    <aura:attribute name="blnEsPDF" type="Boolean" />
+    <aura:attribute name="pdfData" type="String" />
+    <aura:attribute name="fileDownload" type="String" />
+
+    <aura:attribute name="cargandoImagen" type="Boolean" default="true" />
+    <aura:attribute name="consultaExitosa" type="Boolean" default="false" />
+
+    <aura:attribute name="blnDocumentApiGee" type="Boolean" default="false" />
+    <aura:attribute name="blnExpedientesFalabella" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+    
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+    <aura:attribute name="blnReporteBuro" type="Boolean" default="false" />
+
+
+        <lightning:card class="slds-text-title_regular" title="{! v.nombreImagen }" iconName="action:download" >
+            <aura:set attribute="actions">
+                <aura:if isTrue="{! and( v.consultaExitosa, (v.blnEsPDF || v.blnExpedientesFalabella) ) }" >
+                    <span class="slds-p-around_medium">
+                        <span class="slds-p-horizontal_small">
+                            <a class="slds-button slds-button_brand" download="{! v.nombreImagen }" href="{! v.fileDownload }" > Descargar </a>
+                        </span>
+                    </span>
+                </aura:if>            
+            </aura:set>        
+
+            <div class="" >
+
+                <aura:if isTrue="{! (!v.cargandoImagen) }" >
+                    
+                    <aura:if isTrue="{! v.consultaExitosa }" >                        
+
+                            <aura:if isTrue="{! v.blnEsPDF }" >
+                                <div style="height: 40rem !important; max-height: 40rem !important;" >
+                                    <c:pdfViewerPrint pdfData="{! v.pdfData }" />
+                                </div>
+                            </aura:if>
+
+                            <aura:if isTrue="{! (!v.blnEsPDF) }" >
+                                <div style="height: auto; max-height: 100%; min-height: 40rem !important;" >
+                                    <div class="slds-p-around_medium slds-text-align_center">
+                                        <c:ImageViewer imageSrc="{! v.fileDownload }" />
+                                    </div>    
+                                </div>                            
+                            </aura:if> 
+                                                        
+                    </aura:if>                      
+
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{! v.cargandoImagen }">
+                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>                                            
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+
+            </div>
+
+        </lightning:card>
+
+
+	
+</aura:component>

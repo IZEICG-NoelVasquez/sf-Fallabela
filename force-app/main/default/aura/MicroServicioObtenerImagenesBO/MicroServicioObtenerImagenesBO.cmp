@@ -1,0 +1,80 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" controller="MicroServicioObtenerImagenesBO" >
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="Case" type="Object"/>
+    <aura:attribute name="sObj" type="Object"/>
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData"/>
+
+    <aura:attribute name="linksImagenes" type="Object[]" />
+    <aura:attribute name="mostrarLinksImagenes" type="Boolean" default="false" />
+    <aura:attribute name="cargandoLinks" type="Boolean" default="true" />
+
+    <aura:attribute name="urlReporteBuro" type="String" />
+
+    <aura:attribute name="mapNombreImagenNoIntentos" type="Map" default="{}" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <force:recordData aura:id="recordLoader"
+		recordId="{!v.recordId}"
+        targetRecord="{! v.Case }"
+		targetFields="{!v.sObj}"
+        targetError="{!v.recordError}"        
+		fields="ID_Solicitud__c,
+                Solicitud_Repetida__c" />
+    
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+	    <div class="recordError slds-box slds-box--small slds-theme–alert-texture slds-theme--error">
+            {!v.recordError}
+        </div>
+    </aura:if>    
+    
+    <lightning:card class="slds-text-title_regular" title="Consulta de Imagenes" iconName="standard:carousel" >
+        
+        <div class="slds-p-around_large slds-text-align_left">
+            <aura:if isTrue="{! (!v.cargandoLinks) }" >
+
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class=".slds-cell-wrap" scope="col">
+                                <div class="slds-text-title slds-text-color_default">Documentos</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{! v.linksImagenes }" var="item" >
+                            <tr class="slds-hint-parent">
+                                <th class="slds-cell-nowrap" scope="col">
+                                    <a id="{! item.link }" name="{! item.microServicio }" title="{! item.nombre }" onclick="{! c.abrirImagenNuevaVentana }" style="font-size:12px;" >
+                                        {! item.nombre }
+                                    </a>
+
+                                </th>
+                            </tr>
+                        </aura:iteration>
+
+                            <tr class="slds-hint-parent">
+                                <th class="slds-cell-nowrap" scope="col">
+                                    <a title=" Reporte de Credito " style="font-size:12px;" onclick="{! c.abrirReporteBuroNuevaVentana }">
+                                        Reporte de Credito
+                                    </a>
+                                </th>
+                            </tr>
+                            
+                    </tbody>
+                </table>
+
+                <aura:set attribute="else">
+                    <aura:if isTrue="{! v.cargandoLinks }">
+                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                        </div>                                            
+                    </aura:if>
+                </aura:set>
+            </aura:if>
+        </div>
+
+    </lightning:card> 
+
+</aura:component>

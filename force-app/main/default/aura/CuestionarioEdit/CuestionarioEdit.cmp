@@ -1,0 +1,32 @@
+<aura:component controller="CuestionarioFlujoController" implements="lightning:actionOverride,force:hasRecordId,force:hasSObjectName">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="rtZonales" type="Boolean" default="false"/>
+    <aura:attribute name="rtArqueo" type="Boolean" default="false"/>
+    <aura:attribute name="DesdeFlujo" type="Boolean" default="false"/>
+    <aura:attribute name="codigoEnviado" type="Boolean" default="false"/>
+    <aura:attribute name="otpValidado" type="Boolean" default="false"/>
+    <aura:attribute name="simpleNewCuestionario" type="Object"/>
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="codigoOTP" type="String" />
+    <aura:attribute name="codigoOTPIngresado" type="String" />
+    <aura:attribute name="telefono" type="Integer" />
+    <aura:attribute name="recordError" type="String" />
+    <aura:attribute name="Status" type="String" />
+    <aura:attribute name="step" type="Integer" default="1" />
+    <aura:attribute name="steps" type="Integer" default="1" />
+    <aura:attribute name="stepDocument" type="Map" default="{}"/>
+    
+    <force:recordData aura:id="recordEditor"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.simpleNewCuestionario}"
+                      mode="EDIT" />	
+    <aura:if isTrue="{!v.rtZonales}">
+        <c:CuestionarioFlujoCrear recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="false" paso="1"/>
+    </aura:if>
+    <aura:if isTrue="{!v.rtArqueo}">
+        <c:CuestionarioArqueoCrear recordId="{!v.recordId}" simpleNewCuestionario="{!v.simpleNewCuestionario}" DesdeFlujo="false" paso="1"/>
+    </aura:if>
+</aura:component>

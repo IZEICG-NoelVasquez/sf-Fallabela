@@ -1,0 +1,95 @@
+<aura:component >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="productos" type="Object[]"  />
+    <aura:attribute name="productIdx" type="Integer" />
+
+    <!-- Movimientos seleccionado -->
+    <aura:attribute name="movimientosSeleccionados" type="Boolean" default="false" />
+    
+    <!-- AuthenticateSuccess -->
+    <aura:attribute name="esClienteAnonimo" type="Boolean" />
+    <aura:attribute name="clienteAnonimo" type="Object" />
+    <aura:attribute name="numeroDeTarjetaValueProducto" type="String" />
+    <aura:attribute name="isMovimiento" type="Boolean" />
+    <aura:attribute name="movimientosList" type="String" />
+    <aura:attribute name="movimientosListObject" type="Object[]" />
+    <aura:attribute name="casoConMovimientos" type="Boolean" />
+
+    <aura:attribute name="openGuardarMovimientos" type="Boolean" />
+    <aura:attribute name="movimientosBackdropClass" type="String" />
+    <aura:attribute name="loadedMovimientos" type="Boolean" default="false" />
+
+    <aura:attribute name="consultaMovimientosExitosa" type="Boolean" default="true" />
+    <aura:attribute name="mensajeErrorConsulta" type="String" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <!-- Plan de Pagos -->
+    <aura:attribute name="blnPlanDePagos" type="Boolean" />
+
+    <!-- Liberar Saldo Retenido -->
+    <aura:attribute name="blnSoloMovsNoFacturados" type="Boolean" />
+
+    <!-- MS Movimientos Creacion de Casos sin Seleccionar Movimientos -->
+    <aura:attribute name="casoSinSeleccionarMovimientos" type="Boolean" />
+
+    <!--###### MODAL BOX Start######--> 
+    <div class="slds-m-around_large">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalCrearCaso }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"/>                       
+                </header>
+                <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Crear Caso" iconName="standard:case" />
+                <!--###### MODAL BOX BODY Start######-->
+                <div class="slds-modal__content slds-p-around_medium slds-is-relative" id="modal-content-id-1">
+
+                    <aura:if isTrue="{! v.movimientosSeleccionados }" >
+
+                        <aura:if isTrue="{! v.consultaMovimientosExitosa }" >
+
+                            <c:MovimientoSeleccionado productos="{! v.productos }" productIdx="{! v.productIdx }" movimientosListObject="{! v.movimientosListObject }" />
+
+                            <br/>
+
+                            <c:AuthenticateSuccess selectedAccount="{! v.selectedAccount }" 
+                                        esClienteAnonimo="{! v.esClienteAnonimo }" clienteAnonimo="{! v.clienteAnonimo }" numeroDeTarjetaValueProducto="{! v.numeroDeTarjetaValueProducto }"
+                                        isMovimiento="{! v.isMovimiento }" movimientosList="{! v.movimientosList }" casoConMovimientos="{! v.casoConMovimientos }" blnPlanDePagos="{! v.blnPlanDePagos }" 
+                                        blnSoloMovsNoFacturados="{! v.blnSoloMovsNoFacturados }" casoSinSeleccionarMovimientos="{! v.casoSinSeleccionarMovimientos }" />
+
+                        </aura:if>
+                        <aura:if isTrue="{! !(v.consultaMovimientosExitosa) }">
+                            <div class="slds-text-heading_small slds-text-color_default slds-p-around_x-large">
+                                {! v.mensajeErrorConsulta }
+                            </div>                            
+                        </aura:if>
+                        
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{! !(v.movimientosSeleccionados) }">
+                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                </div>                                            
+                            </aura:if>
+                        </aura:set>
+                    </aura:if> 
+
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start ######-->
+                <footer class="slds-modal__footer slds-theme_default">
+                    <lightning:button variant="neutral" 
+                                                label="Regresar"
+                                                title="Regresar"
+                                                onclick="{! c.closeModalCrearCaso }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+	
+</aura:component>

@@ -1,0 +1,59 @@
+<aura:component controller="MicroServicioFechasCorte" >
+
+    <aura:attribute name="selectedAccount" type="Object" />
+
+    <aura:attribute name="loadedFechasDeCorte" type="Boolean" default="true" />
+
+    <!-- Fechas Corte -->
+    <aura:attribute name="fechasCorteOptions" type="List" />
+    <aura:attribute name="fechasCorteOptionsEdoCta" type="List" />
+    <aura:attribute name="fechaCorteValue" type="String" />
+    <aura:attribute name="movimientoIdx" type="Integer" />
+    <aura:attribute name="sumAniosMovimientosConFecha" type="Integer" />
+
+    <aura:attribute name="fechasEdoCta" type="Boolean" default="false" />
+
+    <aura:attribute name="cargarFechasDeCorte" type="Boolean" />
+    <aura:attribute name="fechaAsignada" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+    <div style="width: 20rem;">
+        <lightning:layout>
+            <lightning:layoutItem size="5" flexibility="auto" padding="around-small">
+                <aura:if isTrue="{! !empty(v.fechasCorteOptions)}">
+                    <!-- Listado de Fechas de Corte para Movimientos al Corte -->
+                    <aura:if isTrue="{! (!v.fechasEdoCta) }" >
+                        <div class="slds-m-bottom_small" >
+                            <lightning:select name="Fechas Corte" label="Fechas Corte" aura:id="fechasCorte" value="{!v.fechaCorteValue}" disabled="{! and( !(v.fechaAsignada), v.fechaCorteValue != '', !empty(v.fechaCorteValue) )}" onchange="{! c.changeFechaCorte }">
+                                <aura:iteration items="{!v.fechasCorteOptions}" var="item">
+                                    <option text="{!item.label}" value="{!item.value}" selected="{!item.selected}"/>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>  
+                    </aura:if>
+                    <!-- Listado de Fechas de Corte para Estados de Cuenta -->
+                    <aura:if isTrue="{! v.fechasEdoCta }" >
+                        <div class="slds-m-bottom_small" >
+                            <lightning:select name="Fechas Corte" label="Fechas Corte" aura:id="fechasCorteEdoCta" value="{!v.fechaCorteValue}" disabled="{! and( !(v.fechaAsignada), v.fechaCorteValue != '', !empty(v.fechaCorteValue) )}" onchange="{! c.changeFechaCorte }">
+                                <aura:iteration items="{!v.fechasCorteOptionsEdoCta}" var="item">
+                                    <option text="{!item.label}" value="{!item.value}" selected="{!item.selected}"/>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div> 
+                    </aura:if>
+
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{! v.loadedFechasDeCorte }">
+                            <div class="slds-is-relative slds-m-vertical_xx-large slds-p-around_medium">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>
+                        </aura:if>                        
+                    </aura:set> 
+
+                </aura:if>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+	
+</aura:component>

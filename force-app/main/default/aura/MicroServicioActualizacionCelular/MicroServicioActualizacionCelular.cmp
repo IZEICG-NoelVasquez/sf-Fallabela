@@ -1,0 +1,220 @@
+<aura:component controller="MicroServicioActualizacionCelular" >
+    
+    <aura:attribute name="numeroDeTarjetaValueProducto" type="String" />
+    <aura:attribute name="validateQuestions" type="Boolean" default="false" />
+    <aura:handler name="validateQuestionsE" event="c:validateQuestionsE" action="{! c.handlevalidateQuestionsE }" />
+
+    <aura:attribute name="idValidacionExitosa" type="String" default=""/>
+
+    <aura:attribute name="selectedAccount" type="Object" />
+    <aura:attribute name="loadedProductos" type="Boolean" />
+
+    <aura:attribute name="ultimos4digitos" type="String" />
+    <aura:attribute name="tieneNumeroSat" type="Boolean" />
+    <aura:attribute name="phoneCustomerData" type="String" />
+
+    <!-- MODAL Mobile Update -->
+    <aura:attribute name="openMobileUpdate" type="Boolean" default="false" />
+    <aura:attribute name="noPasoMobileUpdate" type="Integer" default="0" />
+    <aura:attribute name="strMobilelUpdate" type="String" />
+    <aura:attribute name="loadingMobileUpdate" type="Boolean" />
+    <aura:attribute name="mobileUpdated" type="Boolean" /> 
+
+    <aura:attribute name="classBackdrop" type="String" />
+
+    <!-- Lista Caracteres Permitidos [0-9] -->
+    <aura:attribute name="listCaracteresPermitidos" type="List" default="[48,49,50,51,52,53,54,55,56,57]" />
+
+    <!-- Creacion de Caso Actualizacion de Correo -->
+    <aura:attribute name="caseRTypes" type="Map" />
+    <aura:attribute name="altoRiesgo" type="List" />
+    <aura:attribute name="creatingCase" type="Boolean" default="false" />
+    <aura:attribute name="successfulCase" type="Boolean" default="false" />
+    <aura:attribute name="newCaseMobile" type="String" />
+
+    <aura:attribute name="mapCamposMicroS" type="Map" default="{}" />
+
+    <!-- OTP -->
+    <aura:attribute name="verificadoOTP" type="Boolean" default="false" />
+    <aura:handler name="OTPValidated" event="c:OTPValidated" action="{! c.handleOTPValidated }" />
+    <aura:registerEvent name="OTPClose" type="c:OTPClose" />
+    <aura:handler name="OTPClose" event="c:OTPClose" action="{! c.handleCloseModalOTP }" />
+    <aura:attribute name="blnUpdateMobile" type="Boolean" default="false" />
+
+    <!-- MicroServico CustomerData -->
+    <aura:attribute name="cargarCustomerData" type="Boolean" default="false" />
+
+    <!-- Validaciones OTP Dinamicas -->
+    <aura:attribute name="mapValidacionesOTP" type="Map" />
+    <aura:attribute name="validacionesOTPCargadas" type="Boolean" />
+    <aura:attribute name="verificadoOTPGlobal" type="Boolean" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:attribute name="blnOpenModalContactMethod" type="Boolean" default="false"/>
+    <aura:attribute name="contactMethodValue" type="String" />
+    <aura:registerEvent name="ContactMethodSelected" type="c:ContactMethodSelected" />
+    <aura:handler name="ContactMethodSelected" event="c:ContactMethodSelected" action="{! c.handleCloseModalContactMethod }" />
+
+
+    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+        <div class="slds-form-element slds-m-right_x-small">
+            <span style="font-size: 11px !important;" class="slds-form-element__label">Últimos 4 dígitos de Celular</span>
+            <div  class="slds-form-element__control slds-box" style="padding: 0.25rem !important;">
+                <div class="slds-grid" >
+                    <div class="slds-size_11-of-12">
+                        <aura:if isTrue="{!v.tieneNumeroSat}">
+                            <div style="font-size: 11px !important;" class="slds-form-element__static">{!v.ultimos4digitos}</div>
+                            <aura:set attribute="else">
+                                <div style="font-size: 11px !important;" class="slds-form-element__static">{! v.selectedAccount.ltimos_4_d_gitos_de_Celular__c }</div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-size_1-of-12">
+                        <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{! c.handleModalMobileUpdate }" alternativeText="Editar Celular" 
+                                        disabled="{! v.loadedProductos || (!v.validacionesOTPCargadas) }" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL Mobile Update -->
+    <aura:if isTrue="{! v.openMobileUpdate }" >
+        <!--###### MODAL BOX Start######--> 
+        <div class="slds-m-around_xx-large">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_x-small">
+                                
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header slds-modal__header_empty">
+                        <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModalMobileUpdate }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"
+                                                disabled="{! v.loadingMobileUpdate || v.creatingCase }" />
+                    </header>
+                    <lightning:card class="slds-text-heading_medium slds-text-title_bold" title="Actualización de Celular" iconName="custom:custom28" />
+                    <!--###### MODAL BOX BODY Part1 Start######-->
+                    <div class="slds-modal__content slds-p-around_x-large slds-is-relative" id="modal-content-id-1">
+                        <!-- Paso 1: Editar Celular -->
+                        <aura:if isTrue="{! v.noPasoMobileUpdate == 1 }" >
+                            <div class="slds-box">
+                                <div class="row" >
+                                    <span onkeypress="{!c.limpiarCelular}" onpaste="{!c.borrarCampo}" >
+                                        <lightning:input type="text" name="input1" aura:id="mobileUpdateId" label="Celular" placeholder="Celular" value="{! v.strMobilelUpdate }" maxlength="10" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="slds-text-align_right  slds-p-around_large">
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.confirmarMobileUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 2: Confirmar Celular -->
+                        <aura:if isTrue="{! v.noPasoMobileUpdate == 2 }" >
+                            <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                                <div class="slds-text-color_inverse">
+                                    ¿ Está seguro que desea actualizar el Celular ?
+                                </div>                                    
+                            </div>
+                            <div class="slds-form-element slds-p-around_large">
+                                <label class="slds-form-element__label" for="text-input-id-1">Celular</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="mobileUpdateId_2" placeholder="Celular" value="{! v.strMobilelUpdate }" class="slds-input" disabled="true" />
+                                </div>
+                            </div>
+                            <div class="slds-text-align_right  slds-p-right_large">
+                                <lightning:button variant="neutral" label="Regresar" onclick="{! c.regresarModalEmailUpdate }" title="Regresar" />
+                                <lightning:button variant="brand" label="Actualizar" onclick="{! c.guardarMobileUpdate }" title="Actualizar" />
+                            </div>
+                        </aura:if>
+                        <!-- Paso 3: Mensaje de Exito y Numero de Caso -->
+                        <aura:if isTrue="{! v.noPasoMobileUpdate == 3 }" >
+
+                            <aura:if isTrue="{! !(v.loadingMobileUpdate) }" >
+                                <aura:if isTrue="{! v.mobileUpdated }" >
+                                    <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                        Se Actualizo Información con éxito
+                                    </div>
+
+                                    <aura:if isTrue="{! (!v.creatingCase) }" >
+                                        <aura:if isTrue="{! v.successfulCase }" >                                            
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                <br/>
+                                                <span class="slds-text-heading_medium" >
+                                                Folio:                                    
+                                                    <span style="font-weight: bold;"> 
+                                                    {! v.newCaseMobile }
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <aura:set attribute="else" >
+                                                <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">
+                                                    <br/>
+                                                    Ocurrió un error al crear el Caso, favor de reportarlo con su Administrador.
+                                                </div>
+                                            </aura:set>
+                                        </aura:if>
+
+                                        <aura:set attribute="else" >
+                                            <aura:if isTrue="{! v.creatingCase }">
+                                                <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                                    <lightning:spinner variant="brand" alternativeText="Loading" />
+                                                </div>                                            
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{! !(v.mobileUpdated) }">
+                                            <div class="slds-text-heading_small slds-text-color_default slds-text-align_center">    
+                                                Ha ocurrido un error, Favor de reportarlo a su administrador.
+                                            </div>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{! v.loadingMobileUpdate }">
+                                        <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                            <lightning:spinner variant="brand" alternativeText="Loading" />
+                                        </div>                                            
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+
+                        </aura:if>
+                    </div>
+                    <!--###### MODAL BOX FOOTER Part Start ######-->
+                    <footer class="slds-modal__footer slds-theme_default">
+                        <lightning:button variant="neutral" 
+                                                    label="Cerrar"
+                                                    title="Cerrar"
+                                                    onclick="{! c.closeModalMobileUpdate }"
+                                                    disabled="{! v.loadingMobileUpdate || v.creatingCase }" />
+                    </footer>
+                </div>
+                <div aura:id="idMobileUpdate" class="{! v.classBackdrop }" ></div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <!-- OTP Crear Caso Actualizacion de Celular -->
+    <aura:if isTrue="{! v.blnUpdateMobile }" >
+        <c:OTPGenerator aura:id="otpModalMobileUpdate" customer="{!v.selectedAccount}" />
+    </aura:if>
+
+    <!-- MicroServicio Customer Data -->
+    <aura:if isTrue="{! v.cargarCustomerData }" >
+        <c:MicroServicioCustomerData selectedAccount="{! v.selectedAccount }" />
+    </aura:if>
+    <c:validateQuestions aura:id="medioAlto-modal" altoRiesgo="{!v.altoRiesgo}" caseRTypes="{! v.caseRTypes }" customer="{!v.selectedAccount}" numeroDeTarjeta="{! v.numeroDeTarjetaValueProducto }" 
+                        idValidacionExitosa="{! v.idValidacionExitosa }" />
+
+    <!-- Componente Modal Metodo de Contacto -->
+    <aura:if isTrue="{! v.blnOpenModalContactMethod }" >
+        <c:ModalContactMethod blnOpenModalContactMethod="{!v.blnOpenModalContactMethod}" contactMethodValue="{! v.contactMethodValue }" msMobileUpdateclassBackdrop="{! v.classBackdrop }" />
+    </aura:if>
+    
+</aura:component>

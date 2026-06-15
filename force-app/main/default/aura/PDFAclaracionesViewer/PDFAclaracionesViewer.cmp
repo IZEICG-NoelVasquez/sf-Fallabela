@@ -1,0 +1,59 @@
+<aura:component controller="PDFAclaracionesViewerController" >
+
+    <aura:attribute name="openModalPDF" type="Boolean" />
+    <aura:attribute name="urlPdf" type="String" />
+    <aura:attribute name="cargandoPdf" type="Boolean" />
+    <aura:attribute name="cargaPdfExitosa" type="Boolean" />
+
+    <aura:attribute name="pdfData" type="String" />
+    <aura:attribute name="pdfDownload" type="String" />
+    <aura:attribute name="nombrePdf" type="String" default="FormatoAclaraciones.pdf" />
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }" />
+
+	<div class="slds-m-around_xx-large">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+                                
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{! c.closeModalPDF }"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"/>                       
+                </header>
+                <lightning:card class="slds-text-title_regular" title="Formato Aclaraciones" iconName="doctype:pdf" >
+                    <aura:set attribute="actions">
+                        <aura:if isTrue="{! v.cargaPdfExitosa }" >                            
+                            <span class="slds-p-around_medium">
+                                <lightning:button variant="neutral" label="Cerrar" title="Cerrar" onclick="{! c.closeModalPDF }"/>
+                                <span class="slds-p-horizontal_small">
+                                    <a class="slds-button slds-button_brand" download="{! v.nombrePdf }" href="{! v.pdfDownload }" > Descargar </a>
+                                </span>
+                            </span>
+                        </aura:if>            
+                    </aura:set>
+                </lightning:card>
+                <!--###### MODAL BOX BODY Part1 Start######-->
+                <div class="slds-modal__content slds-p-horizontal_x-large slds-p-bottom_x-large slds-is-relative" id="modal-content-id-1">
+
+                    <aura:if isTrue="{! !(v.cargandoPdf) }" >
+
+                        <div style="height: 40rem !important; max-height: 40rem !important;" >
+                            <c:pdfViewerPrint pdfData="{! v.pdfData }" />
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="slds-m-vertical_xx-large slds-p-around_medium">
+                                <lightning:spinner variant="brand" alternativeText="Loading" />
+                            </div>                                            
+                        </aura:set>
+                    </aura:if>
+
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+
+</aura:component>

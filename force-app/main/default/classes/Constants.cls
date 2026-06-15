@@ -63,9 +63,8 @@ public class Constants {
     public final static String BATCH_BACKOFFICE_EMAIL_ADDRESS = System.Label.BATCH_BACKOFFICE_EMAIL_ADDRESS;
     public final static String BATCH_BACKOFFICE_NUMBER_ATTEMPTS = System.Label.BATCH_BACKOFFICE_NUMBER_ATTEMPTS;
 
-    /// Se mueven a otra clase de Constantes 
     ///Class: ClientRest
-    /*public final static String HTTP_METHOD_POST = System.Label.HTTP_METHOD_POST;
+    public final static String HTTP_METHOD_POST = System.Label.HTTP_METHOD_POST;
     public final static String HTTP_GRANT_TYPE = System.Label.HTTP_GRANT_TYPE;
     public final static String HTTP_CLIENT_CREDENTIALS = System.Label.HTTP_CLIENT_CREDENTIALS;
     public final static String HTTP_SCOPE = System.Label.HTTP_SCOPE;
@@ -79,23 +78,13 @@ public class Constants {
     public final static String HTTP_APIKEY = System.Label.HTTP_APIKEY;
     public final static String HTTP_AUTHORIZATION = System.Label.HTTP_AUTHORIZATION;
     public final static String HTTP_BEARER = System.Label.HTTP_BEARER;    
-    public final static String HTTP_TIMEOUT = System.Label.HTTP_TIMEOUT;*/
+    public final static String HTTP_TIMEOUT = System.Label.HTTP_TIMEOUT;
 
     ///Class: MicroServicioGuiaEstafeta
-    /*public final static String ESTAFETA_ENDPOINT_TOKEN = System.Label.ESTAFETA_ENDPOINT_TOKEN;
+    public final static String ESTAFETA_ENDPOINT_TOKEN = System.Label.ESTAFETA_ENDPOINT_TOKEN;
     public final static String ESTAFETA_ENDPOINT_CUSTSHIPMENTTRACKING = System.Label.ESTAFETA_ENDPOINT_CUSTSHIPMENTTRACKING;
     public final static String ESTAFETA_SEARCHTYPE = System.Label.ESTAFETA_SEARCHTYPE;
     public final static String ESTAFETA_WAYBILLTYPE = System.Label.ESTAFETA_WAYBILLTYPE;
     public final static String ESTAFETA_FILTERTYPE = System.Label.ESTAFETA_FILTERTYPE;
-    public final static String ESTAFETA_HISTORYTYPE = System.Label.ESTAFETA_HISTORYTYPE;*/
-
-    ///Class: PendingServiceRoutingService
-    //// Eliminar el perfil del admin antes de pasar a UAT <-------------------------------------------------------------
-    public final static List<String> LST_PROFILES_ADMIN_OMNICHANNEL = new List<String>{'Analista Backoffice','Coordinador Backoffice','Gerente Backoffice','System Administrator', 'Administrador del sistema'};
-    //// CREAR Custom Label, Metadata o Custom Object <-------------------------------------------------------------
-    
-    public final static Integer AMARILLO_PRESENCIAL=600;
-    public final static Integer ROJO_PRESENCIAL=900;
-    public final static Integer AMARILLO_FIGI=64800;
-    public final static Integer ROJO_FIGI=86400;
+    public final static String ESTAFETA_HISTORYTYPE = System.Label.ESTAFETA_HISTORYTYPE;
 }

@@ -53,7 +53,8 @@
                                 Validar_Movimientos__c, Publicidad__c, Bloqueo_de_Tarjeta_por_Cancelaci_n__c, Canal_origen__c, 
                                 Fecha_y_hora_de_solicitud_en_Nuevo__c
                                 FROM Case WHERE (Status =: ST_AUTORIZADA OR Status =: ST_NUEVO OR Status =: ST_ASIGNADA)
-                                AND (RecordTypeId =: idRecordTypeCredito OR RecordTypeId =: idRecordTypeFigital) AND Owner.Name != : QUEUE_CREDITO_FRAUDES 
+                                AND (RecordTypeId =: idRecordTypeCredito OR RecordTypeId =: idRecordTypeFigital) AND Owner.Name != : QUEUE_CREDITO_FRAUDES
+                                AND OcultarBO__c != true 
                                 ORDER BY RecordType.DeveloperName DESC, Fecha_y_hora_de_solicitud_en_Nuevo__c DESC];
 
         /// Custom Metadata

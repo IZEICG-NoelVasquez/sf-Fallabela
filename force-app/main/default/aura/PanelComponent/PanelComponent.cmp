@@ -1,0 +1,78 @@
+<aura:component >
+    	
+    	<aura:attribute name="iconName" type="String" default="standard:account" />
+    	<aura:attribute name="title" type="String" default="John Doe"/>
+
+        <aura:attribute name="mainFields" type="List" default="[{'label' : 'Address', 'value' : 'Avenida 01, 40910'},{'label' : 'Address', 'value' : 'Avenida 01, 40910'}, {'label' : 'Address', 'value' : 'Avenida 01, 40910'}]"/>
+
+    	<aura:attribute name="recordId" type="String"/>
+
+    	<aura:attribute name="relatedTitle" type="String" default="Caso"/>
+    	<aura:attribute name="relatedTitlePlural" type="String" default="Casos"/>
+    	<aura:attribute name="relatedObjects" type="Object[]" default="[{Name : 'Ticket 01'},{Name : 'Ticket 02'}]"/>
+    	<aura:attribute name="relatedIconName" type="String" default="standard:case"/>
+    	
+    <div style="position: relative;">
+        <div class="slds-popover__header">
+            <header class="slds-media slds-media_center slds-m-bottom_small">
+                <span class="slds-icon_container slds-icon-standard-account slds-media__figure">
+                    <lightning:icon iconName="{! v.iconName }" />
+                </span>
+                <div class="slds-media__body">
+                    <h2 class="slds-text-heading_small slds-hyphenate" id="panel-heading-id"><a onclick="{! c.navigateToSObject }">{! v.title }</a></h2>
+                </div>
+            </header>
+            <footer class="slds-grid slds-wrap slds-grid_pull-padded">
+                
+                <aura:iteration items="{! v.mainFields }" var="item">
+                    <div class="slds-p-horizontal_small slds-size_1-of-2 slds-p-bottom_x-small slds-truncate">
+                        <dl>
+                            <dt>
+                                <p class="slds-text-title_caps slds-truncate" title="{! item.label }">{! item.label }</p>
+                            </dt>                   
+                            <aura:if isTrue="{! item.label == 'Empleado'}">
+                                <ui:inputCheckbox value="{!item.value}" disabled="true" class="green-checkbox"/>
+                                <aura:set attribute="else">
+                                    <dd><a href="javascript:void(0);">{! item.value }</a></dd>
+                                </aura:set>
+                            </aura:if>
+                        </dl>
+                    </div>
+                </aura:iteration>
+
+            </footer>
+        </div>
+        <div class="slds-popover__body">
+            <dl class="slds-popover__body-list">
+                <dt class="slds-m-bottom_small">
+                    <div class="slds-media slds-media_center">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-case">
+                                <lightning:icon iconName="{! v.relatedIconName }" />
+                                <span class="slds-assistive-text">{! v.relatedTitle }</span>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-heading_small slds-hyphenate">{! v.relatedTitlePlural } {! v.relatedObjects.size }</p>
+                        </div>
+                    </div>
+                </dt>
+                <aura:iteration items="{! v.relatedObjects }" var="item" end="5">
+
+                	<dd class="slds-m-top_x-small">
+	                    <p class="slds-truncate" title="">
+							<lightning:button variant="base" label="{! item.Subject}" value="{! item }" onclick="{! c.navigateToCase }" />
+                        </p>
+	                    <dl class="slds-list_horizontal slds-wrap slds-text-body_small">
+	                        <dt class="slds-item_label slds-text-color_weak" title="">Estado</dt>
+	                        <dd class="slds-item_detail slds-text-color_weak" title="">{! item.Status}</dd>
+	                    </dl>
+	                </dd>
+
+                </aura:iteration>
+                
+                <dd class="slds-m-top_x-small slds-text-align_right"><a onclick="{!c.navigateToCases}" title="Ver todos los casos">Ver todos</a></dd>
+            </dl>
+        </div>
+    </div>
+</aura:component>
