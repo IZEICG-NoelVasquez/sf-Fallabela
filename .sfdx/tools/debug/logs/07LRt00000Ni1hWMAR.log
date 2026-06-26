@@ -1,0 +1,161 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:05:31.1 (1331292)|USER_INFO|[EXTERNAL]|0051N000005gvau|etrevinofalabella@izeicg.com.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+17:05:31.1 (1393949)|EXECUTION_STARTED
+17:05:31.1 (1413844)|CODE_UNIT_STARTED|[EXTERNAL]|apex://MicroServicioBloqueoDeTarjeta/ACTION$getCardLockValues
+17:05:31.1 (6704443)|CODE_UNIT_STARTED|[EXTERNAL]|01p0v000003UaNX|MicroServicioBloqueoDeTarjeta.getCardLockValues(String)
+17:05:31.1 (6956739)|VARIABLE_SCOPE_BEGIN|[18]|MicroServicioBloqueoDeTarjeta.BLOQUEOTARJETA|String|false|true
+17:05:31.1 (7000475)|VARIABLE_SCOPE_BEGIN|[17]|MicroServicioBloqueoDeTarjeta.POST|String|false|true
+17:05:31.1 (7150829)|HEAP_ALLOCATE|[95]|Bytes:3
+17:05:31.1 (7213063)|HEAP_ALLOCATE|[100]|Bytes:152
+17:05:31.1 (7227232)|HEAP_ALLOCATE|[417]|Bytes:408
+17:05:31.1 (7238514)|HEAP_ALLOCATE|[430]|Bytes:408
+17:05:31.1 (7258549)|HEAP_ALLOCATE|[317]|Bytes:6
+17:05:31.1 (7269713)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:33
+17:05:31.1 (7273835)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:13
+17:05:31.1 (7293082)|METHOD_ENTRY|[14]|01p0v000003UaNX|MicroServicioBloqueoDeTarjeta.MicroServicioBloqueoDeTarjeta()
+17:05:31.1 (7306967)|STATEMENT_EXECUTE|[14]
+17:05:31.1 (7314305)|STATEMENT_EXECUTE|[14]
+17:05:31.1 (7315532)|STATEMENT_EXECUTE|[17]
+17:05:31.1 (7317170)|HEAP_ALLOCATE|[17]|Bytes:4
+17:05:31.1 (7393341)|VARIABLE_ASSIGNMENT|[17]|MicroServicioBloqueoDeTarjeta.POST|"POST"
+17:05:31.1 (7403127)|STATEMENT_EXECUTE|[18]
+17:05:31.1 (7404560)|HEAP_ALLOCATE|[18]|Bytes:9
+17:05:31.1 (7409259)|VARIABLE_ASSIGNMENT|[18]|MicroServicioBloqueoDeTarjeta.BLOQUEOTARJETA|"block/tdc"
+17:05:31.1 (7417599)|METHOD_EXIT|[14]|MicroServicioBloqueoDeTarjeta
+17:05:31.1 (7421465)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:18
+17:05:31.1 (7434645)|VARIABLE_SCOPE_BEGIN|[198]|accountId|String|false|false
+17:05:31.1 (7444681)|VARIABLE_ASSIGNMENT|[198]|accountId|"0010v00000MYqEtAAL"
+17:05:31.1 (7452005)|STATEMENT_EXECUTE|[198]
+17:05:31.1 (7453308)|STATEMENT_EXECUTE|[200]
+17:05:31.1 (7468272)|HEAP_ALLOCATE|[200]|Bytes:4
+17:05:31.1 (7479385)|VARIABLE_SCOPE_BEGIN|[200]|result|Map<String,ANY>|true|false
+17:05:31.1 (7504622)|VARIABLE_ASSIGNMENT|[200]|result|{}|0x4bc6b9e4
+17:05:31.1 (7507545)|STATEMENT_EXECUTE|[201]
+17:05:31.1 (7526116)|HEAP_ALLOCATE|[68]|Bytes:5
+17:05:31.1 (7551256)|HEAP_ALLOCATE|[74]|Bytes:5
+17:05:31.1 (7555770)|HEAP_ALLOCATE|[82]|Bytes:7
+17:05:31.1 (7561246)|VARIABLE_SCOPE_BEGIN|[201]|success|Boolean|false|false
+17:05:31.1 (7886275)|HEAP_ALLOCATE|[201]|Bytes:5
+17:05:31.1 (7900302)|VARIABLE_ASSIGNMENT|[201]|success|false
+17:05:31.1 (7904517)|STATEMENT_EXECUTE|[202]
+17:05:31.1 (7907232)|VARIABLE_SCOPE_BEGIN|[202]|successCardsInfo|Boolean|false|false
+17:05:31.1 (7911506)|HEAP_ALLOCATE|[202]|Bytes:5
+17:05:31.1 (7914594)|VARIABLE_ASSIGNMENT|[202]|successCardsInfo|false
+17:05:31.1 (7916619)|STATEMENT_EXECUTE|[204]
+17:05:31.1 (7919085)|HEAP_ALLOCATE|[204]|Bytes:273
+17:05:31.1 (7929344)|HEAP_ALLOCATE|[204]|Bytes:4
+17:05:31.1 (10209701)|SOQL_EXECUTE_BEGIN|[204]|Aggregations:1|SELECT MasterLabel, Descripcion__c, Etiqueta_en_SF__c, SubCategoria__c, Categoria__c, X_meses_antes_de_vencimiento__c, (SELECT Nombre_de_API__c, Valor_del_Campo__c FROM Bloqueo_de_Tarjeta_Campos_Requeridos__r) FROM Bloqueo_de_Tarjeta__mdt WHERE Pantalla_principal__c = TRUE
+17:05:31.1 (19274270)|SOQL_EXECUTE_END|[204]|Rows:5
+17:05:31.1 (19318112)|HEAP_ALLOCATE|[204]|Bytes:24
+17:05:31.1 (19355700)|HEAP_ALLOCATE|[204]|Bytes:2662
+17:05:31.1 (19459381)|HEAP_ALLOCATE|[204]|Bytes:24
+17:05:31.1 (19474819)|VARIABLE_SCOPE_BEGIN|[204]|lstCMCardLock|List<Bloqueo_de_Tarjeta__mdt>|true|false
+17:05:31.1 (19813772)|VARIABLE_ASSIGNMENT|[204]|lstCMCardLock|[{"SubCategoria__c":"Reporte por Deterior (1 more) ...","Categoria__c":"Reporte de Tarjeta","Bloqueo_de_Tarjeta_Campos_Requeridos__r":[{"Bloqueo_de_Tarjeta__c":"m0o0v0000004DgSAAU","Id":"m0n0v00000001ptAAA","Nombre_de_API__c":"Tipo_de_bloqueo__c","Valor_del_Campo__c":"Bloqueo por vencimie (3 more) ..."},{"Bloqueo_de_Tarjeta__c":"m0o0v0000004DgSAAU","Id":"m0n0v00000001poAAA","Nombre_de_API__c":"Se_bloqueo_la_tarjet (4 more) ...","Valor_del_Campo__c":"true"}],"X_meses_antes_de_vencimiento__c":4,"Id":"m0o0v0000004DgSAAU","MasterLabel":"14","Descripcion__c":"Bloqueo por vencimie (3 more) ...","Etiqueta_en_SF__c":"Bloqueo por vencimie (3 more) ..."},{"SubCategoria__c":"Reporte por Retenció (8 more) ...","Categoria__c":"Reporte de Tarjeta","Bloqueo_de_Tarjeta_Campos_Requeridos__r":[{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd92AAC","Id":"m0n0v000000Cg1kAAC","Nombre_de_API__c":"Tipo_de_bloqueo__c","Valor_del_Campo__c":"Retención"},{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd92AAC","Id":"m0n0v000000Cg1lAAC","Nombre_de_API__c":"Se_bloqueo_la_tarjet (4 more) ...","Valor_del_Campo__c":"true"}],"Id":"m0o0v000000Cd92AAC","MasterLabel":"02","Descripcion__c":"Bloqueo por extravío","Etiqueta_en_SF__c":"Bloqueo por retenció (11 more) ..."},{"SubCategoria__c":"Reporte por Robo o E (7 more) ...","Categoria__c":"Reporte de Tarjeta","Bloqueo_de_Tarjeta_Campos_Requeridos__r":[{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd93AAC","Id":"m0n0v000000Cg1pAAC","Nombre_de_API__c":"Tipo_de_bloqueo__c","Valor_del_Campo__c":"Robo / Extravio"},{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd93AAC","Id":"m0n0v000000Cg1qAAC","Nombre_de_API__c":"Se_bloqueo_la_tarjet (4 more) ...","Valor_del_Campo__c":"true"}],"Id":"m0o0v000000Cd93AAC","MasterLabel":"25","Descripcion__c":"ROB/EXT","Etiqueta_en_SF__c":"Bloqueo por robo/ext (5 more) ..."},{"SubCategoria__c":"Sospecha de Fraude","Categoria__c":"Tarjeta Declinada","Bloqueo_de_Tarjeta_Campos_Requeridos__r":[{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd94AAC","Id":"m0n0v000000Cg1mAAC","Nombre_de_API__c":"Clasificaci_n_Sospec (15 more) ...","Valor_del_Campo__c":"Bloqueo de tarjeta - (20 more) ..."}],"Id":"m0o0v000000Cd94AAC","MasterLabel":"03","Descripcion__c":"Bloqueo por sospecha (10 more) ...","Etiqueta_en_SF__c":"Bloqueo por sospecha (10 more) ..."},{"SubCategoria__c":"Reporte por Deterior (1 more) ...","Categoria__c":"Reporte de Tarjeta","Bloqueo_de_Tarjeta_Campos_Requeridos__r":[{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd95AAC","Id":"m0n0v000000Cg1nAAC","Nombre_de_API__c":"Tipo_de_bloqueo__c","Valor_del_Campo__c":"Deterioro"},{"Bloqueo_de_Tarjeta__c":"m0o0v000000Cd95AAC","Id":"m0n0v000000Cg1oAAC","Nombre_de_API__c":"Se_bloqueo_la_tarjet (4 more) ...","Valor_del_Campo__c":"true"}],"Id":"m0o0v000000Cd95AAC","MasterLabel":"08","Descripcion__c":"Bloqueo por deterior (1 more) ...","Etiqueta_en_SF__c":"Bloqueo por deterior (1 more) ..."}]|0x4db4915
+17:05:31.1 (19933112)|STATEMENT_EXECUTE|[214]
+17:05:31.1 (19934891)|STATEMENT_EXECUTE|[216]
+17:05:31.1 (19938148)|HEAP_ALLOCATE|[216]|Bytes:13
+17:05:31.1 (19972400)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (19976865)|STATEMENT_EXECUTE|[218]
+17:05:31.1 (19985321)|HEAP_ALLOCATE|[218]|Bytes:5
+17:05:31.1 (19992136)|VARIABLE_ASSIGNMENT|[218]|success|true
+17:05:31.1 (19995458)|STATEMENT_EXECUTE|[221]
+17:05:31.1 (20008742)|METHOD_ENTRY|[221]|01p0v000003UaNX|MicroServicioBloqueoDeTarjeta.getCardInfo(String)
+17:05:31.1 (20019777)|VARIABLE_SCOPE_BEGIN|[240]|accountId|String|false|false
+17:05:31.1 (20025440)|VARIABLE_ASSIGNMENT|[240]|accountId|"0010v00000MYqEtAAL"
+17:05:31.1 (20030712)|STATEMENT_EXECUTE|[240]
+17:05:31.1 (20031833)|STATEMENT_EXECUTE|[242]
+17:05:31.1 (20041276)|HEAP_ALLOCATE|[242]|Bytes:4
+17:05:31.1 (20047217)|VARIABLE_SCOPE_BEGIN|[242]|mapResult|Map<String,ANY>|true|false
+17:05:31.1 (20057697)|VARIABLE_ASSIGNMENT|[242]|mapResult|{}|0x7621b298
+17:05:31.1 (20060141)|STATEMENT_EXECUTE|[243]
+17:05:31.1 (20061685)|VARIABLE_SCOPE_BEGIN|[243]|success|Boolean|false|false
+17:05:31.1 (20065117)|HEAP_ALLOCATE|[243]|Bytes:5
+17:05:31.1 (20068057)|VARIABLE_ASSIGNMENT|[243]|success|false
+17:05:31.1 (20069905)|STATEMENT_EXECUTE|[245]
+17:05:31.1 (20071248)|HEAP_ALLOCATE|[245]|Bytes:85
+17:05:31.1 (20074618)|HEAP_ALLOCATE|[245]|Bytes:4
+17:05:31.1 (20077242)|HEAP_ALLOCATE|[245]|Bytes:7
+17:05:31.1 (21866743)|SOQL_EXECUTE_BEGIN|[245]|Aggregations:0|SELECT N_mero_de_tarjeta__c, feccadtar__c FROM Tarjeta__c WHERE Account__c = :tmpVar1
+17:05:31.1 (29075905)|SOQL_EXECUTE_END|[245]|Rows:3
+17:05:31.1 (29098704)|HEAP_ALLOCATE|[245]|Bytes:16
+17:05:31.1 (29116437)|HEAP_ALLOCATE|[245]|Bytes:229
+17:05:31.1 (29182405)|HEAP_ALLOCATE|[245]|Bytes:16
+17:05:31.1 (29196149)|VARIABLE_SCOPE_BEGIN|[245]|lstCards|List<Tarjeta__c>|true|false
+17:05:31.1 (29269949)|VARIABLE_ASSIGNMENT|[245]|lstCards|[{"N_mero_de_tarjeta__c":"522375******4092","feccadtar__c":"202206","Id":"a010v000003Lzt8AAC"},{"N_mero_de_tarjeta__c":"522375******7410","Id":"a01Rt00000HwfhgIAB"},{"N_mero_de_tarjeta__c":"522375******0766","Id":"a01Rt00000RRzZhIAL"}]|0x57fb8260
+17:05:31.1 (29339926)|STATEMENT_EXECUTE|[247]
+17:05:31.1 (29341279)|STATEMENT_EXECUTE|[249]
+17:05:31.1 (29392929)|HEAP_ALLOCATE|[249]|Bytes:4
+17:05:31.1 (29403296)|VARIABLE_SCOPE_BEGIN|[249]|mapCards|Map<String,String>|true|false
+17:05:31.1 (29414174)|VARIABLE_ASSIGNMENT|[249]|mapCards|{}|0x1d848a24
+17:05:31.1 (29534517)|HEAP_ALLOCATE|[250]|Bytes:5
+17:05:31.1 (29560335)|HEAP_ALLOCATE|[250]|Bytes:16
+17:05:31.1 (29565733)|VARIABLE_SCOPE_BEGIN|[250]|card|Tarjeta__c|true|false
+17:05:31.1 (29592172)|VARIABLE_ASSIGNMENT|[250]|card|{"N_mero_de_tarjeta__c":"522375******4092","feccadtar__c":"202206","Id":"a010v000003Lzt8AAC"}|0x38eb09c4
+17:05:31.1 (29596454)|STATEMENT_EXECUTE|[250]
+17:05:31.1 (29597652)|STATEMENT_EXECUTE|[252]
+17:05:31.1 (29646001)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29654145)|HEAP_ALLOCATE|[250]|Bytes:5
+17:05:31.1 (29659292)|HEAP_ALLOCATE|[250]|Bytes:12
+17:05:31.1 (29662322)|VARIABLE_SCOPE_BEGIN|[250]|card|Tarjeta__c|true|false
+17:05:31.1 (29677255)|VARIABLE_ASSIGNMENT|[250]|card|{"N_mero_de_tarjeta__c":"522375******7410","Id":"a01Rt00000HwfhgIAB"}|0x1077157
+17:05:31.1 (29680305)|STATEMENT_EXECUTE|[250]
+17:05:31.1 (29681212)|STATEMENT_EXECUTE|[252]
+17:05:31.1 (29688467)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29693616)|HEAP_ALLOCATE|[250]|Bytes:5
+17:05:31.1 (29697227)|HEAP_ALLOCATE|[250]|Bytes:12
+17:05:31.1 (29699422)|VARIABLE_SCOPE_BEGIN|[250]|card|Tarjeta__c|true|false
+17:05:31.1 (29709934)|VARIABLE_ASSIGNMENT|[250]|card|{"N_mero_de_tarjeta__c":"522375******0766","Id":"a01Rt00000RRzZhIAL"}|0x1417501f
+17:05:31.1 (29712523)|STATEMENT_EXECUTE|[250]
+17:05:31.1 (29713328)|STATEMENT_EXECUTE|[252]
+17:05:31.1 (29717072)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29721411)|HEAP_ALLOCATE|[250]|Bytes:5
+17:05:31.1 (29727329)|VARIABLE_ASSIGNMENT|[250]|card|null|
+17:05:31.1 (29730155)|STATEMENT_EXECUTE|[255]
+17:05:31.1 (29732072)|HEAP_ALLOCATE|[255]|Bytes:8
+17:05:31.1 (29743896)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29746816)|STATEMENT_EXECUTE|[256]
+17:05:31.1 (29749531)|HEAP_ALLOCATE|[256]|Bytes:5
+17:05:31.1 (29753187)|VARIABLE_ASSIGNMENT|[256]|success|true
+17:05:31.1 (29755326)|STATEMENT_EXECUTE|[259]
+17:05:31.1 (29756845)|HEAP_ALLOCATE|[259]|Bytes:7
+17:05:31.1 (29764715)|HEAP_ALLOCATE|[259]|Bytes:5
+17:05:31.1 (29766945)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29769622)|STATEMENT_EXECUTE|[261]
+17:05:31.1 (29774337)|METHOD_EXIT|[221]|01p0v000003UaNX|MicroServicioBloqueoDeTarjeta.getCardInfo(String)
+17:05:31.1 (29777398)|VARIABLE_SCOPE_BEGIN|[221]|mapCardInfo|Map<String,ANY>|true|false
+17:05:31.1 (29786065)|VARIABLE_ASSIGNMENT|[221]|mapCardInfo|{"mapCards":{"522375******4092":"202206"},"success":true}|0x7621b298
+17:05:31.1 (29818025)|STATEMENT_EXECUTE|[222]
+17:05:31.1 (29819121)|STATEMENT_EXECUTE|[224]
+17:05:31.1 (29836103)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29838838)|STATEMENT_EXECUTE|[225]
+17:05:31.1 (29840406)|HEAP_ALLOCATE|[225]|Bytes:5
+17:05:31.1 (29843343)|VARIABLE_ASSIGNMENT|[225]|successCardsInfo|true
+17:05:31.1 (29845536)|STATEMENT_EXECUTE|[228]
+17:05:31.1 (29846592)|HEAP_ALLOCATE|[228]|Bytes:16
+17:05:31.1 (29854133)|HEAP_ALLOCATE|[228]|Bytes:5
+17:05:31.1 (29855926)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29858528)|STATEMENT_EXECUTE|[229]
+17:05:31.1 (29864646)|HEAP_ALLOCATE|[229]|Bytes:5
+17:05:31.1 (29866318)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:05:31.1 (29868761)|STATEMENT_EXECUTE|[231]
+17:05:31.29 (29923990)|CUMULATIVE_LIMIT_USAGE
+17:05:31.29 (29923990)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 17 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:05:31.29 (29923990)|CUMULATIVE_LIMIT_USAGE_END
+
+17:05:31.1 (29961191)|CODE_UNIT_FINISHED|MicroServicioBloqueoDeTarjeta.getCardLockValues(String)
+17:05:31.1 (30239201)|CODE_UNIT_FINISHED|apex://MicroServicioBloqueoDeTarjeta/ACTION$getCardLockValues
+17:05:31.1 (30246593)|EXECUTION_FINISHED

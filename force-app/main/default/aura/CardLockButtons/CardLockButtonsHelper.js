@@ -99,7 +99,7 @@
                     }
 
                 } else {
-                    
+                    console.log('else show toast');
                     component.set("v.productsLoaded", true);
                     this.showToast("Ha ocurrido un error en el MS Productos", "Favor de reportar a su administrador", "warning");
                 }

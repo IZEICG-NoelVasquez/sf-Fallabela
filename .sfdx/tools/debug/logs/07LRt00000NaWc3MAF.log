@@ -1,0 +1,192 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:42:05.0 (253387)|USER_INFO|[EXTERNAL]|0050v0000034lag|albeltransa@falabella.com.mx.admin.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+17:42:05.0 (290767)|EXECUTION_STARTED
+17:42:05.0 (300520)|CODE_UNIT_STARTED|[EXTERNAL]|apex://AuthenticateCustomerController/ACTION$getMetadataProductTypeCatalog
+17:42:05.0 (3563736)|CODE_UNIT_STARTED|[EXTERNAL]|01p1N00000DazLB|AuthenticateCustomerController.getMetadataProductTypeCatalog()
+17:42:05.0 (3713602)|VARIABLE_SCOPE_BEGIN|[19]|AuthenticateCustomerController.BE|String|false|true
+17:42:05.0 (3862958)|HEAP_ALLOCATE|[95]|Bytes:3
+17:42:05.0 (3908445)|HEAP_ALLOCATE|[100]|Bytes:152
+17:42:05.0 (3922232)|HEAP_ALLOCATE|[417]|Bytes:408
+17:42:05.0 (3933740)|HEAP_ALLOCATE|[430]|Bytes:408
+17:42:05.0 (3953563)|HEAP_ALLOCATE|[317]|Bytes:6
+17:42:05.0 (3964155)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:13
+17:42:05.0 (3967127)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:70
+17:42:05.0 (3968667)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:88
+17:42:05.0 (3970997)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:2
+17:42:05.0 (4034643)|VARIABLE_ASSIGNMENT|[EXTERNAL]|AuthenticateCustomerController.BE|"BE"
+17:42:05.0 (4044323)|METHOD_ENTRY|[17]|01p1N00000DazLB|AuthenticateCustomerController.AuthenticateCustomerController()
+17:42:05.0 (4048259)|STATEMENT_EXECUTE|[17]
+17:42:05.0 (4053168)|STATEMENT_EXECUTE|[17]
+17:42:05.0 (4073830)|HEAP_ALLOCATE|[68]|Bytes:5
+17:42:05.0 (4097815)|HEAP_ALLOCATE|[74]|Bytes:5
+17:42:05.0 (4102193)|HEAP_ALLOCATE|[82]|Bytes:7
+17:42:05.0 (4257979)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+17:42:05.0 (4261308)|STATEMENT_EXECUTE|[21]
+17:42:05.0 (4271007)|METHOD_EXIT|[17]|AuthenticateCustomerController
+17:42:05.0 (4281489)|HEAP_ALLOCATE|[640]|Bytes:5
+17:42:05.0 (4284003)|STATEMENT_EXECUTE|[638]
+17:42:05.0 (4284916)|STATEMENT_EXECUTE|[640]
+17:42:05.0 (4300274)|HEAP_ALLOCATE|[640]|Bytes:4
+17:42:05.0 (4310811)|VARIABLE_SCOPE_BEGIN|[640]|mapResult|Map<String,ANY>|true|false
+17:42:05.0 (4334506)|VARIABLE_ASSIGNMENT|[640]|mapResult|{}|0x34073f5b
+17:42:05.0 (4337735)|STATEMENT_EXECUTE|[642]
+17:42:05.0 (4341788)|HEAP_ALLOCATE|[642]|Bytes:4
+17:42:05.0 (4344974)|VARIABLE_SCOPE_BEGIN|[642]|mapTypeProduct|Map<String,String>|true|false
+17:42:05.0 (4349729)|VARIABLE_ASSIGNMENT|[642]|mapTypeProduct|{}|0x61e2c5fe
+17:42:05.0 (4354450)|HEAP_ALLOCATE|[644]|Bytes:77
+17:42:05.0 (4357507)|HEAP_ALLOCATE|[644]|Bytes:4
+17:42:05.0 (12968164)|SOQL_EXECUTE_BEGIN|[644]|Aggregations:0|SELECT Producto__c, Subproducto__c, Descripcion__c FROM Tipo_de_Producto__mdt
+17:42:05.0 (29922940)|SOQL_EXECUTE_END|[644]|Rows:10
+17:42:05.0 (29963016)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:44
+17:42:05.0 (30276934)|HEAP_ALLOCATE|[644]|Bytes:54
+17:42:05.0 (30287951)|HEAP_ALLOCATE|[644]|Bytes:8
+17:42:05.0 (30303831)|SYSTEM_METHOD_ENTRY|[7]|QueryLocatorIterator.QueryLocatorIterator()
+17:42:05.0 (30308348)|STATEMENT_EXECUTE|[7]
+17:42:05.0 (30321552)|SYSTEM_METHOD_EXIT|[7]|QueryLocatorIterator
+17:42:05.0 (30331037)|HEAP_ALLOCATE|[644]|Bytes:28
+17:42:05.0 (30424938)|HEAP_ALLOCATE|[644]|Bytes:44
+17:42:05.0 (30438937)|HEAP_ALLOCATE|[644]|Bytes:8
+17:42:05.0 (30441503)|HEAP_ALLOCATE|[644]|Bytes:8
+17:42:05.0 (30448924)|VARIABLE_SCOPE_BEGIN|[15]|this|Database.QueryLocatorIterator|true|false
+17:42:05.0 (30521882)|VARIABLE_ASSIGNMENT|[15]|this|{}|0x7d9a30d1
+17:42:05.0 (30526913)|VARIABLE_SCOPE_BEGIN|[15]|values|List<SObject>|true|false
+17:42:05.0 (30544832)|VARIABLE_ASSIGNMENT|[15]|values|"List of size 10 too large to display"|0x78bae20e
+17:42:05.0 (30549598)|VARIABLE_SCOPE_BEGIN|[15]|ql|Database.QueryLocator|true|false
+17:42:05.0 (30578483)|VARIABLE_ASSIGNMENT|[15]|ql|{"query":"SELECT Producto__c,  (57 more) ..."}|0x4ba66d33
+17:42:05.0 (30582901)|VARIABLE_SCOPE_BEGIN|[15]|totalNumRecords|Integer|false|false
+17:42:05.0 (30591280)|VARIABLE_ASSIGNMENT|[15]|totalNumRecords|10
+17:42:05.0 (30594394)|VARIABLE_SCOPE_BEGIN|[15]|queryMoreSize|Integer|false|false
+17:42:05.0 (30600305)|VARIABLE_ASSIGNMENT|[15]|queryMoreSize|49990
+17:42:05.0 (32014876)|HEAP_ALLOCATE|[644]|Bytes:28
+17:42:05.0 (32070624)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32187719)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32196429)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32305386)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32313342)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (32423451)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000U7YAI","Subproducto__c":"0001","Producto__c":"01","Descripcion__c":"Falabella-Soriana Ma (8 more) ..."}|0x1ef7723d
+17:42:05.0 (32432092)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (32433792)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (32485076)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (32544199)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (32553998)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32572596)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32576410)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32621954)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32626299)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (32664167)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000U8YAI","Subproducto__c":"0001","Producto__c":"02","Descripcion__c":"Falabella-Soriana"}|0x66404b25
+17:42:05.0 (32669188)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (32670597)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (32681886)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (32690769)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (32696910)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32712065)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32715766)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32753491)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32757322)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (32787263)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000U9YAI","Subproducto__c":"0001","Producto__c":"03","Descripcion__c":"Marca Compartida"}|0x6c52c438
+17:42:05.0 (32791941)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (32793271)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (32799767)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (32807402)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (32813377)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32826325)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32830452)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32865087)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32868490)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (32895362)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UAYAY","Subproducto__c":"0001","Producto__c":"04","Descripcion__c":"Soriana"}|0x4fe7eb09
+17:42:05.0 (32900027)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (32901338)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (32907252)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (32914774)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (32920578)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32934148)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (32937789)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32972687)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (32976014)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33000693)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UBYAY","Subproducto__c":"0001","Producto__c":"05","Descripcion__c":"Pagos Fijos"}|0x6a240e52
+17:42:05.0 (33005998)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33007284)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33012263)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33019340)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33024773)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33037002)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33040498)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33072066)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33075683)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33098942)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UCYAY","Subproducto__c":"0002","Producto__c":"05","Descripcion__c":"Pagos Fijos"}|0xe597950
+17:42:05.0 (33103631)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33104844)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33109799)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33115986)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33121093)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33133816)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33137616)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33182981)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33186581)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33213961)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UDYAY","Subproducto__c":"0003","Producto__c":"05","Descripcion__c":"Pagos Fijos"}|0x74d00fa7
+17:42:05.0 (33218610)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33219820)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33224609)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33231171)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33237132)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33249765)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33253234)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33285600)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33288825)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33311279)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UEYAY","Subproducto__c":"0001","Producto__c":"06","Descripcion__c":"Mastercard Falabella"}|0x49f0d97
+17:42:05.0 (33315669)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33316905)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33321360)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33327467)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33332812)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33345239)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33348428)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33379269)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33382438)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33405509)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11DK00000000UFYAY","Subproducto__c":"0001","Producto__c":"07","Descripcion__c":"Pagos Fijos Soriana  (10 more) ..."}|0x4e83c5c8
+17:42:05.0 (33410043)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33411352)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33416021)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33422580)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33427954)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33439660)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33442935)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33473495)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.next()
+17:42:05.0 (33476720)|VARIABLE_SCOPE_BEGIN|[644]|typeProd|Tipo_de_Producto__mdt|true|false
+17:42:05.0 (33507528)|VARIABLE_ASSIGNMENT|[644]|typeProd|{"Id":"m11Rt00000601K1IAI","Subproducto__c":"0001","Producto__c":"08","Descripcion__c":"MC Falabella Garanti (4 more) ..."}|0xbd5a6b1
+17:42:05.0 (33513617)|STATEMENT_EXECUTE|[644]
+17:42:05.0 (33514825)|STATEMENT_EXECUTE|[646]
+17:42:05.0 (33520448)|HEAP_ALLOCATE|[646]|Bytes:6
+17:42:05.0 (33527910)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33533783)|METHOD_ENTRY|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33543905)|METHOD_EXIT|[644]||Database.QueryLocatorIterator.hasNext()
+17:42:05.0 (33551813)|VARIABLE_ASSIGNMENT|[644]|typeProd|null|
+17:42:05.0 (33576331)|STATEMENT_EXECUTE|[649]
+17:42:05.0 (33579574)|HEAP_ALLOCATE|[649]|Bytes:14
+17:42:05.0 (33620688)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33625583)|STATEMENT_EXECUTE|[650]
+17:42:05.0 (33627643)|HEAP_ALLOCATE|[650]|Bytes:7
+17:42:05.0 (33651256)|HEAP_ALLOCATE|[650]|Bytes:5
+17:42:05.0 (33655063)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+17:42:05.0 (33659463)|STATEMENT_EXECUTE|[652]
+17:42:05.33 (33736207)|CUMULATIVE_LIMIT_USAGE
+17:42:05.33 (33736207)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 10 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:42:05.33 (33736207)|CUMULATIVE_LIMIT_USAGE_END
+
+17:42:05.0 (33769479)|CODE_UNIT_FINISHED|AuthenticateCustomerController.getMetadataProductTypeCatalog()
+17:42:05.0 (34085053)|CODE_UNIT_FINISHED|apex://AuthenticateCustomerController/ACTION$getMetadataProductTypeCatalog
+17:42:05.0 (34093264)|EXECUTION_FINISHED

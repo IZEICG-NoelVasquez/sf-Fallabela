@@ -5,6 +5,8 @@
     <aura:attribute name="numeroDocumento" type="String" />
     <aura:attribute name="identificador" type="String" />
     <aura:attribute name="identificadorProducto" type="String" />
+    <aura:attribute name="productName" type="String" />
+    <aura:attribute name="titularidadProduct" type="String" />
 
     <aura:attribute name="modalTitle" type="String" default="Bloqueo de Tarjeta" />
     <aura:attribute name="blnOpenModalMSCardLock" type="Boolean" default="false" /> 
@@ -21,7 +23,7 @@
     <aura:attribute name="messageErrorMS" type="String" default="Ocurrió un error en el Micro Servicio Bloqueo de Tarjeta, favor de reportarlo a su administrador." />
 
     <!-- Repsicion de Tarjeta -->
-    <aura:attribute name="cardReplacementList" type="List" default="['Domicilio']" /> <!-- Se elimina la opción de 'Sucursal'-->
+    <aura:attribute name="cardReplacementList" type="List" default="['Domicilio' , 'Sucursal']" /> <!-- Se elimina la opción de 'Sucursal'-->
     <aura:attribute name="cardReplacementValue" type="String" />
     <aura:attribute name="cardReplacementOptions" type="List" />
 
@@ -250,20 +252,18 @@
                                 <br/>
                                 de solicitar un cambio es necesario actualizarlo. 
                                 <br/>
-                                <!--
                                 REPOSICIÓN EN SUCURSAL
                                 <br/>
-                                Para la reposición en módulo es necesario acudir a su sucursal más cercana de lunes a domingo 
+                                Para la reposición en sucursal Soriana, City Club, Sodimac, Innova Sport de  
                                 <br/>
-                                de &nbsp; 11:00 a.m. &nbsp; a &nbsp; 9:00 p.m. &nbsp; con el número de folio de su reporte y una identificación vigente 
+                                 Lunes a Viernes de &nbsp; 12:00 p.m. &nbsp; a &nbsp; 9:00 p.m. &nbsp; llevanddo tu INE vigente.
                                 <br/>
-                                (IFE/INE, Pasaporte vigente). -->
                             </div>
 
                         </aura:if>
 
                         <!-- Paso 5: Reposición a Domicilio -->
-                        <aura:if isTrue="{! v.stepNumberMSCardLock == 5 }" >
+                        <!-- <aura:if isTrue="{! v.stepNumberMSCardLock == 5 }" >
 
                             <div class="slds-text-heading_medium slds-text-align_center slds-p-bottom_medium">
                                 No olvides realizar el proceso en SAT correctamente
@@ -305,10 +305,10 @@
                                 <div class="slds-size_2-of-12"></div>
                             </div>
 
-                        </aura:if>
+                        </aura:if> -->
 
                         <!-- Paso 6: Incidencia en la Cuenta  -->
-                        <aura:if isTrue="{! v.stepNumberMSCardLock == 6 }" >
+                        <!-- <aura:if isTrue="{! v.stepNumberMSCardLock == 6 }" >
 
                             <div class="slds-grid">
                                 <div class="slds-size_1-of-2">
@@ -321,7 +321,7 @@
                                 <div class="slds-size_1-of-2"> </div>
                             </div>
 
-                        </aura:if>
+                        </aura:if> -->
 
                         <!-- Paso 7: Validación de Movimientos -->
                         <aura:if isTrue="{! v.stepNumberMSCardLock == 7 }" >

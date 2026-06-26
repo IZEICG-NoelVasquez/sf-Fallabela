@@ -1,0 +1,51 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:42:02.1 (1458422)|USER_INFO|[EXTERNAL]|0050v0000034lag|albeltransa@falabella.com.mx.admin.uat|(GMT-06:00) Central Standard Time (America/Mexico_City)|GMT-06:00
+17:42:02.1 (1537339)|EXECUTION_STARTED
+17:42:02.1 (1560313)|CODE_UNIT_STARTED|[EXTERNAL]|apex://Lookupcontroller/ACTION$querySalesforceRecord
+17:42:02.1 (6709346)|CODE_UNIT_STARTED|[EXTERNAL]|01p1N00000DazLF|Lookupcontroller.querySalesforceRecord(String)
+17:42:02.1 (8831006)|HEAP_ALLOCATE|[95]|Bytes:3
+17:42:02.1 (8976484)|HEAP_ALLOCATE|[100]|Bytes:152
+17:42:02.1 (8993996)|HEAP_ALLOCATE|[417]|Bytes:408
+17:42:02.1 (9005485)|HEAP_ALLOCATE|[430]|Bytes:408
+17:42:02.1 (9028095)|HEAP_ALLOCATE|[317]|Bytes:6
+17:42:02.1 (9093152)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:1
+17:42:02.1 (9124109)|METHOD_ENTRY|[1]|01p1N00000DazLF|Lookupcontroller.Lookupcontroller()
+17:42:02.1 (9132598)|STATEMENT_EXECUTE|[1]
+17:42:02.1 (9141685)|STATEMENT_EXECUTE|[1]
+17:42:02.1 (9162792)|HEAP_ALLOCATE|[68]|Bytes:5
+17:42:02.1 (9241772)|HEAP_ALLOCATE|[74]|Bytes:5
+17:42:02.1 (9248352)|HEAP_ALLOCATE|[82]|Bytes:7
+17:42:02.1 (9445296)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+17:42:02.1 (9463289)|METHOD_EXIT|[1]|Lookupcontroller
+17:42:02.1 (9467715)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:762
+17:42:02.1 (9531321)|VARIABLE_SCOPE_BEGIN|[4]|queryString|String|false|false
+17:42:02.1 (9606367)|VARIABLE_ASSIGNMENT|[4]|queryString|"SELECT ID_PersonAcco (742 more) ..."
+17:42:02.1 (9620385)|HEAP_ALLOCATE|[6]|Bytes:5
+17:42:02.1 (9624047)|STATEMENT_EXECUTE|[4]
+17:42:02.1 (9625200)|STATEMENT_EXECUTE|[6]
+17:42:02.1 (22960466)|SOQL_EXECUTE_BEGIN|[6]|Aggregations:2|SELECT ID_PersonAccount__c,Tipo_Direcci_n__c,Poblaci_n__c,Tipo_de_v_a__c,Regi_n__c,Resto_Direcci_n__c,Delegaci_n__c,Nombre_v_a__c,Colonia__c,N_mero_de_v_a__c,C_digo_Postal__c,ltimos_4_d_gitos_de_Celular__pc,PT__pc,Campa_a_Actualizaci_n_SORIBAN__c,Cliente_Anonimo__c,Autenticar_Sin_Celular__c,Name,Id,Oficina__c,N_m_contrato__c,CURP__c,ID_Cliente__c,PersonMailingAddress,PersonEmail,PersonContactId,PersonMobilePhone,Ultimos_4_d_gitos_de_Mobile__c,(select Subject, Status from cases limit 10),(select N_mero_de_tarjeta__c from Tarjetas__r),VIP__c,Empleado__c,N_mero_de_Contrato_texto__c,BIN__c,Subgrupo__pc,Flex__c,Condici_n_econ_mica__c,Saldo_Garantia__c FROM Account WHERE (Name LIKE '%Herib%') AND ParentId = null AND Fecha_de_nacimiento1__c=1990-01-01 LIMIT 5
+17:42:02.1 (67551081)|SOQL_EXECUTE_END|[6]|Rows:1
+17:42:02.1 (67626297)|HEAP_ALLOCATE|[6]|Bytes:8
+17:42:02.1 (67674572)|HEAP_ALLOCATE|[6]|Bytes:2563
+17:42:02.1 (67811725)|HEAP_ALLOCATE|[6]|Bytes:8
+17:42:02.67 (67936528)|CUMULATIVE_LIMIT_USAGE
+17:42:02.67 (67936528)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 14 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:42:02.67 (67936528)|CUMULATIVE_LIMIT_USAGE_END
+
+17:42:02.1 (68013925)|CODE_UNIT_FINISHED|Lookupcontroller.querySalesforceRecord(String)
+17:42:02.1 (68332086)|CODE_UNIT_FINISHED|apex://Lookupcontroller/ACTION$querySalesforceRecord
+17:42:02.1 (68343096)|EXECUTION_FINISHED

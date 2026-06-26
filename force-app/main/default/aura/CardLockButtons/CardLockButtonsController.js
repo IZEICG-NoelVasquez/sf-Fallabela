@@ -11,7 +11,7 @@
 	openModalMSCardLock : function(component, event, helper) {
 
 		if( component.get("v.cardLocked") ) {
-
+			console.log('entra tarjeta cancelada');
 			helper.showToast("", "La tarjeta ya se encuentra bloqueada", "warning");
 
 		} else {

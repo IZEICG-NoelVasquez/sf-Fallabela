@@ -364,12 +364,133 @@
         $A.enqueueAction(action);
     },
 
+    detailEstafetaV2 : function(component, guiaEstafeta) {
+        
+        var action = component.get("c.getWayBillEstafetaV2");
+
+        action.setParams({
+            "wayBill" : guiaEstafeta
+        });
+
+        action.setCallback(this, function(response) {
+            
+            var state = response.getState();            
+            console.log("state detailEstafeta: ", state);
+
+            if (state === "SUCCESS") {
+
+                var result = response.getReturnValue();                
+                console.log('result detailEstafeta', result);
+
+                if (result.success) { 
+
+					var responseBody = JSON.parse(result.responseBody);
+
+                    console.log("responseBody: ", responseBody);
+
+                    /// Guia 
+                    component.set("v.GuiaDHL", guiaEstafeta);
+
+                    var item = responseBody && responseBody.items && responseBody.items.length > 0 ? responseBody.items[0]: null;
+
+
+                    if (item) {
+
+                        // Origen
+                        if (item.pickupDetails && item.pickupDetails.warehouseName) {
+                            component.set("v.Origen", item.pickupDetails.warehouseName);
+                        }
+
+                        // Destino (no aplica en este API)
+                        component.set("v.Destino", "No aplica");
+
+                        // Estatus
+                        if (item.statusCurrent && item.statusCurrent.spanishName) {
+                            component.set("v.statusSPA", item.statusCurrent.spanishName);
+                        }
+
+                        // Piezas
+                        if (item.package && item.package.nameType) {
+                            component.set("v.Piezas", item.package.nameType);
+                        }
+
+                        // Firmado por
+                        if (item.deliveryDetails && item.deliveryDetails.receiverName) {
+                            component.set("v.FirmadoPor", item.deliveryDetails.receiverName);
+                        }
+
+                        // Clave de rastreo
+                        if (item.information && item.information.trackingCode) {
+                            component.set("v.shortWaybillId", item.information.trackingCode);
+                        }
+
+                        // Tracking
+                        if (item.status) {
+
+                            var history = item.status;
+
+                            // Normalizar a array
+                            if (!Array.isArray(history)) {
+                                history = [history];
+                            }
+
+                            if (history.length > 0) {
+
+                                // Ordenar por fecha reciente primero
+                                history.sort(function(a, b) {
+                                    return new Date(b.eventDateTime || 0) - new Date(a.eventDateTime || 0);
+                                });
+
+                                // Transformar estructura para Aura
+                                history.forEach(function(itemHist) {
+
+                                    var dateTime = itemHist.eventDateTime || '';
+
+                                    itemHist.Datex2 = dateTime.split(' ')[0] || '';
+                                    itemHist.Timex = dateTime.split(' ')[1] || '';
+                                    itemHist.Description = itemHist.spanishName;
+                                    itemHist.Exception = itemHist.reasonCodeDescription;
+                                    itemHist.Location = itemHist.warehouseName;
+                                });
+
+                                var ultimoEstado = history[0].spanishName || '';
+                                ultimoEstado = ultimoEstado.replace(/,/g, '.');
+
+                                component.set("v.ultimoEstado", ultimoEstado);
+                                component.set("v.data", history);
+
+                            } else {
+
+                                // Caso: sí hay nodo pero sin eventos
+                                component.set("v.ultimoEstado", 'Sin eventos de seguimiento');
+                                component.set("v.data", []);
+                            }
+
+                        } else {
+
+                            // Caso: no viene tracking
+                            component.set("v.ultimoEstado", 'No se encontraron envíos para esta Guía');
+                            component.set("v.guiaNoEncontrada", true);
+                        }
+
+                    }
+
+                }
+            }
+            
+            component.set("v.dhlDetailLoaded", true);
+        });
+
+        $A.enqueueAction(action);
+    },
+
+
     openDetailDHL : function (component) {
 
         ///
         var guiaDHL = component.get("v.guiaCaso");
 
-        if( guiaDHL.length >= 20 ) {
+        if( guiaDHL.length >= 20 || guiaDHL == '0550655621' || guiaDHL == '405590338061170A01KM0X') {
 
             component.set('v.columns', [
                 {label: 'Fecha', fieldName: 'Datex2', type: 'text', initialWidth: 120},
@@ -377,11 +498,13 @@
                 {label: 'Excepción', fieldName: 'Exception', type: 'text', initialWidth: 800},
                 {label: 'Hora', fieldName: 'Timex', type: 'text', initialWidth: 120},
                 {label: 'Locación', fieldName: 'Location', type: 'text', initialWidth: 200}
-             ]);
+            ]);
 
 
             component.set("v.blnWayBillEstafeta", true);
-            this.detailEstafeta(component, guiaDHL);
+            //Switch para el servicio de estafeta actual y la nueva versión V2
+            //this.detailEstafeta(component, guiaDHL);
+            this.detailEstafetaV2(component, guiaDHL);
 
         } else {
         

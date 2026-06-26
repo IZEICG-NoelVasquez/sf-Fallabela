@@ -172,13 +172,18 @@
         var productos = component.get("v.productos");
         var identificador = productos[movimientoIdx].cuentaTarjetaCredito.identificador;
         var identificadorProducto = productos[movimientoIdx].tarjetaCredito.identificadorProducto;
-
+        var titularidadProduct = productos[movimientoIdx].plastico.titularidad;
+        var productName = productos[movimientoIdx].glosaCodigoSubProducto;
+        console.log('productos[movimientoIdx]',JSON.stringify(productos[movimientoIdx].plastico.titularidad));
+        console.log('productos[movimientoIdx]',JSON.stringify(productos[movimientoIdx].glosaCodigoSubProducto));
         /// Componente MS Bloqueo de Tarjeta
         var modalMSCardLock = component.find("modalMSCardLock");
         modalMSCardLock.set("v.stepNumberMSCardLock", 1);
         modalMSCardLock.set("v.numeroDocumento", numeroDocumento);
         modalMSCardLock.set("v.identificador", identificador);
         modalMSCardLock.set("v.identificadorProducto", identificadorProducto);
+        modalMSCardLock.set("v.titularidadProduct", titularidadProduct);
+        modalMSCardLock.set("v.productName", productName);
 
         modalMSCardLock.openModalCardLock();
     }

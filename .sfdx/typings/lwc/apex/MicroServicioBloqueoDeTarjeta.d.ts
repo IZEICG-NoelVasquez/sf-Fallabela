@@ -13,3 +13,6 @@ declare module "@salesforce/apex/MicroServicioBloqueoDeTarjeta.closeCaseByRT" {
 declare module "@salesforce/apex/MicroServicioBloqueoDeTarjeta.updateCaseByRT" {
   export default function updateCaseByRT(param: {caseId: any, mapFields: any}): Promise<any>;
 }
+declare module "@salesforce/apex/MicroServicioBloqueoDeTarjeta.getDeliveryMedium" {
+  export default function getDeliveryMedium(): Promise<any>;
+}

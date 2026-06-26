@@ -1,6 +1,5 @@
 ({
 	loadConfig : function(component, event, helper) {
-
 		///
         component.set("v.enableOTPModal", true);
 
@@ -172,12 +171,15 @@
 	},
 
 	continueCardReplacement : function(component, event, helper) {
-
+		
 		var cardReplacementOptions = [];		
 		var cardReplacementList = component.get("v.cardReplacementList");
-
+		let prodcutName = component.get("v.productName");
+		let titularidadProduct = component.get("v.titularidadProduct");
+	
+		
 		cardReplacementOptions.push({label:'- Ninguno', value:''});
-
+	
 		for(var i = 0; i < cardReplacementList.length; i ++ ) {
 
 			cardReplacementOptions.push({
@@ -185,7 +187,12 @@
 									value:cardReplacementList[i]
 								});
 		}
+	if(!((prodcutName.includes('Mastercard') || prodcutName.includes('Garantizada')) && titularidadProduct === 'Titular')){
+			// cardReplacementOptions.push({label:'Sucursal', value:'Sucursal'});
+cardReplacementOptions.splice(2, 1); // elimina 1 elemento desde el índice 1
 
+			
+		}
 		component.set("v.cardReplacementOptions", cardReplacementOptions);
 
 		component.set("v.modalTitle", 'Reposición de Tarjeta');
@@ -202,8 +209,15 @@
 
 		if( cardReplacementValue == 'Domicilio' ) {
 
-			component.set("v.modalTitle", 'Reposición a Domicilio');
-			component.set("v.stepNumberMSCardLock", 5);
+			if( mapCardLockInfo[cardLockValue].SubCategoria__c === 'Reporte por Deterioro' ) {
+
+				helper.closeCase(component);
+
+			} else{
+				component.set("v.modalTitle", 'Validación de Movimientos');
+			    component.set("v.stepNumberMSCardLock", 7);
+			}
+		
 
 		} else if(cardReplacementValue == 'Sucursal') {
 

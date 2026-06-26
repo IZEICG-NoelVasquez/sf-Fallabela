@@ -8,6 +8,7 @@
 * 1.0           01/06/2021      Mauricio Rosales            Creación
 * 2.0           08/06/2021      Mauricio Rosales            Validacion de Error devuelto por el MicroServicio
 * 3.0           03/08/2021      Mauricio Rosales            Bloqueo de tarjetas desde un registro de Casos
+* 4.0           01/07/2022      Mauricio Rosales            Mapa con fechas de vencimiento de las tarjetas relacionadas a la cuenta
 * --------------------------------------------------------------------------
 */
 public class MicroServicioBloqueoDeTarjeta {
@@ -56,7 +57,12 @@ public class MicroServicioBloqueoDeTarjeta {
                 }
             }
 
-            System.debug('res ' + res.getBody());           
+            System.debug('res ' + res.getBody());
+
+            for (String s : res.getBody().split(':')) {
+
+                System.debug('s ' + s);
+            }            
             
             if (isSuccess) {
 
@@ -72,7 +78,8 @@ public class MicroServicioBloqueoDeTarjeta {
             //String jsonBloqueoDeTarjeta = '{ \"code\": \"ok\", \"message\": { \"estadoOperacion\": { \"codigoOperacion\": \"00\", \"glosaOperacion\": \"[AZ7] OPERACIÓN REALIZADA CON ÉXITO\" } } }';
             //result = BloqueoDeTarjetaJSON.parse(jsonBloqueoDeTarjeta);
 
-            ///result = '{ \"code\": \"ok\", \"message\": { \"estadoOperacion\": { \"codigoOperacion\": \"00\", \"glosaOperacion\": \"[AZ7] OPERACIÓN REALIZADA CON ÉXITO\" } } }';
+            ///result = '{"code":"ok","message":{"estadoOperacion":{"codigoOperacion":"00","glosaOperacion":"[AZ7] OPERACIÓN REALIZADA CON ÉXITO"}}}';
+            ///isSuccess = true;
             ///result = '{ \"code\": \"ok\", \"message\": \"[AZ7][COD:02]ERROR: LA OPERACIÓN NO SE PUDO REALIZAR\" }';
 
             
@@ -183,18 +190,23 @@ public class MicroServicioBloqueoDeTarjeta {
     /**
     * Metodo para obtener los Tipos de Bloqueo y los campos Requeridos
     * Regresa un mapa con la consulta de los Custom Metadata Bloqueo_de_Tarjeta__mdt y Bloqueo_de_Tarjeta_Campos_Requeridos__mdt
+    * Y un mapa con las fechas de vencimiento de las tarjetas relacionadas a la cuenta
+    *
+    * @param accountId Id de la cuenta
     **/
     @AuraEnabled
-    public static Map<String, Object> getCardLockValues() {
+    public static Map<String, Object> getCardLockValues(String accountId) {
 
         Map<String, Object> result = new Map<String, Object>();
         Boolean success = false;
+        Boolean successCardsInfo = false;
 
         List<Bloqueo_de_Tarjeta__mdt> lstCMCardLock = [SELECT MasterLabel, 
                                                             Descripcion__c, 
                                                             Etiqueta_en_SF__c, 
                                                             SubCategoria__c, 
                                                             Categoria__c, 
+                                                            X_meses_antes_de_vencimiento__c, 
                                                             (SELECT Nombre_de_API__c, Valor_del_Campo__c FROM Bloqueo_de_Tarjeta_Campos_Requeridos__r)
                                                     FROM Bloqueo_de_Tarjeta__mdt 
                                                     WHERE Pantalla_principal__c = true];
@@ -206,9 +218,47 @@ public class MicroServicioBloqueoDeTarjeta {
             success = true;
         }
 
+        Map<String,Object> mapCardInfo = getCardInfo(accountId);
+        if( Boolean.valueOf(mapCardInfo.get('success')) ) {
+
+            result.put('mapCards', mapCardInfo.get('mapCards'));
+            successCardsInfo = true;
+        }
+
+        result.put('successCardsInfo', successCardsInfo);
         result.put('success', success);
 
         return result;
+    }
+
+    /**
+    * Obtiene las fechas de vencimiento de las tarjetas relacionadas a la Cuenta
+    * Regresa un mapa con el identificador de la tarjeta y la fecha de vencimiento
+    *
+    * @param accountId: Id de la cuenta
+    **/
+    public static Map<String,Object> getCardInfo(String accountId) {
+
+        Map<String,Object> mapResult = new Map<String,Object>();
+        Boolean success = false;
+
+        List<Tarjeta__c> lstCards = [SELECT N_mero_de_tarjeta__c, feccadtar__c FROM Tarjeta__c WHERE Account__c =: accountId];
+
+        if( lstCards.size() > 0 ) {            
+
+            Map<String,String> mapCards = new Map<String,String>();
+            for(Tarjeta__c card: lstCards ) {
+
+                mapCards.put( card.N_mero_de_tarjeta__c, card.feccadtar__c);
+            }
+
+            mapResult.put('mapCards', mapCards);
+            success = true;
+        }
+
+        mapResult.put('success', success);
+
+        return mapResult;
     }
 
     /**
@@ -254,6 +304,15 @@ public class MicroServicioBloqueoDeTarjeta {
     public static Map<String, Object> updateCaseByRT(String caseId, Map<String, Object> mapFields) {
 
         return CreateCase.updateCaseByRT(caseId, mapFields);
+
+    }
+        @AuraEnabled
+    public static string getDeliveryMedium(){
+        try {
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
     }
  
 }
